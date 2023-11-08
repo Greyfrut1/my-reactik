@@ -1,4 +1,3 @@
-image: node:20.9.0
 pipelines:
   branches:
     dev:
@@ -9,4 +8,4 @@ pipelines:
               variables:
                 SSH_USER: 'developer'
                 SERVER: '128.140.43.32'
-                COMMAND: 'cd /var/www/vnu-react && git checkout dev && git pull origin dev && node -v && npm install && npm run build && echo -e "Done" '
+                COMMAND: 'cd /var/www/vnu-react && git checkout dev && git pull origin dev && npm install && npm run build && echo -e "Done" '
