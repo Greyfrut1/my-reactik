@@ -1,13 +1,33 @@
 import { useEffect, useState } from "react";
-import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
+import CalendarFilter from "../components/CalendarFilter.jsx";
+import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
 
 function News() {
-
+    const [typeNews, setTypeNews] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
-    const [type_news, setTypeNews] = useState(null);
+    const [apiUrl, setApiUrl] = useState("jsonapi/views/news/block_1");
+
+    useEffect(() => {
+        updateApiUrl();
+    }, [typeNews, selectedDate]);
+
+    const updateApiUrl = () => {
+        let newApiUrl = "jsonapi/views/news/block_1";
+
+        if (typeNews) {
+            newApiUrl += `?views-filter[type_news]=${typeNews}`;
+        }
+
+        if (selectedDate) {
+            const formattedDate = formatLongDate(null, selectedDate);
+            newApiUrl += `${typeNews ? '&' : '?'}views-filter[created]=${formattedDate}`;
+        }
+
+        setApiUrl(newApiUrl);
+    };
 
     const formatLongDate = (locale, date) => {
         const year = date.getFullYear();
@@ -16,47 +36,17 @@ function News() {
         return `${year}-${month}-${day}`;
     };
 
-    const handleDateClick = (value) => {
-        setSelectedDate(value);
-    };
-
-    const handleReset = () => {
-        setSelectedDate(null);
-    };
-
     const handleTypeNews = (type) => {
         setTypeNews(type);
     };
 
-    let apiUrl = `jsonapi/views/news/block_1`;
+    const { data: newsData} = useDrupalData(apiUrl);
+    const { data: typeData} = useDrupalData('jsonapi/taxonomy_term/type_information');
 
-    if (type_news) {
-        apiUrl += `?views-filter[type_news]=${type_news}`;
-    }
-
-    if (selectedDate) {
-        const formattedDate = formatLongDate(null, selectedDate);
-        apiUrl += `${type_news ? '&' : '?'}views-filter[created]=${formattedDate}`;
-    }
-
-    const { data: newsData, isLoading: newsIsLoading, error: newsError } = useDrupalData(apiUrl);
-    const { data: typeData, isLoading: typeIsLoading, error: typeError } = useDrupalData('jsonapi/taxonomy_term/type_information');
-    console.log(apiUrl)
     return (
         <div>
-            <button onClick={() => handleTypeNews(null)}>Усі</button>
-
-            {typeData?.data?.map((item, index) => (
-                <div key={index}>
-                    <button onClick={() => handleTypeNews(`${item.attributes.drupal_internal__tid}`)}>{item.attributes.name}</button>
-                </div>
-            ))}
-
-            <Calendar
-                formatLongDate={formatLongDate}
-                onClickDay={handleDateClick}
-            />
-            <button className={'button-clear'} onClick={handleReset}>Clear</button>
+            <TypeFilterButtons typeData={typeData} handleTypeNews={handleTypeNews} />
+            <CalendarFilter selectedDate={selectedDate} onDateChange={setSelectedDate} />
             {newsData?.data?.map((item, index) => (
                 <div key={index}>
                     <a href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
