@@ -6,17 +6,13 @@ function CalendarFilter({ selectedDate, onDateChange }) {
         onDateChange(value);
     };
 
-    const handleReset = () => {
-        onDateChange(null);
-    };
-
     return (
         <div>
             <Calendar
-                onClickDay={handleDateClick}
+                onClickDay={onDateChange}
                 value={selectedDate}
             />
-            <button className={'button-clear'} onClick={handleReset}>
+            <button onClick={() => handleDateClick(null)}>
                 Clear
             </button>
         </div>

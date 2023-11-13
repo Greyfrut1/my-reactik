@@ -1,12 +1,12 @@
 import DynamicDataBlocks from "../components/DynamicDataBlocks.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 
-function News() {
+function Events() {
     return (
         <DynamicDataBlocks
-            type="news"
+            type="events"
             endpoint={(date, category) =>
-                `jsonapi/views/news/block_1?views-filter[created]=${date}&views-filter[type_news]=${category}`
+                `jsonapi/views/events/block_1?views-filter[created]=${date}&views-filter[field_type_target_id]=${category}`
             }
             render={(item, index) => (
                 <div key={index}>
@@ -22,4 +22,4 @@ function News() {
     );
 }
 
-export default News;
+export default Events;

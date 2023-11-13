@@ -1,6 +1,8 @@
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./pages/News.jsx";
-import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
 import NewsFullMode from "./pages/NewsFullMode.jsx";
+import Events from "./pages/Events.jsx";
+import EventsFullMode from "./pages/EventsFullMode.jsx";
 function App() {
 
   return (
@@ -8,7 +10,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/news" element={<News />} />
-                <Route path="/news/:newsalias" element={<NewsFullMode />}/>
+                <Route path="/news/:alias" element={<NewsFullMode />}/>
+                <Route path="/events" element={<Events />} />
+                <Route path="/events/:alias" element={<EventsFullMode />}/>
             </Routes>
         </BrowserRouter>
     </>

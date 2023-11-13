@@ -1,10 +1,11 @@
 import React from "react";
-import DynamicDataFullMode from "../components/DynamicDataFullMode.jsx"; // Замініть шлях на ваш реальний шлях
+import DynamicDataFullMode from "../components/DynamicDataFullMode.jsx";
+import ImageComponent from "../components/ImageComponent.jsx"; // Замініть шлях на ваш реальний шлях
 
-function NewsFullMode() {
+function EventsFullMode() {
     return <DynamicDataFullMode
-        types="news"
-        endpoint={(alias) => `news/${alias}?_format=json`}
+        types="events"
+        endpoint={(alias) => `events/${alias}?_format=json`}
         renderFields={(data) => (
             <>
                 {data.title?.map((item, index) => (
@@ -22,4 +23,4 @@ function NewsFullMode() {
     />;
 }
 
-export default NewsFullMode;
+export default EventsFullMode;
