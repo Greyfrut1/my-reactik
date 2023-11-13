@@ -1,6 +1,5 @@
 import React from "react";
 import useDrupalData from "../services/api.jsx";
-
 const ImageComponent = ({ url, imagestyle }) => {
 
     const { data: imageData, isLoading: isImageLoading, error: imageError } = useDrupalData(url);

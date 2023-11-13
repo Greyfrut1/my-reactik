@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
-const baseURL = 'http://128.140.43.32';
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const fetchDataFromDrupal = async (endpoint) => {
     try {
