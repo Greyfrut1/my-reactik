@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
 import CalendarFilter from "../components/CalendarFilter.jsx";
+import DynamicDataFeed from "./DynamicDataFeed.jsx";
 
 function FullModeComponent({ types, endpoint, renderFields }) {
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ function FullModeComponent({ types, endpoint, renderFields }) {
             <TypeFilterButtons handleTypeInformation={handleTypeInformation} />
             <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange} />
             {renderFields(data)}
+            <DynamicDataFeed id={data?.nid?.[0]?.value} type={types} />
         </>
     );
 }

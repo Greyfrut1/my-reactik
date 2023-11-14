@@ -4,6 +4,7 @@ import useDrupalData from "../services/api.jsx";
 import CalendarFilter from "../components/CalendarFilter.jsx";
 import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
 import queryString from 'query-string';
+import Pager from "./Pager.jsx";
 
 function DynamicDataBlocks({ type, endpoint, render }) {
     const navigate = useNavigate();
@@ -13,7 +14,11 @@ function DynamicDataBlocks({ type, endpoint, render }) {
     const category = parsed.category || 'All';
     const [typeInformation, setTypeInformation] = useState('All');
     const [selectedDate, setSelectedDate] = useState(null);
-
+    const [currentPage, setCurrentPage] = useState(0);
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+    console.log(currentPage)
     const formatLongDate = (locale, date) => {
         const year = date.getFullYear();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -36,13 +41,14 @@ function DynamicDataBlocks({ type, endpoint, render }) {
         });
     };
 
-    const { data } = useDrupalData(endpoint(date, category));
-
+    const { data } = useDrupalData(endpoint(date, category, currentPage));
+    console.log(data?.meta)
     return (
         <div>
             <TypeFilterButtons handleTypeInformation={handleTypeInformation} />
             <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange} />
             {data?.data?.map((item, index) => render(item, index))}
+            <Pager totalPages={data?.meta?.count} onPageChange={handlePageChange} />
         </div>
     );
 }
