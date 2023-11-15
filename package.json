@@ -17,6 +17,7 @@
     "gulp": "^4.0.2",
     "gulp-cli": "github:gulpjs/gulp-cli",
     "gulp-sass": "^5.1.0",
+    "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-axios": "^2.0.6",

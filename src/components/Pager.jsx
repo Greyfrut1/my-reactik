@@ -1,8 +1,12 @@
-import useDrupalData from "../services/api.jsx";
+// Import React's useState hook for managing state in functional components.
 import {useState} from "react";
+
+// Import Pagination components from the MUI library.
 import Pagination from '@mui/material/Pagination';
 import {PaginationItem} from "@mui/material";
-// Custom SVG components
+import PropTypes from "prop-types";
+
+// Custom SVG components for the pagination buttons.
 const CustomPreviousIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -61,14 +65,18 @@ const CustomLastIcon = () => (
         />
     </svg>
 );
+// Define the Pager component that takes 'totalPages' and 'onPageChange' as props.
 function Pager({ totalPages, onPageChange }){
+    // State variable for the current page.
     const [page, setPage] = useState(0);
-    // const totalPages = testData?.pager?.total_pages;
-    // const totalPages = 10;
+
+    // Function to handle page changes and call 'onPageChange' prop.
     const handlePageChange = (event, newPage) => {
         setPage(newPage - 1);
         onPageChange(newPage - 1)
     };
+
+    // Render the Pager component with MUI Pagination and custom icons.
     return(
         <>
             <Pagination
@@ -79,6 +87,7 @@ function Pager({ totalPages, onPageChange }){
                 showLastButton
                 onChange={handlePageChange}
                 renderItem={(item) => (
+                    // Render PaginationItem with custom SVG icons.
                     <PaginationItem
                         slots={{ previous: CustomPreviousIcon, next: CustomNextIcon, first:CustomFirstIcon, last:CustomLastIcon }}
                         {...item}
@@ -88,4 +97,12 @@ function Pager({ totalPages, onPageChange }){
         </>
     );
 }
+
+// PropTypes block to define the expected types for props
+Pager.propTypes = {
+    totalPages: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+};
+
+// Export the Pager component for use in other parts of the application.
 export default Pager
