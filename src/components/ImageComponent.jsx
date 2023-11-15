@@ -8,7 +8,7 @@ const baseURL = import.meta.env.VITE_BACKEND_URL;
 // Define the ImageComponent that takes 'url', 'imagestyle', and 'alt' as props.
 const ImageComponent = ({ url, imagestyle, alt }) => {
     // Fetch data using useDrupalData hook with the specified file endpoint.
-    const { data: fileData} = useDrupalData(`/entity/file/${url}`);
+    const { data: fileData} = useDrupalData(`entity/file/${url}`);
 
     // Determine the image source based on the presence of 'imagestyle'.
     const imageSource = imagestyle
@@ -22,8 +22,9 @@ const ImageComponent = ({ url, imagestyle, alt }) => {
                 If 'imagestyle' is provided, render an <img> tag with the specified image style URI.
                 Otherwise, render an <img> tag with the base URL and file URI.
             */}
-            {imageSource && <img src={imageSource} alt={alt} />}
-
+            {url && imageSource && (
+                <img src={imageSource} alt={alt} />
+            )}
         </>
     );
 
