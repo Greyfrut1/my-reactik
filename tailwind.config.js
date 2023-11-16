@@ -6,23 +6,28 @@ export default {
     ],
     theme: {
         colors: {
-            'darkred': '#8b2b30',
-            'calendarred': '#a62424',
-            'lightgray': '#e5e5e5',
+            'darkRed': '#8b2b30',
+            'lightRed': '#a62424',
+            'lightGray': '#e5e5e5',
             'dark': '#3f444e',
-            'darkgray': '#e8e8e8'
+            'darkGray': '#e8e8e8',
+            'borderGray': '#d8d8d8',
+            'white': '#fff',
+            'black': '#000',
+        },
+        fontSize:{
+            'title':['40px'],
         },
         fontFamily: {
-            'sans': ['ui-sans-serif', 'system-ui'],
-            'serif': ['ui-serif', 'Georgia'],
-            'mono': ['ui-monospace', 'SFMono-Regular'],
+            'base': ['sans-serif', 'Roboto']
         },
         screens: {
             sm: '480px',
             md: '768px',
             lg: '976px',
-            xl: '1280px',
-            xxl: '1440px',
+            // xl: '1280px',
+            // xxl: '1440px',
+            xl: '1170px'
         },
 
         container: {

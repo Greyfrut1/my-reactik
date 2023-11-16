@@ -49,20 +49,26 @@ function FullModeComponent({ types, endpoint, renderFields }) {
     // Render the FullModeComponent with TypeFilterButtons, CalendarFilter, renderFields, and DynamicDataFeed.
     return (
         <>
-            {/* Render TypeFilterButtons with a callback function for type information changes. */}
-            <TypeFilterButtons handleTypeInformation={handleTypeInformation} />
+            <div className={"container"}>
+                <div className={"flex full-mode gap-[30px]"}>
+                    <div>
+                        {/* Render fields based on the renderFields function with data as an argument. */}
+                        {renderFields(data)}
 
-            {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
-            <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange} />
+                        {/* Conditionally render DynamicDataFeed only if 'id' is not undefined. */}
+                        {id && (
+                            <DynamicDataFeed id={id} type={types} />
+                        )}
+                    </div>
+                    <div>
+                        {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
+                        <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange} />
 
-            {/* Render fields based on the renderFields function with data as an argument. */}
-            {renderFields(data)}
-
-            {/* Conditionally render DynamicDataFeed only if 'id' is not undefined. */}
-            {id && (
-                <DynamicDataFeed id={id} type={types} />
-            )}
-
+                        {/* Render TypeFilterButtons with a callback function for type information changes. */}
+                        <TypeFilterButtons handleTypeInformation={handleTypeInformation} />
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
