@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, {useState, useEffect} from 'react';
+import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
 import {
     setKey,
     setDefaults,
@@ -20,8 +20,8 @@ const containerStyle = {
 
 const api = import.meta.env.VITE_API_KEY;
 
-function MapComponent({ address }) {
-    const { isLoaded } = useJsApiLoader({
+function MapComponent({address}) {
+    const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: api,
     });
@@ -37,10 +37,10 @@ function MapComponent({ address }) {
 
     useEffect(() => {
         fromAddress(address)
-            .then(({ results }) => {
-                const { lat, lng } = results[0].geometry.location;
+            .then(({results}) => {
+                const {lat, lng} = results[0].geometry.location;
                 console.log(lat, lng);
-                setCenter({ lat, lng });
+                setCenter({lat, lng});
             })
             .catch(console.error);
     }, [address]);
