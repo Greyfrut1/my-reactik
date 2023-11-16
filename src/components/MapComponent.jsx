@@ -1,51 +1,50 @@
 import React, {useState, useEffect} from 'react';
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
 import {
-    setKey,
     setDefaults,
-    setLanguage,
-    setRegion,
     fromAddress,
-    fromLatLng,
-    fromPlaceId,
-    setLocationType,
-    geocode,
-    RequestType,
 } from 'react-geocode';
+import PropTypes from "prop-types";
 
+// Style for the map container
 const containerStyle = {
     width: '400px',
     height: '400px',
 };
 
+// Retrieving the Google Maps API key from environment variables
 const api = import.meta.env.VITE_API_KEY;
 
+// Functional component for rendering a Google Map based on an address
 function MapComponent({address}) {
+    // Checking if the Google Maps JavaScript API is loaded
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: api,
     });
 
+    // State variables for the map instance and center coordinates
     const [map, setMap] = useState(null);
     const [center, setCenter] = useState(null);
 
+    // Setting default options for the react-geocode library
     setDefaults({
-        key: api, // Your API key here.
-        language: "en", // Default language for responses.
-        region: "es", // Default region for responses.
+        key: api,
+        language: "en",
+        region: "eu",
     });
 
+    // Fetching the coordinates from the provided address and updating the center state
     useEffect(() => {
         fromAddress(address)
             .then(({results}) => {
                 const {lat, lng} = results[0].geometry.location;
-                console.log(lat, lng);
                 setCenter({lat, lng});
             })
             .catch(console.error);
     }, [address]);
 
-    // Empty dependency array means this effect runs once when the component mounts
+    // Callback function for handling map load
     const onLoad = React.useCallback(function callback(map) {
         if (center) {
             const bounds = new window.google.maps.LatLngBounds(center);
@@ -55,10 +54,12 @@ function MapComponent({address}) {
         setMap(map);
     }, [center]);
 
+    // Callback function for handling map unmount
     const onUnmount = React.useCallback(function callback(map) {
         setMap(null);
     }, []);
 
+    // Rendering the GoogleMap component if the API is loaded
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
@@ -67,11 +68,13 @@ function MapComponent({address}) {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            {/* Child components, such as markers, info windows, etc. */}
             <></>
         </GoogleMap>
     ) : <></>;
 }
 
-// Use React.memo to memoize the component and avoid unnecessary re-renders
+MapComponent.propTypes = {
+    address: PropTypes.string.isRequired
+};
+
 export default React.memo(MapComponent);

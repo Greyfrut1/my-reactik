@@ -1,31 +1,37 @@
 import ChoiceComponent from "./ChoiceComponent.jsx";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
+// Functional component for rendering a poll block
 function PollBlock({pollData, resultData}) {
+    // State variables for IP address, form visibility, and total votes
     const [ip, setIP] = useState("");
     const [showForm1, setShowForm1] = useState(true);
+
+    // Function to toggle the visibility of the poll form
     const handleButtonClick = () => {
-        setShowForm1(!showForm1); // Перемикач форм
+        setShowForm1(!showForm1);
     };
 
+    // Calculating the total number of votes
     const totalVotes = resultData?.data?.reduce((acc, choice) => acc + parseInt(choice?.attributes?.vote_count, 10), 0);
 
+    // Function to fetch user's IP address
     const getData = async () => {
         const res = await axios.get("https://api.ipify.org/?format=json");
-        console.log(res.data);
         setIP(res.data.ip);
     };
 
+    // Fetching IP address on component mount
     useEffect(() => {
-        //passing getData method to the lifecycle method
         getData();
     }, []);
 
-
+    // Function to handle form submission
     const handleSubmit1 = (event) => {
 
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault();
 
         const formData = new FormData(event.target);
         const selectedValue = formData.get('choice');
@@ -40,7 +46,6 @@ function PollBlock({pollData, resultData}) {
             hostname: ip,
             timestamp: Math.floor(currentTimestamp / 1000).toString(),
         };
-        console.log(submitFormData)
 
         axios.post('http://128.140.43.32/poll-vote/post-data', submitFormData)
             .then((response) => {
@@ -53,17 +58,22 @@ function PollBlock({pollData, resultData}) {
 
     return (
         <div>
+            {/* Mapping through the array of polls */}
             {pollData?.data?.map((poll) => (
-                <div key='test'>
+                <div key={poll?.attributes?.question}>
+                    {/* Displaying the question of the poll */}
                     <div>{poll?.attributes?.question}</div>
+
+                    {/* Conditional rendering based on form visibility */}
                     {showForm1 ? (
+                        // Form for voting
                         <form onSubmit={handleSubmit1}>
                             <input type="hidden" name="pollId" value={poll?.attributes?.drupal_internal__id}/>
                             {poll?.relationships?.choice?.data?.map((choice, index) => (
                                 <div key={choice.id}>
                                     <input
                                         type="radio"
-                                        name="choice"  // Add a name attribute to group the radio inputs
+                                        name="choice"
                                         value={choice?.meta?.drupal_internal__target_id}
                                     />
                                     <label><ChoiceComponent
@@ -74,6 +84,7 @@ function PollBlock({pollData, resultData}) {
                             <button onClick={handleButtonClick}>Переглянути результати</button>
                         </form>
                     ) : (
+                        // View results section
                         <div>
                             {resultData?.data?.map((choice1, index) => {
                                 return (
@@ -106,5 +117,16 @@ function PollBlock({pollData, resultData}) {
         </div>
     )
 }
+
+PollBlock.propTypes = {
+    pollData: PropTypes.oneOfType([
+        PropTypes.object.isRequired,
+        PropTypes.array.isRequired,
+    ]),
+    resultData: PropTypes.oneOfType([
+        PropTypes.object.isRequired,
+        PropTypes.array.isRequired,
+    ]),
+};
 
 export default PollBlock
