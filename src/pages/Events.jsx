@@ -1,9 +1,21 @@
 // Import necessary components for the Events page.
 import DynamicDataBlocks from "../components/DynamicDataBlocks.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
+import {useWindowSize} from "react-use";
+import {useEffect, useState} from "react";
 
 // Define the Events functional component.
 function Events() {
+    const size = useWindowSize();
+    const [imageStyle, setImageStyle] = useState('');
+
+    useEffect(() => {
+        if (size.width < 480) {
+            setImageStyle('dynamicdata_480x200');
+        } else {
+            setImageStyle('dynamicdata_243x231');
+        }
+    }, [size.width]);
     // Render the Events component using DynamicDataBlocks for fetching and displaying event data.
     return (
         <>
@@ -16,19 +28,31 @@ function Events() {
                 }
                 // Render each event using the specified JSX with item data and index.
                 render={(item, index) => (
-                    <div key={index}>
-                        {/* Render a link to the event's path with the event title. */}
-                        <a href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
-
-                        {/*
-                            Render the ImageComponent with the event's image data.
+                    <div className={"view-row"}>
+                        <div className={"events-block-card mb-[35px]"} key={index}>
+                            <div className={"left-box"}>
+                                {/*
+                            Render the ImageComponent with the news item's image data.
                             Pass the URL, image style, and alt text as props.
                         */}
-                        <ImageComponent url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                        imagestyle=""
-                                        alt={item?.relationships?.field_image?.data?.meta?.alt}
-                        />
-                        <p>{item?.attributes?.field_description?.summary}</p>
+                                {item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id && (
+                                    <ImageComponent url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                                    imagestyle={imageStyle}
+                                                    alt={item?.relationships?.field_image?.data?.meta?.alt}
+                                    />
+                                )}
+                            </div>
+                            <div className={"right-box"}>
+                                {/* Render a link to the news item's path with the news title. */}
+                                <a className={"right-box-title"} href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
+
+                                {/* Render a div with the summary of the news item's description. */}
+                                <div className={"right-box-description"}>{item?.attributes?.field_description?.summary}</div>
+                                <div className={"right-box-button"}>
+                                    <a href={item?.attributes?.path?.alias}>Read more</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 )}
             />

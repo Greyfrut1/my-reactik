@@ -50,8 +50,8 @@ function FullModeComponent({ types, endpoint, renderFields }) {
     return (
         <>
             <div className={"container"}>
-                <div className={"flex full-mode gap-[30px]"}>
-                    <div>
+                <div className={"flex dynamic-data-full-mode gap-[30px]"}>
+                    <div className={"dynamic-data-full-mode__left py-8"}>
                         {/* Render fields based on the renderFields function with data as an argument. */}
                         {renderFields(data)}
 
@@ -60,7 +60,7 @@ function FullModeComponent({ types, endpoint, renderFields }) {
                             <DynamicDataFeed id={id} type={types} />
                         )}
                     </div>
-                    <div>
+                    <div className={"dynamic-data-full-mode__right pt-8 lg:block hidden"}>
                         {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
                         <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange} />
 

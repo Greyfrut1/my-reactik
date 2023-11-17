@@ -3,7 +3,6 @@ import DynamicDataBlocks from "../components/DynamicDataBlocks.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import { useWindowSize } from 'react-use';
 import {useEffect, useState} from "react";
-import '../../styles/scss/NewsBlock.scss'
 
 // Define the News functional component.
 function News() {
