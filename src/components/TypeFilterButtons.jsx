@@ -9,28 +9,34 @@ function TypeFilterButtons({ handleTypeInformation }) {
 
     // Render the TypeFilterButtons component with Clear button and taxonomy term buttons.
     return (
-        <div>
-            {/*
+        <div className={"type-filter"}>
+            <div className={"type-filter__container"}>
+                <h1 className={"type-filter__title"}>CATEGORIES</h1>
+                <div className={"type-filter__buttons flex flex-col"}>
+                    {/*
                 Render a Clear button with an onClick event to handle the case when 'All' is selected.
                 It calls the 'handleTypeInformation' prop with 'All' as an argument.
             */}
-            <button onClick={() => handleTypeInformation('All')}>
-                Clear
-            </button>
+                    <a className={"type-filter__button type-filter__button--clear"} onClick={() => handleTypeInformation('All')}>
+                        Any
+                    </a>
 
-            {/*
+                    {/*
                 Map over the taxonomy term data and render buttons for each term.
                 Each button calls the 'handleTypeInformation' prop with the term's ID as an argument.
             */}
-            {typeData?.data?.map((item, index) => (
-                <div key={index}>
-                    <button onClick={() => handleTypeInformation(`${item.attributes.drupal_internal__tid}`)}>
-                        {item.attributes.name}
-                    </button>
+                    {typeData?.data?.map((item, index) => (
+                        // <div key={index}>
+                        <a className={"type-filter__button"} key={index} onClick={() => handleTypeInformation(`${item.attributes.drupal_internal__tid}`)}>
+                            {item.attributes.name}
+                        </a>
+                        // </div>
+                    ))}
                 </div>
-            ))}
 
+            </div>
         </div>
+
     );
 }
 

@@ -19,7 +19,7 @@ function NewsFullMode() {
                         {data.field_image?.map((item, index) => (
                             <div key={index}>
                                 {item?.target_id && (
-                                    <ImageComponent url={item?.target_id} imagestyle="" alt={item?.alt}/>
+                                    <ImageComponent url={item?.target_id} imagestyle="width_862" alt={item?.alt}/>
                                 )}
                             </div>
                         ))}

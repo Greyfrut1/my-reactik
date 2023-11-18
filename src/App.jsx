@@ -11,6 +11,7 @@ import EventsFullMode from "./pages/EventsFullMode.jsx";
 import Photoalbums from "./pages/Photoalbums";
 import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
 
+import "../styles/scss/styles.scss"
 // Define the main App component.
 function App() {
 

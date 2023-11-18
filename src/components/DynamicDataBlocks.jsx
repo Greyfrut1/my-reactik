@@ -68,22 +68,39 @@ function DynamicDataBlocks({type, endpoint, render}) {
 
     // Render the DynamicDataBlocks component with TypeFilterButtons, CalendarFilter, data items, and Pager.
     return (
-        <div>
-            {/* Render TypeFilterButtons with a callback function for type information changes. */}
-            <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
-            {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
-            <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
-            {/*
-                Map over the data items using the render function.
-                For each item in the data array, call the render function with the item and index.
-            */}
-            {data?.data?.map((item, index) => render(item, index))}
+        <div className={"container"}>
+            <div className={""}>
+                {type === 'news' ? <h1 className={"block-title"}>News</h1> : <h1 className={"block-title"}>Events</h1>}
+            </div>
+            <div className={"wrapper-dynamic-data-blocks gap-[30px] block lg:flex"}>
+                <div className={"dynamic-data-blocks__left  view-content"}>
+                    {/*
+                        Map over the data items using the render function.
+                        For each item in the data array, call the render function with the item and index.
+                    */}
+                    {data?.data?.length ? (
+                        data?.data?.map((item, index) => render(item, index))
+                    ) : (
+                        <h1>Empty</h1>
+                    )}
+                </div>
+                <div className={"dynamic-data-blocks__right lg:block hidden"}>
+                    {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
+                    <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
+                    {/* Render TypeFilterButtons with a callback function for type information changes. */}
+                    <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
+                </div>
+            </div>
             {/*
                 Render Pager component only if there are more than 1 total pages.
                 Pass total pages and a callback function for page changes to the Pager component.
-             */}
+                */}
             {totalPages > 1 && (
-                <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
+                <div className={"pager flex justify-center mt-[20px]"}>
+
+                    <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
+                </div>
+
             )}
         </div>
     );
