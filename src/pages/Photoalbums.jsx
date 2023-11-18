@@ -17,9 +17,10 @@ function Photoalbums() {
             {albumsData?.data?.map((item, index) => (
             <div key={index}>
                 <a href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
-                {item.relationships.field_image && (
-                    <ImageComponent url={new URL(item.relationships.field_image.links.related.href).pathname} imagestyle="large" />
-                )}
+                <ImageComponent url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                imagestyle=""
+                                alt={item?.relationships?.field_image?.data?.meta?.alt}
+                />
             </div>
         ))}
         </div>

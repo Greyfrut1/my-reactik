@@ -25,11 +25,8 @@ function News() {
                             Render the ImageComponent with the news item's image data.
                             Pass the URL, image style, and alt text as props.
                         */}
-                        {item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id && (
-                            <ImageComponent url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                            imagestyle=""
-                                            alt={item?.relationships?.field_image?.data?.meta?.alt}
-                            />
+                        {item.relationships.field_image && (
+                            <ImageComponent url={new URL(item.relationships.field_image.links.related.href).pathname} imagestyle="large" />
                         )}
 
                         {/* Render a div with the summary of the news item's description. */}
