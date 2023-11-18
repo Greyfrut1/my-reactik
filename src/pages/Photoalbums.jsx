@@ -13,16 +13,20 @@ function Photoalbums() {
         setJsonData(data);
     });
     return (
-        <div>
-            {albumsData?.data?.map((item, index) => (
-            <div key={index}>
-                <a href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
-                <ImageComponent url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                imagestyle=""
-                                alt={item?.relationships?.field_image?.data?.meta?.alt}
-                />
+        <div className={"container"}>
+            <div className={"albums-view"}>
+                {albumsData?.data?.map((item, index) => (
+                    <div className={"albums-card"} key={index}>
+                        <a className={"albums-card-title"} href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
+                        <div className={"albums-card-img"}>
+                            <ImageComponent url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                            imagestyle="dynamicdata_243x231"
+                                            alt={item?.relationships?.field_image?.data?.meta?.alt}
+                            />
+                        </div>
+                    </div>
+                ))}
             </div>
-        ))}
         </div>
     );
 }
