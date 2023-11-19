@@ -97,10 +97,8 @@ function DynamicDataBlocks({type, endpoint, render}) {
                 */}
             {totalPages > 1 && (
                 <div className={"pager flex justify-center mt-[20px]"}>
-
                     <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
                 </div>
-
             )}
         </div>
     );

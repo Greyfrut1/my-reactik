@@ -1,14 +1,7 @@
 @import "mixins";
 @import "variables";
 
-.albums-view{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:50px;
-  max-width: 1170px;
-  margin: 0 auto;
-  width: 100%;
-}
+
 .albums-card{
   display:flex;
   justify-content: space-between;
@@ -28,8 +21,64 @@
     border-bottom: 3px solid $darkRed;
     border-left: 3px solid $darkRed;
   }
-  &-title{
+  &__title{
     @include fontz(15px,25px,0.02rem,uppercase,300,$darkRed);
     text-decoration:none;
   }
+}
+
+//Full page photoalbums.
+.album-title{
+  text-align:center;
+  @include fontz(2em,65px,0.02rem,capitalize,800,$black);
+}
+.MuiPagination-ul{
+  justify-content: center;
+}
+
+.album-gallery{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  gap:16px;
+  img{
+    object-fit: cover;
+    width:100%;
+  }
+}
+/* PhotoAlbumsFullPage.css */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+
+  &-content {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+}
+.button-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color:white;
 }
