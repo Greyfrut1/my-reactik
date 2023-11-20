@@ -13,16 +13,20 @@ function CalendarFilter({ selectedDate, onDateChange }) {
 
     // Render the CalendarFilter component with a Calendar component and a Clear button.
     return (
-        <div>
-            {/* Render the Calendar component with onClickDay to handle day clicks and value for the selected date. */}
-            <Calendar
-                onClickDay={onDateChange}
-                value={selectedDate}
-            />
-            {/* Render a Clear button with an onClick event to reset the selected date to null. */}
-            <button onClick={() => handleDateClick(null)}>
-                Clear
-            </button>
+        <div className={"flex justify-center"}>
+            <div>
+                {/* Render the Calendar component with onClickDay to handle day clicks and value for the selected date. */}
+                <Calendar
+                    onClickDay={onDateChange}
+                    value={selectedDate}
+                />
+                {/* Render a Clear button with an onClick event to reset the selected date to null. */}
+                <button onClick={() => handleDateClick(null)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
         </div>
     );
 }

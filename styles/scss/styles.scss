@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "typefilterbuttons";
+@import "newsblock";
+@import "photoalbums";
+@import "main";
 @import "main-slider";
 @import "actual-news";
 @import "last-news";
@@ -11,4 +15,3 @@
 body{
   font-family: 'Roboto', sans-serif;
 }
-

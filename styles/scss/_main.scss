@@ -1,0 +1,33 @@
+@import "variables";
+body{
+  font-family: sans-serif, Roboto;
+}
+.block-title{
+  text-align: center;
+  margin: 1.2em 0;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+.react-calendar{
+  border-color: $lightRed;
+  .react-calendar__navigation{
+    background: $lightRed;
+    color: white;
+  }
+  .react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+    background-color: transparent;
+  }
+  .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus{
+    background-color: $darkGray;
+  }
+
+  .react-calendar__tile--active , .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+    background: $lightRed;
+  }
+  .react-calendar__navigation button:disabled {
+    background-color: transparent;
+  }
+}
+.text-align-center{text-align: center;}
+.text-align-left{text-align: left;}
+.text-align-right{text-align: right;}

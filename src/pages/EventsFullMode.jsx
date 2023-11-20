@@ -1,6 +1,7 @@
 // Import necessary components for the EventsFullMode page.
 import DynamicDataFullMode from "../components/DynamicDataFullMode.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
+import moment from 'moment';
 
 // Define the EventsFullMode functional component.
 function EventsFullMode() {
@@ -15,28 +16,34 @@ function EventsFullMode() {
             renderFields={(data) => (
                 <>
                     {/* Map over field_image data and render ImageComponent for each item. */}
-                    {data.field_image?.map((item, index) => (
+                    {data.title?.map((item, index) => (
                         <div key={index}>
+                            <h1 className={"block-title"}>{item.value}</h1>
+                        </div>
+                    ))}
+                    {/* Map over field_image data and render ImageComponent for each item. */}
+                    {data.field_image?.map((item, index) => (
+                        <div className={"flex pt-[32px]"} key={index}>
                             <ImageComponent url={item.target_id} imagestyle="" alt={item?.alt}/>
                         </div>
                     ))}
                     {/* Map over field_description data and render HTML content for each item. */}
                     {data.field_description?.map((item, index) => (
                         <div key={index}>
-                            <div dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
+                            <div className={"text-sm bebebeb pb-[30px]"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
                         </div>
                     ))}
                     {/* Map over field_duration data and render start and end values for each item. */}
                     {data.field_duration?.map((item, index) => (
                         <div key={index}>
-                            <p>{item.value}</p>
-                            <p>{item.end_value}</p>
+                            <p className={"pt-[30px]"}>Start date: {moment(item.value).format('dddd, D MMMM YYYY - HH:mm')}</p>
+                            <p className={"pt-5"}>End date: {moment(item.end_value).format('dddd, D MMMM YYYY - HH:mm')}</p>
                         </div>
                     ))}
                     {/* Map over field_location data and render a link to Google Maps for each item. */}
                     {data.field_location?.map((item, index) => (
-                        <div key={index}>
-                            <a href={`https://www.google.com.ua/maps/search/${item.value}`}>{item.value}</a>
+                        <div className={"pt-5"} key={index}>
+                            <div>Location: <a href={`https://www.google.com.ua/maps/search/${item.value}`}>{item.value}</a></div>
                         </div>
                     ))}
                 </>
