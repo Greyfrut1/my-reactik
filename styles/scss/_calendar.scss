@@ -20,6 +20,7 @@
   border-color: $lightRed;
   border-bottom: none;
   .react-calendar__navigation{
+    font-size: 14px;
     background: $lightRed;
     color: white;
     button:enabled:hover, button:enabled:focus, button:disabled{
