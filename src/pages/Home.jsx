@@ -81,8 +81,8 @@ function Home() {
 
     // Options for the YouTube player
     const opts = {
-        height: '390',
-        width: '640',
+        height: '450',
+        width: '730',
         playerVars: {
             autoplay: 0,
         },
@@ -121,33 +121,41 @@ function Home() {
                         <EventsSlider data={eventsBlockData}/>
                     </div>
                     <div className='homepage-bottom'>
-                        <h3><a href='#'>Обране опитування</a></h3>
+                        <div className="poll-block">
+                        <h3 className="poll-block__title title"><a href='#'>Вибране опитування</a></h3>
                         <PollBlock pollData={pollBlockData} resultData={pollResultData}/>
                     </div>
                     {/* Rendering the infrastructure location */}
-                    <div>{infrastructureBlockdata?.data?.[0]?.attributes?.field_location}</div>
-                    {infrastructureBlockdata?.data?.[0]?.attributes?.field_location && <div>
-                        <h3><a href='#'>Інфрастркуктура</a></h3>
-                        <MapComponent address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}/>
+                    {/*<div>{infrastructureBlockdata?.data?.[0]?.attributes?.field_location}</div>*/}
+                    {infrastructureBlockdata?.data?.[0]?.attributes?.field_location && <div className="infrastructure-block">
+                        <h3 className="infrastructure-block__title title"><a href='#'>Інфрастркуктура</a></h3>
+                        <div className="infrastructure-block__map-block">
+                            <MapComponent width="350" address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}/>
+                        </div>
                     </div>}
+
+                     <div className="photoalbum-block">
+                         <h3 className="photoalbum-block__title title"><a href="/photoalbums">Наші фотоальбоми</a></h3>
+                     </div>
                     {/* Rendering the Facebook component if Facebook link exists */}
-                    {facebookBlockData?.data?.attributes?.field_link_to?.uri && <div>
-                        <h3><a
+                    {facebookBlockData?.data?.attributes?.field_link_to?.uri && <div className="facebook-block">
+                        <h3 className="facebook-block__title title"><a
                             href={facebookBlockData?.data?.attributes?.field_link_to?.uri}>{facebookBlockData?.data?.attributes?.info}</a>
                         </h3>
                         <FacebookProvider appId='1453142571919005'>
-                            <Page href={facebookBlockData?.data?.attributes?.field_link_to?.uri} tabs="timeline"/>
+                            <Page width="350" height="450" href={facebookBlockData?.data?.attributes?.field_link_to?.uri} tabs="timeline"/>
                         </FacebookProvider>
                     </div>}
                     {/* Rendering the YouTube component if YouTube link exists */}
                     {youtubeBlockData?.data?.attributes?.field_link_to?.uri && (
-                        <div>
-                            <h3><a
+                        <div className="youtube-block">
+                            <h3 className="youtube-block__title title"><a
                                 href={youtubeBlockData?.data?.attributes?.field_link_to?.uri}>{youtubeBlockData?.data?.attributes?.info}</a>
                             </h3>
                             <YouTube videoId={videoId} opts={opts}/>
                         </div>
                     )}
+                    </div>
                 </>
             )}
         </div>

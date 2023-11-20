@@ -57,20 +57,20 @@ function PollBlock({pollData, resultData}) {
     };
 
     return (
-        <div>
+        <>
             {/* Mapping through the array of polls */}
             {pollData?.data?.map((poll) => (
-                <div key={poll?.attributes?.question}>
+                <div key={poll?.attributes?.question} className="poll-block__block">
                     {/* Displaying the question of the poll */}
-                    <div>{poll?.attributes?.question}</div>
+                    <div className="poll-block__question">{poll?.attributes?.question}</div>
 
                     {/* Conditional rendering based on form visibility */}
                     {showForm1 ? (
                         // Form for voting
-                        <form onSubmit={handleSubmit1}>
+                        <form className="poll-block__form" onSubmit={handleSubmit1}>
                             <input type="hidden" name="pollId" value={poll?.attributes?.drupal_internal__id}/>
                             {poll?.relationships?.choice?.data?.map((choice, index) => (
-                                <div key={choice.id}>
+                                <div key={choice.id} className="poll-block__choice-item">
                                     <input
                                         type="radio"
                                         name="choice"
@@ -80,8 +80,8 @@ function PollBlock({pollData, resultData}) {
                                         choiceId={poll.relationships?.choice?.data?.[index]?.id}/></label>
                                 </div>
                             ))}
-                            <button type="submit">Надіслати</button>
-                            <button onClick={handleButtonClick}>Переглянути результати</button>
+                            <button type="submit" className="poll-block__form-submit button">Надіслати</button>
+                            <button onClick={handleButtonClick} className="poll-block__switch button">Переглянути результати</button>
                         </form>
                     ) : (
                         // View results section
@@ -109,12 +109,12 @@ function PollBlock({pollData, resultData}) {
                                 )
                             })}
                             <div>Total votes: {totalVotes}</div>
-                            <button onClick={handleButtonClick}>Переглянути опитування</button>
+                            <button onClick={handleButtonClick} className="poll-block__switch button">Переглянути опитування</button>
                         </div>
                     )}
                 </div>
             ))}
-        </div>
+        </>
     )
 }
 

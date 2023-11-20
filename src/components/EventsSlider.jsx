@@ -52,6 +52,8 @@ function EventsSlider({data}) {
                         <div className="events-slider__title"><h3>{event?.attributes?.title}</h3></div>
                     </div>
                     <div className="events-slider__bottom">
+                        <div className="events-slider__title"><h3>{event?.attributes?.title}</h3></div>
+
                     {/* Displaying the truncated description of the event */}
                     <div
                         dangerouslySetInnerHTML={{__html: truncateText(event?.attributes?.field_description?.summary, 150)}} className="events-slider__summary"/>
