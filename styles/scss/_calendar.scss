@@ -1,0 +1,35 @@
+@import "variables";
+.calendar-button-clear{
+  border: 1px solid $lightRed;
+  display: flex;
+  justify-content: center;
+  padding: 3px 0;
+  font-size: 0.833em;
+  align-items: center;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+  background-color: $lightRed;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: black;
+    transition: 0.3s ease;
+  }
+}
+.react-calendar{
+  border-color: $lightRed;
+  border-bottom: none;
+  .react-calendar__navigation{
+    background: $lightRed;
+    color: white;
+    button:enabled:hover, button:enabled:focus, button:disabled{
+      background-color: transparent;
+    }
+  }
+  .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus{
+    background-color: $darkGray;
+  }
+  .react-calendar__tile--active , .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+    background: $lightRed;
+  }
+}

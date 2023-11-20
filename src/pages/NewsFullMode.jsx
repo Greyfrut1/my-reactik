@@ -26,7 +26,7 @@ function NewsFullMode() {
                         {/* Map over field_description data and render HTML content for each item. */}
                         {data.field_description?.map((item, index) => (
                             <div key={index}>
-                                <div dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
+                                <div className={"field-description"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
                             </div>
                         ))}
                     </>

@@ -18,19 +18,19 @@ function EventsFullMode() {
                     {/* Map over field_image data and render ImageComponent for each item. */}
                     {data.title?.map((item, index) => (
                         <div key={index}>
-                            <h1 className={"block-title"}>{item.value}</h1>
+                            <h1 className={"block-title events-block-title"}>{item.value}</h1>
                         </div>
                     ))}
                     {/* Map over field_image data and render ImageComponent for each item. */}
                     {data.field_image?.map((item, index) => (
-                        <div className={"flex pt-[32px]"} key={index}>
+                        <div className={"flex "} key={index}>
                             <ImageComponent url={item.target_id} imagestyle="" alt={item?.alt}/>
                         </div>
                     ))}
                     {/* Map over field_description data and render HTML content for each item. */}
                     {data.field_description?.map((item, index) => (
                         <div key={index}>
-                            <div className={"text-sm bebebeb pb-[30px]"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
+                            <div className={"text-sm pb-[30px] field-description"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
                         </div>
                     ))}
                     {/* Map over field_duration data and render start and end values for each item. */}

@@ -13,7 +13,7 @@ function LastNewsBlock({data}) {
 
                         {/* Rendering the ImageComponent with the specified URL and style */}
                     <ImageComponent url={news?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                    imagestyle='news_275x185'/>
+                                    imagestyle='news_275x185' alt={"test"}/>
                         {/* Displaying the title of the news item */}
                     <div className="last-news-block__title"><h3>{news?.attributes?.title}</h3></div>
                         {/* Displaying the summary or description of the news item */}
