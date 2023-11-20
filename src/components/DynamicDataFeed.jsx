@@ -7,7 +7,6 @@ function DynamicDataFeed({id, type}) {
     // Fetch data using useDrupalData hook with the specified endpoint and arguments.
     const {data: feedData} = useDrupalData(`/jsonapi/views/news_in_block/${type}?views-argument[0]=${id}`)
 
-    console.log(feedData?.data)
     // Render the DynamicDataFeed component with conditional rendering based on feedData presence.
     return (
         <>
