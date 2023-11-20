@@ -138,11 +138,13 @@
   img {
     width: 100vw;
     max-width: 95%;
+    object-fit:cover;
   }
 
   &-content {
     position: relative;
     width: 80%;
+    height:80%;
     max-width: 800px;
     background-color: white;
     padding: 35px 10px;
@@ -189,9 +191,11 @@
   }
   .lightbox {
     padding: 20px 10px;
-
-    img {
-      max-width: 90%;
+    &-content {
+      height:35%;
+      img{
+        max-width:90%;
+      }
     }
 
     .button-close {
