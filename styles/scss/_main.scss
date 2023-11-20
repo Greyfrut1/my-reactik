@@ -1,6 +1,13 @@
 @import "variables";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
 body{
-  font-family: sans-serif, Roboto;
+  font-family: Roboto, sans-serif;
+}
+.field-description{
+  p{
+    margin: 1em 0;
+  }
 }
 .block-title{
   text-align: center;
@@ -8,26 +15,14 @@ body{
   font-size: 1.8em;
   font-weight: bold;
 }
-.react-calendar{
-  border-color: $lightRed;
-  .react-calendar__navigation{
-    background: $lightRed;
-    color: white;
+.text-align{
+  &-left{
+    text-align: left;
   }
-  .react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
-    background-color: transparent;
+  &-right{
+    text-align: right;
   }
-  .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus{
-    background-color: $darkGray;
-  }
-
-  .react-calendar__tile--active , .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
-    background: $lightRed;
-  }
-  .react-calendar__navigation button:disabled {
-    background-color: transparent;
+  &-center{
+    text-align: center;
   }
 }
-.text-align-center{text-align: center;}
-.text-align-left{text-align: left;}
-.text-align-right{text-align: right;}

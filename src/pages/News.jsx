@@ -10,7 +10,7 @@ function News() {
     const [imageStyle, setImageStyle] = useState('');
 
     useEffect(() => {
-        if (size.width < 480) {
+        if (size.width <= 480) {
             setImageStyle('dynamicdata_480x200');
         } else {
             setImageStyle('dynamicdata_243x231');

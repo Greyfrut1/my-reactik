@@ -1,67 +1,74 @@
 @import "mixins";
 @import "variables";
-.news-block-card, .events-block-card{
+
+.news-block-card, .events-block-card {
   display: flex;
   border: 1px solid $borderGray;
   margin-bottom: 15px;
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
-  &:hover{
+
+  &:hover {
     border-color: $darkRed;
   }
-  .left-box{
+
+  @media (max-width: $sm) {
+    flex-direction: column;
+  }
+
+  .left-box {
     max-width: 243px;
     width: 100%;
-    @media (max-width: 480px) {
-        max-width: none;
+    @media (max-width: $sm) {
+      max-width: none;
     }
   }
-  .right-box{
+
+  .right-box {
     max-width: 544px;
     padding: 25px;
 
-    @media (min-width: 480px) and (max-width: 976px) {
-      max-width: clamp(265px, calc(493px + (265 - 493) * ((100vw - 976px) / (480 - 976))), 493px);
+    @media (min-width: $sm + 1) and (max-width: $lg) {
+      max-width: clamp(265px, calc(493px + (265 - 493) * ((100vw - $lg) / (480 - 976))), 493px);
       padding: 15px;
     }
 
-    @media (min-width: 976px) and (max-width: 1200px) {
+    @media (min-width: $lg) and (max-width: $xl) {
       max-width: 350px;
     }
     @media (max-width: 480px) {
-        padding: 12px;
-      .right-box-title{
+      padding: 12px;
+      .right-box-title {
         margin-bottom: 15px;
       }
-      .right-box-description{
+      .right-box-description {
         margin-bottom: 15px;
-      }
-      .right-box-button{
-        padding-bottom: 15px;
       }
     }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .right-box-title{
+
+    .right-box-title {
       @include cuttext;
       -webkit-line-clamp: 2;
       font-weight: bold;
     }
-    .right-box-description{
+
+    .right-box-description {
       @include cuttext;
       -webkit-line-clamp: 3;
     }
-    .right-box-button{
-      a{
+
+    .right-box-button {
+      padding-top: 5px;
+
+      a {
         font-weight: bold;
         padding: 5px 10px;
         border: 1px solid $darkRed;
         border-radius: 2px;
         transition: 0.3s ease;
 
-        &:hover{
+        &:hover {
           background-color: $darkRed;
           color: white;
           transition: 0.3s ease;
@@ -70,25 +77,36 @@
     }
   }
 }
-.events-block-card{
+
+.events-block-card {
   transition: .2s ease-in-out;
   transition-delay: .3s;
-  &:hover{
-    box-shadow: 14px 10px 59px -10px rgba(0,0,0,.75);
+
+  &:hover {
+    box-shadow: 14px 10px 59px -10px rgba(0, 0, 0, .75);
     transition: .2s ease-in-out;
     transform: translateY(-5%);
-
   }
+
   border: none;
-  .right-box{
+
+  .right-box {
     padding: 15px;
   }
 }
-.dynamic-data-blocks, .dynamic-data-full-mode{
-  &__left{
+
+.dynamic-data-blocks, .dynamic-data-full-mode {
+  &__left {
     flex: 3;
   }
-  &__right{
+
+  &__right {
     flex: 1;
+  }
+}
+
+.dynamic-data-full-mode {
+  .events-block-title {
+    margin-top: 0;
   }
 }
