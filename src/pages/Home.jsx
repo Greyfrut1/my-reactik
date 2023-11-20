@@ -113,11 +113,11 @@ function Home() {
                     <ActualNewsBlock data={actualNewsData}/>
                     </div>
                     <div className="last-news-block">
-                        <h2 className="last-news-block__block-title"><a href='/'>Актуально</a></h2>
+                        <h2 className="last-news-block__block-title"><a href='/news'>Актуально</a></h2>
                         <LastNewsBlock data={lastNewsData}/>
                     </div>
                     <div className="events-slider">
-                        <h2 className="events-slider__block-title"><a href='/'>Незабаром</a></h2>
+                        <h2 className="events-slider__block-title"><a href='/events'>Незабаром</a></h2>
                         <EventsSlider data={eventsBlockData}/>
                     </div>
                     <div className='homepage-bottom'>
