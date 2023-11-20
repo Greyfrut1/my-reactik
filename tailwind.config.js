@@ -22,17 +22,14 @@ export default {
             'base': ['sans-serif', 'Roboto']
         },
         screens: {
-            // sm: '480px',
             md: '768px',
             lg: '976px',
-            // xl: '1280px',
-            // xxl: '1440px',
             xl: '1200px'
         },
 
         container: {
-            center: true,  // Center the container content
-            padding: '15px', // Задаємо падінг по горизонталі
+            center: true,  // Center the container content.
+            padding: '15px', // Set horizontal padding.
         },
     },
     plugins: [],

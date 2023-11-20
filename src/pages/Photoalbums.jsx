@@ -2,11 +2,23 @@ import React, { useEffect, useState } from "react";
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import Pager from "../components/Pager.jsx";
+import {useWindowSize} from "react-use";
 
 function Photoalbums() {
     const [apiUrl, setApiUrl] = useState("/jsonapi/views/photoalbums_/block_1");
     const [jsonData, setJsonData] = useState(null);
     const { data: albumsData, isLoading: albumsIsLoading, error: albumsError } = useDrupalData(apiUrl);
+
+    const size = useWindowSize();
+    const [imageStyle, setImageStyle] = useState('');
+
+    useEffect(() => {
+        if (size.width < 480) {
+            setImageStyle('thumbnail');
+        } else {
+            setImageStyle('small_large_photoalbums_134_172_');
+        }
+    }, [size.width]);
 
     useEffect(() => {
         if (albumsData) {
@@ -32,7 +44,7 @@ function Photoalbums() {
                         <div className={"albums-card__img"}>
                             <ImageComponent
                                 url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                imagestyle="photoalbums_"
+                                imagestyle={imageStyle}
                                 alt={item?.relationships?.field_image?.data?.meta?.alt}
                             />
                         </div>

@@ -10,8 +10,6 @@
   align-items: center;
   margin: 1em 0;
   padding: 10px;
-  max-width: 560px;
-  width: 100%;
   position: relative;
   transition: .2s ease;
   border-top: 3px solid $darkRed;
@@ -79,18 +77,19 @@
     .button-next{
       font-size:24px;
     }
+    .button-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color:black;
+    }
   }
 }
-.button-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color:black;
-}
+
 //Adaptive.
 @media (max-width:$lg){
   .album-title{
@@ -98,15 +97,24 @@
     margin:10px 0;
   }
 }
+
 @media (max-width:$sm){
+  .albums-card{
+    &__img{
+      img{
+        width:100vw;
+      }
+    }
+  }
   .lightbox {
     padding:20px 10px;
     img{
       max-width:90%;
     }
-  }
-  .button-close {
-    top: 0;
-    right: 2px;
+    .button-close {
+      top: 0;
+      right: 2px;
+      font-size:14px;
+    }
   }
 }
