@@ -1,5 +1,6 @@
 import ImageComponent from "./ImageComponent.jsx";
 import PropTypes from "prop-types";
+import tick from "/src/assets/home-tick.png"
 
 // Functional component for rendering a block of last news
 function LastNewsBlock({data}) {
@@ -18,7 +19,7 @@ function LastNewsBlock({data}) {
                     <div className="last-news-block__title"><h3>{news?.attributes?.title}</h3></div>
                         {/* Displaying the summary or description of the news item */}
                     <div className="last-news-block__summary"><span>{news?.attributes?.field_description?.summary}</span></div>
-                    <a href={news?.attributes?.path?.alias} className="last-news-block__link-block"><img src='/src/assets/home-tick.png'/><div  className="last-news-block__link">Read more
+                    <a href={news?.attributes?.path?.alias} className="last-news-block__link-block"><img src={tick}/><div  className="last-news-block__link">Read more
                     </div></a>
                 </div>
             ))}

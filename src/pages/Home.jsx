@@ -81,8 +81,8 @@ function Home() {
 
     // Options for the YouTube player
     const opts = {
-        height: '450',
-        width: '730',
+        // height: '450',
+        // width: '730',
         playerVars: {
             autoplay: 0,
         },
@@ -152,7 +152,7 @@ function Home() {
                             <h3 className="youtube-block__title title"><a
                                 href={youtubeBlockData?.data?.attributes?.field_link_to?.uri}>{youtubeBlockData?.data?.attributes?.info}</a>
                             </h3>
-                            <YouTube videoId={videoId} opts={opts}/>
+                            <YouTube className="youtube-block__video-block" videoId={videoId} opts={opts}/>
                         </div>
                     )}
                     </div>

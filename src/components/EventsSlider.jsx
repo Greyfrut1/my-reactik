@@ -2,6 +2,7 @@ import {format} from "date-fns";
 import ImageComponent from "./ImageComponent.jsx";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
+import arrow from '/src/assets/long-arrow-right.png'
 
 // Function to truncate text to a specified maximum length
 function truncateText(text, maxLength) {
@@ -56,7 +57,7 @@ function EventsSlider({data}) {
                     <div
                         dangerouslySetInnerHTML={{__html: truncateText(event?.attributes?.field_description?.summary, 150)}} className="events-slider__summary"/>
                     {/* Link to the event with an arrow icon */}
-                    <div className="events-slide__link-block"><a href={event?.attributes?.path?.alias}><img src="/src/assets/long-arrow-right.png" alt='link'/></a></div>
+                    <div className="events-slide__link-block"><a href={event?.attributes?.path?.alias}><img src={arrow} alt='link'/></a></div>
                     </div>
                 </div>
             ))}

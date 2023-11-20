@@ -2,6 +2,9 @@
   background-color: #c4c4c4;
   //min-height: 630px;
   padding: 60px 0;
+  .slick-dots{
+    bottom: 0;
+  }
   .events-slider__block-title{
     max-width: 1170px;
     display: block;
@@ -25,6 +28,17 @@
       height: 403px;
       background-color: #fff;
       &:hover{
+        .events-slider__top::before{
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(124,19,42,.5);
+          z-index: 1;
+        }
         .events-slider__top .events-slider__title{
           opacity: 0 !important;
         }
@@ -89,6 +103,9 @@
           width: 100%;
           z-index: 0;
           filter: brightness(0.4);
+        }
+        &:hover{
+
         }
       }
     }

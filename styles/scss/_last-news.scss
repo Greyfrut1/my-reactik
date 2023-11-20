@@ -47,7 +47,7 @@
         display: flex;
         flex-direction: row;
         width: 134px;
-        transition: transform 0.3s ease-in-out;
+        transition: .3s ease;
         .last-news-block__link{
           display: block;
           font-size: 12px;
@@ -64,7 +64,7 @@
         }
         &:hover{
           background-color: #fdbe34;
-          transition: transform 0.3s ease-in-out;
+          transition: .3s ease;
         }
       }
     }
