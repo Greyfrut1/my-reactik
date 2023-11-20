@@ -8,6 +8,8 @@ import News from "./pages/News.jsx";
 import NewsFullMode from "./pages/NewsFullMode.jsx";
 import Events from "./pages/Events.jsx";
 import EventsFullMode from "./pages/EventsFullMode.jsx";
+import '../styles/scss/styles.scss'
+import '../styles/css/styles.css'
 
 // Define the main App component.
 function App() {

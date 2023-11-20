@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "main-slider";
+@import "actual-news";
+@import "last-news";
+@import "events-slider";
+@import "homepage-bottom";
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
