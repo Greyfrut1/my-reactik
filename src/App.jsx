@@ -1,5 +1,7 @@
 // Import necessary components and hooks from react-router-dom.
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { useState } from 'react'
+import Home from "./pages/Home.jsx";
 
 // Import page components for News and Events.
 import News from "./pages/News.jsx";
@@ -18,6 +20,7 @@ function App() {
         <BrowserRouter>
             {/* Define route configurations using Routes component. */}
             <Routes>
+                <Route path="/" element={<Home />} />
                 {/* Route for the News page. */}
                 <Route path="/news" element={<News />} />
 
