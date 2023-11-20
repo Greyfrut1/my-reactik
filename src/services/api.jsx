@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 
 // Retrieve the base URL from the Vite environment variables.
-const baseURL = 'http://128.140.43.32';
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 // Define a function to fetch data from the Drupal backend using Axios.
 const fetchDataFromDrupal = async (endpoint) => {

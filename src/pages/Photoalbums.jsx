@@ -18,34 +18,32 @@ function Photoalbums() {
         setApiUrl(`/jsonapi/views/photoalbums_/block_1?page=${page}`);
     };
 
-    const screenWidth = window.innerWidth;
-
-    const containerStyle = {
-        display: 'flex',
-        align: screenWidth < 1000 ? 'center' : 'flex-start',
-        gap: '16px',
-    };
+    // Calculate total count, items per page, and total pages.
+    const totalCount = jsonData?.meta?.pager?.count || 0;
+    const itemsPerPage = jsonData?.meta?.pager?.configurations?.items_per_page || 1;
+    const totalPages = Math.ceil(totalCount / itemsPerPage);
 
     return (
         <div className={"container"}>
-            <div className={"albums-view flex flex-wrap"}  style={containerStyle}>
+            <div className={"albums-view flex flex-wrap xl:justify-start justify-center"}>
                 {jsonData?.data?.map((item, index) => (
                     <div className={"albums-card"} key={index}>
                         <a className={"albums-card__title"} href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
                         <div className={"albums-card__img"}>
                             <ImageComponent
                                 url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                imagestyle="dynamicdata_243x231"
+                                imagestyle="photoalbums_"
                                 alt={item?.relationships?.field_image?.data?.meta?.alt}
                             />
                         </div>
                     </div>
                 ))}
             </div>
-            <Pager
-                totalPages={jsonData?.meta?.pager?.totalPages || 1}
-                onPageChange={handlePageChange}
-            />
+            {itemsPerPage > 1 && totalPages > 1 && (
+                <div className={"pager flex justify-center mt-[20px]"}>
+                    <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
+                </div>
+            )}
         </div>
     );
 }

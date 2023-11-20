@@ -1,7 +1,9 @@
 @import "mixins";
 @import "variables";
 
-
+.albums-view{
+  gap:20px;
+}
 .albums-card{
   display:flex;
   justify-content: space-between;
@@ -21,9 +23,13 @@
     border-bottom: 3px solid $darkRed;
     border-left: 3px solid $darkRed;
   }
+  &__img{
+      max-width:150px;
+  }
   &__title{
     @include fontz(15px,25px,0.02rem,uppercase,300,$darkRed);
     text-decoration:none;
+    max-width:370px;
   }
 }
 
@@ -32,22 +38,20 @@
   text-align:center;
   @include fontz(2em,65px,0.02rem,capitalize,800,$black);
 }
+
 .MuiPagination-ul{
   justify-content: center;
 }
 
 .album-gallery{
-  display: flex;
-  flex-wrap:wrap;
-  justify-content: center;
   gap:16px;
   img{
     object-fit: cover;
     width:100%;
   }
 }
-/* PhotoAlbumsFullPage.css */
 
+//Lightbox stylization.
 .lightbox {
   position: fixed;
   top: 0;
@@ -60,16 +64,21 @@
   align-items: center;
   flex-direction: column;
   z-index: 999;
-
+  img{
+    width:100vw;
+    max-width:100%;
+  }
   &-content {
     position: relative;
     width: 80%;
     max-width: 800px;
     background-color: white;
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    .button-prev,
+    .button-next{
+      font-size:24px;
+    }
   }
 }
 .button-close {
@@ -80,5 +89,24 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color:white;
+  color:black;
+}
+//Adaptive.
+@media (max-width:$lg){
+  .album-title{
+    @include fontz(1.5em,30px,0.02rem,capitalize,800,$black);
+    margin:10px 0;
+  }
+}
+@media (max-width:$sm){
+  .lightbox {
+    padding:20px 10px;
+    img{
+      max-width:90%;
+    }
+  }
+  .button-close {
+    top: 0;
+    right: 2px;
+  }
 }
