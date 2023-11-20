@@ -24,8 +24,6 @@ function EventsSlider({data}) {
         arrows: false,
         variableWidth: true,
     };
-
-    console.log(data.data.length)
     if (data?.data && data.data.length > 3) {
         settings.slidesToShow = 3;
     } else if (data?.data) {
