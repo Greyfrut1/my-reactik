@@ -8,8 +8,8 @@ import PropTypes from "prop-types";
 
 // Style for the map container
 const containerStyle = {
-    width: '400px',
-    height: '400px',
+    width: '350px',
+    height: '450px',
 };
 
 // Retrieving the Google Maps API key from environment variables

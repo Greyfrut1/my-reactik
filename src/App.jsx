@@ -8,6 +8,8 @@ import News from "./pages/News.jsx";
 import NewsFullMode from "./pages/NewsFullMode.jsx";
 import Events from "./pages/Events.jsx";
 import EventsFullMode from "./pages/EventsFullMode.jsx";
+import Photoalbums from "./pages/Photoalbums";
+import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
 
 import "../styles/scss/styles.scss"
 // Define the main App component.
@@ -32,6 +34,12 @@ function App() {
 
                 {/* Route for the EventsFullMode page with dynamic alias parameter. */}
                 <Route path="/events/:alias" element={<EventsFullMode />}/>
+
+                {/* Route for the Photoalbums page. */}
+                <Route path="/photoalbums" element={<Photoalbums />} />
+
+                {/* Route for the Photoalbums. */}
+                <Route path="/photoalbums/:alias" element={<PhotoAlbumsFullPage />}/>
             </Routes>
         </BrowserRouter>
     </>

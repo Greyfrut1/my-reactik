@@ -1,5 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "typefilterbuttons";
 @import "newsblock";
+@import "photoalbums";
 @import "main";
+@import "main-slider";
+@import "actual-news";
+@import "last-news";
+@import "events-slider";
+@import "homepage-bottom";
 @import "calendar";
 @import "dynamic-data-feed";

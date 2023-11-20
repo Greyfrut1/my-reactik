@@ -19,33 +19,45 @@ function EventsSlider({data}) {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 3,
-        arrows: false
+        slidesToScroll: 1,
+        slidesToShow: 3,
+        arrows: false,
+        variableWidth: true,
     };
+    if (data?.data && data.data.length > 3) {
+        settings.slidesToShow = 3;
+    } else if (data?.data) {
+        settings.slidesToShow = data.data.length;
+    }
 
     return (
-        <div>
+        <div className="events-slider__container">
             {/* Using the Slider component with specified settings */}
             <Slider {...settings}>
                 {/* Mapping through the array of events */}
             {data?.data?.map((event) => (
-                <div key={event.id}>
-                    <div>
-                        {/* Displaying the start and end dates of the event in a specific format */}
-                        <div>{format(new Date(event?.attributes?.field_duration?.value), 'dd MMMM HH:mm')}</div>
-                        <div>{format(new Date(event?.attributes?.field_duration?.end_value), 'dd MMMM HH:mm')}</div>
+                <div key={event.id} className="events-slider__item">
+                    <div className="events-slider__top">
+                        <div className="events-slider__block-date">
+                            {/* Displaying the start and end dates of the event in a specific format */}
+                            <div>{format(new Date(event?.attributes?.field_duration?.value), 'dd MMMM HH:mm')}</div>
+                            <div>{format(new Date(event?.attributes?.field_duration?.end_value), 'dd MMMM HH:mm')}</div>
+                        </div>
+                        {/* Rendering the ImageComponent with the specified URL and style */}
+                        <ImageComponent url={event?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                        imagestyle='news_275x185'/>
+                        {/* Displaying the title of the event */}
+                        <div className="events-slider__title"><h3>{event?.attributes?.title}</h3></div>
                     </div>
-                    {/* Rendering the ImageComponent with the specified URL and style */}
-                    <ImageComponent url={event?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                    imagestyle='news_275x185' alt={"test"}/>
-                    {/* Displaying the title of the event */}
-                    <div><h3>{event?.attributes?.title}</h3></div>
+                    <div className="events-slider__bottom">
+                        <div className="events-slider__title"><h3>{event?.attributes?.title}</h3></div>
+
                     {/* Displaying the truncated description of the event */}
                     <div
-                        dangerouslySetInnerHTML={{__html: truncateText(event?.attributes?.field_description?.value, 150)}}/>
+                        dangerouslySetInnerHTML={{__html: truncateText(event?.attributes?.field_description?.summary, 150)}} className="events-slider__summary"/>
                     {/* Link to the event with an arrow icon */}
-                    <div><a href={event?.attributes?.path?.alias}><img style={{ backgroundColor: "black", color: "white" }} src="/src/assets/long-arrow-right.png" alt='link'/></a></div>
+                    <div className="events-slide__link-block"><a href={event?.attributes?.path?.alias}><img src="/src/assets/long-arrow-right.png" alt='link'/></a></div>
+                    </div>
                 </div>
             ))}
             </Slider>
