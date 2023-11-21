@@ -3,6 +3,7 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import Pager from "../components/Pager.jsx";
 import {useWindowSize} from "react-use";
+import ShareButtonComponent from "../components/ShareButtonComponent.jsx";
 
 function Photoalbums() {
     const [apiUrl, setApiUrl] = useState("/jsonapi/views/photoalbums_/block_1");
