@@ -10,8 +10,10 @@ import Events from "./pages/Events.jsx";
 import EventsFullMode from "./pages/EventsFullMode.jsx";
 import Photoalbums from "./pages/Photoalbums";
 import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
+import Faculties from "./pages/Faculties.jsx";
 
 import "../styles/scss/styles.scss"
+import FacultyFullMode from "./pages/FacultyFullMode.jsx";
 // Define the main App component.
 function App() {
 
@@ -40,6 +42,12 @@ function App() {
 
                 {/* Route for the Photoalbums. */}
                 <Route path="/photoalbums/:alias" element={<PhotoAlbumsFullPage />}/>
+
+                {/* Route for the Faculties. */}
+                <Route path="/faculty" element={<Faculties />}/>
+
+                {/* Route for the Faculty. */}
+                <Route path="/faculty/:alias" element={<FacultyFullMode />}/>
             </Routes>
         </BrowserRouter>
     </>
