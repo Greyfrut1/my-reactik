@@ -81,7 +81,7 @@ function DynamicDataBlocks({type, endpoint, render}) {
                     {data?.data?.length ? (
                         data?.data?.map((item, index) => render(item, index))
                     ) : (
-                        <h1>Empty</h1>
+                        <div className={"empty-dynamic-container"}><h1>No {type} found with the selected filters.</h1></div>
                     )}
                 </div>
                 <div className={"dynamic-data-blocks__right lg:block hidden"}>
