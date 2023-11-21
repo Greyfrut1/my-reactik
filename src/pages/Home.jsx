@@ -10,6 +10,7 @@ import ActualNewsBlock from "../components/ActualNewsBlock.jsx";
 import LastNewsBlock from "../components/LastNewsBlock.jsx";
 import EventsSlider from "../components/EventsSlider.jsx";
 import PollBlock from "../components/PollBlock.jsx";
+import AlbumsSlider from "../components/AlbumsSlider.jsx";
 
 // Functional component for the Home page
 function Home() {
@@ -49,6 +50,11 @@ function Home() {
         isLoading: isInfrastructureBlockLoadin,
         error: infrastructureBlockError
     } = useDrupalData('jsonapi/views/infrastructure/block_1');
+    const {
+        data: sliderAlbumsData,
+        isLoading: isSliderAlbumsLoading,
+        error: sliderAlbumsError
+    } = useDrupalData('/jsonapi/views/photoalbums_/block_1');
     const {
         data: facebookBlockData,
         isLoading: isFacebookBlockLoadin8,
@@ -136,6 +142,7 @@ function Home() {
 
                      <div className="photoalbum-block">
                          <h3 className="photoalbum-block__title title"><a href="/photoalbums">Наші фотоальбоми</a></h3>
+                         <AlbumsSlider data={sliderAlbumsData}/>
                      </div>
                     {/* Rendering the Facebook component if Facebook link exists */}
                     {facebookBlockData?.data?.attributes?.field_link_to?.uri && <div className="facebook-block">
