@@ -88,6 +88,16 @@ function Home() {
         },
     };
 
+    const [pageWidth, setPageWidth] = useState("100%"); // Set initial width
+
+    // Update width based on screen size
+    useEffect(() => {
+        setPageWidth(window.innerWidth > 900 ? "350px" : "300px");
+    }, []);
+
+
+
+
     const isLoading =
         isActualNewsLoading ||
         isLastNewsLoading ||
@@ -143,7 +153,7 @@ function Home() {
                             href={facebookBlockData?.data?.attributes?.field_link_to?.uri}>{facebookBlockData?.data?.attributes?.info}</a>
                         </h3>
                         <FacebookProvider appId='1453142571919005'>
-                            <Page width="350" height="450" href={facebookBlockData?.data?.attributes?.field_link_to?.uri} tabs="timeline"/>
+                            <Page width={pageWidth} height="450" href={facebookBlockData?.data?.attributes?.field_link_to?.uri} tabs="timeline"/>
                         </FacebookProvider>
                     </div>}
                     {/* Rendering the YouTube component if YouTube link exists */}

@@ -38,8 +38,8 @@
 }
 .main-slider__link{
   padding: 15px 25px;
-  border: 1px solid #a62424;
-  background-color: #a62424;
+  border: 1px solid $lightRed;
+  background-color: $lightRed;
   color: #fff;
   border-radius: 4px;
   transition: .2s ease;
@@ -54,16 +54,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #3f444e;
+  background-color: $dark;
   opacity: .45;
   pointer-events: none;
 }
 .main-slider__line{
   width: 80px;
   height: 4px;
-  background-color: #a62424;
+  background-color: $lightRed;
 }
-.main-slider, .events-slider{
+.main-slider, .events-slider, .last-news-block{
   .slick-slide{
     position: relative;
   }

@@ -18,12 +18,30 @@ function EventsSlider({data}) {
     // Settings configuration for the Slider component
     var settings = {
         dots: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToScroll: 1,
         slidesToShow: 3,
         arrows: false,
-        variableWidth: true,
+        variableWidth: false,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    variableWidth: false,
+                }
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    variableWidth: false,
+                }
+            },
+        ]
     };
     if (data?.data && data.data.length > 3) {
         settings.slidesToShow = 3;

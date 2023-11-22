@@ -1,6 +1,5 @@
 .events-slider{
   background-color: #c4c4c4;
-  //min-height: 630px;
   padding: 60px 0;
   .slick-dots{
     bottom: 0;
@@ -102,6 +101,7 @@
           height: 100%;
           width: 100%;
           z-index: 0;
+          object-fit: cover;
           filter: brightness(0.4);
         }
         &:hover{
@@ -132,9 +132,9 @@
       .events-slide__link-block a{
         display: inline-block;
         padding: 14px;
-        background-color: #3f444e;
+        background-color: $dark;
         &:hover{
-          background-color: #8b2b30;
+          background-color: $darkRed;
           cursor: pointer;
         }
         img{
@@ -144,14 +144,22 @@
     }
   }
   .slick-slide{
-    width: 372px;
-    margin: 0 15px;
+    .events-slider__item{
+      max-width: 375px;
+      margin: 0 auto;
+      display: block !important;
+    }
   }
   .slick-list {
-    margin: 0 -10px;
     height: 460px;
   }
   .slick-track{
     height: 450px;
+  }
+}
+@media (max-width: $xl) {
+  .events-slider .events-slider__container{
+    max-width: 900px;
+    padding: 0 10px;
   }
 }
