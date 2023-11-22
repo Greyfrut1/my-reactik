@@ -106,6 +106,9 @@
 }
 
 .dynamic-data-full-mode {
+  &-fields{
+    margin-bottom: 30px;
+  }
   .events-block-title {
     margin-top: 0;
   }

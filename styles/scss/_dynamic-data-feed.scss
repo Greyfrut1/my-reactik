@@ -12,6 +12,9 @@
   padding: 20px 0;
   border-bottom: 1px solid $darkGray;
   margin-bottom: 70px;
+  @media (max-width: $sm) {
+    font-size: 14px;
+  }
   .feed-data-item:not(:first-child){
     margin-top: 15px;
   }

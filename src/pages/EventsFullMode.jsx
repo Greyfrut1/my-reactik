@@ -14,7 +14,7 @@ function EventsFullMode() {
             endpoint={(alias) => `events/${alias}?_format=json`}
             // Render each field of the event using the specified JSX with data.
             renderFields={(data) => (
-                <>
+                <div className={"dynamic-data-full-mode-fields"}>
                     {/* Map over field_image data and render ImageComponent for each item. */}
                     {data.title?.map((item, index) => (
                         <div key={index}>
@@ -24,7 +24,7 @@ function EventsFullMode() {
                     {/* Map over field_image data and render ImageComponent for each item. */}
                     {data.field_image?.map((item, index) => (
                         <div className={"flex "} key={index}>
-                            <ImageComponent url={item.target_id} imagestyle="" alt={item?.alt}/>
+                            <ImageComponent url={item.target_id} imagestyle="width_862" alt={item?.alt}/>
                         </div>
                     ))}
                     {/* Map over field_description data and render HTML content for each item. */}
@@ -46,7 +46,7 @@ function EventsFullMode() {
                             <div>Location: <a href={`https://www.google.com.ua/maps/search/${item.value}`}>{item.value}</a></div>
                         </div>
                     ))}
-                </>
+                </div>
             )}
         />
     );
