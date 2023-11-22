@@ -1,8 +1,11 @@
 import useDrupalData from "../services/api.jsx";
+import PropTypes from "prop-types";
 
 function Paragraph({target_id}) {
     const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
-    console.log(paragraph)
+    if (paragraph?.type?.[0].target_id == 'link'){
+        console.log(paragraph)
+    }
     return (
         <>
             {paragraph?.type?.[0].target_id == 'section' && (
@@ -49,20 +52,24 @@ function Paragraph({target_id}) {
             )}
             {paragraph?.type?.[0].target_id == 'file' && (
                 <>
-                    <div className={"file"}>{paragraph?.field_file?.[0]?.description}</div>
-                    <div className={"file"}>{paragraph?.field_file?.[0]?.url}</div>
+                    {paragraph?.field_file.map((file,index) => (
+                        <a key={index} href={file.url} target={"_blank"} rel={"noopener noreferrer"}>
+                            {file.description}
+                        </a>
+                    ))}
                 </>
             )}
             {paragraph?.type?.[0].target_id == 'link' && (
                 <>
                     {paragraph?.field_link.map((link,index) => (
-                        <a key={index} href={link.uri}>{link.title}</a>
+                        <a key={index} href={link.full_url}>{link.title}</a>
                     ))}
-                    {/*<div className={"link"}><a href={paragraph?.field_link?.[0]?.uri}>{paragraph?.field_link?.[0]?.title}</a></div>*/}
                 </>
             )}
         </>
     );
 }
-
+Paragraph.propTypes = {
+    target_id: PropTypes.number.isRequired,
+};
 export default Paragraph
