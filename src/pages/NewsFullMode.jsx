@@ -1,6 +1,8 @@
 // Import necessary components for the NewsFullMode page.
 import DynamicDataFullMode from "../components/DynamicDataFullMode.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
+import React from "react";
+import ShareButtonComponent from "../components/ShareButtonComponent.jsx";
 
 // Define the NewsFullMode functional component.
 function NewsFullMode() {
@@ -29,12 +31,13 @@ function NewsFullMode() {
                                 <div className={"field-description"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
                             </div>
                         ))}
+                        <ShareButtonComponent data={data} />
                     </div>
+
                 )}
             />
         </>
-        )
-    ;
+    );
 }
 
 // Export the NewsFullMode component for use in other parts of the application.
