@@ -11,6 +11,7 @@ import EventsFullMode from "./pages/EventsFullMode.jsx";
 import Photoalbums from "./pages/Photoalbums";
 import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
 import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
+import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 
 import "../styles/scss/styles.scss"
 // Define the main App component.
@@ -44,6 +45,9 @@ function App() {
 
                 {/* Route for the Catalog Educational programs. */}
                 <Route path="/all-educations" element={<CatalogEducationalPrograms />}/>
+
+                {/* Route for the Page Educational program. */}
+                <Route path="/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
             </Routes>
         </BrowserRouter>
     </>
