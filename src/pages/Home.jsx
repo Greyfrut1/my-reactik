@@ -87,12 +87,22 @@ function Home() {
 
     // Options for the YouTube player
     const opts = {
-        height: '450',
-        width: '730',
+        // height: '450',
+        // width: '730',
         playerVars: {
             autoplay: 0,
         },
     };
+
+    const [pageWidth, setPageWidth] = useState("100%"); // Set initial width
+
+    // Update width based on screen size
+    useEffect(() => {
+        setPageWidth(window.innerWidth > 900 ? "350px" : "300px");
+    }, []);
+
+
+
 
     const isLoading =
         isActualNewsLoading ||
@@ -150,7 +160,7 @@ function Home() {
                             href={facebookBlockData?.data?.attributes?.field_link_to?.uri}>{facebookBlockData?.data?.attributes?.info}</a>
                         </h3>
                         <FacebookProvider appId='1453142571919005'>
-                            <Page width="350" height="450" href={facebookBlockData?.data?.attributes?.field_link_to?.uri} tabs="timeline"/>
+                            <Page width={pageWidth} height="450" href={facebookBlockData?.data?.attributes?.field_link_to?.uri} tabs="timeline"/>
                         </FacebookProvider>
                     </div>}
                     {/* Rendering the YouTube component if YouTube link exists */}
@@ -159,7 +169,7 @@ function Home() {
                             <h3 className="youtube-block__title title"><a
                                 href={youtubeBlockData?.data?.attributes?.field_link_to?.uri}>{youtubeBlockData?.data?.attributes?.info}</a>
                             </h3>
-                            <YouTube videoId={videoId} opts={opts}/>
+                            <YouTube className="youtube-block__video-block" videoId={videoId} opts={opts}/>
                         </div>
                     )}
                     </div>

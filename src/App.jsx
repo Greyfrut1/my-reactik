@@ -10,6 +10,7 @@ import Events from "./pages/Events.jsx";
 import EventsFullMode from "./pages/EventsFullMode.jsx";
 import Photoalbums from "./pages/Photoalbums";
 import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
+import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
 import Faculties from "./pages/Faculties.jsx";
 
 import "../styles/scss/styles.scss"
@@ -48,6 +49,9 @@ function App() {
 
                 {/* Route for the Faculty. */}
                 <Route path="/faculty/:alias" element={<FacultyFullMode />}/>
+
+                {/* Route for the Catalog Educational programs. */}
+                <Route path="/all-educations" element={<CatalogEducationalPrograms />}/>
             </Routes>
         </BrowserRouter>
     </>

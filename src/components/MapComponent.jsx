@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 // Style for the map container
 const containerStyle = {
-    width: '350px',
+    width: '100%',
     height: '450px',
 };
 
