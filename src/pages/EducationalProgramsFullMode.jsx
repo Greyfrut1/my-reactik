@@ -1,5 +1,7 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
+import Paragraph from "../components/Paragraph.jsx";
+import TitleTaxonomy from "../components/TitleTaxonomy.jsx";
 
 function EducationalProgramsFullMode() {
     const {alias} = useParams();
@@ -9,10 +11,30 @@ function EducationalProgramsFullMode() {
     return <>
         <div><h2>{educationalProgramData?.title?.[0]?.value}</h2>
             <div>
+                <div>Main disciplines</div>
                 <table>
                     <tbody>
-                    {educationalProgramData?.field_main_courses?.map((item) => (
-                        <tr key={item.target_id}><td>{item.target_id}</td></tr>
+                    {educationalProgramData?.field_main_courses?.map((item, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <Paragraph target_id={item.target_id}/></tr>
+
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            <div dangerouslySetInnerHTML={{__html: `${educationalProgramData?.field_description_program?.[0].value}`}}>
+
+            </div>
+            <div>
+                <div>Elective disciplines</div>
+                <table>
+                    <tbody>
+                    {educationalProgramData?.field_elective_courses?.map((item, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <Paragraph target_id={item.target_id}/></tr>
+
                     ))}
                     </tbody>
                 </table>
@@ -29,7 +51,7 @@ function EducationalProgramsFullMode() {
             </div>
             <div>
                 <div>Level</div>
-                <div>{educationalProgramData?.field_educational_level?.[0]?.target_id}</div>
+                <div><TitleTaxonomy id={educationalProgramData?.field_educational_level?.[0]?.target_uuid}/></div>
             </div>
             <div>
                 <div>Number of credits</div>
@@ -44,8 +66,13 @@ function EducationalProgramsFullMode() {
                 <div>{educationalProgramData?.field_guarantor?.[0]?.target_id}</div>
             </div>
             <div>
+                <div>Qualifications</div>
+                <div><b>Educational qualifications:</b>{educationalProgramData?.field_educational_qualifications?.[0].value}</div>
+                <div><b>Professional qualifications:</b>{educationalProgramData?.field_professional_qualification?.[0].value}</div>
+            </div>
+            <div>
                 <div>Specialty</div>
-                <div>{educationalProgramData?.field_specialty?.[0]?.target_id}</div>
+                <div><TitleTaxonomy id={educationalProgramData?.field_specialty?.[0]?.target_uuid}/></div>
             </div>
         </div>
     </>
