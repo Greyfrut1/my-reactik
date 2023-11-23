@@ -1,11 +1,12 @@
 // Import necessary dependencies and components for the FullModeComponent.
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
 import CalendarFilter from "../components/CalendarFilter.jsx";
 import DynamicDataFeed from "./DynamicDataFeed.jsx";
 import PropTypes from "prop-types";
+import { FacebookShareButton, TwitterShareButton } from 'react-share';
 
 // Define the FullModeComponent that takes 'types', 'endpoint', and 'renderFields' as props.
 function FullModeComponent({ types, endpoint, renderFields }) {
