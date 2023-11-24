@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useDrupalData from "../services/api.jsx";
-import TitleTaxonomy from "../components/TitleTaxonomy.jsx";
-import TitleNode from "../components/TitleNode.jsx";
 import ExposedFilterCatalog from "../components/ExposedFilterCatalog.jsx";
+import EntityTitle from "../components/EntityTitle.jsx";
 
 function CatalogEducationalPrograms() {
     const [filterValues, setFilterValues] = useState({
@@ -51,8 +50,8 @@ function CatalogEducationalPrograms() {
                     <tr key={item.id}>
                         <td><a href={item?.attributes?.path?.alias}>{item?.attributes?.title}</a></td>
                         <td>{item?.attributes?.field_form_educations}</td>
-                        <td><TitleTaxonomy id={item?.relationships?.field_educational_level?.data?.id} /></td>
-                        <td><TitleNode id={item?.relationships?.field_faculty?.data?.meta?.drupal_internal__target_id} /></td>
+                        <td><EntityTitle endpoint={`/taxonomy_term/educational_level/${item?.relationships?.field_educational_level?.data?.id}`}/> </td>
+                        <td><EntityTitle endpoint={`/node/faculty/${item?.relationships?.field_faculty?.data?.id}`}/> </td>
                     </tr>
                 ))}
                 </tbody>

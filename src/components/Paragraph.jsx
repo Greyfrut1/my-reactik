@@ -1,6 +1,6 @@
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
-import TitleTaxonomy from "./TitleTaxonomy.jsx";
+import EntityTitle from "./EntityTitle.jsx";
 
 function Paragraph({target_id}) {
     const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
@@ -68,7 +68,7 @@ function Paragraph({target_id}) {
                 </>
             )}
             {paragraph?.type?.[0].target_id == 'main_educational_programs' && (
-                <><td><TitleTaxonomy id={paragraph?.field_name_discipline?.[0].target_uuid} /></td><td><a href={paragraph?.field_document_main_discipline?.[0].url} target={"_blank"} rel={"noopener noreferrer"}>Силабус</a></td></>
+                <><td><EntityTitle endpoint={`/taxonomy_term/main_disciplines/${paragraph?.field_name_discipline?.[0].target_uuid}`}/></td><td><a href={paragraph?.field_document_main_discipline?.[0].url} target={"_blank"} rel={"noopener noreferrer"}>Силабус</a></td></>
             )}
             {paragraph?.type?.[0].target_id == 'elective_educational_disciplines' && (
                 <><td>{paragraph?.field_title?.[0].value}</td><td><a href={paragraph?.field_doc_elective_discipline?.[0].url} target={"_blank"} rel={"noopener noreferrer"}>Силабус</a></td></>

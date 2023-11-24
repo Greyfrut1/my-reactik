@@ -1,13 +1,12 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import Paragraph from "../components/Paragraph.jsx";
-import TitleTaxonomy from "../components/TitleTaxonomy.jsx";
+import EntityTitle from "../components/EntityTitle.jsx";
 
 function EducationalProgramsFullMode() {
     const {alias} = useParams();
 
     const {data: educationalProgramData} = useDrupalData(`/educational-programs/${alias}?_format=json`)
-    console.log(educationalProgramData)
     return <>
         <div><h2>{educationalProgramData?.title?.[0]?.value}</h2>
             <div>
@@ -51,7 +50,23 @@ function EducationalProgramsFullMode() {
             </div>
             <div>
                 <div>Level</div>
-                <div><TitleTaxonomy id={educationalProgramData?.field_educational_level?.[0]?.target_uuid}/></div>
+                {educationalProgramData?.field_educational_level?.[0]?.target_uuid && <div><EntityTitle endpoint={`/taxonomy_term/educational_level/${educationalProgramData?.field_educational_level?.[0]?.target_uuid}`} /></div>}
+            </div>
+            <div>
+                <div>Field of knowledge</div>
+                <div>{educationalProgramData?.field_field_of_knowledge?.[0].value}</div>
+            </div>
+            <div>
+                <div>Special qualification level</div>
+                <div>{educationalProgramData?.field_special_qualification_lvl?.[0].value}</div>
+            </div>
+            <div>
+                <div>Employment opportunities</div>
+                <div>{educationalProgramData?.field_employment_opportunities?.[0].value}</div>
+            </div>
+            <div>
+                <div>Uniqueness and specificity</div>
+                <div>{educationalProgramData?.field_uniqueness_and_specificity?.[0].value}</div>
             </div>
             <div>
                 <div>Number of credits</div>
@@ -59,11 +74,12 @@ function EducationalProgramsFullMode() {
             </div>
             <div>
                 <div>Faculty</div>
-                <div>{educationalProgramData?.field_faculty?.[0]?.target_id}</div>
+                {educationalProgramData?.field_faculty?.[0]?.target_uuid && <EntityTitle endpoint={`/node/faculty/${educationalProgramData?.field_faculty?.[0]?.target_uuid}`} />}
             </div>
             <div>
                 <div>Guarantor</div>
-                <div>{educationalProgramData?.field_guarantor?.[0]?.target_id}</div>
+                {educationalProgramData?.field_guarantor?.[0]?.target_uuid &&  <EntityTitle endpoint={`/node/staff/${educationalProgramData?.field_guarantor?.[0]?.target_uuid}`} />}
+
             </div>
             <div>
                 <div>Qualifications</div>
@@ -72,7 +88,7 @@ function EducationalProgramsFullMode() {
             </div>
             <div>
                 <div>Specialty</div>
-                <div><TitleTaxonomy id={educationalProgramData?.field_specialty?.[0]?.target_uuid}/></div>
+                <div>{educationalProgramData?.field_specialty?.[0]?.target_uuid && <EntityTitle endpoint={`/taxonomy_term/specialty/${educationalProgramData?.field_specialty?.[0]?.target_uuid}`} />}</div>
             </div>
         </div>
     </>
