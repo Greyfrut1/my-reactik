@@ -1,10 +1,54 @@
 import ImageComponent from "./ImageComponent.jsx";
 import PropTypes from "prop-types";
-
+import tick from "/src/assets/home-tick.png"
+import Slider from "react-slick";
 // Functional component for rendering a block of last news
 function LastNewsBlock({data}) {
+    var settings = {
+
+        dots: true,
+        speed: 500,
+        slidesToShow: 4,
+        arrows: false,
+        infinite: false,
+        slidesToScroll: 0,
+        variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    variableWidth: true,
+                }
+            },
+            {
+                breakpoint: 975,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    variableWidth: false,
+                }
+            },
+            {
+                breakpoint: 670,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    variableWidth: false,
+                }
+            }
+        ]
+    };
+    // if (data?.data && data.data.length > 3) {
+    //     settings.slidesToShow = 3;
+    // } else if (data?.data) {
+    //     settings.slidesToShow = data.data.length;
+    // }
+
     return (
         <div className="last-news-block__container container">
+            <Slider {...settings}>
             {/* Mapping through the array of news items */}
             {data?.data?.map((news) => (
                 // Each news item is wrapped in a div with a unique key
@@ -18,10 +62,11 @@ function LastNewsBlock({data}) {
                     <div className="last-news-block__title"><h3>{news?.attributes?.title}</h3></div>
                         {/* Displaying the summary or description of the news item */}
                     <div className="last-news-block__summary"><span>{news?.attributes?.field_description?.summary}</span></div>
-                    <a href={news?.attributes?.path?.alias} className="last-news-block__link-block"><img src='/src/assets/home-tick.png'/><div  className="last-news-block__link">Read more
+                    <a href={news?.attributes?.path?.alias} className="last-news-block__link-block"><img src={tick}/><div  className="last-news-block__link">Read more
                     </div></a>
                 </div>
             ))}
+            </Slider>
         </div>
     )
 }

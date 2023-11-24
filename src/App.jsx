@@ -9,6 +9,7 @@ import Events from "./pages/Events.jsx";
 import EventsFullMode from "./pages/EventsFullMode.jsx";
 import Photoalbums from "./pages/Photoalbums";
 import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
+import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
 import Faculties from "./pages/Faculties.jsx";
 
 import "../styles/scss/styles.scss"
@@ -53,6 +54,9 @@ function App() {
 
                 {/* Route for the Unsubscribe from the newsletter. */}
                 <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe />}/>
+
+                {/* Route for the Catalog Educational programs. */}
+                <Route path="/all-educations" element={<CatalogEducationalPrograms />}/>
             </Routes>
         </BrowserRouter>
         <div className={"footer-top"}>
