@@ -1,6 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import { useState } from 'react'
 import Home from "./pages/Home.jsx";
 
 // Import page components for News and Events.
@@ -14,6 +13,9 @@ import Faculties from "./pages/Faculties.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
+import Subscriber from "./components/Subscriber.jsx";
+import Unsubscribe from "./components/Unsubscribe.jsx";
+import {ToastContainer} from "react-toastify";
 // Define the main App component.
 function App() {
 
@@ -48,8 +50,26 @@ function App() {
 
                 {/* Route for the Faculty. */}
                 <Route path="/faculty/:alias" element={<FacultyFullMode />}/>
+
+                {/* Route for the Unsubscribe from the newsletter. */}
+                <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe />}/>
             </Routes>
         </BrowserRouter>
+        <div className={"footer-top"}>
+            <Subscriber/>
+        </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
     </>
   )
 }
