@@ -17,8 +17,8 @@ function CounterComponent() {
     }, [window.location.pathname, window.location.search]);
 
     return (
-        <div>
-            <p>Кількість відвідувачів сторінки: {pageViews}</p>
+        <div className={"counter-block"}>
+            <p>{pageViews} перегляд </p>
         </div>
     );
 }

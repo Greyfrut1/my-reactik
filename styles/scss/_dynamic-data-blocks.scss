@@ -113,3 +113,13 @@
     margin-top: 0;
   }
 }
+
+//Stylization total views block.
+.counter-block{
+  background: $lightGray;
+  margin-top:20px;
+  p{
+    padding: 10px 20px;
+    @include fontz(14px, 16px,0.2px, none, 400,$black);
+  }
+}
