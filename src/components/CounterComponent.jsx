@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 function CounterComponent() {
-    const location = useLocation();
     const [pageViews, setPageViews] = useState(0);
 
     useEffect(() => {
@@ -15,7 +14,7 @@ function CounterComponent() {
         ReactGA.pageview(window.location.pathname + window.location.search);
 
         setPageViews(prev => prev + 1);
-    }, []);
+    }, [window.location.pathname, window.location.search]);
 
     return (
         <div>
