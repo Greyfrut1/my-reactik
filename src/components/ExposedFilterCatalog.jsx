@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import useDrupalData from "../services/api.jsx";
+import PropTypes from "prop-types";
 
 function ExposedFilterCatalog({ onFilterChange }) {
     const {data: educationsViewData} = useDrupalData(`/all-educations`)
@@ -88,6 +89,10 @@ function ExposedFilterCatalog({ onFilterChange }) {
             </form>
         </div>
     );
+}
+
+ExposedFilterCatalog.propTypes = {
+    onFilterChange: PropTypes.func,
 }
 
 export default ExposedFilterCatalog;
