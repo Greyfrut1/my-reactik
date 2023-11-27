@@ -8,27 +8,14 @@ function CounterComponent() {
 
     useEffect(() => {
         const initialiseAnalytics = () => {
-            const TRACKING_ID = process.env.REACT_APP_GA_ID;
-            ReactGA.initialize(TRACKING_ID);
+            ReactGA.initialize(import.meta.env.VITE_GA_ID);
         };
 
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname + window.location.search);
 
-        const trackPageView = () => {
-            ReactGA.pageview(location.pathname + location.search);
-        };
-        initialiseAnalytics();
-
-        const handlePageView = () => {
-            trackPageView();
-            setPageViews((prevPageViews) => prevPageViews + 1);
-        };
-
-        const unlisten = ReactGA.history.listen(handlePageView);
-
-        handlePageView();
-
-        return () => unlisten();
-    }, [location]);
+        setPageViews(prev => prev + 1);
+    }, []);
 
     return (
         <div>
