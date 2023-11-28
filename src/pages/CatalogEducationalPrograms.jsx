@@ -21,10 +21,9 @@ function CatalogEducationalPrograms() {
     const {data: educationalProgramsData, fetchData} = useDrupalData(buildApiUrl());
 
     useEffect(() => {
-        // Викликати fetchData при зміні значення buildApiUrl()
         if (submitClicked) {
             fetchData();
-            setSubmitClicked(false); // Скидання значення submitClicked
+            setSubmitClicked(false);
         }
     }, [buildApiUrl(), submitClicked, fetchData]);
 

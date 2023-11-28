@@ -37,7 +37,6 @@ function ExposedFilterCatalog({ onFilterChange }) {
                             Object.entries(educationsViewData.exposed_filters[1].options).map(([key, value]) => (
                                 <option key={key} value={key}>{value}</option>
                             ))}
-                        {/* Додайте інші значення, які може мати це поле */}
                     </select>
                 </label>
 
@@ -52,7 +51,6 @@ function ExposedFilterCatalog({ onFilterChange }) {
                                 <option key={key} value={key}>{value}</option>
                             ))}
 
-                        {/* Додайте інші значення, які може мати це поле */}
                     </select>
                 </label>
 
@@ -66,7 +64,6 @@ function ExposedFilterCatalog({ onFilterChange }) {
                             Object.entries(educationsViewData.exposed_filters[3].options).map(([key, value]) => (
                                 <option key={key} value={key}>{value}</option>
                             ))}
-                        {/* Додайте інші значення, які може мати це поле */}
                     </select>
                 </label>
 
@@ -80,8 +77,6 @@ function ExposedFilterCatalog({ onFilterChange }) {
                             Object.entries(educationsViewData.exposed_filters[4].options).map(([key, value]) => (
                                 <option key={key} value={key}>{value}</option>
                             ))}
-
-                        {/* Додайте інші значення, які може мати це поле */}
                     </select>
                 </label>
 
