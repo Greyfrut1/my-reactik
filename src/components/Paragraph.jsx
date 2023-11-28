@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function Paragraph({target_id}) {
     const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
-    if (paragraph?.type?.[0].target_id == 'link'){
+    if (paragraph?.type?.[0].target_id == 'link') {
         console.log(paragraph)
     }
     return (
@@ -52,7 +52,7 @@ function Paragraph({target_id}) {
             )}
             {paragraph?.type?.[0].target_id == 'file' && (
                 <>
-                    {paragraph?.field_file.map((file,index) => (
+                    {paragraph?.field_file.map((file, index) => (
                         <a key={index} href={file.url} target={"_blank"} rel={"noopener noreferrer"}>
                             {file.description}
                         </a>
@@ -61,7 +61,7 @@ function Paragraph({target_id}) {
             )}
             {paragraph?.type?.[0].target_id == 'link' && (
                 <>
-                    {paragraph?.field_link.map((link,index) => (
+                    {paragraph?.field_link.map((link, index) => (
                         <a key={index} href={link.full_url}>{link.title}</a>
                     ))}
                 </>
@@ -69,6 +69,7 @@ function Paragraph({target_id}) {
         </>
     );
 }
+
 Paragraph.propTypes = {
     target_id: PropTypes.number.isRequired,
 };
