@@ -3,36 +3,22 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 function CounterComponent() {
-    const location = useLocation();
     const [pageViews, setPageViews] = useState(0);
 
     useEffect(() => {
         const initialiseAnalytics = () => {
-            const TRACKING_ID = process.env.REACT_APP_GA_ID;
-            ReactGA.initialize(TRACKING_ID);
+            ReactGA.initialize(import.meta.env.VITE_GA_ID);
         };
 
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname + window.location.search);
 
-        const trackPageView = () => {
-            ReactGA.pageview(location.pathname + location.search);
-        };
-        initialiseAnalytics();
-
-        const handlePageView = () => {
-            trackPageView();
-            setPageViews((prevPageViews) => prevPageViews + 1);
-        };
-
-        const unlisten = ReactGA.history.listen(handlePageView);
-
-        handlePageView();
-
-        return () => unlisten();
-    }, [location]);
+        setPageViews(prev => prev + 1);
+    }, [window.location.pathname, window.location.search]);
 
     return (
-        <div>
-            <p>Кількість відвідувачів сторінки: {pageViews}</p>
+        <div className={"counter-block"}>
+            <p>{pageViews} перегляд </p>
         </div>
     );
 }
