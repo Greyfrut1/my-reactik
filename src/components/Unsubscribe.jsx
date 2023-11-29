@@ -16,22 +16,19 @@ function Unsubscriber() {
         : "";
 
     if (subscriberLoading || newsletterLoading) {
-        // You can return a loading indicator or null here if needed
         return null;
     }
     // Check if either subscriber or newsletter is undefined or null
     if (!subscriber || !newsletter) {
         // Redirect to home page
         navigate('/');
-        // You can also return null or any other message/component here if needed
         return null;
     }
 
-// Check if either subscriber or newsletter is undefined or null
+    // Check if either subscriber or newsletter is undefined or null
     if (subscriber.length < 1 || newsletter.length < 1) {
         // Redirect to home page
         navigate('/');
-        // You can also return null or any other message/component here if needed
         return null;
     }
     const handleCancel = () => {
@@ -45,6 +42,7 @@ function Unsubscriber() {
             .then((response) => {
                 console.log(response.data, response);
                 toast.success("Success unsubscribe!");
+                navigate('/');
             })
             .catch((error) => {
                 console.error(error);
@@ -55,10 +53,7 @@ function Unsubscriber() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}
-                  className="simplenews-confirm-removal confirmation"
-                  id="simplenews-confirm-removal"
-            >
+            <form onSubmit={handleSubmit}>
                 <p>
                     This action will unsubscribe you from the newsletter mailing list.
                 </p>
