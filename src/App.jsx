@@ -11,6 +11,7 @@ import Photoalbums from "./pages/Photoalbums";
 import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
 import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
 import Faculties from "./pages/Faculties.jsx";
+import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -56,7 +57,10 @@ function App() {
                 <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
 
                 {/* Route for the Catalog Educational programs. */}
-                <Route path="/all-educations" element={<CatalogEducationalPrograms/>}/>
+                <Route path="/all-educations" element={<CatalogEducationalPrograms />}/>
+
+                {/* Route for the Page Educational program. */}
+                <Route path="/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
             </Routes>
 
             {!isUnsubscribePage && (
