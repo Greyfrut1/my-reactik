@@ -1,6 +1,5 @@
-// Import necessary hooks and libraries for state management and data fetching.
 import { useState, useEffect } from 'react';
-import axios from "axios";
+import axios from 'axios';
 
 // Retrieve the base URL from the Vite environment variables.
 const baseURL = import.meta.env.VITE_BACKEND_URL;
@@ -17,6 +16,7 @@ const fetchDataFromDrupal = async (endpoint) => {
         throw error;
     }
 };
+
 // Define a custom hook for fetching data from Drupal.
 const useDrupalData = (endpoint) => {
     // Set up state variables for data, loading status, and potential errors.
@@ -24,13 +24,22 @@ const useDrupalData = (endpoint) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Determine language from the URL prefix.
+    const language = window.location.pathname.split('/')[1]; // Assumes language is the first part of the path.
     // Use the useEffect hook to fetch data when the component mounts or the endpoint changes.
     useEffect(() => {
         // Define an asynchronous function to fetch data and update state accordingly.
         const fetchData = async () => {
             try {
                 // Call the fetchDataFromDrupal function to get data from Drupal.
-                const result = await fetchDataFromDrupal(endpoint);
+                console.log(endpoint.split('/')[1])
+                var result;
+                if(endpoint.split('/')[1] == 'en' || endpoint.split('/')[1] == 'uk'){
+                    result = await fetchDataFromDrupal(endpoint);
+                }else{
+                    result = await fetchDataFromDrupal(language + '/' + endpoint);
+                }
+
 
                 // Update state with the fetched data and set loading to false.
                 setData(result);
@@ -44,7 +53,7 @@ const useDrupalData = (endpoint) => {
 
         // Call the fetchData function when the component mounts or the endpoint changes.
         fetchData();
-    }, [endpoint]);
+    }, [endpoint, language]);
 
     // Return the data, loading status, and error to be used by the component.
     return { data, isLoading, error };
