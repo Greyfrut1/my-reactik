@@ -32,7 +32,6 @@ const useDrupalData = (endpoint) => {
         const fetchData = async () => {
             try {
                 // Call the fetchDataFromDrupal function to get data from Drupal.
-                console.log(endpoint.split('/')[1])
                 var result;
                 if(endpoint.split('/')[1] == 'en' || endpoint.split('/')[1] == 'uk'){
                     result = await fetchDataFromDrupal(endpoint);

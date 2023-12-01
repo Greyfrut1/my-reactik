@@ -2,6 +2,7 @@ import ImageComponent from "./ImageComponent.jsx";
 import PropTypes from "prop-types";
 import tick from "/src/assets/home-tick.png"
 import Slider from "react-slick";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 // Functional component for rendering a block of last news
 function LastNewsBlock({data}) {
     var settings = {
@@ -40,11 +41,7 @@ function LastNewsBlock({data}) {
             }
         ]
     };
-    // if (data?.data && data.data.length > 3) {
-    //     settings.slidesToShow = 3;
-    // } else if (data?.data) {
-    //     settings.slidesToShow = data.data.length;
-    // }
+    const langPrefix = useLanguagePrefix();
 
     return (
         <div className="last-news-block__container container">
@@ -62,7 +59,7 @@ function LastNewsBlock({data}) {
                     <div className="last-news-block__title"><h3>{news?.attributes?.title}</h3></div>
                         {/* Displaying the summary or description of the news item */}
                     <div className="last-news-block__summary"><span>{news?.attributes?.field_description?.summary}</span></div>
-                    <a href={news?.attributes?.path?.alias} className="last-news-block__link-block"><img src={tick}/><div  className="last-news-block__link">Read more
+                    <a href={`/${langPrefix}${news?.attributes?.path?.alias}`} className="last-news-block__link-block"><img src={tick}/><div  className="last-news-block__link">Read more
                     </div></a>
                 </div>
             ))}

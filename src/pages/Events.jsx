@@ -3,11 +3,13 @@ import DynamicDataBlocks from "../components/DynamicDataBlocks.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import {useWindowSize} from "react-use";
 import {useEffect, useState} from "react";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Define the Events functional component.
 function Events() {
     const size = useWindowSize();
     const [imageStyle, setImageStyle] = useState('');
+    const languagePrefix = useLanguagePrefix();
 
     useEffect(() => {
         if (size.width < 480) {
@@ -44,12 +46,12 @@ function Events() {
                             </div>
                             <div className={"right-box"}>
                                 {/* Render a link to the news item's path with the news title. */}
-                                <a className={"right-box-title"} href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
+                                <a className={"right-box-title"} href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
 
                                 {/* Render a div with the summary of the news item's description. */}
                                 <div className={"right-box-description"}>{item?.attributes?.field_description?.summary}</div>
                                 <div className={"right-box-button"}>
-                                    <a href={item?.attributes?.path?.alias}>Read more</a>
+                                    <a href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>Read more</a>
                                 </div>
                             </div>
                         </div>
