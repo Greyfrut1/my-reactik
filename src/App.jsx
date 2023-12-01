@@ -1,5 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
-import {BrowserRouter, Route, Routes, Navigate, useParams, useLocation} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate, useParams, useLocation, useNavigate} from "react-router-dom";
 import { useState } from 'react'
 import Home from "./pages/Home.jsx";
 
@@ -20,16 +20,36 @@ import FacultyFullMode from "./pages/FacultyFullMode.jsx";
 import Subscriber from "./components/Subscriber.jsx";
 import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
+import Search from "./pages/Search.jsx";
 
 // Define the main App component.
 function App() {
     const location = useLocation();
     const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
+
+    const [input, setInput] = useState(""); // State to manage the input value
+    const navigate = useNavigate(); // Hook to get the navigate function
+
+    const handleInputChange = (e) => {
+        setInput(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Use the navigate function to go to the "/search/result" page with the input value
+        navigate(`/search/${input}`);
+        setInput("")
+    };
+
     // Render the application using react-router-dom for routing.
     return (
     <>
         <LanguageSwitcher />
         {/* Set up BrowserRouter to enable routing in the application. */}
+            <form onSubmit={handleSubmit}>
+                <input type="text" value={input} onChange={handleInputChange} />
+                <button type="submit">Submit</button>
+            </form>
             {/* Define route configurations using Routes component. */}
             <Routes>
                 <Route path="/:lang" element={<Home />} />
@@ -66,6 +86,9 @@ function App() {
 
                 {/* Route for the Page Educational program. */}
                 <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
+
+                {/* Route for the Search Page. */}
+                <Route path="/search/:result" element={<Search />}/>
             </Routes>
 
             {!isUnsubscribePage && (
