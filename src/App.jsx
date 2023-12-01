@@ -20,6 +20,7 @@ import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import {useState} from "react";
+import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 
 // Define the main App component.
 function App() {
@@ -73,6 +74,9 @@ function App() {
 
                 {/* Route for the Faculty. */}
                 <Route path="/faculty/:alias" element={<FacultyFullMode/>}/>
+
+                {/* Route for the Faculty. */}
+                <Route path="/department/:alias" element={<DepartmentFullMode/>}/>
 
                 {/* Route for the Unsubscribe from the newsletter. */}
                 <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>

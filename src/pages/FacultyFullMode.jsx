@@ -3,13 +3,16 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import Paragraph from "../components/Paragraph.jsx";
 import StaffTeaser from "../components/StaffTeaser.jsx";
+import Departments from "../components/Departments.jsx";
 
 function FacultyFullMode(){
     const { alias } = useParams();
     const {data: faculty} = useDrupalData(`faculty/${alias}?_format=json`)
-    console.log(faculty)
     return (
         <>
+            {faculty?.nid?.[0]?.value &&(
+                <Departments id_deparments={faculty?.nid?.[0]?.value} />
+            )}
             {faculty?.field_head_of_faculty?.length > 0 &&(
                 <StaffTeaser staff_id={faculty?.field_head_of_faculty?.[0].target_id}/>
             )}
