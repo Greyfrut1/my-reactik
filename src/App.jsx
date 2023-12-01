@@ -1,5 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
-import {BrowserRouter, Route, Routes, Navigate, useParams} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate, useParams, useLocation} from "react-router-dom";
 import { useState } from 'react'
 import Home from "./pages/Home.jsx";
 
@@ -17,14 +17,19 @@ import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
+import Subscriber from "./components/Subscriber.jsx";
+import Unsubscribe from "./components/Unsubscribe.jsx";
+import {ToastContainer} from "react-toastify";
+
 // Define the main App component.
 function App() {
+    const location = useLocation();
+    const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
     // Render the application using react-router-dom for routing.
     return (
     <>
         <LanguageSwitcher />
         {/* Set up BrowserRouter to enable routing in the application. */}
-        <BrowserRouter>
             {/* Define route configurations using Routes component. */}
             <Routes>
                 <Route path="/:lang" element={<Home />} />
@@ -53,15 +58,36 @@ function App() {
                 {/* Route for the Faculty. */}
                 <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
 
+                {/* Route for the Unsubscribe from the newsletter. */}
+                <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
+
                 {/* Route for the Catalog Educational programs. */}
                 <Route path="/:lang/all-educations" element={<CatalogEducationalPrograms />}/>
 
                 {/* Route for the Page Educational program. */}
                 <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
             </Routes>
-        </BrowserRouter>
-    </>
-  )
+
+            {!isUnsubscribePage && (
+                <div className={"footer-top bg-dark"}>
+                    <Subscriber/>
+                </div>
+            )}
+
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+        </>
+    )
 }
 
 // Export the App component for use in other parts of the application.
