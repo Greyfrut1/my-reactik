@@ -4,11 +4,13 @@ import ImageComponent from "../components/ImageComponent.jsx";
 import Pager from "../components/Pager.jsx";
 import {useWindowSize} from "react-use";
 import ShareButtonComponent from "../components/ShareButtonComponent.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 function Photoalbums() {
     const [apiUrl, setApiUrl] = useState("/jsonapi/views/photoalbums_/block_1");
     const [jsonData, setJsonData] = useState(null);
     const { data: albumsData, isLoading: albumsIsLoading, error: albumsError } = useDrupalData(apiUrl);
+    const languagePrefix = useLanguagePrefix()
 
     const size = useWindowSize();
     const [imageStyle, setImageStyle] = useState('');
@@ -41,7 +43,7 @@ function Photoalbums() {
             <div className={"albums-view flex flex-wrap xl:justify-start justify-center"}>
                 {jsonData?.data?.map((item, index) => (
                     <div className={"albums-card"} key={index}>
-                        <a className={"albums-card__title"} href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
+                        <a className={"albums-card__title"} href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
                         <div className={"albums-card__img"}>
                             <ImageComponent
                                 url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}

@@ -3,6 +3,7 @@ import ImageComponent from "./ImageComponent.jsx";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import arrow from '/src/assets/long-arrow-right.png'
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Function to truncate text to a specified maximum length
 function truncateText(text, maxLength) {
@@ -43,6 +44,7 @@ function EventsSlider({data}) {
             },
         ]
     };
+    const langPrefix = useLanguagePrefix();
     if (data?.data && data.data.length > 3) {
         settings.slidesToShow = 3;
     } else if (data?.data) {
@@ -75,7 +77,7 @@ function EventsSlider({data}) {
                     <div
                         dangerouslySetInnerHTML={{__html: truncateText(event?.attributes?.field_description?.summary, 150)}} className="events-slider__summary"/>
                     {/* Link to the event with an arrow icon */}
-                    <div className="events-slide__link-block"><a href={event?.attributes?.path?.alias}><img src={arrow} alt='link'/></a></div>
+                    <div className="events-slide__link-block"><a href={`/${langPrefix}${event?.attributes?.path?.alias}`}><img src={arrow} alt='link'/></a></div>
                     </div>
                 </div>
             ))}

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import useDrupalData from "../services/api.jsx";
 import ExposedFilterCatalog from "../components/ExposedFilterCatalog.jsx";
 import EntityTitle from "../components/EntityTitle.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 function CatalogEducationalPrograms() {
     const [filterValues, setFilterValues] = useState({
@@ -11,7 +12,7 @@ function CatalogEducationalPrograms() {
         field_validity_value: 'All',
         field_faculty_target_id: 'All',
     });
-
+    const languagePrefix = useLanguagePrefix();
     const [submitClicked, setSubmitClicked] = useState(false);
 
     const buildApiUrl = () => {
@@ -47,7 +48,7 @@ function CatalogEducationalPrograms() {
                 <tbody>
                 {educationalProgramsData?.data?.map((item) => (
                     <tr key={item.id}>
-                        <td><a href={item?.attributes?.path?.alias}>{item?.attributes?.title}</a></td>
+                        <td><a href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item?.attributes?.title}</a></td>
                         <td>{item?.attributes?.field_form_educations}</td>
                         <td><EntityTitle
                             endpoint={`/taxonomy_term/educational_level/${item?.relationships?.field_educational_level?.data?.id}`}/>

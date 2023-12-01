@@ -1,5 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
-import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate, Navigate} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 
 // Import page components for News and Events.
@@ -12,6 +12,7 @@ import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
 import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
 import Faculties from "./pages/Faculties.jsx";
 import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
+import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -43,37 +44,40 @@ function App() {
 
     // Render the application using react-router-dom for routing.
     return (
-        <>
+    <>
+        <LanguageSwitcher />
+        {/* Set up BrowserRouter to enable routing in the application. */}
             <form onSubmit={handleSubmit}>
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
             {/* Define route configurations using Routes component. */}
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/:lang" element={<Home />} />
+                <Route path="/" element={<Navigate to="/en" />} />
                 {/* Route for the News page. */}
-                <Route path="/news" element={<News/>}/>
+                <Route path="/:lang/news" element={<News />} />
 
                 {/* Route for the NewsFullMode page with dynamic alias parameter. */}
-                <Route path="/news/:alias" element={<NewsFullMode/>}/>
+                <Route path="/:lang/news/:alias" element={<NewsFullMode />}/>
 
                 {/* Route for the Events page. */}
-                <Route path="/events" element={<Events/>}/>
+                <Route path="/:lang/events" element={<Events />} />
 
                 {/* Route for the EventsFullMode page with dynamic alias parameter. */}
-                <Route path="/events/:alias" element={<EventsFullMode/>}/>
+                <Route path="/:lang/events/:alias" element={<EventsFullMode />}/>
 
                 {/* Route for the Photoalbums page. */}
-                <Route path="/photoalbums" element={<Photoalbums/>}/>
+                <Route path="/:lang/photoalbums" element={<Photoalbums />} />
 
                 {/* Route for the Photoalbums. */}
-                <Route path="/photoalbums/:alias" element={<PhotoAlbumsFullPage/>}/>
+                <Route path="/:lang/photoalbums/:alias" element={<PhotoAlbumsFullPage />}/>
 
                 {/* Route for the Faculties. */}
-                <Route path="/faculty" element={<Faculties/>}/>
+                <Route path="/:lang/faculty" element={<Faculties />}/>
 
                 {/* Route for the Faculty. */}
-                <Route path="/faculty/:alias" element={<FacultyFullMode/>}/>
+                <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
 
                 {/* Route for the Faculty. */}
                 <Route path="/department/:alias" element={<DepartmentFullMode/>}/>
@@ -82,10 +86,10 @@ function App() {
                 <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
 
                 {/* Route for the Catalog Educational programs. */}
-                <Route path="/all-educations" element={<CatalogEducationalPrograms />}/>
+                <Route path="/:lang/all-educations" element={<CatalogEducationalPrograms />}/>
 
                 {/* Route for the Page Educational program. */}
-                <Route path="/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
+                <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
 
                 {/* Route for the Search Page. */}
                 <Route path="/search/:result" element={<Search />}/>

@@ -1,12 +1,13 @@
 // Import the useDrupalData hook to fetch data from Drupal API.
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Define the DynamicDataFeed component that takes 'id' and 'type' as props.
 function DynamicDataFeed({id, type}) {
     // Fetch data using useDrupalData hook with the specified endpoint and arguments.
     const {data: feedData} = useDrupalData(`/jsonapi/views/news_in_block/${type}?views-argument[0]=${id}`)
-
+    const langPrefix = useLanguagePrefix();
     // Render the DynamicDataFeed component with conditional rendering based on feedData presence.
     return (
         <>
@@ -25,7 +26,7 @@ function DynamicDataFeed({id, type}) {
                                      strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                                 </svg>
-                                <a href={item?.attributes?.path?.alias}>{item.attributes.title}</a>
+                                <a href={`/${langPrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
                             </div>
                         ))}
                     </div>
