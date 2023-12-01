@@ -25,7 +25,7 @@ function FacultyFullMode(){
                 </div>
             ))}
             <div><a href={faculty?.field_wiki?.[0]?.uri}>WIKI</a></div>
-            <div dangerouslySetInnerHTML={{ __html: faculty?.field_about_the_faculty?.[0]?.value}} />
+            <div dangerouslySetInnerHTML={{ __html: faculty?.field_description?.[0]?.value}} />
             <div className={"Paragraphs"}>
                 {faculty?.field_content?.map((item, index) => (
                     <div className={"section"} key={index}>

@@ -1,5 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
-import {Route, Routes, useLocation} from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 
 // Import page components for News and Events.
@@ -18,14 +18,35 @@ import FacultyFullMode from "./pages/FacultyFullMode.jsx";
 import Subscriber from "./components/Subscriber.jsx";
 import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
+import Search from "./pages/Search.jsx";
+import {useState} from "react";
 
 // Define the main App component.
 function App() {
     const location = useLocation();
     const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
+
+    const [input, setInput] = useState(""); // State to manage the input value
+    const navigate = useNavigate(); // Hook to get the navigate function
+
+    const handleInputChange = (e) => {
+        setInput(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Use the navigate function to go to the "/search/result" page with the input value
+        navigate(`/search/${input}`);
+        setInput("")
+    };
+
     // Render the application using react-router-dom for routing.
     return (
         <>
+            <form onSubmit={handleSubmit}>
+                <input type="text" value={input} onChange={handleInputChange} />
+                <button type="submit">Submit</button>
+            </form>
             {/* Define route configurations using Routes component. */}
             <Routes>
                 <Route path="/" element={<Home/>}/>
@@ -61,6 +82,9 @@ function App() {
 
                 {/* Route for the Page Educational program. */}
                 <Route path="/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
+
+                {/* Route for the Search Page. */}
+                <Route path="/search/:result" element={<Search />}/>
             </Routes>
 
             {!isUnsubscribePage && (
