@@ -37,6 +37,7 @@ function App() {
         e.preventDefault();
         // Use the navigate function to go to the "/search/result" page with the input value
         navigate(`/search/${input}`);
+        setInput("")
     };
 
     // Render the application using react-router-dom for routing.
