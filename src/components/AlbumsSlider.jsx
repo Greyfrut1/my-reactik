@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import ImageComponent from "./ImageComponent.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Functional component for rendering a main slider
 function MainSlider({data}) {
@@ -14,7 +15,7 @@ function MainSlider({data}) {
         arrows: true,
         useTransform: false,
     };
-
+    const lanPrefix = useLanguagePrefix();
     return (
         // Using the Slider component with specified settings
         <Slider {...settings} className="albums-slider">
@@ -28,7 +29,7 @@ function MainSlider({data}) {
                         />
                     </div>
                     <h3 className="albums-slider__title">
-                        <a href={slide?.attributes?.path?.alias}>{slide.attributes.title}</a></h3>
+                        <a href={`/${lanPrefix}${slide?.attributes?.path?.alias}`}>{slide.attributes.title}</a></h3>
                 </div>
             ))}
         </Slider>

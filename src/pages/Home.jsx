@@ -11,6 +11,7 @@ import LastNewsBlock from "../components/LastNewsBlock.jsx";
 import EventsSlider from "../components/EventsSlider.jsx";
 import PollBlock from "../components/PollBlock.jsx";
 import AlbumsSlider from "../components/AlbumsSlider.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Functional component for the Home page
 function Home() {
@@ -95,14 +96,11 @@ function Home() {
     };
 
     const [pageWidth, setPageWidth] = useState("100%"); // Set initial width
-
+    const langPrefix = useLanguagePrefix();
     // Update width based on screen size
     useEffect(() => {
         setPageWidth(window.innerWidth > 900 ? "350px" : "300px");
     }, []);
-
-
-
 
     const isLoading =
         isActualNewsLoading ||
@@ -129,11 +127,11 @@ function Home() {
                     <ActualNewsBlock data={actualNewsData}/>
                     </div>
                     <div className="last-news-block">
-                        <h2 className="last-news-block__block-title"><a href='/news'>Актуально</a></h2>
+                        <h2 className="last-news-block__block-title"><a href={`/${langPrefix}/news`}>Актуально</a></h2>
                         <LastNewsBlock data={lastNewsData}/>
                     </div>
                     <div className="events-slider">
-                        <h2 className="events-slider__block-title"><a href='/events'>Незабаром</a></h2>
+                        <h2 className="events-slider__block-title"><a href={`/${langPrefix}/events`}>Незабаром</a></h2>
                         <EventsSlider data={eventsBlockData}/>
                     </div>
                     <div className='homepage-bottom'>
@@ -151,7 +149,7 @@ function Home() {
                     </div>}
 
                      <div className="photoalbum-block">
-                         <h3 className="photoalbum-block__title title"><a href="/photoalbums">Наші фотоальбоми</a></h3>
+                         <h3 className="photoalbum-block__title title"><a href={`/${langPrefix}/photoalbums`}>Наші фотоальбоми</a></h3>
                          <AlbumsSlider data={sliderAlbumsData}/>
                      </div>
                     {/* Rendering the Facebook component if Facebook link exists */}

@@ -1,5 +1,6 @@
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Functional component for rendering a link to a Drupal node based on its URL
 function NodeLink({url, text, className}){
@@ -9,10 +10,11 @@ function NodeLink({url, text, className}){
         isLoading: isNodeLoading,
         error: nodeError
     } = useDrupalData(url);
+    const langPrefix = useLanguagePrefix();
 
     // Rendering a link with the specified URL and link text
     return (
-        <a className={className} href={nodeData?.data?.attributes?.path?.alias}>{text}</a>
+        <a className={className} href={`/${langPrefix}${nodeData?.data?.attributes?.path?.alias}`}>{text}</a>
     )
 }
 
