@@ -13,6 +13,7 @@ import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
 import Faculties from "./pages/Faculties.jsx";
 import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
+import useLanguagePrefix from "./services/languagePrefix.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -25,6 +26,7 @@ import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 
 // Define the main App component.
 function App() {
+    const languagePrefix = useLanguagePrefix();
     const location = useLocation();
     const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
 
@@ -38,7 +40,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Use the navigate function to go to the "/search/result" page with the input value
-        navigate(`/search/${input}`);
+        navigate(`/${languagePrefix}/search/${input}`);
         setInput("")
     };
 
@@ -46,7 +48,6 @@ function App() {
     return (
     <>
         <LanguageSwitcher />
-        {/* Set up BrowserRouter to enable routing in the application. */}
             <form onSubmit={handleSubmit}>
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
@@ -80,7 +81,7 @@ function App() {
                 <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
 
                 {/* Route for the Faculty. */}
-                <Route path="/department/:alias" element={<DepartmentFullMode/>}/>
+                <Route path="/:lang/department/:alias" element={<DepartmentFullMode/>}/>
 
                 {/* Route for the Unsubscribe from the newsletter. */}
                 <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
@@ -92,7 +93,7 @@ function App() {
                 <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
 
                 {/* Route for the Search Page. */}
-                <Route path="/search/:result" element={<Search />}/>
+                <Route path="/:lang/search/:result" element={<Search />}/>
             </Routes>
 
             {!isUnsubscribePage && (

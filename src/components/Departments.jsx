@@ -1,17 +1,18 @@
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 import StaffTitlePosition from "./StaffTitlePosition.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 import PropTypes from "prop-types";
 
 function Departments({id_deparments}){
+    const languagePrefix = useLanguagePrefix();
     const {data: department} = useDrupalData(`jsonapi/views/departments/block_1?views-argument[0]=${id_deparments}`)
-    console.log(department)
     return (
-        <div className={"bg-dark"}>
+        <div>
             {department?.data?.map((item, index) =>(
                 <div key={index}>
                     <div>
-                        <a href={item?.attributes?.path?.alias}>{item?.attributes?.title}</a>
+                        <a href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item?.attributes?.title}</a>
                     </div>
                     {item?.relationships?.field_image &&(
                         <div>

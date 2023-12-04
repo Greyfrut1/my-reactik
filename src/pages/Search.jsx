@@ -1,8 +1,10 @@
 import {useNavigate, useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 import {useEffect, useState} from "react";
 
 function Search() {
+    const languagePrefix = useLanguagePrefix();
     const {result} = useParams();
     const navigate = useNavigate(); // Hook to get the navigate function
     const [inputValue2, setInputValue2] = useState(result);
@@ -15,7 +17,7 @@ function Search() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate(`/search/${inputValue2}`);
+        navigate(`/${languagePrefix}/search/${inputValue2}`);
     };
 
     const handleInputChange = (event) => {
@@ -28,8 +30,8 @@ function Search() {
                 <input className={"enter"} type="text" value={inputValue2} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
-            <div className={"bg-darkRed"}>
-                <h1 className={"text-white"}>Results:</h1>
+            <div className={""}>
+                <h1 className={""}>Results:</h1>
 
                 {search?.rows?.map((item, index) => (
                     <div key={index}>
