@@ -23,6 +23,7 @@ import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import {useState} from "react";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
+import Menu from "./components/Menu.jsx";
 
 // Define the main App component.
 function App() {
@@ -94,6 +95,8 @@ function App() {
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>
+
+                <Route path="/:lang/test" element={<Menu />}/>
             </Routes>
 
             {!isUnsubscribePage && (
