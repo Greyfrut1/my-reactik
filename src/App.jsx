@@ -21,6 +21,7 @@ import Subscriber from "./components/Subscriber.jsx";
 import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
+import useLanguagePrefix from "./services/languagePrefix.jsx";
 
 // Define the main App component.
 function App() {
@@ -29,7 +30,7 @@ function App() {
 
     const [input, setInput] = useState(""); // State to manage the input value
     const navigate = useNavigate(); // Hook to get the navigate function
-
+    const langPrefix = useLanguagePrefix();
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
@@ -37,7 +38,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Use the navigate function to go to the "/search/result" page with the input value
-        navigate(`/search/${input}`);
+        navigate(`/${langPrefix}/search/${input}`);
         setInput("")
     };
 
@@ -79,7 +80,7 @@ function App() {
                 <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
 
                 {/* Route for the Unsubscribe from the newsletter. */}
-                <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
+                <Route path={"/:lang/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
 
                 {/* Route for the Catalog Educational programs. */}
                 <Route path="/:lang/all-educations" element={<CatalogEducationalPrograms />}/>
@@ -88,7 +89,7 @@ function App() {
                 <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
 
                 {/* Route for the Search Page. */}
-                <Route path="/search/:result" element={<Search />}/>
+                <Route path="/:lang/search/:result" element={<Search />}/>
             </Routes>
 
             {!isUnsubscribePage && (

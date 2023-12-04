@@ -1,6 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import {useEffect, useState} from "react";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 function Search() {
     const {result} = useParams();
@@ -13,9 +14,10 @@ function Search() {
 
     const {data: search} = useDrupalData(`search?search_api_fulltext=${result}`)
 
+    const langPrefix = useLanguagePrefix();
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate(`/search/${inputValue2}`);
+        navigate(`/${langPrefix}/search/${inputValue2}`);
     };
 
     const handleInputChange = (event) => {
