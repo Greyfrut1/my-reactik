@@ -7,6 +7,7 @@ import CalendarFilter from "../components/CalendarFilter.jsx";
 import DynamicDataFeed from "./DynamicDataFeed.jsx";
 import PropTypes from "prop-types";
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Define the FullModeComponent that takes 'types', 'endpoint', and 'renderFields' as props.
 function FullModeComponent({ types, endpoint, renderFields }) {
@@ -15,6 +16,7 @@ function FullModeComponent({ types, endpoint, renderFields }) {
 
     // Extract 'alias' from URL parameters using the useParams hook.
     const { alias } = useParams();
+    const langPrefix = useLanguagePrefix();
 
     // State variables for type information and selected date.
     const [typeInformation, setTypeInformation] = useState(null);
@@ -23,14 +25,14 @@ function FullModeComponent({ types, endpoint, renderFields }) {
     // Function to handle changes in type information.
     const handleTypeInformation = (type) => {
         setTypeInformation(type);
-        navigate(`/${types}?category=${type}`);
+        navigate(`/${langPrefix}/${types}?category=${type}`);
     };
 
     // Function to handle changes in selected date.
     const handleDateChange = (date) => {
         setSelectedDate(date);
         const formattedDate = date ? formatLongDate(null, date) : null;
-        navigate(`/${types}?date=${formattedDate}`);
+        navigate(`/${langPrefix}/${types}?date=${formattedDate}`);
     };
 
     // Function to format a date into a long format (YYYY-MM-DD).

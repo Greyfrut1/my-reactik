@@ -11,9 +11,29 @@ function LanguageSwitcher() {
     const currentLang = window.location.pathname.split('/')[1];
     const currentUrl = window.location.pathname;
     const urlParts = currentUrl.split('/');
+    const type = window.location.pathname.split('/')[2];
     const alias = window.location.pathname.split('/')[3];
     const slicedUrl = urlParts.slice(2).join('/');
-    const {data: data} = useDrupalData(`${slicedUrl}?_format=json`);
+    const [data, setData1] = useState(null);
+    useEffect(() => {
+        const fetchData2 = async () => {
+            try {
+                if ((type !== "simplenews") && (type !== "search")) {
+                    const response = await axios.get(`${baseURL}/${currentLang}/${slicedUrl}?_format=json`);
+
+                    setData1(response.data);
+                    setLoading(false);
+                }
+
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchData2();
+    }, [])
     var switchLang
     if (currentLang === 'uk') {
         switchLang = 'en';
@@ -41,20 +61,19 @@ function LanguageSwitcher() {
 
         fetchData2();
     }, [data])
-
-    console.log(`/${switchLang}/${slicedUrl}`)
-
     return (
         <div>
 
             {(alias && <div>
-                    {(data2?.path?.[0].alias && <a href={`/${switchLang}${data2?.path?.[0].alias}`}>Switch language</a>) || (<a href={`/${switchLang}/${slicedUrl}`}>Switch language</a>)}
+                    {(data2?.path?.[0].alias &&
+                        <a href={`/${switchLang}${data2?.path?.[0].alias}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>) || (
+                        <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>)}
                 </div>) ||
                 ((!alias && slicedUrl) && <div>
-                    <a href={`/${switchLang}/${slicedUrl}`}>Switch language</a>
+                    <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>
                 </div>) ||
                 ((!alias && !slicedUrl) && <div>
-                    <a href={`/${switchLang}`}>Switch language</a>
+                    <a href={`/${switchLang}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>
                 </div>)}
         </div>
     );
