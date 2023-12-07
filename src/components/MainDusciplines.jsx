@@ -8,6 +8,7 @@ function MainDusciplines({endpoint}) {
     const {data: certificationData} = useDrupalData(`/certification/${endpoint}`);
     const {data: professionalData} = useDrupalData(`/professional_training_cycle/${endpoint}`);
     var row = 0;
+
     return <>
     {(Array.isArray(generalData?.rows) && generalData?.rows.length !== 0) && <tr>
         <td>General training cycle</td>
