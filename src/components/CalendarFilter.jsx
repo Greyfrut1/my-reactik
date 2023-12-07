@@ -2,6 +2,7 @@
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import PropTypes from "prop-types";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Define the CalendarFilter component that takes selectedDate and onDateChange as props.
 function CalendarFilter({ selectedDate, onDateChange }) {
@@ -11,6 +12,8 @@ function CalendarFilter({ selectedDate, onDateChange }) {
         onDateChange(value);
     };
 
+    const langPrefix = useLanguagePrefix();
+
     // Render the CalendarFilter component with a Calendar component and a Clear button.
     return (
         <div className={"flex justify-center"}>
@@ -19,10 +22,11 @@ function CalendarFilter({ selectedDate, onDateChange }) {
                 <Calendar
                     onClickDay={onDateChange}
                     value={selectedDate}
+                    locale={langPrefix}
                 />
                 {/* Render a Clear button with an onClick event to reset the selected date to null. */}
                     <button className={"calendar-button-clear w-full"} onClick={() => handleDateClick(null)}>
-                        <span>Clear</span>
+                        <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
                     </button>
             </div>
         </div>

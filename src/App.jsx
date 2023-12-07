@@ -1,5 +1,6 @@
 // Import necessary components and hooks from react-router-dom.
-import {Route, Routes, useLocation, useNavigate, Navigate} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate, useParams, useLocation, useNavigate} from "react-router-dom";
+import { useState } from 'react'
 import Home from "./pages/Home.jsx";
 
 // Import page components for News and Events.
@@ -21,7 +22,6 @@ import Subscriber from "./components/Subscriber.jsx";
 import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
-import {useState} from "react";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 
 // Define the main App component.
@@ -32,7 +32,7 @@ function App() {
 
     const [input, setInput] = useState(""); // State to manage the input value
     const navigate = useNavigate(); // Hook to get the navigate function
-
+    const langPrefix = useLanguagePrefix();
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
@@ -40,7 +40,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Use the navigate function to go to the "/search/result" page with the input value
-        navigate(`/${languagePrefix}/search/${input}`);
+        navigate(`/${langPrefix}/search/${input}`);
         setInput("")
     };
 
@@ -84,7 +84,7 @@ function App() {
                 <Route path="/:lang/department/:alias" element={<DepartmentFullMode/>}/>
 
                 {/* Route for the Unsubscribe from the newsletter. */}
-                <Route path={"/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
+                <Route path={"/:lang/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
 
                 {/* Route for the Catalog Educational programs. */}
                 <Route path="/:lang/all-educations" element={<CatalogEducationalPrograms />}/>

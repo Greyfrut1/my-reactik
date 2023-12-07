@@ -2,6 +2,7 @@ import ChoiceComponent from "./ChoiceComponent.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Functional component for rendering a poll block
 function PollBlock({pollData, resultData}) {
@@ -56,6 +57,8 @@ function PollBlock({pollData, resultData}) {
             });
     };
 
+    const langPrefix = useLanguagePrefix();
+
     return (
         <>
             {/* Mapping through the array of polls */}
@@ -80,8 +83,8 @@ function PollBlock({pollData, resultData}) {
                                         choiceId={poll.relationships?.choice?.data?.[index]?.id}/></label>
                                 </div>
                             ))}
-                            <button type="submit" className="poll-block__form-submit button">Надіслати</button>
-                            <button onClick={handleButtonClick} className="poll-block__switch button">Переглянути результати</button>
+                            <button type="submit" className="poll-block__form-submit button">{langPrefix === 'en' && <>Send</>}{langPrefix === 'uk' && <>Надіслати</>}</button>
+                            <button onClick={handleButtonClick} className="poll-block__switch button">{langPrefix === 'en' && <>View results</>}{langPrefix === 'uk' && <>Переглянути результати</>}</button>
                         </form>
                     ) : (
                         // View results section

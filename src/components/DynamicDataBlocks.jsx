@@ -7,6 +7,7 @@ import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
 import queryString from 'query-string';
 import Pager from "./Pager.jsx";
 import PropTypes from "prop-types";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Define the DynamicDataBlocks component that takes type, endpoint, and render as props.
 function DynamicDataBlocks({type, endpoint, render}) {
@@ -66,11 +67,13 @@ function DynamicDataBlocks({type, endpoint, render}) {
     const itemsPerPage = data?.meta?.pager?.configurations?.items_per_page || 1;
     const totalPages = Math.ceil(totalCount / itemsPerPage);
 
+    const langPrefix = useLanguagePrefix();
+
     // Render the DynamicDataBlocks component with TypeFilterButtons, CalendarFilter, data items, and Pager.
     return (
         <div className={"container"}>
             <div className={""}>
-                {type === 'news' ? <h1 className={"block-title"}>News</h1> : <h1 className={"block-title"}>Events</h1>}
+                {type === 'news' ? <h1 className={"block-title"}>{(langPrefix === "en" && "News") || ("Новини")}</h1> : <h1 className={"block-title"}>{(langPrefix === "en" && "Events") || ("Події")}</h1>}
             </div>
             <div className={"wrapper-dynamic-data-blocks gap-[30px] block lg:flex"}>
                 <div className={"dynamic-data-blocks__left  view-content"}>

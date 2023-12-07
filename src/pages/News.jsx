@@ -4,6 +4,7 @@ import ImageComponent from "../components/ImageComponent.jsx";
 import { useWindowSize } from 'react-use';
 import {useEffect, useState} from "react";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import ReadMore from "../components/ReadMore.jsx";
 
 // Define the News functional component.
 function News() {
@@ -50,7 +51,7 @@ function News() {
                             {/* Render a div with the summary of the news item's description. */}
                             <div className={"right-box-description"}>{item?.attributes?.field_description?.summary}</div>
                             <div className={"right-box-button"}>
-                                <a href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>Read more</a>
+                                <a href={`/${languagePrefix}${item?.attributes?.path?.alias}`}><ReadMore /></a>
                             </div>
                         </div>
                     </div>

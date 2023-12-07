@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import PropTypes from "prop-types";
 import FieldLink from "./FieldLink.jsx";
 import DOMPurify from 'dompurify';
+import ReadMore from "./ReadMore.jsx";
 
 // Functional component for rendering a main slider
 function MainSlider({data}) {
@@ -36,8 +37,8 @@ function MainSlider({data}) {
                             className="main-slider__description">{slide?.attributes?.field_description?.value.replace(/(<([^>]+)>)/gi, '')}</div>
                         {slide?.relationships?.field_link?.links?.related?.href &&
                             <FieldLink url={new URL(slide?.relationships?.field_link?.links?.related?.href).pathname}
-                                       text="Докладніше" className="main-slider__link"/>}
-                    </div>
+                                       className="main-slider__link"/>}
+                    </div>n
                 </div>
             ))}
         </Slider>

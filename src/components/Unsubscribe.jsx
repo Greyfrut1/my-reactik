@@ -2,10 +2,13 @@ import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import {toast} from "react-toastify";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function Unsubscriber() {
+    const langPrefix = useLanguagePrefix();
+
     const navigate = useNavigate();
     const {iduser, idnewsletter, timestamp, hash} = useParams();
     const { data: subscriber, isLoading: subscriberLoading } = useDrupalData(`entity/simplenews_subscriber/${iduser}`);
@@ -51,20 +54,21 @@ function Unsubscriber() {
             });
     }
 
+
+
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <p>
-                    This action will unsubscribe you from the newsletter mailing list.
+                <p>{(langPrefix === "en" && "This action will unsubscribe you from the newsletter mailing list.") || (langPrefix === "uk" && "Ця дія скасує вашу підписку на розсилку новин.")}
                 </p>
                 <p>
-                    Are you sure you want to remove
-                    <em className="placeholder">{maskedEmail}</em> from the
-                    <em className="placeholder">{newsletter?.name}</em> mailing list?
+                    {(langPrefix === "en" && "Are you sure you want to remove") || (langPrefix === "uk" && "Ви впевнені, що хочете видалити")}
+                    <em className="placeholder">{maskedEmail}</em> {(langPrefix === "en" && "from the") || (langPrefix === "uk" && "від")}
+                    <em className="placeholder">{newsletter?.name}</em> {(langPrefix === "en" && "mailing list?") || (langPrefix === "uk" && "поштову розсилку?")}
                 </p>
                 <div>
-                    <button type="submit">Unsubscribe</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <button type="submit">{(langPrefix === "en" && "Unsubscribe") || (langPrefix === "uk" && "Відписатися")}</button>
+                    <button onClick={handleCancel}>{(langPrefix === "en" && "Cancel") || (langPrefix === "uk" && "Скасувати")}</button>
                 </div>
             </form>
         </>
