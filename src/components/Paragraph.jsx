@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 
 function Paragraph({target_id}) {
     const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
-    if (paragraph?.type?.[0].target_id == 'link') {
-        console.log(paragraph)
-    }
     return (
         <>
             {paragraph?.type?.[0].target_id == 'section' && (

@@ -30,8 +30,8 @@ function Search() {
                 <input className={"enter"} type="text" value={inputValue2} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
-            <div className={"bg-darkRed"}>
-                <h1 className={"text-white"}>Results:</h1>
+            <div className={""}>
+                <h1 className={""}>Results:</h1>
 
                 {search?.rows?.map((item, index) => (
                     <div key={index}>

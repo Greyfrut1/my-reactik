@@ -14,6 +14,7 @@ import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
 import Faculties from "./pages/Faculties.jsx";
 import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
+import useLanguagePrefix from "./services/languagePrefix.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -21,10 +22,11 @@ import Subscriber from "./components/Subscriber.jsx";
 import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
-import useLanguagePrefix from "./services/languagePrefix.jsx";
+import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 
 // Define the main App component.
 function App() {
+    const languagePrefix = useLanguagePrefix();
     const location = useLocation();
     const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
 
@@ -46,7 +48,6 @@ function App() {
     return (
     <>
         <LanguageSwitcher />
-        {/* Set up BrowserRouter to enable routing in the application. */}
             <form onSubmit={handleSubmit}>
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
@@ -78,6 +79,9 @@ function App() {
 
                 {/* Route for the Faculty. */}
                 <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
+
+                {/* Route for the Faculty. */}
+                <Route path="/:lang/department/:alias" element={<DepartmentFullMode/>}/>
 
                 {/* Route for the Unsubscribe from the newsletter. */}
                 <Route path={"/:lang/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"} element={<Unsubscribe/>}/>
