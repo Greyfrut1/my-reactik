@@ -23,6 +23,9 @@ import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
+import StaffFullMode from "./pages/StaffFullMode.jsx";
+import Rectorate from "./pages/Rectorate.jsx";
+import AcademicBoard from "./pages/AcademicBoard.jsx";
 
 // Define the main App component.
 function App() {
@@ -91,6 +94,15 @@ function App() {
 
                 {/* Route for the Page Educational program. */}
                 <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
+
+                {/* Route for the Page Rectorate. */}
+                <Route path="/:lang/rectorate" element={<Rectorate />}/>
+
+                {/* Route for the Page Academic Board. */}
+                <Route path="/:lang/academic-board" element={<AcademicBoard />}/>
+
+                {/* Route for the Staff full page. */}
+                <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>
