@@ -1,5 +1,6 @@
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
+import ImageComponent from "./ImageComponent.jsx";
 
 function Paragraph({target_id}) {
     const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
@@ -61,6 +62,11 @@ function Paragraph({target_id}) {
                     {paragraph?.field_link.map((link, index) => (
                         <a key={index} href={link.full_url}>{link.title}</a>
                     ))}
+                </>
+            )}
+            {paragraph?.type?.[0].target_id == 'image_link' && (
+                <>
+                    <a href={paragraph?.field_link_to_partner?.[0].uri}><ImageComponent alt={paragraph?.field_image?.[0].alt} url={paragraph?.field_image?.[0].target_id} imagestyle={'actual_news'} /></a>
                 </>
             )}
         </>
