@@ -1,0 +1,34 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+body{
+  font-family: Roboto, sans-serif;
+}
+.field-description{
+  p{
+    margin: 1em 0;
+  }
+}
+.block-title{
+  text-align: center;
+  margin: 1.2em 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  @media (max-width: $lg) {
+    font-size: 1.5em;
+  }
+  @media (max-width: $sm) {
+  font-size: 1.2em;
+}
+}
+.text-align{
+  &-left{
+    text-align: left;
+  }
+  &-right{
+    text-align: right;
+  }
+  &-center{
+    text-align: center;
+  }
+}
