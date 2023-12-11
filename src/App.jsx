@@ -15,6 +15,7 @@ import Faculties from "./pages/Faculties.jsx";
 import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
 import useLanguagePrefix from "./services/languagePrefix.jsx";
+import Footer from "./components/Footer.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -114,6 +115,7 @@ function App() {
                 pauseOnHover
                 theme="colored"
             />
+            <Footer />
         </>
     )
 }
