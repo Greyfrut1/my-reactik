@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 import Paragraph from "./Paragraph.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 // Functional component representing the Footer section
 const Footer = () => {
@@ -33,6 +34,8 @@ const Footer = () => {
         error: partnersBlockError
     } = useDrupalData('jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8');
 
+    const langPrefix = useLanguagePrefix();
+
     // Effect hook to update the current date and time every second
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -60,7 +63,7 @@ const Footer = () => {
     // Rendering the Footer component with the fetched data
     return (
         <div>
-            <div>Date: {formattedDate} Time: {formattedTime}</div>
+            <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime}</div>
 
             <div>
                 <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />
