@@ -6,13 +6,13 @@ const cors = require('cors');
 
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5174' }));
+app.use(cors({ origin: 'https://my-reactik.vercel.app/' }));
 
 
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5174',
+        origin: 'https://my-reactik.vercel.app/',
         methods: ['GET', 'POST']
     }
 });
