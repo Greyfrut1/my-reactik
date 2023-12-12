@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
-
-const OnlineUsersCounter = () => {
-    const [activeUsers, setActiveUsers] = useState(0);
-
-    const handleOnlineStatusChange = () => {
-        setActiveUsers((prevUsers) => (navigator.onLine ? prevUsers + 1 : prevUsers - 1));
-    };
+// src/App.js
+import React, { useEffect, useState } from 'react';
+import socketIOClient from 'socket.io-client';
+const PORT = import.meta.env.VITE_SERVER_PORT;
+ // Адреса вашого сервера
+const currentDomain = window.location.hostname;
+const currentProtocol = window.location.protocol
+const ENDPOINT = `${currentProtocol}//${currentDomain}:${PORT}`;
+function OnlineUserCounter() {
+    const [onlineUsers, setOnlineUsers] = useState(0);
 
     useEffect(() => {
-        // Додати слухача події для зміни статусу онлайн/офлайн
-        window.addEventListener('online', handleOnlineStatusChange);
-        window.addEventListener('offline', handleOnlineStatusChange);
+        const socket = socketIOClient(ENDPOINT);
 
-        // Початкове значення
-        setActiveUsers(navigator.onLine ? 1 : 0);
+        socket.on('updateUsers', (users) => {
+            setOnlineUsers(users);
+        });
 
-        // Прибрати слухачів подій при виході з компонента
         return () => {
-            window.removeEventListener('online', handleOnlineStatusChange);
-            window.removeEventListener('offline', handleOnlineStatusChange);
+            socket.disconnect();
         };
     }, []);
 
     return (
         <div>
-            <h1>Кількість користувачів на сайті: {activeUsers}</h1>
+            <h1>React App with Real-time User Count</h1>
+            <p>Current online users: {onlineUsers}</p>
         </div>
     );
-};
+}
 
-export default OnlineUsersCounter;
+export default OnlineUserCounter;
