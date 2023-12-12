@@ -26,6 +26,8 @@ import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 import StaffFullMode from "./pages/StaffFullMode.jsx";
 import Rectorate from "./pages/Rectorate.jsx";
 import AcademicBoard from "./pages/AcademicBoard.jsx";
+import MuseumViews from "./pages/MuseumViews.jsx";
+import MuseumFullMode from "./pages/MuseumFullMode.jsx";
 
 // Define the main App component.
 function App() {
@@ -103,6 +105,12 @@ function App() {
 
                 {/* Route for the Staff full page. */}
                 <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
+
+                {/* Route for the Page Museum. */}
+                <Route path="/:lang/museum" element={<MuseumViews />}/>
+
+                {/* Route for the Staff full page. */}
+                <Route path="/:lang/branches-and-representative-offices/:alias" element={<MuseumFullMode />}/>
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>

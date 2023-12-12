@@ -6,6 +6,7 @@ import Scholar from "../assets/scholar.png";
 import Scopus from "../assets/scopus.png";
 import Wiki from "../assets/wikisnu-new.png";
 import React from "react";
+import ContactInformation from "../components/ContactInformation.jsx";
 
 function StaffFullMode(){
     const { alias } = useParams();
@@ -20,24 +21,7 @@ function StaffFullMode(){
             <div className={"staff-info flex flex-row"}>
                 <div className={"staff-info__general flex flex-col w-4/5"}>
                     <p className={"staff-info__general-position"}>{staff?.field_position_and_rank?.[0]?.value}</p>
-                    <div className="staff-info__general-phone flex flex-row">
-                        {staff?.field_phone?.map((item, index) => (
-                            <div key={index}>
-                                <a href={`tel:${item.value}`}>
-                                    {item.value}
-                                </a>
-                            </div>
-                        ))}
-                    </div>
-                    {staff?.field_mail?.map((item, index) => (
-                        <div key={index}>
-                            <a className="staff-info__general-mail" href={`tel:${item.value}`}>
-                                {item.value}
-                            </a>
-                        </div>
-                    ))}
-                    <p className={"staff-info__general-location"}>{staff?.field_location?.[0]?.value}</p>
-
+                    <ContactInformation data={staff} type={"node"}/>
                 </div>
                 <div className={"staff-info__sources flex flex-col w-1/5"}>
                     <div className="staff-info__sources-link">
