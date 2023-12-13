@@ -1,9 +1,11 @@
-import {format} from "date-fns";
+import { format} from "date-fns";
+import {uk} from "date-fns/locale"
 import ImageComponent from "./ImageComponent.jsx";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import arrow from '/src/assets/long-arrow-right.png'
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+
 
 // Function to truncate text to a specified maximum length
 function truncateText(text, maxLength) {
@@ -61,8 +63,10 @@ function EventsSlider({data}) {
                     <div className="events-slider__top">
                         <div className="events-slider__block-date">
                             {/* Displaying the start and end dates of the event in a specific format */}
-                            <div>{format(new Date(event?.attributes?.field_duration?.value), 'dd MMMM HH:mm')}</div>
-                            <div>{format(new Date(event?.attributes?.field_duration?.end_value), 'dd MMMM HH:mm')}</div>
+                            {langPrefix === 'uk' && <><div>{format(new Date(event?.attributes?.field_duration?.value), 'dd MMMM HH:mm', { locale: uk})}</div>
+                                <div>{format(new Date(event?.attributes?.field_duration?.end_value), 'dd MMMM HH:mm', {locale: uk})}</div></>}
+                            {langPrefix === 'en' && <><div>{format(new Date(event?.attributes?.field_duration?.value), 'dd MMMM HH:mm')}</div>
+                                <div>{format(new Date(event?.attributes?.field_duration?.end_value), 'dd MMMM HH:mm')}</div></>}
                         </div>
                         {/* Rendering the ImageComponent with the specified URL and style */}
                         <ImageComponent url={event?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}

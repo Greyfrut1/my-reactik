@@ -3,6 +3,8 @@ import {useState} from "react";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useDrupalData from "../services/api.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
+import SocialLinks from "./SocialLinks.jsx";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -31,10 +33,12 @@ function Subscriber() {
             });
     }
 
+    const langPrefix = useLanguagePrefix();
+
     return (
         <>
-            <div className={"container"}>
-                <div className={"flex items-center justify-between pt-[29px] px-0 pb-[34px]"}>
+            <div className={"container subscriber-container"}>
+                <div className={"flex items-center justify-between pt-[29px] px-0 pb-[34px] subscriber-from-container"}>
                     {newsletterBlock?.info && (
                         <div className={"flex items-center"}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-6 h-6">
@@ -49,10 +53,11 @@ function Subscriber() {
                     <form onSubmit={handleSubmit} className={"flex w-1/2 relative items-center"}>
                         <input required={"required"} type={"email"} value={email}
                                onChange={(e) => setEmail(e.target.value)}
-                               placeholder="Enter your email"/>
-                        <button type="submit">Subscribe</button>
+                               placeholder={(langPrefix === "en" && "Enter your email") || (langPrefix === "uk" && "Введіть електронну пошту")}/>
+                        <button type="submit">{(langPrefix === "en" && "Subscribe") || (langPrefix === "uk" && "Підписатися")}</button>
                     </form>
                 </div>
+                <SocialLinks />
             </div>
         </>
     );

@@ -127,29 +127,29 @@ function Home() {
                     <ActualNewsBlock data={actualNewsData}/>
                     </div>
                     <div className="last-news-block">
-                        <h2 className="last-news-block__block-title"><a href={`/${langPrefix}/news`}>Актуально</a></h2>
+                        <h2 className="last-news-block__block-title"><a href={`/${langPrefix}/news`}>{lastNewsData?.meta?.title}</a></h2>
                         <LastNewsBlock data={lastNewsData}/>
                     </div>
                     <div className="events-slider">
-                        <h2 className="events-slider__block-title"><a href={`/${langPrefix}/events`}>Незабаром</a></h2>
+                        <h2 className="events-slider__block-title"><a href={`/${langPrefix}/events`}>{eventsBlockData?.meta?.title}</a></h2>
                         <EventsSlider data={eventsBlockData}/>
                     </div>
                     <div className='homepage-bottom'>
                         <div className="poll-block">
-                        <h3 className="poll-block__title title"><a href='#'>Вибране опитування</a></h3>
+                        <h3 className="poll-block__title title"><a href='#'>{pollBlockData?.meta.title}</a></h3>
                         <PollBlock pollData={pollBlockData} resultData={pollResultData}/>
                     </div>
                     {/* Rendering the infrastructure location */}
                     {/*<div>{infrastructureBlockdata?.data?.[0]?.attributes?.field_location}</div>*/}
                     {infrastructureBlockdata?.data?.[0]?.attributes?.field_location && <div className="infrastructure-block">
-                        <h3 className="infrastructure-block__title title"><a href='#'>Інфрастркуктура</a></h3>
+                        <h3 className="infrastructure-block__title title"><a href='#'>{infrastructureBlockdata?.meta.title}</a></h3>
                         <div className="infrastructure-block__map-block">
                             <MapComponent width="350" address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}/>
                         </div>
                     </div>}
 
                      <div className="photoalbum-block">
-                         <h3 className="photoalbum-block__title title"><a href={`/${langPrefix}/photoalbums`}>Наші фотоальбоми</a></h3>
+                         <h3 className="photoalbum-block__title title"><a href={`/${langPrefix}/photoalbums`}>{sliderAlbumsData?.meta.title}</a></h3>
                          <AlbumsSlider data={sliderAlbumsData}/>
                      </div>
                     {/* Rendering the Facebook component if Facebook link exists */}
