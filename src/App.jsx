@@ -26,6 +26,7 @@ import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 import Menu from "./components/Menu.jsx";
 import GeneralInformation from "./pages/GeneralInformation.jsx";
+import InfrastructureViews from "./pages/InfrastructureViews.jsx";
 
 // Define the main App component.
 function App() {
@@ -99,6 +100,9 @@ function App() {
                 <Route path="/:lang/search/:result" element={<Search />}/>
 
                 <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
+
+                {/* Route for the Infrastructure. */}
+                <Route path="/:lang/infrastructure" element={<InfrastructureViews/>}/>
             </Routes>
 
             {!isUnsubscribePage && (
