@@ -1,0 +1,30 @@
+.infrastructure-view{
+  padding:50px 0;
+}
+.infrastructure-item{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  max-width: 560px;
+  width:100%;
+  border: 3px solid transparent;
+  &:hover {
+    transition: .2s ease;
+    border-bottom: 3px solid $darkRed;
+    border-left: 3px solid $darkRed;
+  }
+
+  &__map{
+    height:250px;
+    max-width: 250px;
+  }
+  &__info{
+    margin-left:20px;
+    &-title{
+      @include fontz(18px,25px,0.02em,capitalize,800,black);
+      padding:10px 0;
+    }
+  }
+}
