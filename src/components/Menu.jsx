@@ -1,35 +1,48 @@
-import React from 'react';
 import useDrupalData from "../services/api.jsx";
 
-function MenuItem({ item, items }) {
-    return (
-        <div key={item.id}>
-            <li>{item.attributes.title}</li>
-            {items.map((childItem) => (
-                <>
-                    {childItem.attributes.parent === item.id && (
-                        <MenuItem key={childItem.id} item={childItem} items={items} />
-                    )}
-                </>
-            ))}
-        </div>
-    );
-}
-
 function Menu() {
-    const { data: items } = useDrupalData(`jsonapi/menu_items/bottom-header`);
-    console.log(items?.data);
+    const { data: items } = useDrupalData(`/entity/menu/main-header-menu/tree`);
 
     return (
-        <div>
-            {items?.data?.map((item) => (
-                <>
-                    {item.attributes.parent.length === 0 && (
-                        <MenuItem key={item.id} item={item} items={items?.data} />
+        <header className={"main-header-menu"}>
+            {items?.map((item) => (
+                <ul className={"element-menu"} key={item?.link?.meta_data?.entity_id}>
+                    <li className={"level-one"}>
+                        {item?.link?.url ? (
+                            <a className={"level-one-link"} href={item?.link?.url}>{item?.link?.title}</a>
+                        ) : (
+                            <span className={"level-one-link"}>{item?.link?.title}</span>
+                        )}
+                    </li>
+                    {item?.has_children && (
+                        <ul className={"second-level"}>
+                            {item?.subtree?.map((item2) => (
+                                <li className={"second-level-item"} key={item2?.link?.meta_data?.entity_id}>
+                                    {item2?.link?.url ? (
+                                        <a className={"second-level-link"} href={item2?.link?.url}>{item2?.link?.title}</a>
+                                    ) : (
+                                        <span className={"second-level-link"}>{item2?.link?.title}</span>
+                                    )}
+                                    {item2?.has_children && (
+                                        <ul className={"third-level"}>
+                                            {item2?.subtree?.map((item3) => (
+                                                <li className={"third-level-item"} key={item3?.link?.meta_data?.entity_id}>
+                                                    {item3?.link?.url ? (
+                                                        <a className={"third-level-link"} href={item3?.link?.url}>{item3?.link?.title}</a>
+                                                    ) : (
+                                                        <span className={"third-level-link"}>{item3?.link?.title}</span>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
                     )}
-                </>
+                </ul>
             ))}
-        </div>
+        </header>
     );
 }
 
