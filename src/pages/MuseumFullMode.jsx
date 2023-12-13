@@ -3,15 +3,18 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import React from "react";
 import ContactInformation from "../components/ContactInformation.jsx";
+import YoutubeEmbed from "../components/YoutubeEmbed.jsx";
 
 function MuseumFullMode(){
     const { alias } = useParams();
     const {data: museumPage} = useDrupalData(`branches-and-representative-offices/${alias}?_format=json`)
+
     return (
         <div className={"museum container"}>
             <div className={"museum-info flex flex-row"}>
                 {museumPage?.field_image?.[0]?.target_id && (
-                    <ImageComponent imagestyle={"dynamicdata_243x231"} alt={""} url={museumPage?.field_image?.[0]?.target_id}/>
+                    <ImageComponent imagestyle={"dynamicdata_243x231"} alt={""}
+                                    url={museumPage?.field_image?.[0]?.target_id}/>
                 )}
                 <div className={"museum-info__contact"}>
                     <h2 className={"museum-info__contact-title"}>{museumPage?.title?.[0]?.value}</h2>
@@ -24,6 +27,9 @@ function MuseumFullMode(){
                     __html: museumPage?.field_description?.[0]?.processed,
                 }}
             />
+            <div className={"museum-video"}>
+                <YoutubeEmbed embedId={museumPage?.field_link_to__video?.[0]?.uri}/>
+            </div>
         </div>
     );
 }
