@@ -46,6 +46,7 @@ function Paragraph({target_id}) {
                 <>
                     <div className={"document_body"}
                          dangerouslySetInnerHTML={{__html: paragraph?.field_body?.[0]?.value}}/>
+                    <div style={{clear: 'both'}}></div>
                 </>
             )}
             {paragraph?.type?.[0].target_id == 'file' && (

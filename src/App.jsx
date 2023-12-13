@@ -25,6 +25,7 @@ import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 import Menu from "./components/Menu.jsx";
+import GeneralInformation from "./pages/GeneralInformation.jsx";
 
 // Define the main App component.
 function App() {
@@ -77,7 +78,7 @@ function App() {
                 <Route path="/:lang/photoalbums/:alias" element={<PhotoAlbumsFullPage />}/>
 
                 {/* Route for the Faculties. */}
-                <Route path="/:lang/faculty" element={<Faculties />}/>
+                <Route path="/:lang/faculties" element={<Faculties />}/>
 
                 {/* Route for the Faculty. */}
                 <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
@@ -97,7 +98,7 @@ function App() {
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>
 
-                {/*<Route path="/:lang/test" element={<Menu />}/>*/}
+                <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
             </Routes>
 
             {!isUnsubscribePage && (

@@ -20,7 +20,7 @@ function Faculties() {
                         </div>
                         <div><a href={`https://www.google.com.ua/maps/search/${item?.attributes?.field_location}`}>{item?.attributes?.field_location}</a></div>
                         <div><a href={`mailto:${item?.attributes?.field_email}`}>{item?.attributes?.field_email}</a></div>
-                        {item.attributes?.field_phone_number.map((phone, index) => (
+                        {item.attributes?.field_phone.map((phone, index) => (
                             <div key={index}>
                                 <a href={`tel:${phone}`}> {phone} </a>
                             </div>
