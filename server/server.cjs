@@ -1,10 +1,11 @@
 // server/server.cjs
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const domain = process.env.VITE_FRONTEND_URL
-
+console.log(domain)
 
 const app = express();
 app.use(cors({ origin: domain }));
