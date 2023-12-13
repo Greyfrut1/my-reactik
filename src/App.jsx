@@ -1,5 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
-import {BrowserRouter, Route, Routes, Navigate, useParams, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, Navigate, useLocation, useNavigate} from "react-router-dom";
 import { useState } from 'react'
 import Home from "./pages/Home.jsx";
 
@@ -15,6 +15,7 @@ import Faculties from "./pages/Faculties.jsx";
 import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
 import useLanguagePrefix from "./services/languagePrefix.jsx";
+import Footer from "./components/Footer.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -28,6 +29,8 @@ import Rectorate from "./pages/Rectorate.jsx";
 import AcademicBoard from "./pages/AcademicBoard.jsx";
 import MuseumViews from "./pages/MuseumViews.jsx";
 import MuseumFullMode from "./pages/MuseumFullMode.jsx";
+import Menu from "./components/Menu.jsx";
+import GeneralInformation from "./pages/GeneralInformation.jsx";
 
 // Define the main App component.
 function App() {
@@ -37,7 +40,6 @@ function App() {
 
     const [input, setInput] = useState(""); // State to manage the input value
     const navigate = useNavigate(); // Hook to get the navigate function
-    const langPrefix = useLanguagePrefix();
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
@@ -45,7 +47,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Use the navigate function to go to the "/search/result" page with the input value
-        navigate(`/${langPrefix}/search/${input}`);
+        navigate(`/${languagePrefix}/search/${input}`);
         setInput("")
     };
 
@@ -57,6 +59,7 @@ function App() {
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
+        <Menu />
             {/* Define route configurations using Routes component. */}
             <Routes>
                 <Route path="/:lang" element={<Home />} />
@@ -80,7 +83,7 @@ function App() {
                 <Route path="/:lang/photoalbums/:alias" element={<PhotoAlbumsFullPage />}/>
 
                 {/* Route for the Faculties. */}
-                <Route path="/:lang/faculty" element={<Faculties />}/>
+                <Route path="/:lang/faculties" element={<Faculties />}/>
 
                 {/* Route for the Faculty. */}
                 <Route path="/:lang/faculty/:alias" element={<FacultyFullMode />}/>
@@ -114,6 +117,8 @@ function App() {
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>
+
+                <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
             </Routes>
 
             {!isUnsubscribePage && (
@@ -134,6 +139,7 @@ function App() {
                 pauseOnHover
                 theme="colored"
             />
+            <Footer />
         </>
     )
 }
