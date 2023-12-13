@@ -1,5 +1,5 @@
 // Import necessary components and hooks from react-router-dom.
-import {BrowserRouter, Route, Routes, Navigate, useParams, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, Navigate, useLocation, useNavigate} from "react-router-dom";
 import { useState } from 'react'
 import Home from "./pages/Home.jsx";
 
@@ -24,6 +24,7 @@ import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
+import Menu from "./components/Menu.jsx";
 
 // Define the main App component.
 function App() {
@@ -33,7 +34,6 @@ function App() {
 
     const [input, setInput] = useState(""); // State to manage the input value
     const navigate = useNavigate(); // Hook to get the navigate function
-    const langPrefix = useLanguagePrefix();
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
@@ -41,7 +41,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Use the navigate function to go to the "/search/result" page with the input value
-        navigate(`/${langPrefix}/search/${input}`);
+        navigate(`/${languagePrefix}/search/${input}`);
         setInput("")
     };
 
@@ -53,6 +53,7 @@ function App() {
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
+        <Menu />
             {/* Define route configurations using Routes component. */}
             <Routes>
                 <Route path="/:lang" element={<Home />} />
@@ -95,6 +96,8 @@ function App() {
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>
+
+                {/*<Route path="/:lang/test" element={<Menu />}/>*/}
             </Routes>
 
             {!isUnsubscribePage && (
