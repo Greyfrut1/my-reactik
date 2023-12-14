@@ -63,7 +63,7 @@ const Footer = () => {
     // Rendering the Footer component with the fetched data
     return (
         <div>
-            <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime}<OnlineVisitors /></div>
+            <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime}</div>
 
             <div>
                 <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />
