@@ -1,17 +1,17 @@
-import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-import React from "react";
 import ContactInformation from "../components/ContactInformation.jsx";
+import PropTypes from "prop-types";
 
-function MuseumViews(){
+function BranchesViews({type_branch}){
     const languagePrefix = useLanguagePrefix();
-    const {data: museum} = useDrupalData(`/jsonapi/views/branches/page_2`);
+    const {data: branchesView} = useDrupalData(`/jsonapi/views/branches/${type_branch}`);
+    console.log(branchesView)
     return (
         <div className={"container"}>
             <div className="museum-view grid grid-cols-2 md:gap-10 gap-20 sm:grid-cols-1">
-                {museum?.data?.map((item, index) => (
+                {branchesView?.data?.map((item, index) => (
                     <div key={index} className={"museum-item flex flex-col"}>
                         <ImageComponent
                             url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
@@ -29,4 +29,8 @@ function MuseumViews(){
     );
 }
 
-export default MuseumViews
+BranchesViews.propTypes = {
+    type_branch: PropTypes.string.isRequired,
+};
+
+export default BranchesViews

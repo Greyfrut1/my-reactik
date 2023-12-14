@@ -27,10 +27,12 @@ import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 import StaffFullMode from "./pages/StaffFullMode.jsx";
 import Rectorate from "./pages/Rectorate.jsx";
 import AcademicBoard from "./pages/AcademicBoard.jsx";
-import MuseumViews from "./pages/MuseumViews.jsx";
-import MuseumFullMode from "./pages/MuseumFullMode.jsx";
 import Menu from "./components/Menu.jsx";
 import GeneralInformation from "./pages/GeneralInformation.jsx";
+import Museums from "./pages/Museums.jsx";
+import Units from "./pages/Units.jsx";
+import Branches from "./pages/Branches.jsx";
+import BranchesFullMode from "./pages/BranchesFullMode.jsx";
 
 // Define the main App component.
 function App() {
@@ -110,10 +112,16 @@ function App() {
                 <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
 
                 {/* Route for the Page Museum. */}
-                <Route path="/:lang/museum" element={<MuseumViews />}/>
+                <Route path="/:lang/museums" element={<Museums />}/>
+
+                {/* Route for the Page Units. */}
+                <Route path="/:lang/units" element={<Units />}/>
+
+                {/* Route for the Page Branches. */}
+                <Route path="/:lang/branches-and-representative-offices" element={<Branches />}/>
 
                 {/* Route for the Staff full page. */}
-                <Route path="/:lang/branches-and-representative-offices/:alias" element={<MuseumFullMode />}/>
+                <Route path="/:lang/branches-and-representative-offices/:alias" element={<BranchesFullMode />}/>
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>
