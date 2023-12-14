@@ -32,7 +32,7 @@ import GeneralInformation from "./pages/GeneralInformation.jsx";
 import Museums from "./pages/Museums.jsx";
 import Units from "./pages/Units.jsx";
 import Branches from "./pages/Branches.jsx";
-import BranchesFullMode from "./pages/MuseumFullMode.jsx";
+import BranchesFullMode from "./pages/BranchesFullMode.jsx";
 
 // Define the main App component.
 function App() {
