@@ -24,6 +24,11 @@ import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
+import StaffFullMode from "./pages/StaffFullMode.jsx";
+import Rectorate from "./pages/Rectorate.jsx";
+import AcademicBoard from "./pages/AcademicBoard.jsx";
+import MuseumViews from "./pages/MuseumViews.jsx";
+import MuseumFullMode from "./pages/MuseumFullMode.jsx";
 import Menu from "./components/Menu.jsx";
 import GeneralInformation from "./pages/GeneralInformation.jsx";
 
@@ -94,6 +99,21 @@ function App() {
 
                 {/* Route for the Page Educational program. */}
                 <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsFullMode />}/>
+
+                {/* Route for the Page Rectorate. */}
+                <Route path="/:lang/rectorate" element={<Rectorate />}/>
+
+                {/* Route for the Page Academic Board. */}
+                <Route path="/:lang/academic-board" element={<AcademicBoard />}/>
+
+                {/* Route for the Staff full page. */}
+                <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
+
+                {/* Route for the Page Museum. */}
+                <Route path="/:lang/museum" element={<MuseumViews />}/>
+
+                {/* Route for the Staff full page. */}
+                <Route path="/:lang/branches-and-representative-offices/:alias" element={<MuseumFullMode />}/>
 
                 {/* Route for the Search Page. */}
                 <Route path="/:lang/search/:result" element={<Search />}/>

@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import React, {useState, useEffect} from 'react'
 import MapComponent from "../components/MapComponent.jsx";
 import {FacebookProvider, Page} from "react-facebook";
-import YouTube from 'react-youtube';
 import MainSlider from "../components/MainSlider.jsx";
 import ActualNewsBlock from "../components/ActualNewsBlock.jsx";
 import LastNewsBlock from "../components/LastNewsBlock.jsx";
@@ -12,6 +11,8 @@ import EventsSlider from "../components/EventsSlider.jsx";
 import PollBlock from "../components/PollBlock.jsx";
 import AlbumsSlider from "../components/AlbumsSlider.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import YoutubeEmbed from "../components/YoutubeEmbed.jsx";
+
 
 // Functional component for the Home page
 function Home() {
@@ -66,34 +67,6 @@ function Home() {
         isLoading: isYoutubeBlockLoadin,
         error: youtubeBlockError
     } = useDrupalData('jsonapi/block_content/block_link/4e904849-61c6-45d4-93de-89539abdf33a');
-
-    // State variable for YouTube video ID
-    const [videoId, setVideoId] = useState(null);
-
-    // Extracting YouTube video ID from the provided URL
-    useEffect(() => {
-        const videoUrl = youtubeBlockData?.data?.attributes?.field_link_to?.uri;
-
-        if (videoUrl) {
-            const videoIdRegex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-            const match = videoUrl.match(videoIdRegex);
-
-            if (match) {
-                const extractedVideoId = match[1];
-                setVideoId(extractedVideoId);
-            }
-        }
-    }, [youtubeBlockData]);
-
-
-    // Options for the YouTube player
-    const opts = {
-        // height: '450',
-        // width: '730',
-        playerVars: {
-            autoplay: 0,
-        },
-    };
 
     const [pageWidth, setPageWidth] = useState("100%"); // Set initial width
     const langPrefix = useLanguagePrefix();
@@ -167,7 +140,9 @@ function Home() {
                             <h3 className="youtube-block__title title"><a
                                 href={youtubeBlockData?.data?.attributes?.field_link_to?.uri}>{youtubeBlockData?.data?.attributes?.info}</a>
                             </h3>
-                            <YouTube className="youtube-block__video-block" videoId={videoId} opts={opts}/>
+                            <div className="youtube-block__video-block">
+                                <YoutubeEmbed embedId={youtubeBlockData?.data?.attributes?.field_link_to?.uri}/>
+                            </div>
                         </div>
                     )}
                     </div>
