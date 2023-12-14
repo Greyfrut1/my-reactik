@@ -1,37 +1,33 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
-import React from "react";
 import ContactInformation from "../components/ContactInformation.jsx";
-import YoutubeEmbed from "../components/YoutubeEmbed.jsx";
+import Paragraph from "../components/Paragraph.jsx";
 
-function MuseumFullMode(){
+function BranchesFullMode(){
     const { alias } = useParams();
-    const {data: museumPage} = useDrupalData(`branches-and-representative-offices/${alias}?_format=json`)
-
+    const {data: branchesPage} = useDrupalData(`branches-and-representative-offices/${alias}?_format=json`)
     return (
         <div className={"museum container"}>
             <div className={"museum-info flex flex-row"}>
-                {museumPage?.field_image?.[0]?.target_id && (
+                {branchesPage?.field_image?.[0]?.target_id && (
                     <ImageComponent imagestyle={"dynamicdata_243x231"} alt={""}
-                                    url={museumPage?.field_image?.[0]?.target_id}/>
+                                    url={branchesPage?.field_image?.[0]?.target_id}/>
                 )}
                 <div className={"museum-info__contact"}>
-                    <h2 className={"museum-info__contact-title"}>{museumPage?.title?.[0]?.value}</h2>
-                    <ContactInformation data={museumPage} type={"node"}/>
+                    <h2 className={"museum-info__contact-title"}>{branchesPage?.title?.[0]?.value}</h2>
+                    <ContactInformation data={branchesPage} type={"node"}/>
                 </div>
             </div>
-            <div
-                className={"museum-description"}
-                dangerouslySetInnerHTML={{
-                    __html: museumPage?.field_description?.[0]?.processed,
-                }}
-            />
-            <div className={"museum-video"}>
-                <YoutubeEmbed embedId={museumPage?.field_link_to__video?.[0]?.uri}/>
+            <div className={"Paragraphs"}>
+                {branchesPage?.field_content?.map((item, index) => (
+                    <div className={"section"} key={index}>
+                        <Paragraph target_id={item?.target_id}/>
+                    </div>
+                ))}
             </div>
         </div>
     );
 }
 
-export default MuseumFullMode
+export default BranchesFullMode

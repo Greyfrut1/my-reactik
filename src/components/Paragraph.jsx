@@ -45,7 +45,7 @@ function Paragraph({target_id}) {
             {paragraph?.type?.[0].target_id == 'document_body' && (
                 <>
                     <div className={"document_body"}
-                         dangerouslySetInnerHTML={{__html: paragraph?.field_body?.[0]?.value}}/>
+                         dangerouslySetInnerHTML={{__html: paragraph?.field_body?.[0]?.processed}}/>
                     <div style={{clear: 'both'}}></div>
                 </>
             )}
