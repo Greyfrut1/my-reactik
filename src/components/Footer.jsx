@@ -3,7 +3,6 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 import Paragraph from "./Paragraph.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-import OnlineVisitors from "./OnlineVisitors.jsx";
 
 // Functional component representing the Footer section
 const Footer = () => {
