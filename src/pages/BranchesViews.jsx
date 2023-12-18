@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 function BranchesViews({type_branch}){
     const languagePrefix = useLanguagePrefix();
     const {data: branchesView} = useDrupalData(`/jsonapi/views/branches/${type_branch}`);
-    console.log(branchesView)
     return (
         <div className={"container"}>
             <div className="museum-view grid grid-cols-2 md:gap-10 gap-20 sm:grid-cols-1">
