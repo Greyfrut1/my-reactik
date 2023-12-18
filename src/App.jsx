@@ -33,6 +33,7 @@ import Museums from "./pages/Museums.jsx";
 import Units from "./pages/Units.jsx";
 import Branches from "./pages/Branches.jsx";
 import BranchesFullMode from "./pages/BranchesFullMode.jsx";
+import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
 
 // Define the main App component.
 function App() {
@@ -56,11 +57,16 @@ function App() {
     // Render the application using react-router-dom for routing.
     return (
     <>
+        <div className="top-header">
+            <div className="top-header_container container">
+        <TopHeaderMenu />
         <LanguageSwitcher />
             <form onSubmit={handleSubmit}>
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
+            </div>
+        </div>
         <Menu />
             {/* Define route configurations using Routes component. */}
             <Routes>
