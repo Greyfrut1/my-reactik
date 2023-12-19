@@ -3,7 +3,6 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 import Paragraph from "./Paragraph.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-import OnlineUsersCounter from "./OnlineUsersCounter.jsx";
 
 // Functional component representing the Footer section
 const Footer = () => {
@@ -64,7 +63,6 @@ const Footer = () => {
     // Rendering the Footer component with the fetched data
     return (
         <div>
-            <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime}<OnlineUsersCounter /></div>
 
             <div>
                 <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />
