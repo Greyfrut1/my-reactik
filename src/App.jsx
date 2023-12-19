@@ -38,6 +38,7 @@ import EnsemblesFullMode from "./pages/EnsemblesFullMode.jsx";
 import PublicInformation from "./pages/PublicInformation.jsx";
 import AccreditationView from "./pages/AccreditationView.jsx";
 import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
+import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
 
 // Define the main App component.
 function App() {
@@ -149,6 +150,8 @@ function App() {
                 <Route path="/:lang/search/:result" element={<Search />}/>
 
                 <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
+
+                <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
             </Routes>
 
             {!isUnsubscribePage && (
