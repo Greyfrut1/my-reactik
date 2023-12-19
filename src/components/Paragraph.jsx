@@ -70,6 +70,13 @@ function Paragraph({target_id}) {
                     <a href={paragraph?.field_link_to_partner?.[0].uri}><ImageComponent alt={paragraph?.field_image?.[0].alt} url={paragraph?.field_image?.[0].target_id} imagestyle={'actual_news'} /></a>
                 </>
             )}
+            {paragraph?.type?.[0].target_id == 'file_preview' && (
+                <>
+                    {paragraph?.field_file?.length > 0 && paragraph?.field_file.map((file, index) => (
+                        <iframe width={"100%"} height={"400px"} key={index} src={`https://docs.google.com/gview?embedded=true&url=${file?.url}`} />
+                    ))}
+                </>
+            )}
         </>
     );
 }
