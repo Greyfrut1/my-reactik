@@ -24,6 +24,7 @@ import Unsubscribe from "./components/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
+import Test from "./components/Test.jsx";
 
 // Define the main App component.
 function App() {
@@ -116,6 +117,7 @@ function App() {
                 theme="colored"
             />
             <Footer />
+        <Test />
         </>
     )
 }
