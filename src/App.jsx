@@ -34,6 +34,7 @@ import Units from "./pages/Units.jsx";
 import Branches from "./pages/Branches.jsx";
 import BranchesFullMode from "./pages/BranchesFullMode.jsx";
 import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
+import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
 
 // Define the main App component.
 function App() {
@@ -133,6 +134,8 @@ function App() {
                 <Route path="/:lang/search/:result" element={<Search />}/>
 
                 <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
+
+                <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
             </Routes>
 
             {!isUnsubscribePage && (
