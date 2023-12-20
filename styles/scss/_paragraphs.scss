@@ -186,6 +186,7 @@
 // styles for paragraph document body: color for tag a, and the transition to a new line
 .document_body {
   p {
+    margin: 1em 0;
     hyphens: auto;
     word-break: break-word;
   }
