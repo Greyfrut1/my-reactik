@@ -33,6 +33,10 @@ import Museums from "./pages/Museums.jsx";
 import Units from "./pages/Units.jsx";
 import Branches from "./pages/Branches.jsx";
 import BranchesFullMode from "./pages/BranchesFullMode.jsx";
+import EnsemblesView from "./pages/EnsemblesView.jsx";
+import EnsemblesFullMode from "./pages/EnsemblesFullMode.jsx";
+import PublicInformation from "./pages/PublicInformation.jsx";
+import AccreditationView from "./pages/AccreditationView.jsx";
 import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
 import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
 
@@ -123,6 +127,18 @@ function App() {
 
                 {/* Route for the Page Units. */}
                 <Route path="/:lang/units" element={<Units />}/>
+
+                {/* Route for the Page EnsemblesView. */}
+                <Route path="/:lang/ensembles" element={<EnsemblesView />}/>
+
+                {/* Route for the Page EnsemblesView. */}
+                <Route path="/:lang/public-information" element={<PublicInformation />}/>
+
+                {/* Route for the Page EnsemblesView. */}
+                <Route path="/:lang/accreditation" element={<AccreditationView />}/>
+
+                {/* Route for the Page EnsemblesFullMode. */}
+                <Route path="/:lang/ensembles/:alias" element={<EnsemblesFullMode />}/>
 
                 {/* Route for the Page Branches. */}
                 <Route path="/:lang/branches-and-representative-offices" element={<Branches />}/>
