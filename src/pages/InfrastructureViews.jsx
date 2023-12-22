@@ -1,33 +1,56 @@
-import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ContactInformation from "../components/ContactInformation.jsx";
 import MapComponent from "../components/MapComponent.jsx";
+import Pager from "../components/Pager.jsx";
 
 function InfrastructureViews(){
+    const [apiUrl, setApiUrl] = useState(`/jsonapi/views/infrastructure/page_1`);
+    const [jsonData, setJsonData] = useState(null);
+    const { data: infrastructureData } = useDrupalData(apiUrl);
     const languagePrefix = useLanguagePrefix();
-    const {data: infrastructure} = useDrupalData(`/jsonapi/views/infrastructure/page_1`);
+
+
+    const handlePageChange = (page) => {
+        setApiUrl(`/jsonapi/views/infrastructure/page_1?page=${page}`);
+    };
+    useEffect(() => {
+        if (infrastructureData) {
+            setJsonData(infrastructureData);
+        }
+    }, [infrastructureData]);
+
+    const totalCount = jsonData?.meta?.pager?.count || 0;
+    const itemsPerPage = jsonData?.meta?.pager?.configurations?.items_per_page || 1;
+    const totalPages = Math.ceil(totalCount / itemsPerPage);
+
     return (
         <div className={"container"}>
-            <div className="infrastructure-view grid grid-cols-2 md:gap-10 gap-20 sm:grid-cols-1">
-                {infrastructure?.data?.map((item, index) => (
-                    <div key={index} className={"infrastructure-item"}>
-                        <div className={"infrastructure-item__map"}>
-                            <MapComponent
-                                containerStyle={{ width: '200px', height: '200px' }}
-                                address={item?.attributes?.field_location}
-                            />
+            <div className={"infrastructure"}>
+                <div className="infrastructure-view md:gap-10 gap-20">
+                    {jsonData?.data?.map((item, index) => (
+                        <div key={index} className={"infrastructure-item"}>
+                            <div className={"infrastructure-item__map"}>
+                                <MapComponent
+                                    containerStyle={{ width: '100%', height: '100%' }}
+                                    address={item?.attributes?.field_location}
+                                />
+                            </div>
+                            <div className={"infrastructure-item__info"}>
+                                <h2 className={"infrastructure-item__info-title"}><a
+                                    href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
+                                </h2>
+                                <ContactInformation data={item.attributes} type={"views"}/>
+                            </div>
                         </div>
-                        <div className={"infrastructure-item__info"}>
-                            <h2 className={"infrastructure-item__info-title"}><a
-                                href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
-                            </h2>
-                            <ContactInformation data={item.attributes} type={"views"}/>
-                        </div>
+                    ))}
+                </div>
+                {itemsPerPage > 1 && totalPages > 1 && (
+                    <div className={"pager flex justify-center mt-[20px]"}>
+                        <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
                     </div>
-                ))}
+                )}
             </div>
         </div>
     );

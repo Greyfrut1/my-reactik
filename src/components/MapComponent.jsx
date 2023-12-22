@@ -62,7 +62,7 @@ function MapComponent({ address, containerStyle }) {
 }
 
 MapComponent.propTypes = {
-    address: PropTypes.string.isRequired,
+    address: PropTypes.string,
     containerStyle: PropTypes.object,
 };
 
