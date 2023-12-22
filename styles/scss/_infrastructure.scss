@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 10px;
   position: relative;
-  max-width: 560px;
+  max-width: 500px;
   width:100%;
   border: 3px solid transparent;
   &:hover {
@@ -24,7 +24,7 @@
     margin-left:20px;
     &-title{
       @include fontz(18px,25px,0.02em,capitalize,800,black);
-      padding:10px 0;
+      padding: 0 0 10px;
     }
   }
 }

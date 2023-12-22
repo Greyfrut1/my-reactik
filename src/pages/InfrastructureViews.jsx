@@ -15,7 +15,10 @@ function InfrastructureViews(){
                 {infrastructure?.data?.map((item, index) => (
                     <div key={index} className={"infrastructure-item"}>
                         <div className={"infrastructure-item__map"}>
-                            <MapComponent address={item?.attributes?.field_location}/>
+                            <MapComponent
+                                containerStyle={{ width: '200px', height: '200px' }}
+                                address={item?.attributes?.field_location}
+                            />
                         </div>
                         <div className={"infrastructure-item__info"}>
                             <h2 className={"infrastructure-item__info-title"}><a
