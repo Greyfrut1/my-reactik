@@ -36,6 +36,8 @@ body{
 //Contact information.
 .contacts{
   &-item {
+    display: flex;
+    flex-direction:row;
     svg{
       color:$darkGray;
       width:20px;

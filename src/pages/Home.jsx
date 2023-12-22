@@ -119,7 +119,10 @@ function Home() {
                     {infrastructureBlockdata?.data?.[0]?.attributes?.field_location && <div className="infrastructure-block">
                         <h3 className="infrastructure-block__title title"><a href='#'>{infrastructureBlockdata?.meta.title}</a></h3>
                         <div className="infrastructure-block__map-block">
-                            <MapComponent width="350" address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}/>
+                            <MapComponent
+                                containerStyle={{ width: '350px', height: '450px' }}
+                                address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}
+                            />
                         </div>
                     </div>}
 
