@@ -10,7 +10,7 @@ function InfrastructureFullMode() {
     return (
         <div className={"container"}>
             <div className={"infrastructure"}>
-                {infrastructure?.field_infrastructure_info?.[0]?.target_id && (
+                {infrastructure?.field_infrastructure_info?.[0].target_id && (
                     <div className={"paragraphs"}>
                         {infrastructure?.field_infrastructure_info?.map((item, index) => (
                             <Paragraph key={index} target_id={item?.target_id}/>
