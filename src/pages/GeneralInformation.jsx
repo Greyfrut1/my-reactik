@@ -7,12 +7,12 @@ function GeneralInformation(){
     const {data: general} = useDrupalData(`general-information/${alias}?_format=json`)
     return(
         <>
-            <div className={"Paragraphs"}>
-                {general?.field_content?.map((item, index) => (
-                    <div className={"section"} key={index}>
-                        <Paragraph target_id={item?.target_id}/>
-                    </div>
-                ))}
+            <div className={"container"}>
+                <div className={"paragraphs"}>
+                    {general?.field_content?.map((item, index) => (
+                            <Paragraph key={index} target_id={item?.target_id}/>
+                    ))}
+                </div>
             </div>
         </>
     );

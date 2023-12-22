@@ -34,6 +34,12 @@ import Units from "./pages/Units.jsx";
 import Branches from "./pages/Branches.jsx";
 import BranchesFullMode from "./pages/BranchesFullMode.jsx";
 import InfrastructureViews from "./pages/InfrastructureViews.jsx";
+import EnsemblesView from "./pages/EnsemblesView.jsx";
+import EnsemblesFullMode from "./pages/EnsemblesFullMode.jsx";
+import PublicInformation from "./pages/PublicInformation.jsx";
+import AccreditationView from "./pages/AccreditationView.jsx";
+import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
+import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
 
 // Define the main App component.
 function App() {
@@ -57,11 +63,16 @@ function App() {
     // Render the application using react-router-dom for routing.
     return (
     <>
+        <div className="top-header">
+            <div className="top-header_container container">
+        <TopHeaderMenu />
         <LanguageSwitcher />
             <form onSubmit={handleSubmit}>
                 <input type="text" value={input} onChange={handleInputChange} />
                 <button type="submit">Submit</button>
             </form>
+            </div>
+        </div>
         <Menu />
             {/* Define route configurations using Routes component. */}
             <Routes>
@@ -118,6 +129,18 @@ function App() {
                 {/* Route for the Page Units. */}
                 <Route path="/:lang/units" element={<Units />}/>
 
+                {/* Route for the Page EnsemblesView. */}
+                <Route path="/:lang/ensembles" element={<EnsemblesView />}/>
+
+                {/* Route for the Page EnsemblesView. */}
+                <Route path="/:lang/public-information" element={<PublicInformation />}/>
+
+                {/* Route for the Page EnsemblesView. */}
+                <Route path="/:lang/accreditation" element={<AccreditationView />}/>
+
+                {/* Route for the Page EnsemblesFullMode. */}
+                <Route path="/:lang/ensembles/:alias" element={<EnsemblesFullMode />}/>
+
                 {/* Route for the Page Branches. */}
                 <Route path="/:lang/branches-and-representative-offices" element={<Branches />}/>
 
@@ -131,6 +154,8 @@ function App() {
 
                 {/* Route for the Infrastructure. */}
                 <Route path="/:lang/infrastructure" element={<InfrastructureViews/>}/>
+
+                <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
             </Routes>
 
             {!isUnsubscribePage && (
