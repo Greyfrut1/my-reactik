@@ -33,6 +33,8 @@ import Museums from "./pages/Museums.jsx";
 import Units from "./pages/Units.jsx";
 import Branches from "./pages/Branches.jsx";
 import BranchesFullMode from "./pages/BranchesFullMode.jsx";
+import InfrastructureViews from "./pages/InfrastructureViews.jsx";
+import InfrastructureFullMode from "./pages/InfrastructureFullMode.jsx";
 import EnsemblesView from "./pages/EnsemblesView.jsx";
 import EnsemblesFullMode from "./pages/EnsemblesFullMode.jsx";
 import PublicInformation from "./pages/PublicInformation.jsx";
@@ -150,6 +152,11 @@ function App() {
                 <Route path="/:lang/search/:result" element={<Search />}/>
 
                 <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
+
+                {/* Route for the Infrastructure. */}
+                <Route path="/:lang/infrastructure" element={<InfrastructureViews/>}/>
+
+                <Route path="/:lang/infrastructure/:alias" element={<InfrastructureFullMode/>}/>
 
                 <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
             </Routes>
