@@ -1,6 +1,6 @@
 // Import necessary dependencies and components for the DynamicDataBlocks component.
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import CalendarFilter from "../components/CalendarFilter.jsx";
 import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
@@ -8,6 +8,7 @@ import queryString from 'query-string';
 import Pager from "./Pager.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import Metatags from "./Metatags.jsx";
 
 // Define the DynamicDataBlocks component that takes type, endpoint, and render as props.
 function DynamicDataBlocks({type, endpoint, render}) {
@@ -69,41 +70,49 @@ function DynamicDataBlocks({type, endpoint, render}) {
 
     const langPrefix = useLanguagePrefix();
 
+    const location = useLocation();
+    const currentPath = location.pathname;
     // Render the DynamicDataBlocks component with TypeFilterButtons, CalendarFilter, data items, and Pager.
     return (
-        <div className={"container"}>
-            <div className={""}>
-                {type === 'news' ? <h1 className={"block-title"}>{(langPrefix === "en" && "News") || ("Новини")}</h1> : <h1 className={"block-title"}>{(langPrefix === "en" && "Events") || ("Події")}</h1>}
-            </div>
-            <div className={"wrapper-dynamic-data-blocks gap-[30px] block lg:flex"}>
-                <div className={"dynamic-data-blocks__left  view-content"}>
-                    {/*
+        <>
+            <Metatags type={"view"} data={data} viewUrl={currentPath}/>
+            <div className={"container"}>
+                <div className={""}>
+                    {type === 'news' ?
+                        <h1 className={"block-title"}>{(langPrefix === "en" && "News") || ("Новини")}</h1> :
+                        <h1 className={"block-title"}>{(langPrefix === "en" && "Events") || ("Події")}</h1>}
+                </div>
+                <div className={"wrapper-dynamic-data-blocks gap-[30px] block lg:flex"}>
+                    <div className={"dynamic-data-blocks__left  view-content"}>
+                        {/*
                         Map over the data items using the render function.
                         For each item in the data array, call the render function with the item and index.
                     */}
-                    {data?.data?.length ? (
-                        data?.data?.map((item, index) => render(item, index))
-                    ) : (
-                        <div className={"empty-dynamic-container"}><h1>No {type} found with the selected filters.</h1></div>
-                    )}
+                        {data?.data?.length ? (
+                            data?.data?.map((item, index) => render(item, index))
+                        ) : (
+                            <div className={"empty-dynamic-container"}><h1>No {type} found with the selected
+                                filters.</h1></div>
+                        )}
+                    </div>
+                    <div className={"dynamic-data-blocks__right lg:block hidden"}>
+                        {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
+                        <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
+                        {/* Render TypeFilterButtons with a callback function for type information changes. */}
+                        <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
+                    </div>
                 </div>
-                <div className={"dynamic-data-blocks__right lg:block hidden"}>
-                    {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
-                    <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
-                    {/* Render TypeFilterButtons with a callback function for type information changes. */}
-                    <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
-                </div>
-            </div>
-            {/*
+                {/*
                 Render Pager component only if there are more than 1 total pages.
                 Pass total pages and a callback function for page changes to the Pager component.
                 */}
-            {totalPages > 1 && (
-                <div className={"pager flex justify-center mt-[20px]"}>
-                    <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
-                </div>
-            )}
-        </div>
+                {totalPages > 1 && (
+                    <div className={"pager flex justify-center mt-[20px]"}>
+                        <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 
