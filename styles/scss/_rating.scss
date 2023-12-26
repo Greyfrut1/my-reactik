@@ -1,0 +1,30 @@
+@import "mixins";
+@import "variables";
+
+.rating{
+  padding:50px 0;
+  &-view{
+
+  }
+  &-item{
+    img{
+      height:200px;
+      width:200px;
+      max-width:100%;
+    }
+    &__title{
+      @include fontz(49px, 85px, 0.02rem, uppercase, 700, $black);
+    }
+    &__top-description{
+      border-bottom: 5px solid $darkRed;
+      @include fontz(18px, 30px, 0.02rem, none, 700, $black);
+      padding-bottom: 50px;
+      word-break: break-word;
+    }
+    &__bottom-description{
+      @include fontz(18px, 35px, 0.02rem, none, 700, $black);
+      word-break: break-word;
+      padding-top:50px;
+    }
+  }
+}
