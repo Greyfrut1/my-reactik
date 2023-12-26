@@ -41,6 +41,7 @@ import PublicInformation from "./pages/PublicInformation.jsx";
 import AccreditationView from "./pages/AccreditationView.jsx";
 import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
 import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
+import UniversityRating from "./pages/UniversityRating.jsx";
 
 // Define the main App component.
 function App() {
@@ -119,7 +120,7 @@ function App() {
                 <Route path="/:lang/rectorate" element={<Rectorate />}/>
 
                 {/* Route for the Page Academic Board. */}
-                <Route path="/:lang/academic-board" element={<AcademicBoard />}/>
+                <Route path="/:lang/academic-council" element={<AcademicBoard />}/>
 
                 {/* Route for the Staff full page. */}
                 <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
@@ -159,6 +160,8 @@ function App() {
                 <Route path="/:lang/infrastructure/:alias" element={<InfrastructureFullMode/>}/>
 
                 <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
+
+                <Route path="/:lang/university-rating" element={<UniversityRating />}/>
             </Routes>
 
             {!isUnsubscribePage && (
