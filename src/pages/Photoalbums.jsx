@@ -3,7 +3,6 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import Pager from "../components/Pager.jsx";
 import {useWindowSize} from "react-use";
-import ShareButtonComponent from "../components/ShareButtonComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 
 function Photoalbums() {
@@ -39,7 +38,7 @@ function Photoalbums() {
     const totalPages = Math.ceil(totalCount / itemsPerPage);
 
     return (
-        <div className={"container"}>
+        <div className={"albums container"}>
             <div className={"albums-view flex flex-wrap xl:justify-start justify-center"}>
                 {jsonData?.data?.map((item, index) => (
                     <div className={"albums-card"} key={index}>

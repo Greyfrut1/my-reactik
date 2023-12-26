@@ -8,14 +8,14 @@ function BranchesFullMode(){
     const { alias } = useParams();
     const {data: branchesPage} = useDrupalData(`branches-and-representative-offices/${alias}?_format=json`)
     return (
-        <div className={"museum container"}>
-            <div className={"museum-info flex flex-row"}>
+        <div className={"branches container"}>
+            <div className={"branches-info flex flex-row"}>
                 {branchesPage?.field_image?.[0]?.target_id && (
                     <ImageComponent imagestyle={"dynamicdata_243x231"} alt={""}
                                     url={branchesPage?.field_image?.[0]?.target_id}/>
                 )}
-                <div className={"museum-info__contact"}>
-                    <h2 className={"museum-info__contact-title"}>{branchesPage?.title?.[0]?.value}</h2>
+                <div className={"branches-info__contact"}>
+                    <h2 className={"branches-info__contact-title"}>{branchesPage?.title?.[0]?.value}</h2>
                     <ContactInformation data={branchesPage} type={"node"}/>
                 </div>
             </div>
