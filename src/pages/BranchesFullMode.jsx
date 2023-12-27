@@ -10,7 +10,7 @@ import React from "react";
 function BranchesFullMode(){
     const { alias } = useParams();
     const {data: branchesPage} = useDrupalData(`branches-and-representative-offices/${alias}?_format=json`);
-    const node_id = branchesPage?.field_reference_to_content?.[0].target_id;
+    const node_id = branchesPage?.field_reference_to_content?.[0]?.target_id;
     const {data: photoalbumsNode} = useDrupalData(`node/${node_id}?_format=json`);
     return (
         <>
