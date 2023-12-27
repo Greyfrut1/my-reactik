@@ -1,8 +1,11 @@
 @import "mixins";
 @import "variables";
 
-.albums-view {
-  gap: 20px;
+.albums{
+  padding:50px 0;
+  &-view {
+    gap: 20px;
+  }
 }
 
 .albums-card {

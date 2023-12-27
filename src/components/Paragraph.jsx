@@ -21,13 +21,13 @@ function Paragraph({target_id}) {
     const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
     return (
         <>
-            {paragraph?.type?.[0].target_id == 'section' && (
+            {paragraph?.type?.[0]?.target_id === 'section' && (
                 <div
                     className={`section-wrapper`}
                 >
                     <div onClick={handleClick} className={`section flex ${isActive ? 'open' : ''}`}>
                         <div className={`plus`}></div>
-                        <div className={"section-title"}>{paragraph?.field_title?.[0].value}</div>
+                        <div className={"section-title"}>{paragraph?.field_title?.[0]?.value}</div>
                     </div>
                     {paragraph?.field_subsection?.length > 0 && (
                         <div className={`subsection-wrapper ${isActive ? 'subsection-wrapper-active' : ''}`}>
@@ -41,13 +41,13 @@ function Paragraph({target_id}) {
 
                 </div>
             )}
-            {paragraph?.type?.[0].target_id == 'dropdown' && (
+            {paragraph?.type?.[0]?.target_id == 'dropdown' && (
                 <>
                     <div onClick={handleClickDropdown} className={"dropdown items-center flex"}>
                         <div className={`dropdown-arrow ${isActiveDropdown ? 'dropdown-arrow-active' : ''}`}>
                             <img src={dropdownArrow} alt={"arrow"}/>
                         </div>
-                        <div className={"dropdown-title"}>{paragraph?.field_title?.[0].value}</div>
+                        <div className={"dropdown-title"}>{paragraph?.field_title?.[0]?.value}</div>
                     </div>
                     {paragraph?.field_dropdown_info?.map((item, index) => (
                         <div key={index} className={`dropdown_info ${isActiveDropdown ? 'dropdown_info-active' : ''}`}>
@@ -56,14 +56,14 @@ function Paragraph({target_id}) {
                     ))}
                 </>
             )}
-            {paragraph?.type?.[0].target_id == 'document_body' && (
+            {paragraph?.type?.[0]?.target_id == 'document_body' && (
                 <div className={"clearfix-document_body"}>
                     <div className={"document_body"}
                          dangerouslySetInnerHTML={{__html: paragraph?.field_body?.[0]?.processed}}/>
                     <div style={{clear: 'both'}}></div>
                 </div>
             )}
-            {paragraph?.type?.[0].target_id == 'file' && (
+            {paragraph?.type?.[0]?.target_id == 'file' && (
                 <>
                     {paragraph?.field_file.map((file, index) => (
                         <div className={"dropdown-item flex items-center"} key={index}>
@@ -78,7 +78,7 @@ function Paragraph({target_id}) {
                     ))}
                 </>
             )}
-            {paragraph?.type?.[0].target_id == 'link' && (
+            {paragraph?.type?.[0]?.target_id == 'link' && (
                 <>
                     {paragraph?.field_link.map((link, index) => (
                         <div className={"dropdown-item flex items-center"} key={index}>
@@ -91,19 +91,19 @@ function Paragraph({target_id}) {
                 </>
             )
             }
-            {paragraph?.type?.[0].target_id == 'image_link' && (
+            {paragraph?.type?.[0]?.target_id == 'image_link' && (
                     <>
-                        <a href={paragraph?.field_link_to_partner?.[0].uri}>
+                        <a href={paragraph?.field_link_to_partner?.[0]?.uri}>
                             <ImageComponent
-                                alt={paragraph?.field_image?.[0].alt}
-                                url={paragraph?.field_image?.[0].target_id}
+                                alt={paragraph?.field_image?.[0]?.alt}
+                                url={paragraph?.field_image?.[0]?.target_id}
                                 imagestyle={'actual_news'}
                             />
                         </a>
                     </>
                 )
             }
-            {paragraph?.type?.[0].target_id == 'file_preview' && (
+            {paragraph?.type?.[0]?.target_id == 'file_preview' && (
                     <>
                         {paragraph?.field_file?.length > 0 && paragraph?.field_file.map((file, index) => (
                             <div key={index}>
