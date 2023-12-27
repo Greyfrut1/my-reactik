@@ -4,6 +4,7 @@ import EntityTitle from "../components/EntityTitle.jsx";
 import ElectiveDisciplines from "../components/ElectiveDisciplines.jsx";
 import MainDusciplines from "../components/MainDusciplines.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import Metatags from "../components/Metatags.jsx";
 
 function EducationalProgramsFullMode() {
     const {alias} = useParams();
@@ -11,7 +12,9 @@ function EducationalProgramsFullMode() {
     const langPrefix = useLanguagePrefix();
 
     return <>
-        <div><h2>{educationalProgramData?.title?.[0]?.value}</h2>
+        <Metatags type={"view"} data={educationalProgramData} />
+        <div>
+            <h2>{educationalProgramData?.title?.[0]?.value}</h2>
             <div>
                 <div>{(langPrefix === "en" && "Main disciplines") || ("Перелік нормованих дисциплін")}</div>
                 <table>

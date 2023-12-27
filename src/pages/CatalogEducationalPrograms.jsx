@@ -3,6 +3,8 @@ import useDrupalData from "../services/api.jsx";
 import ExposedFilterCatalog from "../components/ExposedFilterCatalog.jsx";
 import EntityTitle from "../components/EntityTitle.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import Metatags from "../components/Metatags.jsx";
+import {useLocation} from "react-router-dom";
 
 // Functional component for rendering a catalog of educational programs
 function CatalogEducationalPrograms() {
@@ -38,10 +40,13 @@ function CatalogEducationalPrograms() {
     const handleFilterChange = (filter) => {
         setFilterValues(filter);
     };
-
+    const {data: educationalProgramsTitle} = useDrupalData(`jsonapi/views/satalog_of_educational_programs/block_1`)
+    const location = useLocation();
+    const currentPath = location.pathname;
     // Rendering the catalog of educational programs
     return (
         <>
+            <Metatags type={"view"} data={educationalProgramsTitle} viewUrl={currentPath}/>
             <ExposedFilterCatalog onFilterChange={handleFilterChange}/>
             <table>
                 <thead>

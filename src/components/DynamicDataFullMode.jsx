@@ -8,6 +8,7 @@ import DynamicDataFeed from "./DynamicDataFeed.jsx";
 import PropTypes from "prop-types";
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import Metatags from "./Metatags.jsx";
 
 // Define the FullModeComponent that takes 'types', 'endpoint', and 'renderFields' as props.
 function FullModeComponent({ types, endpoint, renderFields }) {
@@ -52,6 +53,9 @@ function FullModeComponent({ types, endpoint, renderFields }) {
     // Render the FullModeComponent with TypeFilterButtons, CalendarFilter, renderFields, and DynamicDataFeed.
     return (
         <>
+            {data &&(
+                <Metatags type={"content"} data={data}  />
+            )}
             <div className={"container"}>
                 <div className={"flex dynamic-data-full-mode gap-[30px]"}>
                     <div className={"dynamic-data-full-mode__left py-8"}>

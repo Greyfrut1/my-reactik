@@ -12,6 +12,7 @@ import PollBlock from "../components/PollBlock.jsx";
 import AlbumsSlider from "../components/AlbumsSlider.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import YoutubeEmbed from "../components/YoutubeEmbed.jsx";
+import Metatags from "../components/Metatags.jsx";
 
 
 // Functional component for the Home page
@@ -89,6 +90,7 @@ function Home() {
     // Rendering the components based on fetched data or loading state
     return (
         <div>
+            <Metatags type={"front"} />
             {isLoading ? (
                 // Display loading message while data is loading
                 <div>Loading...</div>
