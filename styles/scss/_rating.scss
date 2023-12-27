@@ -1,0 +1,33 @@
+@import "mixins";
+@import "variables";
+
+.rating{
+  padding:50px 0;
+  &-item{
+    padding: 50px 40px 90px;
+    &:hover{
+      box-shadow: 0 2px 20px 0 $darkRed;
+    }
+    img{
+      height:200px;
+      width:200px;
+      max-width:100%;
+    }
+    &__title{
+      @include fontz(49px, 85px, 0.02rem, uppercase, 700, $black);
+    }
+    &__top-description{
+      height:150px;
+      max-height:100%;
+      border-bottom: 5px solid $darkRed;
+      @include fontz(17px, 30px, 0.02rem, none, 700, $black);
+      padding-bottom: 50px;
+      word-break: break-word;
+    }
+    &__bottom-description{
+      @include fontz(18px, 35px, 0.02rem, none, 700, $black);
+      word-break: break-word;
+      padding-top:50px;
+    }
+  }
+}
