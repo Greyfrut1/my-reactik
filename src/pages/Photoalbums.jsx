@@ -3,7 +3,6 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import Pager from "../components/Pager.jsx";
 import {useWindowSize} from "react-use";
-import ShareButtonComponent from "../components/ShareButtonComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import Metatags from "../components/Metatags.jsx";
 import {useLocation} from "react-router-dom";
@@ -44,7 +43,7 @@ function Photoalbums() {
     return (
         <>
             <Metatags type={"view"} data={apiUrl} viewUrl={currentPath}/>
-            <div className={"container"}>
+            <div className={"albums container"}>
                 <div className={"albums-view flex flex-wrap xl:justify-start justify-center"}>
                     {jsonData?.data?.map((item, index) => (
                         <div className={"albums-card"} key={index}>

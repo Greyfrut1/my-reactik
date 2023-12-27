@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { fromAddress, setDefaults } from 'react-geocode';
 import PropTypes from 'prop-types';
 import * as logger from 'react-dom/test-utils';
@@ -9,6 +9,20 @@ function MapComponent({ address, containerStyle }) {
         id: 'google-map-script',
         googleMapsApiKey: import.meta.env.VITE_API_KEY,
     });
+
+    const defaultSettings = {
+        panControl: true,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        disableDoubleClickZoom: false,
+        scrollwheel: false,
+        fullscreenControl: false,
+        clickableIcons: true,
+        rotateControl: false,
+        streetViewControl: false,
+        zoomControlOptions: false,
+    };
 
     const [maps, setMap] = useState(null);
     const [center, setCenter] = useState(null);
@@ -35,13 +49,13 @@ function MapComponent({ address, containerStyle }) {
 
     // Callback function for handling map load.
     const onLoad = React.useCallback(
-        function callback() {
+        function callback(map) {
             if (center) {
                 const bounds = new window.google.maps.LatLngBounds(center);
-                maps.fitBounds(bounds);
+                map.fitBounds(bounds);
             }
 
-            setMap(maps);
+            setMap(map);
         },
         [center],
     );
@@ -54,10 +68,13 @@ function MapComponent({ address, containerStyle }) {
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={17}
+            options={defaultSettings}
+            zoom={18}
             onLoad={onLoad}
             onUnmount={onUnmount}
-        />
+        >
+             <Marker position={center} />
+        </GoogleMap>
     ) : null;
 }
 
