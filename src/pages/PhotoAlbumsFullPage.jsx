@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import MediaComponent from "../components/MediaComponent.jsx";
+import Metatags from "../components/Metatags.jsx";
 
 function PhotoAlbumsFullPage() {
     const { alias } = useParams();
@@ -39,41 +40,45 @@ function PhotoAlbumsFullPage() {
     };
 
     return (
-        <div className="container">
-            {/* Render album titles */}
-            {albumsNode?.title?.map((item, index) => (
-                <div className="album-title" key={index}>
-                    <h1>{item.value}</h1>
-                </div>
-            ))}
-
-            {/* Render album photos using MediaComponent */}
-            <div className="album-gallery flex flex-wrap justify-center">
-                {albumsNode?.field_photos?.map((item, index) => (
-                    <div className="album-gallery__img" key={index} onClick={() => openLightbox(index)}>
-                        {item?.target_id && (
-                            <MediaComponent target_id={item.target_id} imagestyle="small_large_photoalbums_134_172_" />
-                        )}
+        <>
+            <Metatags type={"content"} data={albumsNodeData} />
+            <div className="container">
+                {/* Render album titles */}
+                {albumsNode?.title?.map((item, index) => (
+                    <div className="album-title" key={index}>
+                        <h1>{item.value}</h1>
                     </div>
                 ))}
-            </div>
 
-            {/* Lightbox */}
-            {lightboxOpen && (
-                <div className="lightbox">
-                    <div className="lightbox-content flex sm:justify-center justify-between">
-                        <button onClick={handlePrev} className="button-prev">&#8249;</button>
-                        <MediaComponent
-                            target_id={albumsNode.field_photos[selectedImageIndex]?.target_id}
-                            imagestyle="large"
-                        />
-                        <button onClick={handleNext} className="button-next">&#8250;</button>
-
-                        <button onClick={closeLightbox} className="button-close">&#10005;</button>
-                    </div>
+                {/* Render album photos using MediaComponent */}
+                <div className="album-gallery flex flex-wrap justify-center">
+                    {albumsNode?.field_photos?.map((item, index) => (
+                        <div className="album-gallery__img" key={index} onClick={() => openLightbox(index)}>
+                            {item?.target_id && (
+                                <MediaComponent target_id={item.target_id}
+                                                imagestyle="small_large_photoalbums_134_172_"/>
+                            )}
+                        </div>
+                    ))}
                 </div>
-            )}
-        </div>
+
+                {/* Lightbox */}
+                {lightboxOpen && (
+                    <div className="lightbox">
+                        <div className="lightbox-content flex sm:justify-center justify-between">
+                            <button onClick={handlePrev} className="button-prev">&#8249;</button>
+                            <MediaComponent
+                                target_id={albumsNode.field_photos[selectedImageIndex]?.target_id}
+                                imagestyle="large"
+                            />
+                            <button onClick={handleNext} className="button-next">&#8250;</button>
+
+                            <button onClick={closeLightbox} className="button-close">&#10005;</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 

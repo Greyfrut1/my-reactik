@@ -42,6 +42,7 @@ import AccreditationView from "./pages/AccreditationView.jsx";
 import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
 import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
 import UniversityRating from "./pages/UniversityRating.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 // Define the main App component.
 function App() {
@@ -162,6 +163,8 @@ function App() {
                 <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
 
                 <Route path="/:lang/university-rating" element={<UniversityRating />}/>
+
+                <Route path="/:lang/*" element={<NotFound />}/>
             </Routes>
 
             {!isUnsubscribePage && (

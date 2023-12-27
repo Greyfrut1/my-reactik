@@ -3,12 +3,14 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/ImageComponent.jsx";
 import Paragraph from "../components/Paragraph.jsx";
 import StaffTitlePosition from "../components/StaffTitlePosition.jsx";
+import Metatags from "../components/Metatags.jsx";
 
 function DepartmentFullMode(){
     const { alias } = useParams();
     const {data: department} = useDrupalData(`department/${alias}?_format=json`)
     return(
         <>
+            <Metatags type={"content"} data={department} />
             {department?.field_head_of_department &&(
                 <StaffTitlePosition staff_id={department?.field_head_of_department?.[0]?.target_id} />
             )}
