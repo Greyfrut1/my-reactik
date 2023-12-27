@@ -120,7 +120,7 @@ function App() {
                 <Route path="/:lang/rectorate" element={<Rectorate />}/>
 
                 {/* Route for the Page Academic Board. */}
-                <Route path="/:lang/academic-board" element={<AcademicBoard />}/>
+                <Route path="/:lang/academic-council" element={<AcademicBoard />}/>
 
                 {/* Route for the Staff full page. */}
                 <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
