@@ -13,6 +13,8 @@
       padding:10px 0;
     }
   }
+
+  //Node.
   &-info{
     &__contact{
       padding:0 15px;
@@ -20,6 +22,10 @@
         @include fontz(20px,25px,0.02em,capitalize,500,black);
       }
     }
+  }
+  &-child-node,
+  &-paragraphs{
+    padding:40px 0;
   }
   &-description{
     .footer-top__bg-inner-form{

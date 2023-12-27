@@ -1,8 +1,9 @@
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
 import ImageComponent from "./ImageComponent.jsx";
-import {useState} from "react";
+import React, {useState} from "react";
 import dropdownArrow from "/src/assets/dropdown-arrow.png"
+import YoutubeEmbed from "./YoutubeEmbed.jsx";
 
 function Paragraph({target_id}) {
     const [isActive, setIsActive] = useState(false);
@@ -89,6 +90,14 @@ function Paragraph({target_id}) {
                         </div>
                     ))}
                 </>
+            )
+            }
+            {paragraph?.type?.[0]?.target_id == 'youtube_link' && (
+                <div className={"paragraphs-video"}>
+                    {paragraph?.field_youtube_link?.map((link) => (
+                        <YoutubeEmbed embedId={link?.uri}/>
+                    ))}
+                </div>
             )
             }
             {paragraph?.type?.[0]?.target_id == 'image_link' && (

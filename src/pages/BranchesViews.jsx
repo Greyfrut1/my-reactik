@@ -14,7 +14,7 @@ function BranchesViews({type_branch}){
     return (
         <>
             <Metatags type={"view"} data={branchesView} viewUrl={currentPath}/>
-            <div className={"container"}>
+            <div className={"branches container"}>
                 <div className="branches-view grid grid-cols-2 md:gap-10 gap-20 sm:grid-cols-1">
                     {branchesView?.data?.map((item, index) => (
                         <div key={index} className={"branches-item flex flex-col"}>
@@ -26,7 +26,6 @@ function BranchesViews({type_branch}){
                             <h2 className={"branches-item__title"}><a
                                 href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
                             </h2>
-
                             <ContactInformation data={item.attributes} type={"views"}/>
                         </div>
                     ))}
