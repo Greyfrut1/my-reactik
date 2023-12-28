@@ -33,6 +33,8 @@ function Metatags({type , data, viewUrl}){
                 )}
                 {ogImageUrl && <meta id="og-image" property="og:image" content={ogImageUrl} />}
                 {ogImageUrl && <meta id="og-image-url" property="og:image:url" content={ogImageUrl} />}
+                {ogImageUrl && <meta property="og:image:width" content="600" />}
+                {ogImageUrl && <meta property="og:image:height" content="400" />}
 
                 {description && type === "content" && <meta name="description" content={description} />}
 
