@@ -16,7 +16,7 @@ function TypeFilterButtons({handleTypeInformation}) {
                 className={"type-filter__select"}
                 onChange={(e) => handleTypeInformation(e.target.value)}
             >
-                <option value={"All"}>{(langPrefix === 'en' && "Any") || ("Будь-яка")}</option>
+                <option value={"All"}>{(langPrefix === 'en' && "Category") || ("Категорії")}</option>
                 {typeData?.data?.map((item, index) => (
                     <option key={index} value={item.attributes.drupal_internal__tid}>
                         {item.attributes.name}

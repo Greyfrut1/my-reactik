@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import Metatags from "./Metatags.jsx";
 import ImageComponent from "./ImageComponent.jsx";
-import moment from "moment";
 import {format} from "date-fns";
 import {uk} from "date-fns/locale";
 
@@ -64,6 +63,16 @@ function DynamicDataBlocks({type, endpoint, render}) {
         });
     };
 
+    const handleClear = () => {
+        setTypeInformation(null);
+        setSelectedDate(null);
+
+        navigate({
+            // Clear URL search parameters.
+            search: '',
+        });
+    };
+
     // Fetch data using useDrupalData hook with the specified endpoint, date, category, and current page.
     const {data} = useDrupalData(endpoint(date, category, currentPage));
 
@@ -77,18 +86,17 @@ function DynamicDataBlocks({type, endpoint, render}) {
     const location = useLocation();
     const currentPath = location.pathname;
     const {data: mainNews} = useDrupalData(`jsonapi/views/news/block_2`)
-    console.log(mainNews)
     // Render the DynamicDataBlocks component with TypeFilterButtons, CalendarFilter, data items, and Pager.
     return (
         <>
             <Metatags type={"view"} data={data} viewUrl={currentPath}/>
             <div className={"container"}>
-                {type === 'news' && (
+                {type === 'news' && mainNews?.data?.length > 3 && (
                     <div className={"main-news flex justify-between"}>
                         <div className={"main-news__left"}>
                             <div className={"main-news__first main-news__item"}>
                                 <div className={"cover-text"}>
-                                    {mainNews?.data?.[0] && langPrefix === 'uk' && <div
+                                    {langPrefix === 'uk' && <div
                                         className={"date_field"}>{format(new Date(mainNews?.data?.[0]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
                                     {langPrefix === 'en' && <div
                                         className={"date_field"}>{format(new Date(mainNews?.data?.[0]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
@@ -103,7 +111,7 @@ function DynamicDataBlocks({type, endpoint, render}) {
                             <div className={"top flex justify-between"}>
                                 <div className={"main-news__second main-news__item"}>
                                     <div className={"cover-text"}>
-                                        {mainNews?.data?.[1] && langPrefix === 'uk' && <div
+                                        {langPrefix === 'uk' && <div
                                             className={"date_field"}>{format(new Date(mainNews?.data?.[1]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
                                         {langPrefix === 'en' && <div
                                             className={"date_field"}>{format(new Date(mainNews?.data?.[1]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
@@ -116,7 +124,7 @@ function DynamicDataBlocks({type, endpoint, render}) {
                                 </div>
                                 <div className={"main-news__third main-news__item"}>
                                     <div className={"cover-text"}>
-                                        {mainNews?.data?.[2] && langPrefix === 'uk' && <div
+                                        {langPrefix === 'uk' && <div
                                             className={"date_field"}>{format(new Date(mainNews?.data?.[2]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
                                         {langPrefix === 'en' && <div
                                             className={"date_field"}>{format(new Date(mainNews?.data?.[2]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
@@ -131,7 +139,7 @@ function DynamicDataBlocks({type, endpoint, render}) {
                             <div className={"bottom"}>
                                 <div className={"main-news__fourth main-news__item"}>
                                     <div className={"cover-text"}>
-                                        {mainNews?.data?.[3] && langPrefix === 'uk' && <div
+                                        {langPrefix === 'uk' && <div
                                             className={"date_field"}>{format(new Date(mainNews?.data?.[3]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
                                         {langPrefix === 'en' && <div
                                             className={"date_field"}>{format(new Date(mainNews?.data?.[3]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
@@ -151,11 +159,15 @@ function DynamicDataBlocks({type, endpoint, render}) {
                         <h1 className={"subtitle"}>{(langPrefix === "en" && "All news") || ("Усі новини")}</h1> :
                         <h1 className={"subtitle"}>{(langPrefix === "en" && "All events") || ("Усі події")}</h1>}
 
-                    <div className={"flex relative"}>
+                    <div className={"menu-dynamic-data-blocks__left"}>
                         {/* Render TypeFilterButtons with a callback function for type information changes. */}
                         <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
                         {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
                         <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
+                        {/* Render a Clear button with an onClick event to reset the selected date to null. */}
+                        <button className={"button-clear"} onClick={() => handleClear()}>
+                            <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
+                        </button>
                     </div>
                 </div>
                 <div className={"wrapper-dynamic-data-blocks"}>

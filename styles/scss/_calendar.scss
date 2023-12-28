@@ -1,6 +1,7 @@
-.calendar-button-clear{
-  border: 1px solid #8b2b30;
-  background: #8b2b30;
+@import "variables";
+.button-clear{
+  border: 1px solid $darkRed;
+  background: $darkRed;
   border-radius: 6px;
   width: 63px;
   height: 33.195px;
@@ -13,12 +14,12 @@
   }
   span{
     font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
   }
 }
 .calendar{
   position: absolute;
   top: 38px;
+}
+.show-calendar{
+  padding-left: 8px;
 }

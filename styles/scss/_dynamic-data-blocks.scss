@@ -4,10 +4,6 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  //display: grid;
-  //grid-template-columns: 1fr 1fr 1fr;
-  //grid-column-gap: 86px;
-  //grid-row-gap: 73px;
   .news-card{
     max-width: 392px;
     margin-bottom: 73px;
@@ -23,20 +19,13 @@
   padding: 35px 45px 25px 45px;
   border-bottom: 1px solid $darkRed;
   margin-bottom: 35px;
+  &__left{
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
 }
 
-.date_field{
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.teaser_title{
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
 .cover-text{
   display: flex;
   flex-direction: column;

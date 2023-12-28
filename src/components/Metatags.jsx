@@ -24,6 +24,10 @@ function Metatags({type , data, viewUrl}){
                     <title>{`${metaTitle} | ${siteInfo.name}`}</title>
                 )}
 
+                {siteInfo?.logo && (
+                    <link rel={"icon"} type={"image/png"} href={siteInfo?.logo}/>
+                )}
+
                 {type !== "view" && type !== "content" && siteInfo && (
                     <title>{`${siteInfo.name} | ${siteInfo.slogan}`}</title>
                 )}

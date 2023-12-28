@@ -27,8 +27,8 @@ function CalendarFilter({ selectedDate, onDateChange }) {
     // Render the CalendarFilter component with a Calendar component and a Clear button.
     return (
         <>
-                <button className="type-filter__select" onClick={toggleCalendar}>
-                    {calendarOpen ? "Hide Calendar" : "Show Calendar"}
+                <button className="type-filter__select show-calendar" onClick={toggleCalendar}>
+                    {calendarOpen ? `${langPrefix === 'en' ? 'Hide Calendar' : 'Приховати Календар'}` : `${langPrefix === 'en' ? 'Show Calendar' : 'Показати Календар'}`}
                 </button>
                 {/* Render the Calendar component with onClickDay to handle day clicks and value for the selected date. */}
                 {calendarOpen && (
@@ -38,10 +38,6 @@ function CalendarFilter({ selectedDate, onDateChange }) {
                         locale={langPrefix}
                     />
                 )}
-                {/* Render a Clear button with an onClick event to reset the selected date to null. */}
-                <button className={"calendar-button-clear"} onClick={() => handleDateClick(null)}>
-                    <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
-                </button>
         </>
     );
 }
