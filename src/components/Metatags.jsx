@@ -24,11 +24,17 @@ function Metatags({type , data, viewUrl}){
                     <title>{`${metaTitle} | ${siteInfo.name}`}</title>
                 )}
 
+                {siteInfo?.logo && (
+                    <link rel={"icon"} type={"image/png"} href={siteInfo?.logo}/>
+                )}
+
                 {type !== "view" && type !== "content" && siteInfo && (
                     <title>{`${siteInfo.name} | ${siteInfo.slogan}`}</title>
                 )}
                 {ogImageUrl && <meta id="og-image" property="og:image" content={ogImageUrl} />}
                 {ogImageUrl && <meta id="og-image-url" property="og:image:url" content={ogImageUrl} />}
+                {ogImageUrl && <meta property="og:image:width" content="600" />}
+                {ogImageUrl && <meta property="og:image:height" content="400" />}
 
                 {description && type === "content" && <meta name="description" content={description} />}
 

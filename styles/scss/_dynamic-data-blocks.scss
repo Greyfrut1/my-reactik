@@ -1,125 +1,64 @@
-@import "mixins";
 @import "variables";
 
-.news-block-card, .events-block-card {
+.dynamic-data-blocks{
   display: flex;
-  border: 1px solid $borderGray;
-  margin-bottom: 15px;
-
-  &:hover {
-    border-color: $darkRed;
-  }
-
-  @media (max-width: $sm) {
-    flex-direction: column;
-  }
-
-  .left-box {
-    max-width: 243px;
-    width: 100%;
-    @media (max-width: $sm) {
-      max-width: none;
-    }
-  }
-
-  .right-box {
-    max-width: 544px;
-    padding: 25px;
-
-    @media (min-width: $sm + 1) and (max-width: $lg) {
-      max-width: clamp(265px, calc(493px + (265 - 493) * ((100vw - $lg) / (480 - 976))), 493px);
-      padding: 15px;
-    }
-
-    @media (min-width: $lg) and (max-width: $xl) {
-      max-width: 350px;
-    }
-    @media (max-width: 480px) {
-      padding: 12px;
-      .right-box-title {
-        margin-bottom: 15px;
-      }
-      .right-box-description {
-        margin-bottom: 15px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .news-card{
+    max-width: 392px;
+    margin-bottom: 73px;
+    &-bottom{
+      padding-left: 5px;
+      .date_field{
+        padding: 13px 0;
       }
     }
+  }
+}
+.menu-dynamic-data-blocks{
+  padding: 35px 45px 25px 45px;
+  border-bottom: 1px solid $darkRed;
+  margin-bottom: 35px;
+  &__left{
     display: flex;
+    gap: 20px;
+    position: relative;
+  }
+}
+
+.cover-text{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  width: 80%;
+  left: 10%;
+  position: absolute;
+  background: #8A3636AB;
+}
+.main-news__item{
+  position: relative;
+}
+.main-news__first, .main-news__fourth{
+  .cover-text{
+    bottom: 27px;
+    display: flex;
+    padding: 9px 12px;
     flex-direction: column;
-    justify-content: space-between;
-
-    .right-box-title {
-      @include cuttext;
-      -webkit-line-clamp: 2;
-      font-weight: bold;
+    align-items: flex-start;
+    gap: 11px;
+  }
+}
+.main-news__second, .main-news__third{
+  .cover-text{
+    bottom: 17px;
+    padding: 3px 8px;
+    gap: 4px;
+    .date_field{
+      font-size: 12px;
     }
-
-    .right-box-description {
-      @include cuttext;
-      -webkit-line-clamp: 3;
+    .teaser_title{
+      font-size: 14px;
     }
-
-    .right-box-button {
-      padding-top: 5px;
-
-      a {
-        font-weight: bold;
-        padding: 5px 10px;
-        border: 1px solid $darkRed;
-        border-radius: 2px;
-        transition: 0.3s ease;
-
-        &:hover {
-          background-color: $darkRed;
-          color: white;
-          transition: 0.3s ease;
-        }
-      }
-    }
-  }
-}
-
-.events-block-card {
-  transition: .2s ease-in-out;
-  transition-delay: .3s;
-
-  &:hover {
-    box-shadow: 14px 10px 59px -10px rgba(0, 0, 0, .75);
-    transition: .2s ease-in-out;
-    transform: translateY(-5%);
-  }
-
-  border: none;
-
-  .right-box {
-    padding: 15px;
-  }
-}
-
-.dynamic-data-blocks, .dynamic-data-full-mode {
-  &__left {
-    flex: 3;
-  }
-
-  &__right {
-    flex: 1;
-  }
-}
-
-.dynamic-data-full-mode {
-  &-fields{
-    margin-bottom: 30px;
-  }
-  .events-block-title {
-    margin-top: 0;
-  }
-}
-
-//Stylization total views block.
-.counter-block{
-  background: $lightGray;
-  margin-top:20px;
-  p{
-    padding: 10px 20px;
-    @include fontz(14px, 16px,0.2px, none, 400,$black);
   }
 }

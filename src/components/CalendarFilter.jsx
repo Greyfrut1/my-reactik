@@ -3,9 +3,19 @@ import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import {useState} from "react";
 
 // Define the CalendarFilter component that takes selectedDate and onDateChange as props.
 function CalendarFilter({ selectedDate, onDateChange }) {
+
+    // Define a state to track whether the calendar is open or closed.
+    const [calendarOpen, setCalendarOpen] = useState(false);
+
+    // Define a function to toggle the calendar visibility.
+    const toggleCalendar = () => {
+        setCalendarOpen(!calendarOpen);
+    };
+
     // Define a function handleDateClick to handle the click event on a calendar day.
     const handleDateClick = (value) => {
         // Call the onDateChange prop with the selected date value when a day is clicked.
@@ -16,20 +26,19 @@ function CalendarFilter({ selectedDate, onDateChange }) {
 
     // Render the CalendarFilter component with a Calendar component and a Clear button.
     return (
-        <div className={"flex justify-center"}>
-            <div>
+        <>
+                <button className="type-filter__select show-calendar" onClick={toggleCalendar}>
+                    {calendarOpen ? `${langPrefix === 'en' ? 'Hide Calendar' : 'Приховати Календар'}` : `${langPrefix === 'en' ? 'Show Calendar' : 'Показати Календар'}`}
+                </button>
                 {/* Render the Calendar component with onClickDay to handle day clicks and value for the selected date. */}
-                <Calendar
-                    onClickDay={onDateChange}
-                    value={selectedDate}
-                    locale={langPrefix}
-                />
-                {/* Render a Clear button with an onClick event to reset the selected date to null. */}
-                    <button className={"calendar-button-clear w-full"} onClick={() => handleDateClick(null)}>
-                        <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
-                    </button>
-            </div>
-        </div>
+                {calendarOpen && (
+                    <Calendar className={"calendar"}
+                        onClickDay={handleDateClick}
+                        value={selectedDate}
+                        locale={langPrefix}
+                    />
+                )}
+        </>
     );
 }
 
