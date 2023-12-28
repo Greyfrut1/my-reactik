@@ -1,36 +1,25 @@
 @import "variables";
-.calendar-button-clear{
-  border: 1px solid $lightRed;
-  display: flex;
-  justify-content: center;
-  padding: 3px 0;
-  font-size: 0.833em;
-  align-items: center;
-  text-transform: uppercase;
-  transition: 0.3s ease;
-  background-color: $lightRed;
+.button-clear{
+  border: 1px solid $darkRed;
+  background: $darkRed;
+  border-radius: 6px;
+  width: 63px;
+  height: 33.195px;
   color: white;
+  transition: 0.2s;
   &:hover{
-    background-color: transparent;
+    transition: 0.2s;
+    background: transparent;
     color: black;
-    transition: 0.3s ease;
+  }
+  span{
+    font-size: 12px;
   }
 }
-.react-calendar{
-  border-color: $lightRed;
-  border-bottom: none;
-  .react-calendar__navigation{
-    font-size: 14px;
-    background: $lightRed;
-    color: white;
-    button:enabled:hover, button:enabled:focus, button:disabled{
-      background-color: transparent;
-    }
-  }
-  .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus{
-    background-color: $darkGray;
-  }
-  .react-calendar__tile--active , .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
-    background: $lightRed;
-  }
+.calendar{
+  position: absolute;
+  top: 38px;
+}
+.show-calendar{
+  padding-left: 8px;
 }

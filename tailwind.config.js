@@ -22,14 +22,14 @@ export default {
             'base': ['sans-serif', 'Roboto']
         },
         screens: {
-            md: '768px',
-            lg: '976px',
-            xl: '1200px'
+            lg: '1024px',
+            xl: '1280px',
+            xxl: '1440px',
         },
 
         container: {
             center: true,  // Center the container content.
-            padding: '15px', // Set horizontal padding.
+            padding: '47px', // Set horizontal padding.
         },
     },
     plugins: [],

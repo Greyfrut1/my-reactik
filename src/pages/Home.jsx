@@ -12,6 +12,7 @@ import PollBlock from "../components/PollBlock.jsx";
 import AlbumsSlider from "../components/AlbumsSlider.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import YoutubeEmbed from "../components/YoutubeEmbed.jsx";
+import Metatags from "../components/Metatags.jsx";
 
 
 // Functional component for the Home page
@@ -89,6 +90,7 @@ function Home() {
     // Rendering the components based on fetched data or loading state
     return (
         <div>
+            <Metatags type={"front"} />
             {isLoading ? (
                 // Display loading message while data is loading
                 <div>Loading...</div>
@@ -117,7 +119,10 @@ function Home() {
                     {infrastructureBlockdata?.data?.[0]?.attributes?.field_location && <div className="infrastructure-block">
                         <h3 className="infrastructure-block__title title"><a href='#'>{infrastructureBlockdata?.meta.title}</a></h3>
                         <div className="infrastructure-block__map-block">
-                            <MapComponent width="350" address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}/>
+                            <MapComponent
+                                containerStyle={{ width: '350px', height: '450px' }}
+                                address={infrastructureBlockdata?.data?.[0]?.attributes?.field_location}
+                            />
                         </div>
                     </div>}
 

@@ -6,12 +6,14 @@ import StaffTeaser from "../components/StaffTeaser.jsx";
 import Departments from "../components/Departments.jsx";
 import ContactInformation from "../components/ContactInformation.jsx";
 import React from "react";
+import Metatags from "../components/Metatags.jsx";
 
 function FacultyFullMode(){
     const { alias } = useParams();
     const {data: faculty} = useDrupalData(`faculty/${alias}?_format=json`)
     return (
         <>
+            <Metatags type={"content"} data={faculty} />
             {faculty?.nid?.[0]?.value &&(
                 <Departments id_deparments={faculty?.nid?.[0]?.value} />
             )}
@@ -24,7 +26,7 @@ function FacultyFullMode(){
             )}
             <ContactInformation data={faculty} type={"node"}/>
             <div dangerouslySetInnerHTML={{__html: faculty?.field_description?.[0]?.value}}/>
-            <div className={"Paragraphs"}>
+            <div className={"paragraphs"}>
                 {faculty?.field_content?.map((item, index) => (
                     <div className={"section"} key={index}>
                         <Paragraph target_id={item?.target_id}/>

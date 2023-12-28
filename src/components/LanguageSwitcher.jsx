@@ -6,7 +6,6 @@ const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 // Function component for language switching
 function LanguageSwitcher() {
-
     // Extracting current language, URL parts, and type from the window location
     const currentLang = window.location.pathname.split('/')[1];
     const currentUrl = window.location.pathname;
@@ -68,18 +67,28 @@ function LanguageSwitcher() {
 
     // Rendering the language switcher based on conditions
     return (
-        <div>
-            {(alias && <div>
-                    {(data2?.path?.[0].alias &&
-                        <a href={`/${switchLang}${data2?.path?.[0].alias}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>) || (
-                        <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>)}
-                </div>) ||
-                ((!alias && slicedUrl) && <div>
-                    <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>
-                </div>) ||
-                ((!alias && !slicedUrl) && <div>
-                    <a href={`/${switchLang}`}>{(currentLang === "en" && "Switch language") || ("Змінити мову")}</a>
-                </div>)}
+        <div className="language-switcher">
+            <div className="dropdown">
+                <button className="dropdown-btn">
+                    {(currentLang === "en" && "English") || ("Українська")}
+                </button>
+                <div className="dropdown-content">
+                    {(alias && <div>
+                            {(data2?.path?.[0].alias &&
+                                <a href={`/${switchLang}${data2?.path?.[0].alias}`}>{(currentLang === "en" && "Ukrainian") || ("Англійська")}</a>) || (
+                                <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "Ukrainian") || ("Англійська")}</a>)}
+                        </div>) ||
+                        ((!alias && slicedUrl) && <div>
+                            <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "Ukrainian") || ("Англійська")}</a>
+                        </div>) ||
+                        ((!alias && !slicedUrl) && <div>
+                            <a href={`/${switchLang}`}>{(currentLang === "en" && "Ukrainian") || ("Англійська")}</a>
+                        </div>)}
+                    <a href={`${currentUrl}`}>
+                        {(currentLang === "en" && "English") || ("Українська")}
+                    </a>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 // Import necessary dependencies and components for the DynamicDataBlocks component.
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import CalendarFilter from "../components/CalendarFilter.jsx";
 import TypeFilterButtons from "../components/TypeFilterButtons.jsx";
@@ -8,6 +8,10 @@ import queryString from 'query-string';
 import Pager from "./Pager.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import Metatags from "./Metatags.jsx";
+import ImageComponent from "./ImageComponent.jsx";
+import {format} from "date-fns";
+import {uk} from "date-fns/locale";
 
 // Define the DynamicDataBlocks component that takes type, endpoint, and render as props.
 function DynamicDataBlocks({type, endpoint, render}) {
@@ -59,6 +63,16 @@ function DynamicDataBlocks({type, endpoint, render}) {
         });
     };
 
+    const handleClear = () => {
+        setTypeInformation(null);
+        setSelectedDate(null);
+
+        navigate({
+            // Clear URL search parameters.
+            search: '',
+        });
+    };
+
     // Fetch data using useDrupalData hook with the specified endpoint, date, category, and current page.
     const {data} = useDrupalData(endpoint(date, category, currentPage));
 
@@ -69,41 +83,114 @@ function DynamicDataBlocks({type, endpoint, render}) {
 
     const langPrefix = useLanguagePrefix();
 
+    const location = useLocation();
+    const currentPath = location.pathname;
+    const {data: mainNews} = useDrupalData(`jsonapi/views/news/block_2`)
     // Render the DynamicDataBlocks component with TypeFilterButtons, CalendarFilter, data items, and Pager.
     return (
-        <div className={"container"}>
-            <div className={""}>
-                {type === 'news' ? <h1 className={"block-title"}>{(langPrefix === "en" && "News") || ("Новини")}</h1> : <h1 className={"block-title"}>{(langPrefix === "en" && "Events") || ("Події")}</h1>}
-            </div>
-            <div className={"wrapper-dynamic-data-blocks gap-[30px] block lg:flex"}>
-                <div className={"dynamic-data-blocks__left  view-content"}>
-                    {/*
+        <>
+            <Metatags type={"view"} data={data} viewUrl={currentPath}/>
+            <div className={"container"}>
+                {type === 'news' && mainNews?.data?.length > 3 && (
+                    <div className={"main-news flex justify-between"}>
+                        <div className={"main-news__left"}>
+                            <div className={"main-news__first main-news__item"}>
+                                <div className={"cover-text"}>
+                                    {langPrefix === 'uk' && <div
+                                        className={"date_field"}>{format(new Date(mainNews?.data?.[0]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
+                                    {langPrefix === 'en' && <div
+                                        className={"date_field"}>{format(new Date(mainNews?.data?.[0]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
+                                    <div className={"teaser_title"}>{mainNews?.data?.[0]?.attributes?.title}</div>
+                                </div>
+                                <ImageComponent alt={mainNews?.data?.[0]?.relationships?.field_image?.data?.meta?.alt}
+                                                url={mainNews?.data?.[0]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                                imagestyle={"main_news_first_item"}/>
+                            </div>
+                        </div>
+                        <div className={"main-news__right flex flex-col justify-between"}>
+                            <div className={"top flex justify-between"}>
+                                <div className={"main-news__second main-news__item"}>
+                                    <div className={"cover-text"}>
+                                        {langPrefix === 'uk' && <div
+                                            className={"date_field"}>{format(new Date(mainNews?.data?.[1]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
+                                        {langPrefix === 'en' && <div
+                                            className={"date_field"}>{format(new Date(mainNews?.data?.[1]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
+                                        <div className={"teaser_title"}>{mainNews?.data?.[1]?.attributes?.title}</div>
+                                    </div>
+                                    <ImageComponent
+                                        alt={mainNews?.data?.[1]?.relationships?.field_image?.data?.meta?.alt}
+                                        url={mainNews?.data?.[1]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                        imagestyle={"main_news_second_third_items"}/>
+                                </div>
+                                <div className={"main-news__third main-news__item"}>
+                                    <div className={"cover-text"}>
+                                        {langPrefix === 'uk' && <div
+                                            className={"date_field"}>{format(new Date(mainNews?.data?.[2]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
+                                        {langPrefix === 'en' && <div
+                                            className={"date_field"}>{format(new Date(mainNews?.data?.[2]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
+                                        <div className={"teaser_title"}>{mainNews?.data?.[2]?.attributes?.title}</div>
+                                    </div>
+                                    <ImageComponent
+                                        alt={mainNews?.data?.[2]?.relationships?.field_image?.data?.meta?.alt}
+                                        url={mainNews?.data?.[2]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                        imagestyle={"main_news_second_third_items"}/>
+                                </div>
+                            </div>
+                            <div className={"bottom"}>
+                                <div className={"main-news__fourth main-news__item"}>
+                                    <div className={"cover-text"}>
+                                        {langPrefix === 'uk' && <div
+                                            className={"date_field"}>{format(new Date(mainNews?.data?.[3]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
+                                        {langPrefix === 'en' && <div
+                                            className={"date_field"}>{format(new Date(mainNews?.data?.[3]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
+                                        <div className={"teaser_title"}>{mainNews?.data?.[3]?.attributes?.title}</div>
+                                    </div>
+                                    <ImageComponent
+                                        alt={mainNews?.data?.[3]?.relationships?.field_image?.data?.meta?.alt}
+                                        url={mainNews?.data?.[3]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                        imagestyle={"main_news_fourth_item"}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <div className={"menu-dynamic-data-blocks flex justify-between"}>
+                    {type === 'news' ?
+                        <h1 className={"subtitle"}>{(langPrefix === "en" && "All news") || ("Усі новини")}</h1> :
+                        <h1 className={"subtitle"}>{(langPrefix === "en" && "All events") || ("Усі події")}</h1>}
+
+                    <div className={"menu-dynamic-data-blocks__left"}>
+                        {/* Render TypeFilterButtons with a callback function for type information changes. */}
+                        <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
+                        {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
+                        <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
+                        {/* Render a Clear button with an onClick event to reset the selected date to null. */}
+                        <button className={"button-clear"} onClick={() => handleClear()}>
+                            <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
+                        </button>
+                    </div>
+                </div>
+                <div className={"wrapper-dynamic-data-blocks"}>
+                    <div className={"dynamic-data-blocks view-content"}>
+                        {/*
                         Map over the data items using the render function.
                         For each item in the data array, call the render function with the item and index.
                     */}
-                    {data?.data?.length ? (
-                        data?.data?.map((item, index) => render(item, index))
-                    ) : (
-                        <div className={"empty-dynamic-container"}><h1>No {type} found with the selected filters.</h1></div>
-                    )}
+                        {data?.data?.length ? (
+                            data?.data?.map((item, index) => render(item, index))
+                        ) : (
+                            <div className={"empty-dynamic-container"}><h1>No {type} found with the selected
+                                filters.</h1></div>
+                        )}
+                    </div>
                 </div>
-                <div className={"dynamic-data-blocks__right lg:block hidden"}>
-                    {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
-                    <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
-                    {/* Render TypeFilterButtons with a callback function for type information changes. */}
-                    <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
-                </div>
+                {totalPages > 1 && (
+                    <div className={"pager flex justify-center mt-[20px]"}>
+                        <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
+                    </div>
+                )}
             </div>
-            {/*
-                Render Pager component only if there are more than 1 total pages.
-                Pass total pages and a callback function for page changes to the Pager component.
-                */}
-            {totalPages > 1 && (
-                <div className={"pager flex justify-center mt-[20px]"}>
-                    <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
-                </div>
-            )}
-        </div>
+        </>
     );
 }
 

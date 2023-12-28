@@ -1,31 +1,11 @@
 @import "variables";
-.type-filter {
-  margin: 15px 0;
-  .type-filter__title{
-    padding-bottom: 15px;
-    font-weight: 500;
-    font-size: 19px;
-    line-height: 22px;
-    text-transform: uppercase;
-  }
-  .type-filter__button {
-    cursor: pointer;
-    color: gray;
-    position: relative;
-    padding: 12px 20px;
-    border-bottom: 1px solid $darkGray;
-    &::before {
-      position: absolute;
-      top: 19px;
-      width: 8px;
-      height: 8px;
-      content: "";
-      background: $darkGray;
-      left: 0;
-      border-radius: 50%;
-    }
-    &:hover, &:focus{
-      color: $darkRed;
-    }
-  }
+.type-filter__select{
+  text-align: left;
+  padding-left: 3px;
+  border-radius: 6px;
+  border: 1px solid $darkRed;
+  width: 160px;
+  height: 33px;
+  font-size: 14px;
+  background: transparent;
 }

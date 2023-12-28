@@ -1,80 +1,86 @@
-import React, {useState, useEffect} from 'react';
-import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
-import {
-    setDefaults,
-    fromAddress,
-} from 'react-geocode';
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { fromAddress, setDefaults } from 'react-geocode';
+import PropTypes from 'prop-types';
+import * as logger from 'react-dom/test-utils';
 
-// Style for the map container
-const containerStyle = {
-    width: '100%',
-    height: '450px',
-};
-
-// Retrieving the Google Maps API key from environment variables
-const api = import.meta.env.VITE_API_KEY;
-
-// Functional component for rendering a Google Map based on an address
-function MapComponent({address}) {
-    // Checking if the Google Maps JavaScript API is loaded
-    const {isLoaded} = useJsApiLoader({
+function MapComponent({ address, containerStyle }) {
+    const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: api,
+        googleMapsApiKey: import.meta.env.VITE_API_KEY,
     });
 
-    // State variables for the map instance and center coordinates
-    const [map, setMap] = useState(null);
+    const defaultSettings = {
+        panControl: true,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        disableDoubleClickZoom: false,
+        scrollwheel: false,
+        fullscreenControl: false,
+        clickableIcons: true,
+        rotateControl: false,
+        streetViewControl: false,
+        zoomControlOptions: false,
+    };
+
+    const [maps, setMap] = useState(null);
     const [center, setCenter] = useState(null);
 
-    // Setting default options for the react-geocode library
     setDefaults({
-        key: api,
-        language: "en",
-        region: "eu",
+        key: import.meta.env.VITE_API_KEY,
+        language: 'en',
+        region: 'eu',
     });
 
-    // Fetching the coordinates from the provided address and updating the center state
+    // Fetching the coordinates from the provided address and updating the center state.
     useEffect(() => {
-        fromAddress(address)
-            .then(({results}) => {
-                const {lat, lng} = results[0].geometry.location;
-                setCenter({lat, lng});
-            })
-            .catch(console.error);
+        if (address) {
+            fromAddress(address)
+                .then(({ results }) => {
+                    const { lat, lng } = results[0].geometry.location;
+                    setCenter({ lat, lng });
+                })
+                .catch((error) => {
+                    logger.error('Error fetching coordinates:', error);
+                });
+        }
     }, [address]);
 
-    // Callback function for handling map load
-    const onLoad = React.useCallback(function callback(map) {
-        if (center) {
-            const bounds = new window.google.maps.LatLngBounds(center);
-            map.fitBounds(bounds);
-        }
+    // Callback function for handling map load.
+    const onLoad = React.useCallback(
+        function callback(map) {
+            if (center) {
+                const bounds = new window.google.maps.LatLngBounds(center);
+                map.fitBounds(bounds);
+            }
 
-        setMap(map);
-    }, [center]);
+            setMap(map);
+        },
+        [center],
+    );
 
-    // Callback function for handling map unmount
-    const onUnmount = React.useCallback(function callback(map) {
+    const onUnmount = React.useCallback(function callback() {
         setMap(null);
     }, []);
 
-    // Rendering the GoogleMap component if the API is loaded
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={17}
+            options={defaultSettings}
+            zoom={18}
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            <></>
+             <Marker position={center} />
         </GoogleMap>
-    ) : <></>;
+    ) : null;
 }
 
 MapComponent.propTypes = {
-    address: PropTypes.string.isRequired
+    address: PropTypes.string,
+    containerStyle: PropTypes.object,
 };
 
-export default React.memo(MapComponent);
+export default MapComponent;
