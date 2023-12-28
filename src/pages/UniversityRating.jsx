@@ -5,7 +5,7 @@ function UniversityRating(){
     const {data: ratingView} = useDrupalData(`/jsonapi/views/university_rating/page_1`);
     return (
         <div className={"rating container"}>
-            <div className="rating-view grid grid-cols-3 md:gap-10 gap-20 sm:grid-cols-1">
+            <div className="rating-view">
                 {ratingView?.data?.map((item, index) => (
                     <div key={index}>
                         <a href={item?.attributes?.field_link?.full_url} className={"rating-item flex flex-col items-center"}>
