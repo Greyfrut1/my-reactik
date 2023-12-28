@@ -3,11 +3,16 @@ import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 import Paragraph from "./Paragraph.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import axios from "axios";
+
+const baseURL = import.meta.env.VITE_BACKEND_URL;
+// Custom hook for fetching active users data
 
 // Functional component representing the Footer section
 const Footer = () => {
     // State for storing the current date and time
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
+    const [activeUsersData, setActiveUsersData] = useState(null);
 
     // Fetching data from Drupal API using custom hook useDrupalData for various components in the Footer
     const {
@@ -33,6 +38,15 @@ const Footer = () => {
         isLoading: isPartnersBlockLoading,
         error: partnersBlockError
     } = useDrupalData('jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8');
+
+    const fetchActiveUsersData = async () => {
+        try {
+            const response = await axios.get(`${baseURL}/google-analytics-data`);
+            setActiveUsersData(response.data)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     const langPrefix = useLanguagePrefix();
 
@@ -60,10 +74,21 @@ const Footer = () => {
         second: '2-digit',
     });
 
+    useEffect(() => {
+        fetchActiveUsersData();
+        const intervalId = setInterval(() => {
+            fetchActiveUsersData();
+        }, 10000);
+
+        return () => clearInterval(intervalId);
+    },[]);
+
+
+    // console.log('test ' + activeUsersData.active_users)
     // Rendering the Footer component with the fetched data
     return (
         <div>
-            <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime}</div>
+            <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime} {(activeUsersData?.active_users != "0" && <div>Online: {activeUsersData?.active_users}</div>)}</div>
 
             <div>
                 <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />
