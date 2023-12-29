@@ -7,21 +7,11 @@ import { HelmetProvider, Helmet } from 'react-helmet-async';
 const helmetContext = {};
 ReactDOM.createRoot(document.getElementById('root')).render(
     <HelmetProvider context={helmetContext}>
-        <Helmet>
-            <title>My Title</title>
-            <meta name="description" content="Helmet application"/>
-            <meta property="og:url" content="https://my-reactik.vercel.app/en"/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="VNtsetesttestU"/>
-            <meta property="og:description" content="123123"/>
-            <meta property="og:image" content=""/>
-
-            <meta name="twitter:card" content="summary_large_image"/>
-            <meta property="twitter:domain" content="my-reactik.vercel.app"/>
-            <meta property="twitter:url" content="https://my-reactik.vercel.app/en"/>
-            <meta name="twitter:title" content="123123123"/>
-            <meta name="twitter:description" content="123213"/>
-            <meta name="twitter:image" content=""/>
+        <Helmet prioritizeSeoTags>
+            <title>A fancy webpage</title>
+            <link rel="notImportant" href="https://www.chipotle.com" />
+            <link rel="canonical" href="https://www.tacobell.com" />
+            <meta property="og:title" content="A very important title"/>
         </Helmet>
   <React.StrictMode>
 
