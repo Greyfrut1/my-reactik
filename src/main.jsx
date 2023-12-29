@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import "../styles/css/styles.css"
 import {BrowserRouter} from "react-router-dom";
-import {Helmet} from "react-helmet";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 const helmetContext = {};
 ReactDOM.createRoot(document.getElementById('root')).render(
     <HelmetProvider context={helmetContext}>
