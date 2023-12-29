@@ -11,10 +11,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Helmet>
               <title>My Title</title>
               <meta name="description" content="Helmet application"/>
-              <meta property="og:title" content="How to Become an SEO Expert (8 Steps)"/>
-              <meta property="og:description" content="Get from SEO newbie to SEO pro in 8 simple steps."/>
-              <meta property="og:image"
-                    content="https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png"/>
+              <meta property="og:url" content="https://my-reactik.vercel.app/en"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:title" content="VNtsetesttestU"/>
+              <meta property="og:description" content="123123"/>
+              <meta property="og:image" content=""/>
+
+              <meta name="twitter:card" content="summary_large_image"/>
+              <meta property="twitter:domain" content="my-reactik.vercel.app"/>
+              <meta property="twitter:url" content="https://my-reactik.vercel.app/en"/>
+              <meta name="twitter:title" content="123123123"/>
+              <meta name="twitter:description" content="123213"/>
+              <meta name="twitter:image" content=""/>
           </Helmet>
           <App/>
       </BrowserRouter>
