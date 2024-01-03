@@ -15,6 +15,7 @@ function ActualNewsBlock({data}) {
 
                     {/* Rendering the ImageComponent with the specified URL and style */}
                     <ImageComponent url={article?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                    alt={article?.relationships?.field_image?.data?.meta?.alt}
                                     imagestyle='actual_news'/>
                     <div className="actual-news-block__content">
                     {/* Displaying the title of the news article */}

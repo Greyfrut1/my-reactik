@@ -91,7 +91,7 @@ const Footer = () => {
             <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime} {(activeUsersData?.active_users != "0" && <div>Online: {activeUsersData?.active_users}</div>)}</div>
 
             <div>
-                <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />
+                {footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id && <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} imagestyle={'actual_news'} alt={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.alt} />}
                 <div>{footerInfoBlockData?.data?.attributes?.field_main_text}</div>
                 <div><a href={`https://www.google.com/maps/search/${footerInfoBlockData?.data?.attributes?.field_location}`}>{footerInfoBlockData?.data?.attributes?.field_location}</a></div>
                 <div><span>e-mail: </span><a href={`mailto: ${footerInfoBlockData?.data?.attributes?.field_email}`}>{footerInfoBlockData?.data?.attributes?.field_email}</a></div>

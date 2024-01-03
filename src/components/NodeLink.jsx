@@ -21,7 +21,7 @@ function NodeLink({url, className}){
 
 NodeLink.propTypes = {
     url: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     className: PropTypes.string
 };
 

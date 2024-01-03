@@ -21,7 +21,7 @@ function FieldLink({ url, className }) {
 
 FieldLink.propTypes = {
     url: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     className: PropTypes.string
 };
 

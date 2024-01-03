@@ -26,6 +26,7 @@ function MainSlider({data}) {
                     <div className="albums-slider__image">
                         <ImageComponent
                             url={slide?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                            alt={slide?.relationships?.field_image?.data?.meta?.alt}
                         />
                     </div>
                     <h3 className="albums-slider__title">
