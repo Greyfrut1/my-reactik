@@ -13,7 +13,7 @@ function PublicInformation(){
             {publicInformationTitle && currentPath && (
                 <Metatags type={"view"} data={publicInformationTitle} viewUrl={currentPath}/>
             )}
-            {publicInformation?.rows?.length > 0 && publicInformation?.rows?.map((item, index) => (
+            {publicInformation?.rows?.map((item, index) => (
                     <div className="information-view__items" key={index}>
                         <h2 className="information-view__items-title">{item?.title}</h2>
                         <p className="information-view__items-body">{item?.field_body}</p>
