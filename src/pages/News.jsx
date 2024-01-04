@@ -1,6 +1,6 @@
 // Import necessary components for the News page.
 import DynamicDataBlocks from "../components/DynamicDataBlocks.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import {uk} from "date-fns/locale";
 import {format} from "date-fns";

@@ -1,9 +1,7 @@
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "../Image/ImageComponent.jsx";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-import FieldLink from "./FieldLink.jsx";
-import DOMPurify from 'dompurify';
-import ReadMore from "./ReadMore.jsx";
+import FieldLink from "../FieldLink.jsx";
 
 // Functional component for rendering a main slider
 function MainSlider({data}) {

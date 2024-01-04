@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import ImageComponent from "./ImageComponent.jsx";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
-import ContactInformation from "./ContactInformation.jsx";
+import ImageComponent from "../../components/Image/ImageComponent.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import ContactInformation from "../../components/ContactInformation.jsx";
 
 function StaffViews({data}) {
     const languagePrefix = useLanguagePrefix();

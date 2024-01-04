@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import EntityTitle from "../components/EntityTitle.jsx";
-import ElectiveDisciplines from "../components/ElectiveDisciplines.jsx";
-import MainDusciplines from "../components/MainDusciplines.jsx";
+import ElectiveDisciplines from "../blocks/Disciplines/ElectiveDisciplines.jsx";
+import MainDusciplines from "../blocks/Disciplines/MainDusciplines.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import Metatags from "../components/Metatags.jsx";
 

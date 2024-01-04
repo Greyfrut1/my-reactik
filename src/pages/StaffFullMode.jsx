@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import Orcid from "../assets/orcid.png";
 import Scholar from "../assets/scholar.png";
 import Scopus from "../assets/scopus.png";

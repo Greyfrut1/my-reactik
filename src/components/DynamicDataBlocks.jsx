@@ -9,7 +9,7 @@ import Pager from "./Pager.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import Metatags from "./Metatags.jsx";
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "./Image/ImageComponent.jsx";
 import {format} from "date-fns";
 import {uk} from "date-fns/locale";
 

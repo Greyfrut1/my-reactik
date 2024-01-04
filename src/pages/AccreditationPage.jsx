@@ -2,7 +2,7 @@ import useDrupalData from "../services/api.jsx";
 import Metatags from "../components/Metatags.jsx";
 import {useLocation} from "react-router-dom";
 
-function AccreditationView(){
+function AccreditationPage(){
     const {data: accreditaionTitle} = useDrupalData(`jsonapi/views/academic_publications/block_2`);
     const {data: accreditationView} = useDrupalData(`accreditation`);
     const location = useLocation();
@@ -22,4 +22,4 @@ function AccreditationView(){
         </>
     );
 }
-export default AccreditationView
+export default AccreditationPage

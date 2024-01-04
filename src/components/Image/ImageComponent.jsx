@@ -1,5 +1,5 @@
 // Import the useDrupalData hook to fetch data from the Drupal API.
-import useDrupalData from "../services/api.jsx";
+import useDrupalData from "../../services/api.jsx";
 import PropTypes from "prop-types";
 
 // Access the base URL for the backend from environment variables.

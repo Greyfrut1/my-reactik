@@ -1,6 +1,6 @@
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "./Image/ImageComponent.jsx";
 import React, {useState} from "react";
 import dropdownArrow from "/src/assets/dropdown-arrow.png"
 import YoutubeEmbed from "./YoutubeEmbed.jsx";

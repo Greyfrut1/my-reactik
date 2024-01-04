@@ -1,4 +1,4 @@
-import StaffViews from "../components/StaffViews.jsx";
+import StaffViews from "../blocks/Staff/StaffViews.jsx";
 import useDrupalData from "../services/api.jsx";
 import Metatags from "../components/Metatags.jsx";
 import {useLocation} from "react-router-dom";

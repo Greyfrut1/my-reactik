@@ -15,7 +15,7 @@ import Faculties from "./pages/Faculties.jsx";
 import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
 import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
 import useLanguagePrefix from "./services/languagePrefix.jsx";
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 import "../styles/scss/styles.scss"
 import FacultyFullMode from "./pages/FacultyFullMode.jsx";
@@ -27,7 +27,7 @@ import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
 import StaffFullMode from "./pages/StaffFullMode.jsx";
 import Rectorate from "./pages/Rectorate.jsx";
 import AcademicBoard from "./pages/AcademicBoard.jsx";
-import Menu from "./components/Menu.jsx";
+import Menu from "./blocks/Header/Menu.jsx";
 import GeneralInformation from "./pages/GeneralInformation.jsx";
 import Museums from "./pages/Museums.jsx";
 import Units from "./pages/Units.jsx";
@@ -38,7 +38,7 @@ import InfrastructureFullMode from "./pages/InfrastructureFullMode.jsx";
 import EnsemblesView from "./pages/EnsemblesView.jsx";
 import EnsemblesFullMode from "./pages/EnsemblesFullMode.jsx";
 import PublicInformation from "./pages/PublicInformation.jsx";
-import AccreditationView from "./pages/AccreditationView.jsx";
+import AccreditationPage from "./pages/AccreditationPage.jsx";
 import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
 import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
 import UniversityRating from "./pages/UniversityRating.jsx";
@@ -139,7 +139,7 @@ function App() {
                 <Route path="/:lang/public-information" element={<PublicInformation />}/>
 
                 {/* Route for the Page EnsemblesView. */}
-                <Route path="/:lang/accreditation" element={<AccreditationView />}/>
+                <Route path="/:lang/accreditation" element={<AccreditationPage />}/>
 
                 {/* Route for the Page EnsemblesFullMode. */}
                 <Route path="/:lang/ensembles/:alias" element={<EnsemblesFullMode />}/>

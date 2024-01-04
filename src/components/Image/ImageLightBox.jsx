@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import MediaComponent from "../components/MediaComponent.jsx";
+import MediaComponent from "./MediaComponent.jsx";
 
 function ImageLightBox({data}) {
     const [lightboxOpen, setLightboxOpen] = useState(false);

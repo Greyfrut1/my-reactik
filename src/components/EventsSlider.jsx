@@ -1,6 +1,6 @@
 import { format} from "date-fns";
 import {uk} from "date-fns/locale"
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "./Image/ImageComponent.jsx";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import arrow from '/src/assets/long-arrow-right.png'

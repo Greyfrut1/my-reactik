@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import useDrupalData from "../services/api.jsx";
-import ImageComponent from "./ImageComponent.jsx";
-import Paragraph from "./Paragraph.jsx";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
+import useDrupalData from "../../services/api.jsx";
+import ImageComponent from "../Image/ImageComponent.jsx";
+import Paragraph from "../Paragraph.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;

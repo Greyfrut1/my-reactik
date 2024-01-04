@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import Metatags from "../components/Metatags.jsx";
 
 function EnsemblesFullMode(){

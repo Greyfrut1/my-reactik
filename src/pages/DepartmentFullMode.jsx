@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import Paragraph from "../components/Paragraph.jsx";
-import StaffTitlePosition from "../components/StaffTitlePosition.jsx";
+import StaffTitlePosition from "../blocks/Staff/StaffTitlePosition.jsx";
 import Metatags from "../components/Metatags.jsx";
 
 function DepartmentFullMode(){

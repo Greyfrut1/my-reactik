@@ -1,10 +1,10 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import ContactInformation from "../components/ContactInformation.jsx";
 import Paragraph from "../components/Paragraph.jsx";
 import Metatags from "../components/Metatags.jsx";
-import ImageLightBox from "../components/ImageLightBox.jsx";
+import ImageLightBox from "../components/Image/ImageLightBox.jsx";
 import React from "react";
 
 function BranchesFullMode(){

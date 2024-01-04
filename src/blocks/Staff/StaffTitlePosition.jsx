@@ -1,5 +1,5 @@
-import useDrupalData from "../services/api.jsx";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
+import useDrupalData from "../../services/api.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import PropTypes from "prop-types";
 
 function StaffTitlePosition({ staff_id }){

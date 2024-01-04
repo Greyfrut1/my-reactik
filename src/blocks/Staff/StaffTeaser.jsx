@@ -1,5 +1,5 @@
-import useDrupalData from "../services/api.jsx";
-import ImageComponent from "./ImageComponent.jsx";
+import useDrupalData from "../../services/api.jsx";
+import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
 
 function StaffTeaser({staff_id}){

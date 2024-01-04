@@ -1,9 +1,9 @@
 // Import necessary components for the NewsFullMode page.
 import DynamicDataFullMode from "../components/DynamicDataFullMode.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import React from "react";
 import ShareButtonComponent from "../components/ShareButtonComponent.jsx";
-import CounterComponent from "../components/CounterComponent.jsx";
+import CounterComponent from "../components/Footer/CounterComponent.jsx";
 
 // Define the NewsFullMode functional component.
 function NewsFullMode() {

@@ -1,5 +1,5 @@
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import ContactInformation from "../components/ContactInformation.jsx";
 import React from "react";

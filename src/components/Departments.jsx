@@ -1,6 +1,6 @@
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "./ImageComponent.jsx";
-import StaffTitlePosition from "./StaffTitlePosition.jsx";
+import ImageComponent from "./Image/ImageComponent.jsx";
+import StaffTitlePosition from "../blocks/Staff/StaffTitlePosition.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import PropTypes from "prop-types";
 

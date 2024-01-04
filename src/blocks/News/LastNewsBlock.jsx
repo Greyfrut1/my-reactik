@@ -1,9 +1,9 @@
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
 import tick from "/src/assets/home-tick.png"
 import Slider from "react-slick";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
-import ReadMore from "./ReadMore.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import ReadMore from "../../components/ReadMore.jsx";
 // Functional component for rendering a block of last news
 function LastNewsBlock({data}) {
     var settings = {

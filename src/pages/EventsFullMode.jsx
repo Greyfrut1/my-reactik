@@ -1,6 +1,6 @@
 // Import necessary components for the EventsFullMode page.
 import DynamicDataFullMode from "../components/DynamicDataFullMode.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import moment from 'moment';
 
 // Define the EventsFullMode functional component.

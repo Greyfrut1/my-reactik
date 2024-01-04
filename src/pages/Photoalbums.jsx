@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import Pager from "../components/Pager.jsx";
 import {useWindowSize} from "react-use";
 import useLanguagePrefix from "../services/languagePrefix.jsx";

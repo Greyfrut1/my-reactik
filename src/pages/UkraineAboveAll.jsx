@@ -1,6 +1,6 @@
 import React from "react";
 import useDrupalData from "../services/api.jsx";
-import ImageComponent from "../components/ImageComponent.jsx";
+import ImageComponent from "../components/Image/ImageComponent.jsx";
 import { OpenInNew } from "@mui/icons-material";
 import Metatags from "../components/Metatags.jsx";
 import { useLocation } from 'react-router-dom';

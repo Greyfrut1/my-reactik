@@ -1,4 +1,4 @@
-import ChoiceComponent from "./ChoiceComponent.jsx";
+import ChoiceComponent from "../components/ChoiceComponent.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import PropTypes from "prop-types";

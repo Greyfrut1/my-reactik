@@ -1,5 +1,5 @@
 import React from 'react';
-import useDrupalData from "../services/api.jsx";
+import useDrupalData from "../../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 
 

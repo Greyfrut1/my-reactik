@@ -1,4 +1,4 @@
-import useDrupalData from "../services/api.jsx";
+import useDrupalData from "../../services/api.jsx";
 import PropTypes from "prop-types";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;

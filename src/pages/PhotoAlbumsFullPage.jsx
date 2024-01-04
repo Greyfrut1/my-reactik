@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import ImageLightBox from "../components/ImageLightBox.jsx";
+import ImageLightBox from "../components/Image/ImageLightBox.jsx";
 import Metatags from "../components/Metatags.jsx";
 
 function PhotoAlbumsFullPage() {

@@ -4,12 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import React, {useState, useEffect} from 'react'
 import MapComponent from "../components/MapComponent.jsx";
 import {FacebookProvider, Page} from "react-facebook";
-import MainSlider from "../components/MainSlider.jsx";
-import ActualNewsBlock from "../components/ActualNewsBlock.jsx";
-import LastNewsBlock from "../components/LastNewsBlock.jsx";
+import MainSlider from "../components/Sliders/MainSlider.jsx";
+import ActualNewsBlock from "../blocks/News/ActualNewsBlock.jsx";
+import LastNewsBlock from "../blocks/News/LastNewsBlock.jsx";
 import EventsSlider from "../components/EventsSlider.jsx";
-import PollBlock from "../components/PollBlock.jsx";
-import AlbumsSlider from "../components/AlbumsSlider.jsx";
+import PollBlock from "../blocks/PollBlock.jsx";
+import AlbumsSlider from "../components/Sliders/AlbumsSlider.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import YoutubeEmbed from "../components/YoutubeEmbed.jsx";
 import Metatags from "../components/Metatags.jsx";

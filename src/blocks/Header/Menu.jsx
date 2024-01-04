@@ -1,4 +1,4 @@
-import useDrupalData from "../services/api.jsx";
+import useDrupalData from "../../services/api.jsx";
 
 function Menu() {
     const { data: items } = useDrupalData(`/entity/menu/main-header-menu/tree`);

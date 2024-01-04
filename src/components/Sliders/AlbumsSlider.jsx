@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-import ImageComponent from "./ImageComponent.jsx";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
+import ImageComponent from "../Image/ImageComponent.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
 // Functional component for rendering a main slider
 function MainSlider({data}) {

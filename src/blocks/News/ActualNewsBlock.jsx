@@ -1,6 +1,6 @@
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
 // Functional component for rendering a block of actual news
 function ActualNewsBlock({data}) {
