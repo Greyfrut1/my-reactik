@@ -2,8 +2,8 @@ import ImageComponent from "../Image/ImageComponent.jsx";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import FieldLink from "../FieldLink.jsx";
+import './MainSlider.scss';
 
-// Functional component for rendering a main slider
 function MainSlider({data}) {
     // Configuration settings for the Slider component
     var settings = {
@@ -24,7 +24,7 @@ function MainSlider({data}) {
                 <div key={slide?.attributes?.info} className="main-slider__item">
                     {/* Rendering the ImageComponent with the specified URL and style */}
                     <ImageComponent url={slide?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                    className="main-slider__image"/>
+                                    className="main-slider__image" alt={}/>
                     <div className="main-slider__overlay"/>
                     <div className="main-slider__item-content">
                         {/* Displaying the information/title of the slide */}

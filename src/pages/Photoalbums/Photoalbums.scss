@@ -1,0 +1,85 @@
+@import '../../helpers';
+
+.albums{
+  padding:50px 0;
+  &-view {
+    gap: 20px;
+  }
+}
+
+.albums-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 0;
+  padding: 10px;
+  position: relative;
+  max-width: 560px;
+  width:100%;
+  border-top: 3px solid $darkRed;
+  border-right: 3px solid $darkRed;
+  border-bottom: 3px solid transparent;
+  border-left: 3px solid transparent;
+  &:before {
+    content: '\003E';
+    color:black;
+  }
+  &:hover {
+    transition: .2s ease;
+    border-top: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid $darkRed;
+    border-left: 3px solid $darkRed;
+  }
+
+  &__img {
+    max-width: 150px;
+  }
+
+  &__title {
+    @include fontz(15px, 25px, 0.02rem, uppercase, 300, $darkRed);
+    text-decoration: none;
+    max-width: 370px;
+  }
+}
+
+//Full page photoalbums.
+.album-title {
+  text-align: center;
+  @include fontz(2em, 65px, 0.02rem, capitalize, 800, black);
+}
+
+.MuiPagination-ul {
+  justify-content: center;
+}
+
+.album-gallery {
+  gap: 16px;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+@media (max-width: $lg) {
+  .album-title {
+    @include fontz(1.5em, 30px, 0.02rem, capitalize, 800, black);
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: $sm) {
+  .albums-card {
+    padding:10px 10px 10px 0;
+    &__title {
+      max-width:150px;
+      padding: 0 5px;
+    }
+    &__img {
+      img {
+        width: 100vw;
+      }
+    }
+  }
+}

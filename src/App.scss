@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+@import '_helpers.scss';
+
+body{
+  font-family: Roboto, sans-serif;
+}
+.field-description{
+  p{
+    margin: 1em 0;
+  }
+}
+.block-title{
+  text-align: center;
+  margin: 1.2em 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  @media (max-width: $lg) {
+    font-size: 1.5em;
+  }
+  @media (max-width: $sm) {
+    font-size: 1.2em;
+  }
+}
+.text-align{
+  &-left{
+    text-align: left;
+  }
+  &-right{
+    text-align: right;
+  }
+  &-center{
+    text-align: center;
+  }
+}
+
+//Contact information.
+.contacts{
+  &-item {
+    display: flex;
+    flex-direction:row;
+    svg{
+      color:$darkGray;
+      width:20px;
+      margin-right:10px;
+    }
+    &__location, &__mail, &__phone, &__wiki{
+      display: flex;
+      flex-direction:row;
+    }
+  }
+}
+.subtitle{
+  font-size: 35px;
+  font-weight: 600;
+  line-height: normal;
+}
+.date_field{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+.teaser_title{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ckeditor-responsive-table{
+  overflow: auto;
+}
+table{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-collapse: collapse;
+}
+table {
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: $basicGray;
+}
+table thead {
+  background: transparent;
+  border-radius: .5rem;
+}
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table tbody tr {
+  border-bottom: 1px solid $dark;
+}
+table tr {
+  color: black;
+  background-color: transparent;
+}
+table tbody td {
+  height: auto;
+  padding: 1rem 1rem;
+}
+td {
+  box-sizing: border-box;
+  text-align: left;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+table th, table th {
+  color: white;
+}
+table th {
+  font-size: .875rem;
+  font-weight: 575;
+  background: $dark;
+}
+th {
+  position: relative;
+  box-sizing: border-box;
+  height: 3rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  line-height: 1.25rem;
+}
+th {
+  display: table-cell;
+  vertical-align: inherit;
+}

@@ -1,50 +1,47 @@
 // Import necessary components and hooks from react-router-dom.
 import {Route, Routes, Navigate, useLocation, useNavigate} from "react-router-dom";
 import { useState } from 'react'
-import Home from "./pages/Home.jsx";
-
-// Import page components for News and Events.
-import News from "./pages/News.jsx";
-import NewsFullMode from "./pages/NewsFullMode.jsx";
-import Events from "./pages/Events.jsx";
-import EventsFullMode from "./pages/EventsFullMode.jsx";
-import Photoalbums from "./pages/Photoalbums";
-import PhotoAlbumsFullPage from "./pages/PhotoAlbumsFullPage";
-import CatalogEducationalPrograms from "./pages/CatalogEducationalPrograms.jsx";
-import Faculties from "./pages/Faculties.jsx";
-import EducationalProgramsFullMode from "./pages/EducationalProgramsFullMode.jsx";
-import LanguageSwitcher from "./components/LanguageSwitcher.jsx";
+import Home from "./pages/Homepage/Homepage.jsx";
+import './App.scss';
+import News from "./pages/News/News.jsx";
+import NewsFullMode from "./pages/News/NewsFullMode.jsx";
+import Events from "./pages/Event/Events.jsx";
+import EventsFullMode from "./pages/Event/EventsFullMode.jsx";
+import Photoalbums from "./pages/Photoalbums/Photoalbums.jsx";
+import PhotoAlbumsFullPage from "./pages/Photoalbums/PhotoAlbumsFullPage.jsx";
+import CatalogEducationalPrograms from "./pages/EducationalProgram/CatalogEducationalPrograms.jsx";
+import Faculties from "./pages/Faculties/Faculties.jsx";
+import EducationalProgramsFullMode from "./pages/EducationalProgram/EducationalProgramsFullMode.jsx";
+import LanguageSwitcher from "./blocks/Header/LanguageSwitcher.jsx";
 import useLanguagePrefix from "./services/languagePrefix.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import Footer from "./blocks/Footer/Footer.jsx";
 
-import "../styles/scss/styles.scss"
-import FacultyFullMode from "./pages/FacultyFullMode.jsx";
-import Subscriber from "./components/Subscriber.jsx";
-import Unsubscribe from "./components/Unsubscribe.jsx";
+import FacultyFullMode from "./pages/Faculties/FacultyFullMode.jsx";
+import Subscriber from "./blocks/Subscriber/Subscriber.jsx";
+import Unsubscribe from "./blocks/Subscriber/Unsubscribe.jsx";
 import {ToastContainer} from "react-toastify";
 import Search from "./pages/Search.jsx";
 import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
-import StaffFullMode from "./pages/StaffFullMode.jsx";
-import Rectorate from "./pages/Rectorate.jsx";
-import AcademicBoard from "./pages/AcademicBoard.jsx";
-import Menu from "./blocks/Header/Menu.jsx";
+import StaffPage from "./pages/Staff/StaffPage.jsx";
+import Rectorate from "./pages/Staff/Rectorate.jsx";
+import AcademicBoard from "./pages/Staff/AcademicBoard.jsx";
+import Menu from "./blocks/Header/Menu/Menu.jsx";
 import GeneralInformation from "./pages/GeneralInformation.jsx";
-import Museums from "./pages/Museums.jsx";
-import Units from "./pages/Units.jsx";
-import Branches from "./pages/Branches.jsx";
-import BranchesFullMode from "./pages/BranchesFullMode.jsx";
-import InfrastructureViews from "./pages/InfrastructureViews.jsx";
-import InfrastructureFullMode from "./pages/InfrastructureFullMode.jsx";
-import EnsemblesView from "./pages/EnsemblesView.jsx";
-import EnsemblesFullMode from "./pages/EnsemblesFullMode.jsx";
+import Museums from "./pages/Museum/Museums.jsx";
+import Units from "./pages/Branches/Units.jsx";
+import Branches from "./pages/Branches/Branches.jsx";
+import BranchesFullMode from "./pages/Branches/BranchesFullMode.jsx";
+import InfrastructureView from "./views/InfrastructureView/InfrastructureView.jsx";
+import InfrastructurePage from "./pages/Infrastucture/InfrastructurePage.jsx";
+import EnsemblesView from "./pages/Ensembles/EnsemblesPage.jsx";
+import EnsemblesFullMode from "./pages/Ensembles/EnsemblesFullMode.jsx";
 import PublicInformation from "./pages/PublicInformation.jsx";
-import AccreditationPage from "./pages/AccreditationPage.jsx";
-import TopHeaderMenu from "./components/TopHeaderMenu.jsx";
-import UkraineAboveAll from "./pages/UkraineAboveAll.jsx";
-import UniversityRating from "./pages/UniversityRating.jsx";
-import NotFound from "./pages/NotFound.jsx";
+import AccreditationPage from "./pages/EducationalProgram/AccreditationPage.jsx";
+import TopHeaderMenu from "./blocks/Header/Menu/TopHeaderMenu.jsx";
+import UkraineAboveAll from "./pages/UkraineAboveAll/UkraineAboveAll.jsx";
+import UniversityRating from "./pages/UniversityRating/UniversityRating.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 
-// Define the main App component.
 function App() {
     const languagePrefix = useLanguagePrefix();
     const location = useLocation();
@@ -124,7 +121,7 @@ function App() {
                 <Route path="/:lang/academic-council" element={<AcademicBoard />}/>
 
                 {/* Route for the Staff full page. */}
-                <Route path="/:lang/staff/:alias" element={<StaffFullMode />}/>
+                <Route path="/:lang/staff/:alias" element={<StaffPage />}/>
 
                 {/* Route for the Page Museum. */}
                 <Route path="/:lang/museums" element={<Museums />}/>
@@ -156,9 +153,9 @@ function App() {
                 <Route path="/:lang/general-information/:alias" element={<GeneralInformation />}/>
 
                 {/* Route for the Infrastructure. */}
-                <Route path="/:lang/infrastructure" element={<InfrastructureViews/>}/>
+                <Route path="/:lang/infrastructure" element={<InfrastructureView/>}/>
 
-                <Route path="/:lang/infrastructure/:alias" element={<InfrastructureFullMode/>}/>
+                <Route path="/:lang/infrastructure/:alias" element={<InfrastructurePage/>}/>
 
                 <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAll />}/>
 
@@ -190,5 +187,4 @@ function App() {
     )
 }
 
-// Export the App component for use in other parts of the application.
 export default App

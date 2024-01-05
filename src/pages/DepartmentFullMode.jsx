@@ -1,9 +1,9 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "../components/Image/ImageComponent.jsx";
-import Paragraph from "../components/Paragraph.jsx";
+import Paragraph from "../components/Common/Paragraph.jsx";
 import StaffTitlePosition from "../blocks/Staff/StaffTitlePosition.jsx";
-import Metatags from "../components/Metatags.jsx";
+import Metatags from "../components/Common/Metatags.jsx";
 
 function DepartmentFullMode(){
     const { alias } = useParams();

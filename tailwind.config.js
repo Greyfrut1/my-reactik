@@ -12,7 +12,7 @@ export default {
             'dark': '#3f444e',
             'darkGray': '#e8e8e8',
             'borderGray': '#d8d8d8',
-            'white': '#fff',
+            'white': 'white',
             'black': '#000',
         },
         fontSize:{

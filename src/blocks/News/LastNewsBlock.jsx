@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import tick from "/src/assets/home-tick.png"
 import Slider from "react-slick";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import ReadMore from "../../components/ReadMore.jsx";
-// Functional component for rendering a block of last news
+import ReadMore from "../../views/ReadMore.jsx";
+import './LastNewsBlock.scss';
+
 function LastNewsBlock({data}) {
     var settings = {
 

@@ -1,7 +1,7 @@
 import useDrupalData from "../services/api.jsx";
-import facebook from "/src/assets/facebook-icon.png"
-import twitter from "/src/assets/twitter.png"
-import instagram from "/src/assets/instagram.png"
+import facebook from "/src/assets/components/SocialLinks/facebook-icon.png"
+import twitter from "/src/assets/components/SocialLinks/twitter.png"
+import instagram from "/src/assets/components/SocialLinks/instagram.png"
 
 function SocialLinks(){
     const {data: socialLinksBlock} = useDrupalData(`jsonapi/block_content/social_links/89007644-1c79-4023-9849-2a080761f6ba`)

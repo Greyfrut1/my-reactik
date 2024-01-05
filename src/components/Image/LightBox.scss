@@ -1,0 +1,63 @@
+@import '../../helpers';
+//Lightbox stylization.
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+
+  img {
+    width: 100vw;
+    max-width: 95%;
+    object-fit:cover;
+  }
+
+  &-content {
+    position: relative;
+    width: 80%;
+    height:80%;
+    max-width: 800px;
+    background-color: white;
+    padding: 35px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    .button-prev,
+    .button-next {
+      font-size: 35px;
+    }
+
+    .button-close {
+      position: absolute;
+      top: 0;
+      right: 3px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: black;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .lightbox {
+    padding: 20px 10px;
+    &-content {
+      height:35%;
+      img{
+        max-width:90%;
+      }
+    }
+
+    .button-close {
+      font-size: 14px;
+    }
+  }
+}

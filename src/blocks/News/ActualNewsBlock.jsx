@@ -1,6 +1,7 @@
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import './ActualNewsBlock.scss';
 
 // Functional component for rendering a block of actual news
 function ActualNewsBlock({data}) {

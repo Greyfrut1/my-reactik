@@ -3,10 +3,10 @@ import Slider from "react-slick";
 import PropTypes from "prop-types";
 import ImageComponent from "../Image/ImageComponent.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import './AlbumsSlider.scss';
 
-// Functional component for rendering a main slider
-function MainSlider({data}) {
-    // Configuration settings for the Slider component
+
+function AlbumsSlider({data}) {
     var settings = {
         infinite: true,
         speed: 500,
@@ -36,11 +36,11 @@ function MainSlider({data}) {
     );
 }
 
-MainSlider.propTypes = {
+AlbumsSlider.propTypes = {
     data: PropTypes.oneOfType([
         PropTypes.object.isRequired,
         PropTypes.array.isRequired,
     ]),
 };
 
-export default MainSlider;
+export default AlbumsSlider;
