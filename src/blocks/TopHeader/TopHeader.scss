@@ -1,24 +1,11 @@
-@import '../../../helpers';
+@import '../../helpers';
 
 .top-header {
+  height: 69px;
   background-color: $lightRed;
-  .top-header_container {
-    font-size: 12px;
-    line-height: 14px;
-    color: $lightGray;
+  .container {
     display: flex;
-    height: 69px;
     align-items: center;
-    a:hover{
-      color: #fdbe34;
-    }
-    .top-header_menu {
-      display: flex;
-      a {
-        font-size: 12px;
-        line-height: 14px;
-      }
-    }
     .language-switcher{
       white-space:nowrap;
       a{
@@ -60,6 +47,3 @@
     display: block;
   }
 }
-
-
-

@@ -26,7 +26,7 @@ function AlbumsSlider({data}) {
                     <div className="albums-slider__image">
                         <ImageComponent
                             url={slide?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                        />
+                         alt=""/>
                     </div>
                     <h3 className="albums-slider__title">
                         <a href={`/${lanPrefix}${slide?.attributes?.path?.alias}`}>{slide.attributes.title}</a></h3>

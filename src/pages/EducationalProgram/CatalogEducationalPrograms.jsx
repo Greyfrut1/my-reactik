@@ -4,7 +4,7 @@ import ExposedFilterCatalog from "../../views/ExposedFilterCatalog.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import Metatags from "../../components/Common/Metatags.jsx";
 import {useLocation} from "react-router-dom";
-import './CatalogEducationalPrograms.scss';
+import './CatalogEducationPrograms.scss';
 
 function CatalogEducationalPrograms() {
 

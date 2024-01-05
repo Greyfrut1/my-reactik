@@ -1,43 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import Paragraph from "../../components/Common/Paragraph.jsx";
+import { useState, useEffect } from 'react';
+import FooterInfoBlock from "./FooterInfoBlock/FooterInfoBlock.jsx";
+import FooterMenu from "./FooterMenu/FooterMenu.jsx";
+// import Paragraph from "../../components/Common/Paragraph.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import axios from "axios";
+import {useFooterDevelopmentByBlockQuery} from "../../services/api.js";
+import './Footer.scss';
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
-// Custom hook for fetching active users data
 
-// Functional component representing the Footer section
 const Footer = () => {
+
     // State for storing the current date and time
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
     const [activeUsersData, setActiveUsersData] = useState(null);
 
-    // Fetching data from Drupal API using custom hook useDrupalData for various components in the Footer
-    const {
-        data: footerInfoBlockData,
-        isLoading: isFooterInfoBlockLoading,
-        error: footerInfoBlockError
-    } = useDrupalData('jsonapi/block_content/about_the_university/ab52a7ef-b55b-4fec-9dc8-c2038c2e8769');
-
-    const {
-        data: footerMenuData,
-        isLoading: isFooterMenuLoading,
-        error: footerMenuError
-    } = useDrupalData('jsonapi/menu_items/footer');
-
-    const {
-        data: developmentByBlockData,
-        isLoading: isDevelopmentByBlockLoading,
-        error: developmentByBlockError
-    } = useDrupalData('jsonapi/block_content/block_link/162874d4-fb9b-4763-9d58-e8634414e40c');
-
-    const {
-        data: partnersBlockData,
-        isLoading: isPartnersBlockLoading,
-        error: partnersBlockError
-    } = useDrupalData('jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8');
+    const { data:  developmentByBlockData } = useFooterDevelopmentByBlockQuery();
 
     const fetchActiveUsersData = async () => {
         try {
@@ -84,35 +62,23 @@ const Footer = () => {
     },[]);
 
 
-    // console.log('test ' + activeUsersData.active_users)
-    // Rendering the Footer component with the fetched data
     return (
-        <div>
+        <div className="footer">
             <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime} {(activeUsersData?.active_users != "0" && <div>Online: {activeUsersData?.active_users}</div>)}</div>
 
-            <div>
-                <ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />
-                <div>{footerInfoBlockData?.data?.attributes?.field_main_text}</div>
-                <div><a href={`https://www.google.com/maps/search/${footerInfoBlockData?.data?.attributes?.field_location}`}>{footerInfoBlockData?.data?.attributes?.field_location}</a></div>
-                <div><span>e-mail: </span><a href={`mailto: ${footerInfoBlockData?.data?.attributes?.field_email}`}>{footerInfoBlockData?.data?.attributes?.field_email}</a></div>
-            </div>
-
-            <ul>
-                {footerMenuData?.data?.map((item, key) =>
-                    <li key={key}><a href={item?.attributes?.url}>{item?.attributes?.title}</a></li>
-                )}
-            </ul>
+            <FooterInfoBlock/>
+            <FooterMenu/>
 
             <div>
                 <div>Development</div>
                 <div><a href={developmentByBlockData?.data?.attributes?.field_link_to?.uri}>{developmentByBlockData?.data?.attributes?.field_link_to?.title}</a></div>
             </div>
 
-            <div>
-                {partnersBlockData?.data?.relationships?.field_partner?.data?.map((item, key) =>
-                    <div key={key}><Paragraph target_id={item?.meta?.drupal_internal__target_id} /></div>
-                )}
-            </div>
+            {/*<div>*/}
+            {/*    {partnersBlockData?.data?.relationships?.field_partner?.data?.map((item, key) =>*/}
+            {/*        <div key={key}><Paragraph target_id={item?.meta?.drupal_internal__target_id} /></div>*/}
+            {/*    )}*/}
+            {/*</div>*/}
         </div>
     );
 };

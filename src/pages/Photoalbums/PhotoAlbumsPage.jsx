@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import useDrupalData from "../../services/api.jsx";
 import LightBox from "../../components/Image/LightBox.jsx";
 import Metatags from "../../components/Common/Metatags.jsx";
+import './PhotoalbumsPage.scss';
 
-function PhotoAlbumsFullPage() {
+function PhotoAlbumsPage() {
     const { alias } = useParams();
     const [albumsNode, setAlbumsNode] = useState(null);
 
@@ -33,4 +34,4 @@ function PhotoAlbumsFullPage() {
     );
 }
 
-export default PhotoAlbumsFullPage;
+export default PhotoAlbumsPage;

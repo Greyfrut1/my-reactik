@@ -3,7 +3,7 @@ import DynamicDataFullMode from "../../views/DynamicDataFullMode.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import React from "react";
 import ShareButtonComponent from "../../components/ShareButtonComponent.jsx";
-import CounterComponent from "../../blocks/Footer/CounterComponent.jsx";
+import CounterComponent from "../../components/CounterComponent.jsx";
 
 // Define the NewsFullMode functional component.
 function NewsFullMode() {

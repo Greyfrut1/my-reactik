@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useDrupalData from "../../services/api.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import Pager from "../../views/Pager.jsx";
+import Pager from "../Pager.jsx";
 import {useWindowSize} from "react-use";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import Metatags from "../../components/Common/Metatags.jsx";
 import {useLocation} from "react-router-dom";
-import './Photoalbums.scss';
+import './PhotoalbumsView.scss';
 
-function Photoalbums() {
+function PhotoalbumsView() {
     const [apiUrl, setApiUrl] = useState("/jsonapi/views/photoalbums_/block_1");
     const [jsonData, setJsonData] = useState(null);
     const { data: albumsData, isLoading: albumsIsLoading, error: albumsError } = useDrupalData(apiUrl);
@@ -70,4 +70,4 @@ function Photoalbums() {
     );
 }
 
-export default Photoalbums;
+export default PhotoalbumsView;

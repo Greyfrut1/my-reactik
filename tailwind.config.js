@@ -13,7 +13,7 @@ export default {
             'darkGray': '#e8e8e8',
             'borderGray': '#d8d8d8',
             'white': 'white',
-            'black': '#000',
+            'black': 'black',
         },
         fontSize:{
             'title':['40px'],

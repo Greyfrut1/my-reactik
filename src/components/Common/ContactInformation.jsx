@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-
+import './Contactnformation.scss';
 function ContactInformation({data, type}) {
     return (
         <div className={"contacts"}>

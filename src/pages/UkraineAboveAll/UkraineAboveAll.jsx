@@ -4,7 +4,7 @@ import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import { OpenInNew } from "@mui/icons-material";
 import Metatags from "../../components/Common/Metatags.jsx";
 import { useLocation } from 'react-router-dom';
-import './ukraine-above-all.scss';
+import './UkraineAboveAll.scss';
 
 // Кореневий блок компоненту
 const BLOCK_NAME = "ukraine-above-all";
