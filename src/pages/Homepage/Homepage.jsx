@@ -7,7 +7,7 @@
 // import ActualNewsBlock from "../../blocks/News/ActualNewsBlock.jsx";
 // import LastNewsBlock from "../../blocks/News/LastNewsBlock.jsx";
 // import EventsSlider from "../../components/Sliders/EventsSlider.jsx";
-// import PollBlock from "../../blocks/Polls/PollBlock.jsx";
+// import PollBlock from "../../blocks/Polls/PollsBlock.jsx";
 // import AlbumsSlider from "../../components/Sliders/AlbumsSlider.jsx";
 // import useLanguagePrefix from "../../services/languagePrefix.jsx";
 // import YoutubeEmbed from "../../components/Common/YoutubeEmbed.jsx";
@@ -18,7 +18,6 @@
 // } from '../../services/api';
 //
 // function Homepage() {
-//     const { data: youtubeBlockData } = useYoutubeBlockQuery();
 //     const {
 //         data: actualNewsData,
 //     } = useDrupalData('jsonapi/views/actual_news/block_1');
@@ -46,10 +45,7 @@
 //     const {
 //         data: facebookBlockData,
 //     } = useDrupalData('jsonapi/block_content/block_link/9997e437-90d7-49d1-98c6-d8c11bb4db04');
-//     const {
-//         data: youtubeBlockData,
-//     } = useDrupalData('jsonapi/block_content/block_link/4e904849-61c6-45d4-93de-89539abdf33a');
-//
+
 //     const [pageWidth, setPageWidth] = useState("100%");
 //     const langPrefix = useLanguagePrefix();
 //     useEffect(() => {
@@ -75,6 +71,8 @@
 //                 <EventsSlider data={eventsBlockData}/>
 //             </div>
 //             <div className='homepage-bottom'>
+
+//додала
 //                 <div className="poll-block">
 //                     <h3 className="poll-block__title title"><a href='#'>{pollBlockData?.meta?.title}</a></h3>
 //                     <PollBlock pollData={pollBlockData} resultData={pollResultData}/>

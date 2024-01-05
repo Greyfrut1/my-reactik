@@ -1,21 +1,21 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes ,Navigate} from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import './App.scss';
 
-// const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const Home = lazy(() => import('./pages/Homepage/Home'));
 
 export default function App() {
     return (
         <BrowserRouter>
             <Layout>
-                ....
+            <Suspense>
+                <Routes>
+                    <Route path="/:lang" element={<Home />} />
+                    <Route path="/" element={<Navigate to="/uk" />} />
+                </Routes>
+            </Suspense>
             </Layout>
-            {/*<Suspense>*/}
-            {/*    <Routes>*/}
-            {/*        <Route index element={<HomePage />} />*/}
-            {/*    </Routes>*/}
-            {/*</Suspense>*/}
         </BrowserRouter>
     );
 }

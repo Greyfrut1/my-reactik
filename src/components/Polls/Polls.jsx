@@ -1,15 +1,17 @@
-import ChoiceComponent from "./ChoiceComponent.jsx";
+import PollsChoice from "./PollsChoice.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import {usePollFormSubmitMutation} from "../../services/api.js";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
+
 // Functional component for rendering a poll block
-function PollBlock({pollData, resultData}) {
+function Polls({pollData, resultData}) {
     // State variables for IP address, form visibility, and total votes
     const [ip, setIP] = useState("");
     const [showForm1, setShowForm1] = useState(true);
-
+    const [createSubmission] = usePollFormSubmitMutation();
     // Function to toggle the visibility of the poll form
     const handleButtonClick = () => {
         setShowForm1(!showForm1);
@@ -48,20 +50,21 @@ function PollBlock({pollData, resultData}) {
             timestamp: Math.floor(currentTimestamp / 1000).toString(),
         };
 
-        axios.post('http://128.140.43.32/poll-vote/post-data', submitFormData)
+        createSubmission(submitFormData)
+            .unwrap()
             .then((response) => {
-                console.log(response.data, response);
+                console.log(response);
             })
             .catch((error) => {
                 console.error(error);
             });
+
     };
 
     const langPrefix = useLanguagePrefix();
 
     return (
         <>
-            {/* Mapping through the array of polls */}
             {pollData?.data?.map((poll) => (
                 <div key={poll?.attributes?.question} className="poll-block__block">
                     {/* Displaying the question of the poll */}
@@ -79,20 +82,23 @@ function PollBlock({pollData, resultData}) {
                                         name="choice"
                                         value={choice?.meta?.drupal_internal__target_id}
                                     />
-                                    <label><ChoiceComponent
+                                    <label><PollsChoice
                                         choiceId={poll.relationships?.choice?.data?.[index]?.id}/></label>
                                 </div>
                             ))}
-                            <button type="submit" className="poll-block__form-submit button">{langPrefix === 'en' && <>Send</>}{langPrefix === 'uk' && <>Надіслати</>}</button>
-                            <button onClick={handleButtonClick} className="poll-block__switch button">{langPrefix === 'en' && <>View results</>}{langPrefix === 'uk' && <>Переглянути результати</>}</button>
+                            <button type="submit"
+                                    className="poll-block__form-submit button">{langPrefix === 'en' && <>Send</>}{langPrefix === 'uk' && <>Надіслати</>}</button>
+                            <button onClick={handleButtonClick}
+                                    className="poll-block__switch button">{langPrefix === 'en' && <>View
+                                results</>}{langPrefix === 'uk' && <>Переглянути результати</>}</button>
                         </form>
                     ) : (
-                        // View results section
+                        // View results section.
                         <div>
                             {resultData?.data?.map((choice1, index) => {
                                 return (
                                     <div key={index}>
-                                        <ChoiceComponent
+                                        <PollsChoice
                                             choiceId={pollData?.data?.[0]?.relationships?.choice?.data?.[index]?.id}/>
                                         {/* Display the percentage */}
                                         {totalVotes > 0 && (
@@ -112,7 +118,9 @@ function PollBlock({pollData, resultData}) {
                                 )
                             })}
                             <div>Total votes: {totalVotes}</div>
-                            <button onClick={handleButtonClick} className="poll-block__switch button">Переглянути опитування</button>
+                            <button onClick={handleButtonClick} className="poll-block__switch button">Переглянути
+                                опитування
+                            </button>
                         </div>
                     )}
                 </div>
@@ -121,7 +129,7 @@ function PollBlock({pollData, resultData}) {
     )
 }
 
-PollBlock.propTypes = {
+Polls.propTypes = {
     pollData: PropTypes.oneOfType([
         PropTypes.object.isRequired,
         PropTypes.array.isRequired,
@@ -132,4 +140,4 @@ PollBlock.propTypes = {
     ]),
 };
 
-export default PollBlock
+export default Polls;

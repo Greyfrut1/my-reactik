@@ -1,42 +1,25 @@
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import {useActualNewsBlockQuery} from '../../services/api';
+import {Link} from "react-router-dom";
 import './ActualNewsBlock.scss';
 
-// Functional component for rendering a block of actual news
-function ActualNewsBlock({data}) {
+export default function ActualNewsBlock() {
+
+    const { data } = useActualNewsBlockQuery();
     const languagePrefix = useLanguagePrefix();
     return (
         <div className="actual-news-block__container">
-            {/* Mapping through the array of news articles */}
             {data?.data?.map((article) => (
-                // Each news article is wrapped in a div with a unique key
-
-                <a href={`/${languagePrefix}${article?.attributes?.path?.alias}`} key={article.id} className="actual-news-block__item">
-
-                    {/* Rendering the ImageComponent with the specified URL and style */}
-                    <ImageComponent url={article?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                    imagestyle='actual_news'/>
+                <a href={`${languagePrefix}${article?.attributes?.path?.alias}`} key={article.id}
+                   className="actual-news-block__item">
+                    <img src={data?.included?.[index]?.attributes.image_style_uri?.['actual_news']} alt="alt"/>
                     <div className="actual-news-block__content">
-                    {/* Displaying the title of the news article */}
-                    <div className="actual-news-block__title"><h3>{article?.attributes?.title}</h3></div>
-                    {/* Displaying the summary or description of the news article */}
-                    <div className="actual-news-block__summary"><span>{article?.attributes?.field_description?.summary}</span></div>
+                        <Link className="actual-news-block__title" to={article?.attributes?.path.alias}>{article?.attributes?.title}</Link>
+                        <p className="actual-news-block__summary">
+                            {article?.attributes?.field_description?.summary}</p>
                     </div>
-
                 </a>
-
             ))}
         </div>
     )
 }
-
-// Prop type validation for the 'data' prop
-ActualNewsBlock.propTypes = {
-    data: PropTypes.oneOfType([
-        PropTypes.object.isRequired,
-        PropTypes.array.isRequired,
-    ]),
-};
-
-export default ActualNewsBlock

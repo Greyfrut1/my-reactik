@@ -15,9 +15,6 @@ export const vnuApi = createApi({
         HeaderMenu: builder.query({
             query: () => 'entity/menu/main-header-menu/tree',
         }),
-        YoutubeBlock: builder.query({
-            query: () => 'jsonapi/block_content/video_custom_block/0f766c9d-7a63-41da-bfdc-932052356c9d',
-        }),
         FooterMenu: builder.query({
             query: () => 'jsonapi/menu_items/footer',
         }),
@@ -30,6 +27,40 @@ export const vnuApi = createApi({
         FooterInfoBlock: builder.query({
             query: () => 'jsonapi/block_content/about_the_university/ab52a7ef-b55b-4fec-9dc8-c2038c2e8769',
         }),
+        YoutubeBlock: builder.query({
+            query: () => 'jsonapi/block_content/block_link/4e904849-61c6-45d4-93de-89539abdf33a',
+        }),
+        PollResultBlock: builder.query({
+            query: () => 'poll-vote-result/rest-export/1',
+        }),
+        PollBlock: builder.query({
+            query: () => 'jsonapi/views/polls/block_1',
+        }),
+        PollChoiceBlock: builder.query({
+            query: (args) => {
+                const { id } = args;
+                return `/jsonapi/poll_choice/poll_choice/${id}`;
+            },
+        }),
+        PollFormSubmit: builder.mutation({
+            query: (formData) => ({
+                url: 'poll-vote/post-data',
+                method: 'POST',
+                body: submitFormData,
+            }),
+        }),
+        ActualNewsBlock: builder.query({
+            query: () => '/jsonapi/views/actual_news/block_1?include=field_image',
+        }),
+        LastNewsBlock: builder.query({
+            query: () => 'jsonapi/views/last_news/block_1',
+        }),
+        NewsPage: builder.query({
+            query: (args) => {
+                const { alias } = args;
+                return `news/${alias}?_format=json`;
+            },
+        }),
     }),
 });
 
@@ -41,4 +72,12 @@ export const {
     useFooterPartnersBlockQuery,
     useFooterDevelopmentByBlockQuery,
     useFooterInfoBlockQuery,
+    usePollResultBlockQuery,
+    usePollBlockQuery,
+    usePollChoiceBlockQuery,
+    usePollFormSubmitMutation,
+    useActualNewsBlockQuery,
+    useLastNewsBlockQuery,
+    useNewsPageQuery,
+
 } = vnuApi;
