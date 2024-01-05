@@ -111,13 +111,13 @@ function Home() {
                     </div>
                     <div className='homepage-bottom'>
                         <div className="poll-block">
-                        <h3 className="poll-block__title title"><a href='#'>{pollBlockData?.meta.title}</a></h3>
+                        <h3 className="poll-block__title title"><a href='#'>{pollBlockData?.meta?.title}</a></h3>
                         <PollBlock pollData={pollBlockData} resultData={pollResultData}/>
                     </div>
                     {/* Rendering the infrastructure location */}
                     {/*<div>{infrastructureBlockdata?.data?.[0]?.attributes?.field_location}</div>*/}
                     {infrastructureBlockdata?.data?.[0]?.attributes?.field_location && <div className="infrastructure-block">
-                        <h3 className="infrastructure-block__title title"><a href='#'>{infrastructureBlockdata?.meta.title}</a></h3>
+                        <h3 className="infrastructure-block__title title"><a href='#'>{infrastructureBlockdata?.meta?.title}</a></h3>
                         <div className="infrastructure-block__map-block">
                             <MapComponent
                                 containerStyle={{ width: '350px', height: '450px' }}
@@ -127,7 +127,7 @@ function Home() {
                     </div>}
 
                      <div className="photoalbum-block">
-                         <h3 className="photoalbum-block__title title"><a href={`/${langPrefix}/photoalbums`}>{sliderAlbumsData?.meta.title}</a></h3>
+                         <h3 className="photoalbum-block__title title"><a href={`/${langPrefix}/photoalbums`}>{sliderAlbumsData?.meta?.title}</a></h3>
                          <AlbumsSlider data={sliderAlbumsData}/>
                      </div>
                     {/* Rendering the Facebook component if Facebook link exists */}
