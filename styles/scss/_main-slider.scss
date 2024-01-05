@@ -9,6 +9,8 @@
   height: 790px;
   display: block;
   margin: 0 auto;
+  flex-shrink: 0;
+  margin-left: 8px;
 }
 .main-slider__item-content{
   display: flex;

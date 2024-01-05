@@ -10,6 +10,8 @@ function Menu() {
         isLoading: isHeaderLogoBlockLoading,
         error: headerLogoBlockError
     } = useDrupalData('jsonapi/block_content/about_the_university/f97b1379-de32-4696-bd50-7aac5d5ba992');
+    const [activeElement, setActiveElement] = useState(null);
+    const [activeElements, setActiveElements] = useState([]);
     const handleMouseEnter = () => {
         setShowLogoBlock(false);
     };
@@ -18,11 +20,24 @@ function Menu() {
         setShowLogoBlock(true);
     };
 
+    const handleClick = (item) => {
+        console.log('test')
+        setActiveElements((prevActiveElements) => {
+            if (prevActiveElements.includes(item)) {
+                return prevActiveElements.filter((el) => el !== item);
+            } else {
+                return [...prevActiveElements, item];
+            }
+        });
+    };
+
     return (
         <>
         <nav className={"main-menu"}>
             {items?.map((item) => (
-                <ul className={"element-menu"} key={item?.link?.meta_data?.entity_id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <ul className={`element-menu ${
+                    activeElements.includes(item) ? "active" : ""
+                }`} key={item?.link?.meta_data?.entity_id} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <li className={"level-one"}>
                         {item?.link?.url ? (
                             item?.link?.options ?
@@ -34,7 +49,7 @@ function Menu() {
                     )}
                         {item?.has_children && (
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                                 stroke="currentColor" className="w-6 h-6 main-menu__chevron">
+                                 stroke="currentColor" className="w-6 h-6 main-menu__chevron" onClick={() => handleClick(item)}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
                             </svg>
                         )}
@@ -42,14 +57,16 @@ function Menu() {
                     {item?.has_children && (
                         <div className={"second-level"}>
                             {item?.subtree?.map((item2) => (
-                                <ul className={"second-level-item"} key={item2?.link?.meta_data?.entity_id}>
+                                <ul className={`second-level-item ${
+                                    activeElements.includes(item2) ? "active" : ""
+                                }`} key={item2?.link?.meta_data?.entity_id}>
                                     {item2?.link?.url ? (
                                         item2?.link?.options ?
                                             <li><a target={item2?.link?.options?.attributes?.target} className={"second-level-link"}
                                                href={item2?.link?.url}>{item2?.link?.title}</a>
                                                 {item2?.has_children && (
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                                                         stroke="currentColor" className="w-6 h-6 main-menu__chevron">
+                                                         stroke="currentColor" className="w-6 h-6 main-menu__chevron" onClick={() => handleClick(item2)}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
                                                     </svg>
                                                 )}
@@ -59,7 +76,7 @@ function Menu() {
                                                href={item2?.link?.url}>{item2?.link?.title}</a>
                                                 {item2?.has_children && (
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                                                         stroke="currentColor" className="w-6 h-6 main-menu__chevron">
+                                                         stroke="currentColor" className="w-6 h-6 main-menu__chevron" onClick={() => handleClick(item2)}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
                                                     </svg>
                                                 )}
@@ -69,7 +86,7 @@ function Menu() {
                                         <li><span className={"second-level-link"}>{item2?.link?.title}</span>
                                             {item2?.has_children && (
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                                                     stroke="currentColor" className="w-6 h-6 main-menu__chevron">
+                                                     stroke="currentColor" className="w-6 h-6 main-menu__chevron" onClick={() => handleClick(item2)}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
                                                 </svg>
                                             )}</li>

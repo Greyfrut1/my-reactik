@@ -39,7 +39,7 @@ function Header() {
             document.body.style.overflow = 'hidden';
         }
     };
-    const isSubpath = location.pathname ==='/uk' || location.pathname ==='/uk';
+    const isSubpath = location.pathname ==='/uk' || location.pathname ==='/en';
     console.log(isSubpath)
 // Додайте стиль margin-bottom залежно від поточного шляху та підшляху
 

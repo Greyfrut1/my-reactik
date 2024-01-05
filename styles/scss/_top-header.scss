@@ -1,6 +1,6 @@
 @import "variables";
 .top-header {
-  background-color: $lightRed;
+  background-color: #561111;
   .top-header_container {
     font-size: 12px;
     line-height: 14px;
@@ -40,11 +40,11 @@
     transition: all 0.2s;
     line-height: 17px;
     &:hover{
-      border-color: black;
+      border-color: white;
     }
   }
   .active{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
   }
 }
 
