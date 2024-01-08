@@ -55,8 +55,8 @@ function LastNewsBlock({data}) {
                     {/* Link to the news item with the specified alias */}
 
                         {/* Rendering the ImageComponent with the specified URL and style */}
-                    <ImageComponent url={news?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                    imagestyle='news_275x185' alt={"test"}/>
+                    {news?.relationships?.field_image?.data?.meta?.drupal_internal__target_id && <ImageComponent url={news?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                                                                                                 imagestyle='news_275x185' alt={news?.relationships?.field_image?.data?.meta?.alt}/>}
                         {/* Displaying the title of the news item */}
                     <div className="last-news-block__title"><h3>{news?.attributes?.title}</h3></div>
                         {/* Displaying the summary or description of the news item */}

@@ -53,7 +53,7 @@ function Subscriber() {
                     <form onSubmit={handleSubmit} className={"flex w-1/2 relative items-center"}>
                         <input required={"required"} type={"email"} value={email}
                                onChange={(e) => setEmail(e.target.value)}
-                               placeholder={(langPrefix === "en" && "Enter your email") || (langPrefix === "uk" && "Введіть електронну пошту")}/>
+                               placeholder={(langPrefix === "en" && "Enter your email") || (langPrefix === "uk" && "Введіть електронну пошту") || "Placeholder"}/>
                         <button type="submit">{(langPrefix === "en" && "Subscribe") || (langPrefix === "uk" && "Підписатися")}</button>
                     </form>
                 </div>

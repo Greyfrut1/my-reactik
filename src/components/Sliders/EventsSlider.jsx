@@ -67,6 +67,7 @@ function EventsSlider({data}) {
                         </div>
                         {/* Rendering the ImageComponent with the specified URL and style */}
                         <ImageComponent url={event?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                                        alt={event?.relationships?.field_image?.data?.meta?.alt}
                                         imagestyle='news_275x185'/>
                         {/* Displaying the title of the event */}
                         <div className="events-slider__title"><h3>{event?.attributes?.title}</h3></div>

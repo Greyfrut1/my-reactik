@@ -18,6 +18,7 @@ function ExposedFilterCatalog({ onFilterChange }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('testsetet')
         onFilterChange(formValues);
     };
 
