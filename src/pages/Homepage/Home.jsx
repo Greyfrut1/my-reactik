@@ -1,16 +1,18 @@
 import PollsBlock from "../../blocks/Polls/PollsBlock.jsx";
+import YoutubeEmbed from "../../components/Common/YoutubeEmbed.jsx";
+import ActualNewsBlock from "../../blocks/News/ActualNewsBlock.jsx";
+import {Link} from "react-router-dom";
 import {
     useYoutubeBlockQuery,
 } from '../../services/api';
 import './Homepage.scss';
-import YoutubeEmbed from "../../components/Common/YoutubeEmbed.jsx";
-import {Link} from "react-router-dom";
 
 export default function HomePage() {
     const { data: youtubeBlockData } = useYoutubeBlockQuery();
 
     return (
         <>
+            <ActualNewsBlock/>
             <div className="homepage-bottom">
                 <PollsBlock/>
                 {youtubeBlockData?.data?.attributes?.field_link_to?.uri && (
