@@ -1,15 +1,15 @@
 import {Helmet} from "react-helmet";
-import useDrupalData from "../../services/api.jsx";
 import PropTypes from "prop-types";
+import {useMetaTagsQuery,useSiteInfoQuery} from "../../services/api.js";
 
-function Metatags({type , data, viewUrl}){
+function MetaTags({type , data, viewUrl}){
     const frontUrl = import.meta.env.VITE_FRONTEND_URL;
-    const {data: siteInfo} = useDrupalData(`site/info?_format=json`)
-    const {data: metatagBlock} = useDrupalData(`jsonapi/metatag_defaults/metatag_defaults/c83d2f3a-7988-4ca5-9200-db72b073bdb2`)
+    const {data: metaTagBlock} = useMetaTagsQuery();
+    const {data: siteInfo} = useSiteInfoQuery();
     const description = data?.field_description?.[0]?.summary;
     const metaTitle = data?.title?.[0]?.value;
     const nodeUrl = `${frontUrl}${data?.path?.[0]?.langcode}${data?.path?.[0]?.alias}`;
-    const keywords = metatagBlock?.data?.attributes?.tags?.keywords;
+    const keywords = metaTagBlock?.data?.attributes?.tags?.keywords;
     const viewTitle = data?.meta?.title;
     return(
         <>
@@ -54,7 +54,7 @@ function Metatags({type , data, viewUrl}){
     );
 }
 
-Metatags.propTypes = {
+MetaTags.propTypes = {
     type: PropTypes.string.isRequired,
     data: PropTypes.oneOfType([
         PropTypes.object,
@@ -91,4 +91,4 @@ Metatags.propTypes = {
     ]),
     viewUrl: PropTypes.string,
 };
-export default Metatags
+export default MetaTags

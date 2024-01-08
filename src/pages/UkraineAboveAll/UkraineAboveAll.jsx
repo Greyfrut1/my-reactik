@@ -2,7 +2,7 @@ import React from "react";
 import useDrupalData from "../../services/api.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import { OpenInNew } from "@mui/icons-material";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import { useLocation } from 'react-router-dom';
 import './UkraineAboveAll.scss';
 

@@ -3,7 +3,7 @@ import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import PropTypes from "prop-types";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 
 function BranchesPage({type_branch}){

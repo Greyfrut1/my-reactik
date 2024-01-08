@@ -1,9 +1,10 @@
-import useDrupalData from "../../services/api.jsx";
+import {useInfrastructurePageQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
-import ImageComponent from "../Image/ImageComponent.jsx";
-import React, {useState} from "react";
+import {useState} from "react";
 import dropdownArrow from "/src/assets/dropdown-arrow.png"
-import YoutubeEmbed from "./YoutubeEmbed.jsx";
+import YoutubeEmbed from "../Common/YoutubeEmbed.jsx";
+import './Paragraph.scss';
+import {Link} from "react-router-dom";
 
 function Paragraph({target_id}) {
     const [isActive, setIsActive] = useState(false);
@@ -11,15 +12,13 @@ function Paragraph({target_id}) {
     const [isActiveDropdown, setisActiveDropdown] = useState(false);
 
     const handleClick = () => {
-        // Змінюємо стан isActive на протилежний
         setIsActive(!isActive);
     };
 
     const handleClickDropdown = () => {
-        // Змінюємо стан isActive на протилежний
         setisActiveDropdown(!isActiveDropdown);
     };
-    const {data: paragraph} = useDrupalData(`entity/paragraph/${target_id}`)
+    const {data: paragraph} = useInfrastructurePageQuery({targetId: `${target_id}`});
     return (
         <>
             {paragraph?.type?.[0]?.target_id === 'section' && (
@@ -71,9 +70,9 @@ function Paragraph({target_id}) {
                             <div className={`dropdown-arrow`}>
                                 <img src={dropdownArrow} alt={"arrow"}/>
                             </div>
-                            <a href={file.url} target={"_blank"} rel={"noopener noreferrer"}>
+                            <Link to={file.url} target={"_blank"} rel={"noopener noreferrer"}>
                                 {file.description}
-                            </a>
+                            </Link>
                         </div>
 
                     ))}
@@ -86,7 +85,7 @@ function Paragraph({target_id}) {
                             <div className={`dropdown-arrow`}>
                                 <img src={dropdownArrow} alt={"arrow"}/>
                             </div>
-                            <a key={index} href={link.full_url}>{link.title}</a>
+                            <Link key={index} to={link.full_url}>{link.title}</Link>
                         </div>
                     ))}
                 </>
@@ -101,28 +100,23 @@ function Paragraph({target_id}) {
             )
             }
             {paragraph?.type?.[0]?.target_id == 'image_link' && (
-                    <>
-                        <a href={paragraph?.field_link_to_partner?.[0]?.uri}>
-                            <ImageComponent
-                                alt={paragraph?.field_image?.[0]?.alt}
-                                url={paragraph?.field_image?.[0]?.target_id}
-                                imagestyle={'actual_news'}
-                            />
-                        </a>
-                    </>
-                )
+                <Link to={paragraph?.field_link_to_partner?.[0]?.uri}>
+                    <img src={paragraph?.field_image?.url}
+                         alt={paragraph?.field_image?.alt}/>
+                </Link>
+            )
             }
             {paragraph?.type?.[0]?.target_id == 'file_preview' && (
-                    <>
-                        {paragraph?.field_file?.length > 0 && paragraph?.field_file.map((file, index) => (
-                            <div key={index}>
-                                <iframe width={"100%"} height={"400px"}
-                                        src={`https://docs.google.com/gview?embedded=true&url=${file?.url}`}/>
-                                <div className={"gdoc-filename"}>{file?.description}</div>
-                            </div>
-                        ))}
-                    </>
-                )}
+                <>
+                    {paragraph?.field_file?.length > 0 && paragraph?.field_file.map((file, index) => (
+                        <div key={index}>
+                            <iframe width={"100%"} height={"400px"}
+                                    src={`https://docs.google.com/gview?embedded=true&url=${file?.url}`}/>
+                            <div className={"gdoc-filename"}>{file?.description}</div>
+                        </div>
+                    ))}
+                </>
+            )}
         </>
     );
 }

@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../services/api.jsx";
-import Paragraph from "../components/Common/Paragraph.jsx";
-import Metatags from "../components/Common/Metatags.jsx";
+import Paragraph from "../components/Paragraph/Paragraph.jsx";
+import Metatags from "../components/Common/MetaTags.jsx";
 function GeneralInformation(){
     const { alias } = useParams();
     const {data: general} = useDrupalData(`general-information/${alias}?_format=json`)

@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-// Retrieving the base URL from environment variables
+import './LanguageSwitcher.scss';
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
-// Function component for language switching
 function LanguageSwitcher() {
-    // Extracting current language, URL parts, and type from the window location
     const currentLang = window.location.pathname.split('/')[1];
     const currentUrl = window.location.pathname;
     const urlParts = currentUrl.split('/');
@@ -16,7 +13,6 @@ function LanguageSwitcher() {
 
     // State variables for data, loading state, and switching language
     const [data, setData1] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     // Effect to fetch data based on the current language and URL
     useEffect(() => {
@@ -25,11 +21,9 @@ function LanguageSwitcher() {
                 if ((type !== "simplenews") && (type !== "search") && (slicedUrl)) {
                     const response = await axios.get(`${baseURL}/${currentLang}/${slicedUrl}?_format=json`);
                     setData1(response.data);
-                    setLoading(false);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
-                setLoading(false);
             }
         };
 
@@ -54,37 +48,35 @@ function LanguageSwitcher() {
                 if (data && alias) {
                     const response = await axios.get(`${baseURL}/${switchLang}/node/${data?.nid?.[0].value}?_format=json`);
                     setData2(response.data);
-                    setLoading(false);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
-                setLoading(false);
             }
         };
 
         fetchData2();
     }, [data]);
 
-    // Rendering the language switcher based on conditions
+    // Rendering the language switcher based on conditions.
     return (
         <div className="language-switcher">
             {currentLang === 'uk' && <a className={'active'} href={`${currentUrl}`}>
                 UA
             </a>}
-                    {(alias && <>
-                            {(data2?.path?.[0].alias &&
-                                <a href={`/${switchLang}${data2?.path?.[0].alias}`}>{(currentLang === "en" && "UA") || ("EN")}</a>) || (
-                                <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "UA") || ("EN")}</a>)}
-                        </>) ||
-                        ((!alias && slicedUrl) && <>
-                            <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "UA") || ("EN")}</a>
-                        </>) ||
-                        ((!alias && !slicedUrl) && <>
-                            <a href={`/${switchLang}`}>{(currentLang === "en" && "UA") || ("EN")}</a>
-                        </>)}
+            {(alias && <>
+                    {(data2?.path?.[0].alias &&
+                        <a href={`/${switchLang}${data2?.path?.[0].alias}`}>{(currentLang === "en" && "UA") || ("EN")}</a>) || (
+                        <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "UA") || ("EN")}</a>)}
+                </>) ||
+                ((!alias && slicedUrl) && <>
+                    <a href={`/${switchLang}/${slicedUrl}`}>{(currentLang === "en" && "UA") || ("EN")}</a>
+                </>) ||
+                ((!alias && !slicedUrl) && <>
+                    <a href={`/${switchLang}`}>{(currentLang === "en" && "UA") || ("EN")}</a>
+                </>)}
             {currentLang === 'en' && <a className={'active'} href={`${currentUrl}`}>
-                        EN
-                    </a>}
+                EN
+            </a>}
         </div>
     );
 }

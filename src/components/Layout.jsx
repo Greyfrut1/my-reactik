@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
-// import HeaderMenu from "../blocks/HeaderMenu/HeaderMenu.jsx";
-import TopHeader from "../blocks/TopHeader/TopHeader.jsx";
+import Header from '../blocks/Header/Header.jsx';
 import Footer from "../blocks/Footer/Footer.jsx";
 
 function Layout({ children }) {
     return (
         <>
-            <TopHeader/>
-            {/*<HeaderMenu/>*/}
+           <Header/>
             <main className="container">{children}</main>
             <Footer />
         </>

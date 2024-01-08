@@ -2,8 +2,8 @@ import {useParams} from "react-router-dom";
 import useDrupalData from "../../services/api.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
-import Paragraph from "../../components/Common/Paragraph.jsx";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Paragraph from "../../components/Paragraph/Paragraph.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import LightBox from "../../components/Image/LightBox.jsx";
 import React from "react";
 

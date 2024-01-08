@@ -8,7 +8,7 @@ import queryString from 'query-string';
 import Pager from "./Pager.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-import Metatags from "../components/Common/Metatags.jsx";
+import Metatags from "../components/Common/MetaTags.jsx";
 import ImageComponent from "../components/Image/ImageComponent.jsx";
 import {format} from "date-fns";
 import {uk} from "date-fns/locale";

@@ -4,7 +4,7 @@ import EntityTitle from "../../components/EntityTitle.jsx";
 import ElectiveDisciplines from "../../blocks/Disciplines/ElectiveDisciplines.jsx";
 import MainDusciplines from "../../blocks/Disciplines/MainDusciplines.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 
 function EducationalProgramsFullMode() {
     const {alias} = useParams();

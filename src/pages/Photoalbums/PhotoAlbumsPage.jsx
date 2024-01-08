@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useDrupalData from "../../services/api.jsx";
 import LightBox from "../../components/Image/LightBox.jsx";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import './PhotoalbumsPage.scss';
 
 function PhotoAlbumsPage() {

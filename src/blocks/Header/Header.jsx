@@ -1,36 +1,27 @@
-import React, { useState } from 'react';
-import useDrupalData from "../services/api.jsx";
-import ImageComponent from "./ImageComponent.jsx";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
-import LanguageSwitcher from "./LanguageSwitcher.jsx";
-import Menu from "./Menu.jsx";
-import TopHeaderMenu from "./TopHeaderMenu.jsx";
+import { useState } from 'react';
+import {useHeaderLogoQuery} from "../../services/api.js";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
+import Menu from "../HeaderMenu/HeaderMenu.jsx";
+import TopHeaderMenu from "../TopHeaderMenu/TopHeaderMenu.jsx";
 import { useNavigate, useLocation } from "react-router-dom";
-
- // Замініть на шлях до вашого CSS файлу
+import './Header.scss';
 
 function Header() {
     const location = useLocation();
-    const {
-        data: headerLogoBlockData,
-        isLoading: isHeaderLogoBlockLoading,
-        error: headerLogoBlockError
-    } = useDrupalData('jsonapi/block_content/about_the_university/f97b1379-de32-4696-bd50-7aac5d5ba992');
+    const { data: headerLogoBlockData } = useHeaderLogoQuery();
     const [showMenuDialog, setShowMenuDialog] = useState(false);
     const [input, setInput] = useState("");
     const langPrefix = useLanguagePrefix();
     const navigate = useNavigate();
-
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         navigate(`/${langPrefix}/search/${input}`);
         setInput("");
     };
-
     const toggleMenuDialog = () => {
         setShowMenuDialog(!showMenuDialog);
         if (showMenuDialog) {
@@ -39,13 +30,9 @@ function Header() {
             document.body.style.overflow = 'hidden';
         }
     };
-    const isSubpath = location.pathname ==='/uk' || location.pathname ==='/en';
-    console.log(isSubpath)
-// Додайте стиль margin-bottom залежно від поточного шляху та підшляху
-
     return (
         <>
-            <header className={`header ${isSubpath ? 'is-homepage' : ''}`}>
+            <header className='header'>
                 <div className={`header__burger-bar ${showMenuDialog ? 'show' : ''}`} onClick={toggleMenuDialog}>
                     <div></div>
                     <div></div>
@@ -53,11 +40,10 @@ function Header() {
                 </div>
                 <div className={'header__logo-block'}>
                     <a href={`/${langPrefix}`}>
-                        <div>{headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id &&
-                            <ImageComponent
-                                url={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                alt={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.alt}/>}</div>
-                        <div className={'header__logo-text'}>{headerLogoBlockData?.data?.attributes?.field_main_text}</div>
+                        <img src={headerLogoBlockData?.included?.[0]?.attributes?.image_style_uri?.['thumbnail']}
+                             alt="alt"/>
+                        <div
+                            className={'header__logo-text'}>{headerLogoBlockData?.data?.attributes?.field_main_text}</div>
                     </a>
                 </div>
                 <div className={'header__right-block'}>
@@ -87,5 +73,4 @@ function Header() {
         </>
     );
 }
-
 export default Header;

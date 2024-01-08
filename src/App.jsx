@@ -4,6 +4,7 @@ import Layout from './components/Layout.jsx';
 import './App.scss';
 
 const Home = lazy(() => import('./pages/Homepage/Home'));
+const InfrastructurePage = lazy(() => import('./pages/Infrastucture/InfrastructurePage.jsx'));
 
 export default function App() {
     return (
@@ -13,6 +14,7 @@ export default function App() {
                 <Routes>
                     <Route path="/:lang" element={<Home />} />
                     <Route path="/" element={<Navigate to="/uk" />} />
+                    <Route path="/:lang/infrastructure/:alias" element={<InfrastructurePage/>}/>
                 </Routes>
             </Suspense>
             </Layout>
@@ -36,13 +38,10 @@ export default function App() {
 // import CatalogEducationalPrograms from "./pages/EducationalProgram/CatalogEducationalPrograms.jsx";
 // import Faculties from "./pages/Faculties/Faculties.jsx";
 // import EducationalProgramsFullMode from "./pages/EducationalProgram/EducationalProgramsFullMode.jsx";
-//додала до TopHeader.jsx
-// import LanguageSwitcher from "./blocks/Header/LanguageSwitcher.jsx";
 // import useLanguagePrefix from "./services/languagePrefix.jsx";
 
 
 
-// import Footer from "./blocks/Footer/Footer.jsx";
 // import FacultyFullMode from "./pages/Faculties/FacultyFullMode.jsx";
 // import Subscriber from "./blocks/Subscriber/Subscriber.jsx";
 // import Unsubscribe from "./blocks/Subscriber/Unsubscribe.jsx";
@@ -52,7 +51,6 @@ export default function App() {
 // import StaffPage from "./pages/Staff/StaffPage.jsx";
 // import Rectorate from "./pages/Staff/Rectorate.jsx";
 // import AcademicBoard from "./pages/Staff/AcademicBoard.jsx";
-// import HeaderMenu from "./blocks/Header/HeaderMenu/HeaderMenu.jsx";
 // import GeneralInformation from "./pages/GeneralInformation.jsx";
 // import Museums from "./pages/Museum/Museums.jsx";
 // import Units from "./pages/Branches/Units.jsx";
@@ -68,16 +66,9 @@ export default function App() {
 // import UniversityRating from "./pages/UniversityRating/UniversityRating.jsx";
 // import NotFound from "./pages/NotFound/NotFound.jsx";
 //
-// function App() {
-//додала до TopHeader.jsx
-//     const languagePrefix = useLanguagePrefix();
-//     const location = useLocation();
-
 
 
 //     const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
-
-////додала до TopHeader.jsx
 //     const [input, setInput] = useState(""); // State to manage the input value
 //     const navigate = useNavigate(); // Hook to get the navigate function
 //     const handleInputChange = (e) => {
@@ -96,7 +87,6 @@ export default function App() {
 //     // Render the application using react-router-dom for routing.
 //     return (
 //     <>
-////додала до TopHeader.jsx
 //         <div className="top-header">
 //             <div className="top-header_container container">
 //         <TopHeaderMenu />

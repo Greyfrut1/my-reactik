@@ -1,12 +1,12 @@
 import {useParams} from "react-router-dom";
 import useDrupalData from "../../services/api.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import Paragraph from "../../components/Common/Paragraph.jsx";
+import Paragraph from "../../components/Paragraph/Paragraph.jsx";
 import StaffTeaser from "../../blocks/Staff/StaffTeaser.jsx";
 import Departments from "../../components/Departments.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import React from "react";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 
 function FacultyFullMode(){
     const { alias } = useParams();

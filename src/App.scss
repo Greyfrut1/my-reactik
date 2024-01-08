@@ -5,7 +5,14 @@ body{
   font-family: Roboto, sans-serif;
   margin:0;
 }
-
+ul{
+  li{
+    list-style: none;
+  }
+}
+a{
+  text-decoration:none;
+}
 .field-description{
   p{
     margin: 1em 0;

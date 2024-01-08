@@ -1,5 +1,5 @@
 import useDrupalData from "../services/api.jsx";
-import Metatags from "../components/Common/Metatags.jsx";
+import Metatags from "../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 
 function PublicInformation(){

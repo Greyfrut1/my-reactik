@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-import ImageComponent from "../Image/ImageComponent.jsx";
+import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import './AlbumsSlider.scss';
 

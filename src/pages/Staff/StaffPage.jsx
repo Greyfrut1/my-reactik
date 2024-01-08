@@ -7,7 +7,7 @@ import Scopus from "../../assets/scopus.png";
 import Wiki from "../../assets/wikisnu-new.png";
 import React from "react";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import './StaffPage.scss';
 
 function StaffPage(){

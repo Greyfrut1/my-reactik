@@ -1,16 +1,15 @@
 import {useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
-import Paragraph from "../../components/Common/Paragraph.jsx";
+import Paragraph from "../../components/Paragraph/Paragraph.jsx";
 import MapComponent from "../../components/Common/MapComponent.jsx";
-import React from "react";
-import Metatags from "../../components/Common/Metatags.jsx";
+import {useInfrastructurePageQuery} from "../../services/api.js";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 
-function InfrastructurePage() {
+export default function InfrastructurePage() {
     const {alias} = useParams();
-    const {data : infrastructure} = useDrupalData(`infrastructure/${alias}?_format=json`);
+    const { data: infrastructure } = useInfrastructurePageQuery({ alias: `${alias}` });
     return (
         <>
-            <Metatags type={"content"} data={infrastructure} />
+            <MetaTags type={"content"} data={infrastructure} />
             <div className={"container"}>
                 <div className={"infrastructure"}>
                     {infrastructure?.field_infrastructure_info?.[0]?.target_id && (
@@ -38,5 +37,3 @@ function InfrastructurePage() {
         </>
     );
 }
-
-export default InfrastructurePage;

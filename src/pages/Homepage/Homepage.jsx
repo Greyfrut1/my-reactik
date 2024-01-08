@@ -1,18 +1,4 @@
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import React, {useState, useEffect} from 'react'
-// import MapComponent from "../../components/Common/MapComponent.jsx";
-// import {FacebookProvider, Page} from "react-facebook";
-// import MainSlider from "../../components/Sliders/MainSlider.jsx";
-// import ActualNewsBlock from "../../blocks/News/ActualNewsBlock.jsx";
-// import LastNewsBlock from "../../blocks/News/LastNewsBlock.jsx";
-// import EventsSlider from "../../components/Sliders/EventsSlider.jsx";
-// import PollBlock from "../../blocks/Polls/PollsBlock.jsx";
-// import AlbumsSlider from "../../components/Sliders/AlbumsSlider.jsx";
-// import useLanguagePrefix from "../../services/languagePrefix.jsx";
-// import YoutubeEmbed from "../../components/Common/YoutubeEmbed.jsx";
-// import Metatags from "../../components/Common/Metatags.jsx";
-//
+
 // import {
 //    useYoutubeBlockQuery,
 // } from '../../services/api';

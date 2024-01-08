@@ -1,0 +1,31 @@
+@import '../../helpers';
+
+.second-menu{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #561111;
+  ul{
+    color: $lightGray;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    justify-content: space-around;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    a{
+      color:white;
+      &:hover, &:focus{
+        color: #FDBE34;
+      }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .second-menu{
+    display: none;
+  }
+}

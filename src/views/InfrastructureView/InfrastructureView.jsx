@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import MapComponent from "../../components/Common/MapComponent.jsx";
 import Pager from "../Pager.jsx";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 import './InfrastructureView.scss';
 

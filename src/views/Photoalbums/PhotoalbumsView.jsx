@@ -4,7 +4,7 @@ import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import Pager from "../Pager.jsx";
 import {useWindowSize} from "react-use";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/Metatags.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 import './PhotoalbumsView.scss';
 
