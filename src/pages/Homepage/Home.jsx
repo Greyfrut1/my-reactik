@@ -15,6 +15,7 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
 import {useEffect, useState} from "react";
 import MetaTags from "../../components/Common/MetaTags.jsx";
+import InfrastructureBlock from "../../blocks/InfrastructureBlock/InfrastructureBlock.jsx";
 
 export default function HomePage() {
     const {data: youtubeBlockData} = useYoutubeBlockQuery();
@@ -42,6 +43,7 @@ export default function HomePage() {
                         </div>
                     </div>
                 )}
+                <InfrastructureBlock/>
             </div>
         </>
     );

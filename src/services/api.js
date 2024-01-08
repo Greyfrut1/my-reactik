@@ -75,8 +75,14 @@ export const vnuApi = createApi({
         }),
         InfrastructurePage: builder.query({
             query: (args) => {
-                const { alias } = args;
-                return `infrastructure/${alias}?_format=json`;
+                const { page } = args;
+                return `infrastructure/${page}?_format=json`;
+            },
+        }),
+        Infrastructure: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `jsonapi/views/infrastructure/${endpoint}`;
             },
         }),
         Paragraph: builder.query({
@@ -114,6 +120,7 @@ export const {
     useEventsSliderQuery,
     useInfrastructureBlockQuery,
     useInfrastructurePageQuery,
+    useInfrastructureQuery,
     useParagraphQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,

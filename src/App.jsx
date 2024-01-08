@@ -4,7 +4,7 @@ import Layout from './components/Layout.jsx';
 import './App.scss';
 
 const Home = lazy(() => import('./pages/Homepage/Home'));
-const InfrastructurePage = lazy(() => import('./pages/Infrastucture/InfrastructurePage.jsx'));
+const InfrastructurePage = lazy(() => import('./pages/Infrastructure/InfrastructurePage.jsx'));
 
 export default function App() {
     return (
@@ -57,7 +57,6 @@ export default function App() {
 // import Branches from "./pages/Branches/Branches.jsx";
 // import BranchesFullMode from "./pages/Branches/BranchesFullMode.jsx";
 // import InfrastructureView from "./views/InfrastructureView/InfrastructureView.jsx";
-// import InfrastructurePage from "./pages/Infrastucture/InfrastructurePage.jsx";
 // import EnsemblesView from "./pages/Ensembles/EnsemblesPage.jsx";
 // import EnsemblesFullMode from "./pages/Ensembles/EnsemblesFullMode.jsx";
 // import PublicInformation from "./pages/PublicInformation.jsx";

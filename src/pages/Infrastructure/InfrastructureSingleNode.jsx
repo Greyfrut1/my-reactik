@@ -4,9 +4,9 @@ import MapComponent from "../../components/Common/MapComponent.jsx";
 import {useInfrastructurePageQuery} from "../../services/api.js";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 
-export default function InfrastructurePage() {
+export default function InfrastructureSingleNode() {
     const {alias} = useParams();
-    const { data: infrastructure } = useInfrastructurePageQuery({ alias: `${alias}` });
+    const { data: infrastructure } = useInfrastructurePageQuery({ page: `${alias}` });
     return (
         <>
             <MetaTags type={"content"} data={infrastructure} />
