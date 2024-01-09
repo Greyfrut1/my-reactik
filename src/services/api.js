@@ -68,7 +68,7 @@ export const vnuApi = createApi({
             },
         }),
         EventsSlider: builder.query({
-            query: () => 'jsonapi/views/last_news/block_1?include=field_image&jsonapi_include=1',
+            query: () => 'jsonapi/views/events_coming_soon/block_1?include=field_image&jsonapi_include=1',
         }),
         InfrastructureBlock: builder.query({
             query: () => 'jsonapi/views/infrastructure/block_1',
@@ -83,6 +83,18 @@ export const vnuApi = createApi({
             query: (args) => {
                 const { endpoint } = args;
                 return `jsonapi/views/infrastructure/${endpoint}`;
+            },
+        }),
+        PhotoAlbums: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `jsonapi/views/photoalbums_/${endpoint}`;
+            },
+        }),
+        PhotoAlbumsPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `photoalbums/${page}?_format=json`;
             },
         }),
         Paragraph: builder.query({
@@ -121,6 +133,8 @@ export const {
     useInfrastructureBlockQuery,
     useInfrastructurePageQuery,
     useInfrastructureQuery,
+    usePhotoAlbumsQuery,
+    usePhotoAlbumsPageQuery,
     useParagraphQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,
