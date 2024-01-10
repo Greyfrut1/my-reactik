@@ -1,12 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import PropTypes from "prop-types";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import './AlbumsSlider.scss';
+import {Link} from "react-router-dom";
+import {usePhotoAlbumsQuery} from "../../services/api.js";
+import './PhotoAlbumSlider.scss';
 
-
-function PhotoAlbumSlider({data}) {
+export default function PhotoAlbumSlider() {
     var settings = {
         infinite: true,
         speed: 500,
@@ -15,31 +14,27 @@ function PhotoAlbumSlider({data}) {
         arrows: true,
         useTransform: false,
     };
-    const lanPrefix = useLanguagePrefix();
+    const langPrefix = useLanguagePrefix();
+    const {data} = usePhotoAlbumsQuery();
     return (
-        <Slider {...settings} className="albums-slider">
-            {/* Mapping through the array of slides */}
-            {data?.data?.map((slide) => (
-                <div key={slide.id} className="albums-slider__item">
-                    {/* Rendering the ImageComponent with the specified URL and style */}
-                    <div className="albums-slider__image">
-                        <ImageComponent
-                            url={slide?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                            alt=""/>
+        <div className="photoalbums-block">
+            <h3 className="photoalbums-block__title" >
+                <Link to={`/${langPrefix}/photoalbums`}>{data?.meta?.title}</Link>
+            </h3>
+            <Slider {...settings} className="photoalbums-block__slider">
+                {data?.data?.map((slide) => (
+                    <div key={slide?.id} className="photoalbums-block__slider__item">
+                        <img className="photoalbums-block__slider__image"
+                             src={slide?.field_image?.image_style_uri?.['small_large_photoalbums_134_172_']}
+                             alt={slide?.field_image?.meta?.alt}/>
+                        <h3 className="photoalbums-block__slider__title">
+                            <Link
+                                to={`/${langPrefix}${slide?.attributes?.path?.alias}`}>{slide?.attributes?.title}</Link>
+                        </h3>
                     </div>
-                    <h3 className="albums-slider__title">
-                        <a href={`/${lanPrefix}${slide?.attributes?.path?.alias}`}>{slide.attributes.title}</a></h3>
-                </div>
-            ))}
-        </Slider>
+                ))}
+            </Slider>
+        </div>
     );
 }
 
-PhotoAlbumSlider.propTypes = {
-    data: PropTypes.oneOfType([
-        PropTypes.object.isRequired,
-        PropTypes.array.isRequired,
-    ]),
-};
-
-export default PhotoAlbumSlider;

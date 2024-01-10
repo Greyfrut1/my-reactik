@@ -1,3 +1,5 @@
+@import 'variables';
+
 @mixin cuttext{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -12,4 +14,29 @@
   text-transform: $tt;
   font-weight:$fw;
   color:$cl;
+}
+
+@mixin home-bottom-block{
+  width: 350px;
+  &__title{
+    text-align: center;
+    margin-bottom: 15px;
+    a{
+      @include fontz(20px, 23px, 0, capitalize, 600, $darkRed);
+    }
+  }
+  .button{
+    @include fontz(20px, 23px, 0, none, 600, white);
+    width: fit-content;
+    border-radius: 4px;
+    padding: 15px 25px;
+    background: $darkRed;
+    border: 1px solid $darkRed;
+    transition: .2s ease-in;
+    margin: 10px auto;
+    &:hover{
+      background-color: transparent;
+      color: black;
+    }
+  }
 }

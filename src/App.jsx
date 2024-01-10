@@ -3,9 +3,7 @@ import { BrowserRouter, Route, Routes ,Navigate} from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import './App.scss';
 
-const Home = lazy(() => import('./pages/Homepage/Home'));
-const InfrastructurePage = lazy(() => import('./pages/Infrastructure/InfrastructurePage.jsx'));
-
+const Home = lazy(() => import('./pages/Homepage/HomePage.jsx'));
 export default function App() {
     return (
         <BrowserRouter>
@@ -14,57 +12,12 @@ export default function App() {
                 <Routes>
                     <Route path="/:lang" element={<Home />} />
                     <Route path="/" element={<Navigate to="/uk" />} />
-                    <Route path="/:lang/infrastructure/:alias" element={<InfrastructurePage/>}/>
                 </Routes>
             </Suspense>
             </Layout>
         </BrowserRouter>
     );
 }
-
-
-
-
-// import {Route, Routes, Navigate, useLocation, useNavigate} from "react-router-dom";
-// import { useState } from 'react'
-// import Home from "./pages/Homepage/Homepage.jsx";
-// import './App.scss';
-// import News from "./pages/News/News.jsx";
-// import NewsFullMode from "./pages/News/NewsFullMode.jsx";
-// import Events from "./pages/Event/Events.jsx";
-// import EventsFullMode from "./pages/Event/EventsFullMode.jsx";
-// import Photoalbums from "./views/Photoalbums/PhotoalbumsView.jsx";
-// import PhotoAlbumsPage from "./pages/Photoalbums/PhotoAlbumsPage.jsx";
-// import CatalogEducationalPrograms from "./pages/EducationalProgram/CatalogEducationalPrograms.jsx";
-// import Faculties from "./pages/Faculties/Faculties.jsx";
-// import EducationalProgramsFullMode from "./pages/EducationalProgram/EducationalProgramsFullMode.jsx";
-// import useLanguagePrefix from "./services/languagePrefix.jsx";
-
-
-
-// import FacultyFullMode from "./pages/Faculties/FacultyFullMode.jsx";
-// import Subscriber from "./blocks/Subscriber/Subscriber.jsx";
-// import Unsubscribe from "./blocks/Subscriber/Unsubscribe.jsx";
-// import {ToastContainer} from "react-toastify";
-// import Search from "./pages/Search.jsx";
-// import DepartmentFullMode from "./pages/DepartmentFullMode.jsx";
-// import StaffPage from "./pages/Staff/StaffPage.jsx";
-// import Rectorate from "./pages/Staff/Rectorate.jsx";
-// import AcademicBoard from "./pages/Staff/AcademicBoard.jsx";
-// import GeneralInformation from "./pages/GeneralInformation.jsx";
-// import Museums from "./pages/Museum/Museums.jsx";
-// import Units from "./pages/Branches/Units.jsx";
-// import Branches from "./pages/Branches/Branches.jsx";
-// import BranchesFullMode from "./pages/Branches/BranchesFullMode.jsx";
-// import InfrastructureView from "./views/InfrastructureView/InfrastructureView.jsx";
-// import EnsemblesView from "./pages/Ensembles/EnsemblesPage.jsx";
-// import EnsemblesFullMode from "./pages/Ensembles/EnsemblesFullMode.jsx";
-// import PublicInformation from "./pages/PublicInformation.jsx";
-// import AccreditationPage from "./pages/EducationalProgram/AccreditationPage.jsx";
-// import UkraineAboveAll from "./pages/UkraineAboveAll/UkraineAboveAll.jsx";
-// import UniversityRating from "./pages/UniversityRating/UniversityRating.jsx";
-// import NotFound from "./pages/NotFound/NotFound.jsx";
-//
 
 
 //     const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");

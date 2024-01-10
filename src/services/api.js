@@ -86,16 +86,16 @@ export const vnuApi = createApi({
             },
         }),
         PhotoAlbums: builder.query({
-            query: (args) => {
-                const { endpoint } = args;
-                return `jsonapi/views/photoalbums_/${endpoint}`;
-            },
+            query: () => 'jsonapi/views/photoalbums_/block_1?include=field_image&jsonapi_include=1',
         }),
         PhotoAlbumsPage: builder.query({
             query: (args) => {
                 const { page } = args;
                 return `photoalbums/${page}?_format=json`;
             },
+        }),
+        FacebookBlock: builder.query({
+            query: () => 'jsonapi/block_content/block_link/9997e437-90d7-49d1-98c6-d8c11bb4db04',
         }),
         Paragraph: builder.query({
             query: (args) => {
@@ -135,6 +135,7 @@ export const {
     useInfrastructureQuery,
     usePhotoAlbumsQuery,
     usePhotoAlbumsPageQuery,
+    useFacebookBlockQuery,
     useParagraphQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,

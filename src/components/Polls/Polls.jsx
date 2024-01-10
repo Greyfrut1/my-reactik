@@ -4,6 +4,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import {usePollFormSubmitMutation} from "../../services/api.js";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import './Polls.scss';
 
 
 // Functional component for rendering a poll block

@@ -1,0 +1,17 @@
+@import '../../helpers';
+
+.facebook-block {
+  @include home-bottom-block;
+}
+
+@media (max-width: $xl) {
+  .facebook-block {
+    & > div {
+      display: flex;
+
+      .fb-page {
+        margin: 0 auto;
+      }
+    }
+  }
+}
