@@ -1,39 +1,31 @@
-import React from "react";
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import { OpenInNew } from "@mui/icons-material";
-import Metatags from "../../components/Common/MetaTags.jsx";
-import { useLocation } from 'react-router-dom';
+import MetaTags from "../../components/Common/MetaTags.jsx";
+import {Link, useLocation} from 'react-router-dom';
 import './UkraineAboveAll.scss';
+import {useUkraineAboveAllViewQuery} from "../../services/api.js";
 
-// Кореневий блок компоненту
-const BLOCK_NAME = "ukraine-above-all";
 
-function UkraineAboveAll() {
-    const { data: data } = useDrupalData(`jsonapi/views/ukraine_above_all/page_1`);
+export default function UkraineAboveAll() {
+    const { data: data } = useUkraineAboveAllViewQuery();
     const location = useLocation();
     const currentPath = location.pathname;
 
     return (
         <>
-            <Metatags type={"view"} data={data} viewUrl={currentPath} />
-            <div className={`${BLOCK_NAME} container`}>
+            <MetaTags type={"view"} data={data} viewUrl={currentPath} />
+            <div className='ukraine-above-all container'>
                 {data?.data?.map((item) => (
-                    <div key={item?.id} className={`${BLOCK_NAME}__item`}>
-                        <a href={item?.attributes?.path?.alias} className={`${BLOCK_NAME}__link`}>
-                            <OpenInNew className={`${BLOCK_NAME}__icon`}/>
-                            <ImageComponent
-                                alt={item?.attributes?.title}
-                                url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                imagestyle="news_440x232"
-                            />
-                            <div className={`${BLOCK_NAME}__title`}>{item?.attributes?.title}</div>
-                        </a>
+                    <div key={item?.id} className='ukraine-above-all__item'>
+                        <Link to={item?.path?.alias} className='ukraine-above-all__link'>
+                            <OpenInNew className={'ukraine-above-all__icon'}/>
+                            <img className="albums-card__img"
+                                   src={item?.field_image?.image_style_uri?.['news_440x232']}
+                                   alt={item?.field_image?.meta?.alt}/>
+                            <div className='ukraine-above-all__title'>{item?.title}</div>
+                        </Link>
                     </div>
                 ))}
             </div>
         </>
     );
 }
-
-export default UkraineAboveAll;

@@ -1,17 +1,18 @@
-import useDrupalData from "../services/api.jsx";
-import Metatags from "../components/Common/MetaTags.jsx";
+import MetaTags from "../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
+import {usePublicInfoQuery, usePublicInfoViewQuery} from "../services/api.js";
 
-function PublicInformation(){
-    const {data: publicInformation} = useDrupalData(`public-information`)
-    const {data: publicInformationTitle} = useDrupalData(`jsonapi/views/academic_publications/block_1`)
+export default function PublicInformationPage(){
+    const { data:  publicInformation } = usePublicInfoQuery;
+    const { data:  publicInformationTitle } = usePublicInfoViewQuery({ endpoint: 'block_1'});
+
     const location = useLocation();
     const currentPath = location.pathname;
-    console.log(publicInformationTitle)
+
     return(
         <div className="public-information information-view container">
             {publicInformationTitle && currentPath && (
-                <Metatags type={"view"} data={publicInformationTitle} viewUrl={currentPath}/>
+                <MetaTags type={"view"} data={publicInformationTitle} viewUrl={currentPath}/>
             )}
             {publicInformation?.rows?.map((item, index) => (
                     <div className="information-view__items" key={index}>
@@ -24,5 +25,3 @@ function PublicInformation(){
         </div>
     );
 }
-
-export default PublicInformation

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
-function MainDusciplines({endpoint}) {
+function MainDisciplines({endpoint}) {
     const {data: generalData} = useDrupalData(`/general_training_cycle/${endpoint}`);
     const {data: certificationData} = useDrupalData(`/certification/${endpoint}`);
     const {data: professionalData} = useDrupalData(`/professional_training_cycle/${endpoint}`);
@@ -53,8 +53,8 @@ function MainDusciplines({endpoint}) {
     </>
 }
 
-MainDusciplines.propTypes = {
+MainDisciplines.propTypes = {
     endpoint: PropTypes.string.isRequired
 };
 
-export default MainDusciplines
+export default MainDisciplines

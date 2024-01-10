@@ -124,10 +124,31 @@ export const vnuApi = createApi({
                 return `general-information/${page}?_format=json`;
             },
         }),
+        PublicInfo: builder.query({
+            query: () => 'public-information',
+        }),
+        Accreditation: builder.query({
+            query: () => 'accreditation',
+        }),
+        PublicInfoView: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `jsonapi/views/academic_publications/${endpoint}`;
+            },
+        }),
         Node: builder.query({
             query: (args) => {
                 const { nid } = args;
                 return `node/${nid}?_format=json`;
+            },
+        }),
+        UkraineAboveAllView: builder.query({
+            query: () => 'jsonapi/views/ukraine_above_all/page_1?include=field_image&jsonapi_include=1',
+        }),
+        DepartmentPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `department/${page}?_format=json`;
             },
         }),
         Paragraph: builder.query({
@@ -185,8 +206,13 @@ export const {
     useBranchesQuery,
     useBranchesPageQuery,
     useGeneralInfoPageQuery,
-    useParagraphQuery,
+    usePublicInfoQuery,
+    useAccreditationQuery,
+    usePublicInfoViewQuery,
     useNodeQuery,
+    useUkraineAboveAllViewQuery,
+    useDepartmentPageQuery,
+    useParagraphQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,
     useMediaQuery,

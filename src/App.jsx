@@ -20,12 +20,14 @@ const Units = lazy(() => import('./pages/UnitsPage.jsx'));
 const Branches = lazy(() => import('./pages/AllBranchesPage.jsx'));
 const BranchesPage = lazy(() => import('./pages/BranchesPage/BranchesPage.jsx'));
 
-const GeneralInformationPage = lazy(() => import('./pages/GeneralInformationPage.jsx'));
+const GeneralInfoPage = lazy(() => import('./pages/GeneralInformationPage.jsx'));
+const PublicInfoPage = lazy(() => import('./pages/PublicInformationPage.jsx'));
 
-const DepartmentPage = lazy(() => import('./pages/DepartmentFullMode.jsx'));
+const DepartmentPage = lazy(() => import('./pages/DepartmentPage.jsx'));
 const Faculties = lazy(() => import('./pages/Faculties/Faculties.jsx'));
 const FacultyPage = lazy(() => import('./pages/Faculties/FacultyFullMode.jsx'));
 
+const UkraineAboveAllPage = lazy(() => import('./pages/UkraineAboveAll/UkraineAboveAll.jsx'));
 
 export default function App() {
     return (
@@ -52,11 +54,14 @@ export default function App() {
                     <Route path="/:lang/branches-and-representative-offices" element={<Branches/>}/>
                     <Route path="/:lang/branches-and-representative-offices/:alias" element={<BranchesPage/>}/>
 
-                    <Route path="/:lang/general-information/:alias" element={<GeneralInformationPage/>}/>
+                    <Route path="/:lang/general-information/:alias" element={<GeneralInfoPage/>}/>
+                    <Route path="/:lang/public-information" element={<PublicInfoPage/>}/>
 
                     <Route path="/:lang/department/:alias" element={<DepartmentPage/>}/>
                     <Route path="/:lang/faculties" element={<Faculties/>}/>
                     <Route path="/:lang/faculty/:alias" element={<FacultyPage/>}/>
+
+                    <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAllPage/>}/>
 
                 </Routes>
             </Suspense>

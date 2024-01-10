@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import useDrupalData from "../../services/api.jsx";
 import EntityTitle from "../../components/EntityTitle.jsx";
 import ElectiveDisciplines from "../../blocks/Disciplines/ElectiveDisciplines.jsx";
-import MainDusciplines from "../../blocks/Disciplines/MainDusciplines.jsx";
+import MainDisciplines from "../../blocks/Disciplines/MainDisciplines.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import Metatags from "../../components/Common/MetaTags.jsx";
 
@@ -19,7 +19,7 @@ function EducationalProgramsFullMode() {
                 <div>{(langPrefix === "en" && "Main disciplines") || ("Перелік нормованих дисциплін")}</div>
                 <table>
                     <tbody>
-                    <MainDusciplines endpoint={`${educationalProgramData?.nid?.[0].value}`}/>
+                    <MainDisciplines endpoint={`${educationalProgramData?.nid?.[0].value}`}/>
                     </tbody>
                 </table>
 

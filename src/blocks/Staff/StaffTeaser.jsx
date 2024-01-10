@@ -1,9 +1,10 @@
-import useDrupalData from "../../services/api.jsx";
+import {useNodeQuery} from "../../services/api.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
 
 function StaffTeaser({staff_id}){
-    const {data: staffCard} = useDrupalData(`node/${staff_id}?_format=json`)
+
+    const { data:  staffCard } =  useNodeQuery({ nid: `${staff_id}`});
     return(
         <>
             <div>{staffCard?.title?.[0]?.value}</div>
@@ -27,4 +28,4 @@ function StaffTeaser({staff_id}){
 StaffTeaser.propTypes = {
     staff_id: PropTypes.number.isRequired,
 };
-export default StaffTeaser
+export default StaffTeaser;
