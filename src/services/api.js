@@ -151,6 +151,15 @@ export const vnuApi = createApi({
                 return `department/${page}?_format=json`;
             },
         }),
+        FacultiesView: builder.query({
+            query: () => 'jsonapi/views/faculties/page_1?include=field_image&jsonapi_include=1',
+        }),
+        FacultyPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `faculty/${page}?_format=json`;
+            },
+        }),
         Paragraph: builder.query({
             query: (args) => {
                 const { targetId } = args;
@@ -209,6 +218,7 @@ export const {
     usePublicInfoQuery,
     useAccreditationQuery,
     usePublicInfoViewQuery,
+    useFacultiesViewQuery,
     useNodeQuery,
     useUkraineAboveAllViewQuery,
     useDepartmentPageQuery,

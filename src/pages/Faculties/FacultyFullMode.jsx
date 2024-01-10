@@ -6,14 +6,14 @@ import StaffTeaser from "../../blocks/Staff/StaffTeaser.jsx";
 import Departments from "../../components/Departments.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import React from "react";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 
 function FacultyFullMode(){
     const { alias } = useParams();
     const {data: faculty} = useDrupalData(`faculty/${alias}?_format=json`)
     return (
         <>
-            <Metatags type={"content"} data={faculty} />
+            <MetaTags type={"content"} data={faculty} />
             {faculty?.nid?.[0]?.value &&(
                 <Departments id_deparments={faculty?.nid?.[0]?.value} />
             )}

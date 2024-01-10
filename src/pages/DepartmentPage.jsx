@@ -6,7 +6,7 @@ import MetaTags from "../components/Common/MetaTags.jsx";
 import ContactInformation from "../components/Common/ContactInformation.jsx";
 import React from "react";
 
-function DepartmentPage(){
+export default function DepartmentPage(){
     const { alias } = useParams();
     const { data:  department } =  useDepartmentPageQuery({ page: `${alias}`});
     return(
@@ -55,4 +55,3 @@ function DepartmentPage(){
         </>
     );
 }
-export default DepartmentPage
