@@ -1,9 +1,9 @@
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
-import React,{useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 
 function Menu() {
-    const { data: items } = useDrupalData(`/entity/menu/main-header-menu/tree`);
+    const {data: items} = useDrupalData(`/entity/menu/main-header-menu/tree`);
     const [showLogoBlock, setShowLogoBlock] = useState(true);
     const {
         data: headerLogoBlockData,
@@ -31,18 +31,19 @@ function Menu() {
         setParentSecondHovered(null)
         setTimeout(() => {
             checkOverflow()
-            if(mainMenuElement.scrollTop + mainMenuElement.clientHeight == mainMenuElement.scrollHeight){
+            if (mainMenuElement.scrollTop + mainMenuElement.clientHeight >= mainMenuElement.scrollHeight - 5) {
                 setScroll('Top')
             } else {
                 setScroll('Bottom')
             }
         }, 100);
     };
-    const handleMouseEnterSecondLevel = (item) =>{
+    const handleMouseEnterSecondLevel = (item) => {
         const mainMenuElement = document.getElementById('main-menu');
         setParentSecondHovered(item)
+
         setTimeout(() => {
-            if(mainMenuElement.scrollTop + mainMenuElement.clientHeight == mainMenuElement.scrollHeight){
+            if (mainMenuElement.scrollTop + mainMenuElement.clientHeight >= mainMenuElement.scrollHeight - 5) {
                 setScroll('Top')
             } else {
                 setScroll('Bottom')
@@ -71,13 +72,11 @@ function Menu() {
     };
     const goToBottom = () => {
         const menu = document.querySelector('.main-menu');
-        if(scroll == 'Bottom'){
+        if (scroll == 'Bottom') {
             menu.scrollTo(0, menu.scrollHeight);
-        } else if (scroll == 'Top'){
+        } else if (scroll == 'Top') {
             menu.scrollTo(0, 0);
         }
-
-
     };
 
     useEffect(() => {
@@ -91,7 +90,7 @@ function Menu() {
             const isMainMenuOverflowed = mainMenuElement.scrollHeight > mainMenuElement.clientHeight;
             const isSecondLevelOverflowed = secondLevelElement ? secondLevelElement.scrollHeight > secondLevelElement.clientHeight : false;
             setTimeout(() => {
-                if(mainMenuElement.scrollTop + mainMenuElement.clientHeight == mainMenuElement.scrollHeight){
+                if (mainMenuElement.scrollTop + mainMenuElement.clientHeight >= mainMenuElement.scrollHeight - 5) {
                     setScroll('Top')
                 } else {
                     setScroll('Bottom')
@@ -137,11 +136,13 @@ function Menu() {
                                 )}
                             </li>
                             {(item?.has_children) && (
-                                <div id={'second-level'} className={"second-level"} style={{display: (item == isParentMenuHovered) ? 'block' : 'none'}}>
+                                <div id={'second-level'} className={"second-level"}
+                                     style={{display: (item == isParentMenuHovered) ? 'block' : 'none'}}>
                                     {item?.subtree?.map((item2) => (
                                         <ul className={`second-level-item ${
                                             activeElements.includes(item2) ? "active" : ""
-                                        }`} key={item2?.link?.meta_data?.entity_id} onMouseEnter={() => handleMouseEnterSecondLevel(item2)}>
+                                        }`} key={item2?.link?.meta_data?.entity_id}
+                                            onMouseEnter={() => handleMouseEnterSecondLevel(item2)}>
                                             {item2?.link?.url ? (
                                                 item2?.link?.options ?
                                                     <li><a target={item2?.link?.options?.attributes?.target}
@@ -172,7 +173,6 @@ function Menu() {
                                                             </svg>
                                                         )}
                                                     </li>
-
                                             ) : (
                                                 <li><span className={"second-level-link"}>{item2?.link?.title}</span>
                                                     {item2?.has_children && (
@@ -187,7 +187,8 @@ function Menu() {
                                                     )}</li>
                                             )}
                                             {item2?.has_children && (
-                                                <ul className={"third-level"} style={{display: (item2 == isParentSecondHovered) ? 'block' : 'none'}}>
+                                                <ul className={`third-level`}
+                                                    style={{display: (item2 == isParentSecondHovered) ? 'block' : 'none'}}>
                                                     {item2?.subtree?.map((item3) => (
                                                         <li className={"third-level-item"}
                                                             key={item3?.link?.meta_data?.entity_id}>
@@ -199,7 +200,6 @@ function Menu() {
                                                                     :
                                                                     <a className={"third-level-link"}
                                                                        href={item3?.link?.url}>{item3?.link?.title}</a>
-
                                                             ) : (
                                                                 <span
                                                                     className={"third-level-link"}>{item3?.link?.title}</span>
@@ -218,10 +218,11 @@ function Menu() {
                 {isOverflowed && <div
                     className={'scroll-block'}
                     onClick={goToBottom}
-                    style={{ cursor: 'pointer'}}
+                    style={{cursor: 'pointer'}}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                         stroke="currentColor" className="w-6 h-6" style={{transform: (scroll == 'Top') ? 'rotateZ(-180deg)' : 'none'}}>
+                         stroke="currentColor" className="w-6 h-6"
+                         style={{transform: (scroll == 'Top') ? 'rotateZ(-180deg)' : 'none'}}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/>
                     </svg>
                 </div>}
@@ -235,7 +236,9 @@ function Menu() {
                         <div
                             className={'main-menu__logo-text'}>
                             <span>{headerLogoBlockData?.data?.attributes?.field_main_text}</span>{headerLogoBlockData?.data?.attributes?.field_second_text && <>
-                            <br/><span className={'main-menu__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span></>}</div>
+                            <br/><span
+                            className={'main-menu__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span></>}
+                        </div>
 
                     </div>
                 )}
