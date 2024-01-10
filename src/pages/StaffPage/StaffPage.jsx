@@ -1,56 +1,56 @@
-import {useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
+import {Link, useParams} from "react-router-dom";
 import Orcid from "../../assets/orcid.png";
 import Scholar from "../../assets/scholar.png";
 import Scopus from "../../assets/scopus.png";
 import Wiki from "../../assets/wikisnu-new.png";
 import React from "react";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 import './StaffPage.scss';
+import {useStaffPageQuery} from "../../services/api.js";
 
-function StaffPage(){
+export default function StaffPage(){
     const { alias } = useParams();
-    const {data: staff} = useDrupalData(`staff/${alias}?_format=json`)
+    const { data:  staff } = useStaffPageQuery({ page: `${alias}`});
     return (
         <>
-            <Metatags  type={"content"} data={staff} />
+            <MetaTags  type={"content"} data={staff} />
             <div className={"staff container"}>
                 {staff?.field_image?.[0]?.target_id && (
-                    <ImageComponent imagestyle={"thumbnail"} alt={""} url={staff?.field_image?.[0]?.target_id}/>
+                    <img src={staff?.field_image?.[0]?.url}
+                         alt={staff?.field_image?.[0]?.alt}/>
                 )}
                 <h2 className={"staff-title"}>{staff?.title?.[0]?.value}</h2>
 
-                <div className={"staff-info flex flex-row"}>
-                    <div className={"staff-info__general flex flex-col w-4/5"}>
+                <div className={"staff-info"}>
+                <div className={"staff-info__general"}>
                         <p className={"staff-info__general-position"}>{staff?.field_position_and_rank?.[0]?.value}</p>
                         <ContactInformation data={staff} type={"node"}/>
                     </div>
-                    <div className={"staff-info__sources flex flex-col w-1/5"}>
+                    <div className={"staff-info__sources"}>
                         <div className="staff-info__sources-link">
                             <img src={Wiki} alt={"wiki"}/>
-                            <a href={staff?.field_wiki?.[0]?.uri}>
+                            <Link to={staff?.field_wiki?.[0]?.uri}>
                                 Wiki page
-                            </a>
+                            </Link>
                         </div>
                         <div className="staff-info__sources-link">
                             <img src={Orcid} alt={"orcid"}/>
-                            <a href={staff?.field_orcid_id?.[0]?.uri}>
+                            <Link to={staff?.field_orcid_id?.[0]?.uri}>
                                 Orcid id
-                            </a>
+                            </Link>
                         </div>
                         <div className="staff-info__sources-link">
                             <img src={Scopus} alt={"scopus"}/>
-                            <a href={staff?.field_scopus?.[0]?.uri}>
+                            <Link to={staff?.field_scopus?.[0]?.uri}>
                                 Scopus
-                            </a>
+                            </Link>
                         </div>
                         <div className="staff-info__sources-link">
                             <img src={Scholar} alt={"scholar"}/>
-                            <a href={staff?.field_google_scholar?.[0]?.uri}>
+                            <Link to={staff?.field_google_scholar?.[0]?.uri}>
                                 Google Scholar
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -58,9 +58,9 @@ function StaffPage(){
                 <div className={"staff-wikipedia"}>
                     {staff?.field_links?.map((item, index) => (
                         <div className={"staff-wikipedia__block"} key={index}>
-                            <a className="staff-wikipedia__block-link" href={item.uri}>
+                            <Link className="staff-wikipedia__block-link" to={item.uri}>
                                 {item.title}
-                            </a>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -68,5 +68,3 @@ function StaffPage(){
         </>
     );
 }
-
-export default StaffPage

@@ -1,5 +1,15 @@
 @import '../../helpers';
 //Lightbox stylization.
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:16px;
+  &__img{
+    object-fit: cover;
+  }
+}
+
 .lightbox {
   position: fixed;
   top: 0;

@@ -1,5 +1,5 @@
 // Import necessary components for the NewsFullMode page.
-import DynamicDataFullMode from "../../views/DynamicDataFullMode.jsx";
+import DynamicDataFullMode from "../../views/DynamicData/DynamicDataFullMode.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import React from "react";
 import ShareButtonComponent from "../../components/ShareButtonComponent.jsx";

@@ -1,25 +1,24 @@
 import {useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import Paragraph from "../../components/Paragraph/Paragraph.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 import LightBox from "../../components/Image/LightBox.jsx";
-import React from "react";
+import {useBranchesPageQuery, useNodeQuery} from "../../services/api.js";
+import './BranchesPage.scss';
 
-function BranchesFullMode(){
+function BranchesPage(){
     const { alias } = useParams();
-    const {data: branchesPage} = useDrupalData(`branches-and-representative-offices/${alias}?_format=json`);
+    const { data:  branchesPage } =  useBranchesPageQuery({ page: `${alias}`});
     const node_id = branchesPage?.field_reference_to_content?.[0]?.target_id;
-    const {data: photoalbumsNode} = useDrupalData(`node/${node_id}?_format=json`);
+    const { data:  photoAlbumsNode } =  useNodeQuery({ nid: `${node_id}`});
     return (
         <>
-            <Metatags type={"content"} data={branchesPage}/>
+            <MetaTags type={"content"} data={branchesPage}/>
             <div className={"branches container"}>
-                <div className={"branches-info flex flex-row"}>
+                <div className={"branches-info"}>
                     {branchesPage?.field_image?.[0]?.target_id && (
-                        <ImageComponent imagestyle={"dynamicdata_243x231"} alt={""}
-                                        url={branchesPage?.field_image?.[0]?.target_id}/>
+                        <img className="branches-info__img" src={branchesPage?.field_image?.[0]?.url}
+                             alt={branchesPage?.field_image?.[0]?.alt}/>
                     )}
                     <div className={"branches-info__contact"}>
                         <h2 className={"branches-info__contact-title"}>{branchesPage?.title?.[0]?.value}</h2>
@@ -29,7 +28,7 @@ function BranchesFullMode(){
                 {branchesPage?.field_reference_to_content?.[0]?.target_id && (
                     <div className={"branches-child-node"}>
                         {branchesPage?.field_reference_to_content?.map(() => (
-                            <LightBox data={photoalbumsNode}/>
+                            <LightBox data={photoAlbumsNode}/>
                         ))}
                     </div>
                 )}
@@ -48,4 +47,4 @@ function BranchesFullMode(){
     );
 }
 
-export default BranchesFullMode
+export default BranchesPage

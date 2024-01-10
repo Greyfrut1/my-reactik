@@ -1,27 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 @import '_helpers.scss';
 
 body{
-  font-family: Roboto, sans-serif;
+  font-family: $generalFont;
   margin:0;
 }
+
 ul{
   li{
     list-style: none;
   }
 }
+
 a{
   text-decoration:none;
   color:black;
 }
+
 .field-description{
   p{
     margin: 1em 0;
   }
 }
+
 iframe{
   border:none;
 }
+
+.container{
+  max-width: 1440px;
+  width:100%;
+  margin:0 auto;
+  min-height: 100vh;
+  padding:0 15px;
+}
+
 .block-title{
   text-align: center;
   margin: 1.2em 0;

@@ -28,8 +28,8 @@ export default {
         },
 
         container: {
-            center: true,  // Center the container content.
-            padding: '47px', // Set horizontal padding.
+            center: true,
+            padding: '47px',
         },
     },
     plugins: [],

@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
-// import Pager from "../Pager.jsx";
 import {useWindowSize} from "react-use";
-import {usePhotoAlbumsQuery} from "../../services/api.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
-import './PhotoalbumsView.scss';
+import './PhotoAlbumsView.scss';
+import {usePhotoAlbumsQuery} from "../../services/api.js";
 
 function PhotoAlbumsView() {
     const {data: albumsData} = usePhotoAlbumsQuery();
@@ -25,13 +24,13 @@ function PhotoAlbumsView() {
     const currentPath = location.pathname;
     return (
         <>
-            <Metatags type={"view"} data={apiUrl} viewUrl={currentPath}/>
+            <MetaTags type={"view"} data={albumsData} viewUrl={currentPath}/>
             <div className={"albums container"}>
-                <div className={"albums-view flex flex-wrap xl:justify-start justify-center"}>
+                <div className={"albums-view"}>
                     {albumsData?.data?.map((item, index) => (
                         <div className={"albums-card"} key={index}>
                             <a className={"albums-card__title"}
-                               href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
+                               href={`/${languagePrefix}${item?.path?.alias}`}>{item?.title}</a>
                             <img className="albums-card__img"
                                  src={item?.field_image?.image_style_uri?.['small_large_photoalbums_134_172_']}
                                  alt={item?.field_image?.meta?.alt}/>

@@ -1,15 +1,15 @@
 // Import necessary dependencies and components for the DynamicDataBlocks component.
 import {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import useDrupalData from "../services/api.jsx";
-import CalendarFilter from "./Calendar/CalendarFilter.jsx";
-import TypeFilterButtons from "./TypeFilterButtons/TypeFilterButtons.jsx";
+import useDrupalData from "../../services/api.js";
+import CalendarFilter from "../Calendar/CalendarFilter.jsx";
+import TypeFilterButtons from "../TypeFilterButtons/TypeFilterButtons.jsx";
 import queryString from 'query-string';
-import Pager from "./Pager.jsx";
+import Pager from "../Pager.jsx";
 import PropTypes from "prop-types";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
-import Metatags from "../components/Common/MetaTags.jsx";
-import ImageComponent from "../components/Image/ImageComponent.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import Metatags from "../../components/Common/MetaTags.jsx";
+import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import {format} from "date-fns";
 import {uk} from "date-fns/locale";
 import './DynamicDataBlocks.scss';

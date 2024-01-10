@@ -1,23 +1,17 @@
 @import '../../helpers';
 
-//Stylization page with museum, branches and units.
 .branches{
   padding:50px 0;
-  //Views.
-  &-item{
-    img{
-      width:200px;
-      height:200px;
-      max-height:100%;
-    }
-    &__title{
-      @include fontz(18px,25px,0.02em,capitalize,500,black);
-      padding:10px 0;
-    }
-  }
-
-  //Node.
   &-info{
+    display: flex;
+    flex-direction: row;
+    &__img{
+      max-width:243px;
+      height:auto;
+      img{
+        width:100%;
+      }
+    }
     &__contact{
       padding:0 15px;
       &-title{

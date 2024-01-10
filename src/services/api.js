@@ -70,9 +70,6 @@ export const vnuApi = createApi({
         EventsSlider: builder.query({
             query: () => 'jsonapi/views/events_coming_soon/block_1?include=field_image&jsonapi_include=1',
         }),
-        InfrastructureBlock: builder.query({
-            query: () => 'jsonapi/views/infrastructure/block_1',
-        }),
         InfrastructurePage: builder.query({
             query: (args) => {
                 const { page } = args;
@@ -97,6 +94,42 @@ export const vnuApi = createApi({
         FacebookBlock: builder.query({
             query: () => 'jsonapi/block_content/block_link/9997e437-90d7-49d1-98c6-d8c11bb4db04',
         }),
+        Staff: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `jsonapi/views/administrative_units/${endpoint}?include=field_image&jsonapi_include=1`;
+            },
+        }),
+        StaffPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `staff/${page}?_format=json`;
+            },
+        }),
+        Branches: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `/jsonapi/views/branches/${endpoint}?include=field_image&jsonapi_include=1`;
+            },
+        }),
+        BranchesPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `branches-and-representative-offices/${page}?_format=json`;
+            },
+        }),
+        GeneralInfoPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `general-information/${page}?_format=json`;
+            },
+        }),
+        Node: builder.query({
+            query: (args) => {
+                const { nid } = args;
+                return `node/${nid}?_format=json`;
+            },
+        }),
         Paragraph: builder.query({
             query: (args) => {
                 const { targetId } = args;
@@ -108,6 +141,18 @@ export const vnuApi = createApi({
         }),
         SiteInfo: builder.query({
             query: () => 'site/info?_format=json',
+        }),
+        Image: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `entity/file/${endpoint}`;
+            },
+        }),
+        Media: builder.query({
+            query: (args) => {
+                const { endpoint } = args;
+                return `/media/${endpoint}/edit?_format=json`;
+            },
         }),
     }),
 });
@@ -130,13 +175,20 @@ export const {
     useLastNewsSliderQuery,
     useNewsPageQuery,
     useEventsSliderQuery,
-    useInfrastructureBlockQuery,
     useInfrastructurePageQuery,
     useInfrastructureQuery,
     usePhotoAlbumsQuery,
     usePhotoAlbumsPageQuery,
     useFacebookBlockQuery,
+    useStaffQuery,
+    useStaffPageQuery,
+    useBranchesQuery,
+    useBranchesPageQuery,
+    useGeneralInfoPageQuery,
     useParagraphQuery,
+    useNodeQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,
+    useMediaQuery,
+    useImageQuery,
 } = vnuApi;

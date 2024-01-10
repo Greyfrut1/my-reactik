@@ -1,0 +1,37 @@
+@import '../../helpers';
+
+.branches{
+  padding:50px 0;
+  &-view{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+  }
+  &-item{
+    display: flex;
+    flex-direction:column;
+    img{
+      width:200px;
+      height:200px;
+      max-height:100%;
+    }
+    &__title{
+      @include fontz(18px,25px,0.02em,capitalize,500,black);
+      padding:10px 0;
+    }
+  }
+}
+@media (max-width:$md){
+  .branches{
+    &-view{
+      gap:10px;
+    }
+  }
+}
+@media (max-width:$sm){
+  .branches{
+    &-view{
+      grid-template-columns: 1fr;
+    }
+  }
+}

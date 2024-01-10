@@ -23,11 +23,10 @@ function LightBox({data}) {
     };
 
     return (
-        <div className="container">
-            {/* Render album photos using MediaComponent */}
-            <div className="album-gallery flex flex-wrap justify-center">
+        <>
+            <div className="gallery">
                 {data?.field_photos?.map((item, index) => (
-                    <div className="album-gallery__img" key={index} onClick={() => openLightbox(index)}>
+                    <div className="gallery__img" key={index} onClick={() => openLightbox(index)}>
                         {item?.target_id && (
                             <MediaComponent target_id={item.target_id}
                                             imagestyle="small_large_photoalbums_134_172_"/>
@@ -51,7 +50,7 @@ function LightBox({data}) {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 

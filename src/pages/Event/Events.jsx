@@ -1,5 +1,5 @@
 // Import necessary components for the Events page.
-import DynamicDataBlocks from "../../views/DynamicDataBlocks.jsx";
+import DynamicDataBlocks from "../../views/DynamicData/DynamicDataBlocks.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import {useWindowSize} from "react-use";
 import {useEffect, useState} from "react";

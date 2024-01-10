@@ -1,6 +1,6 @@
-import useDrupalData from "../services/api.jsx";
+import useDrupalData from "../../services/api.js";
 import PropTypes from "prop-types";
-import useLanguagePrefix from "../services/languagePrefix.jsx";
+import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import './DynamicDataFeed.scss';
 
 function DynamicDataFeed({id, type}) {
