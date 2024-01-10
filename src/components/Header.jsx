@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import useDrupalData from "../services/api.jsx";
 import ImageComponent from "./ImageComponent.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import Menu from "./Menu.jsx";
 import TopHeaderMenu from "./TopHeaderMenu.jsx";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
- // Замініть на шлях до вашого CSS файлу
+// Замініть на шлях до вашого CSS файлу
 
 function Header() {
     const location = useLocation();
@@ -39,9 +39,7 @@ function Header() {
             document.body.style.overflow = 'hidden';
         }
     };
-    const isSubpath = location.pathname ==='/uk' || location.pathname ==='/en';
-    console.log(isSubpath)
-// Додайте стиль margin-bottom залежно від поточного шляху та підшляху
+    const isSubpath = location.pathname === '/uk' || location.pathname === '/en';
 
     return (
         <>
@@ -54,12 +52,16 @@ function Header() {
                     </div>
                     <div className={'header__logo-block'}>
                         <a href={`/${langPrefix}`}>
-                            <div className={'main-menu__logo-img-block'}>{headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id &&
+                            <div
+                                className={'main-menu__logo-img-block'}>{headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id &&
                                 <ImageComponent
                                     url={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
                                     alt={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.alt}/>}</div>
                             <div
-                                className={'header__logo-text'}><span>{headerLogoBlockData?.data?.attributes?.field_main_text}</span><br/><span className={'header__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span></div>
+                                className={'header__logo-text'}>
+                                <span>{headerLogoBlockData?.data?.attributes?.field_main_text}</span><br/><span
+                                className={'header__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span>
+                            </div>
                         </a>
                     </div>
                     <div className={'header__right-block'}>

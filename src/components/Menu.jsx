@@ -14,13 +14,11 @@ function Menu() {
     const [scroll, setScroll] = useState('Bottom')
     const [isParentMenuHovered, setParentMenuHovered] = useState(null);
     const [isParentSecondHovered, setParentSecondHovered] = useState(null);
-
+    const [isOverflowed, setIsOverflowed] = useState(false);
     const checkOverflow = () => {
         const mainMenuElement = document.getElementById('main-menu');
         const secondLevelElement = document.querySelector('.second-level');
         const thirdLevelElement = document.querySelector('.third-level');
-        console.log(thirdLevelElement)
-        console.log(thirdLevelElement.clientHeight)
         const isMainMenuOverflowed = mainMenuElement.scrollHeight > mainMenuElement.clientHeight;
         const isSecondLevelOverflowed = secondLevelElement ? secondLevelElement.scrollHeight > secondLevelElement.clientHeight : false;
         const isThirdLevelOverflowed = thirdLevelElement ? thirdLevelElement.scrollHeight > thirdLevelElement.clientHeight : false;
@@ -39,7 +37,6 @@ function Menu() {
                 setScroll('Bottom')
             }
         }, 100);
-        console.log(scroll)
     };
     const handleMouseEnterSecondLevel = (item) =>{
         const mainMenuElement = document.getElementById('main-menu');
@@ -64,7 +61,6 @@ function Menu() {
     };
 
     const handleClick = (item) => {
-        console.log('test')
         setActiveElements((prevActiveElements) => {
             if (prevActiveElements.includes(item)) {
                 return prevActiveElements.filter((el) => el !== item);
@@ -73,12 +69,6 @@ function Menu() {
             }
         });
     };
-
-    const [isOverflowed, setIsOverflowed] = useState(false);
-
-    // Логіка для визначення, чи блок переповнений
-
-
     const goToBottom = () => {
         const menu = document.querySelector('.main-menu');
         if(scroll == 'Bottom'){
@@ -100,8 +90,6 @@ function Menu() {
         const handleScroll = () => {
             const isMainMenuOverflowed = mainMenuElement.scrollHeight > mainMenuElement.clientHeight;
             const isSecondLevelOverflowed = secondLevelElement ? secondLevelElement.scrollHeight > secondLevelElement.clientHeight : false;
-            console.log('scroll ' + (mainMenuElement.scrollTop + mainMenuElement.clientHeight))
-            console.log('scroll ' + mainMenuElement.scrollHeight)
             setTimeout(() => {
                 if(mainMenuElement.scrollTop + mainMenuElement.clientHeight == mainMenuElement.scrollHeight){
                     setScroll('Top')
@@ -114,8 +102,6 @@ function Menu() {
         };
         window.addEventListener('resize', handleScroll);
         mainMenuElement.addEventListener('scroll', handleScroll);
-
-        // Clean up event listeners
         return () => {
             window.removeEventListener('resize', handleScroll);
             mainMenuElement.removeEventListener('scroll', handleScroll);
