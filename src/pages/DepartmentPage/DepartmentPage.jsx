@@ -1,10 +1,10 @@
 import {Link, useParams} from "react-router-dom";
-import {useDepartmentPageQuery} from "../services/api.jsx";
-import Paragraph from "../components/Paragraph/Paragraph.jsx";
-import StaffTitlePosition from "../blocks/Staff/StaffTitlePosition.jsx";
-import MetaTags from "../components/Common/MetaTags.jsx";
-import ContactInformation from "../components/Common/ContactInformation.jsx";
-import React from "react";
+import Paragraph from "../../components/Paragraph/Paragraph.jsx";
+import StaffTitlePosition from "../../blocks/Staff/StaffTitlePosition.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
+import ContactInformation from "../../components/Common/ContactInformation.jsx";
+import {useDepartmentPageQuery} from "../../services/api.js";
+import './DepartmentPage.scss';
 
 export default function DepartmentPage(){
     const { alias } = useParams();

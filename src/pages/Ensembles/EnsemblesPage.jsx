@@ -1,25 +1,24 @@
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import {useEnsemblesViewQuery} from "../../services/api.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
+import React from "react";
 
-function EnsemblesPage(){
-    const {data: ensembles} = useDrupalData(`ensembles`)
-    const {data: ensemblesTitle} = useDrupalData(`jsonapi/views/ensembles/block_1`)
+export default function EnsemblesPage(){
+    const { data:  ensembles } = useEnsemblesViewQuery();
     const location = useLocation();
     const currentPath = location.pathname;
     return (
         <>
-            <Metatags type={"view"} data={ensemblesTitle} viewUrl={currentPath}/>
+            <MetaTags type={"view"} data={ensembles} viewUrl={currentPath}/>
             {ensembles?.rows?.map((item, index)=> (
                 <div key={index}>
-                    <div dangerouslySetInnerHTML={{__html: item?.title}} />
-                    <ImageComponent alt={item?.field_image_1} imagestyle={"280x280"} url={item?.field_image} />
-                    <div dangerouslySetInnerHTML={{__html: item?.field_description}} />
-                    <div dangerouslySetInnerHTML={{__html: item?.view_node}} />
+                    <div dangerouslySetInnerHTML={{__html: item?.title}}/>
+                    <img src={item?.field_image?.image_style_uri?.['280x280']}
+                         alt={item?.field_image?.meta?.alt}/>
+                    <div dangerouslySetInnerHTML={{__html: item?.field_description}}/>
+                    <div dangerouslySetInnerHTML={{__html: item?.view_node}}/>
                 </div>
             ))}
         </>
     )
 }
-export default EnsemblesPage

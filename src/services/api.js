@@ -145,6 +145,15 @@ export const vnuApi = createApi({
         UkraineAboveAllView: builder.query({
             query: () => 'jsonapi/views/ukraine_above_all/page_1?include=field_image&jsonapi_include=1',
         }),
+        EnsemblesPage: builder.query({
+            query: (args) => {
+                const { page } = args;
+                return `ensembles/${page}?_format=json`;
+            },
+        }),
+        EnsemblesView: builder.query({
+            query: () => 'jsonapi/views/ensembles/block_1?include=field_image&jsonapi_include=1',
+        }),
         DepartmentPage: builder.query({
             query: (args) => {
                 const { page } = args;
@@ -221,6 +230,8 @@ export const {
     useFacultiesViewQuery,
     useNodeQuery,
     useUkraineAboveAllViewQuery,
+    useEnsemblesViewQuery,
+    useEnsemblesPageQuery,
     useDepartmentPageQuery,
     useParagraphQuery,
     useMetaTagsQuery,

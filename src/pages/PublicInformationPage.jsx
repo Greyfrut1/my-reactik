@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom";
 import {usePublicInfoQuery, usePublicInfoViewQuery} from "../services/api.js";
 
 export default function PublicInformationPage(){
-    const { data:  publicInformation } = usePublicInfoQuery;
+    const { data:  publicInformation } = usePublicInfoQuery();
     const { data:  publicInformationTitle } = usePublicInfoViewQuery({ endpoint: 'block_1'});
 
     const location = useLocation();

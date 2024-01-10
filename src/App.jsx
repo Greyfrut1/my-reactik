@@ -23,7 +23,7 @@ const BranchesPage = lazy(() => import('./pages/BranchesPage/BranchesPage.jsx'))
 const GeneralInfoPage = lazy(() => import('./pages/GeneralInformationPage.jsx'));
 const PublicInfoPage = lazy(() => import('./pages/PublicInformationPage.jsx'));
 
-const DepartmentPage = lazy(() => import('./pages/DepartmentPage.jsx'));
+const DepartmentPage = lazy(() => import('./pages/DepartmentPage/DepartmentPage.jsx'));
 const Faculties = lazy(() => import('./pages/Faculties/Faculties.jsx'));
 const FacultyPage = lazy(() => import('./pages/Faculties/FacultyFullMode.jsx'));
 

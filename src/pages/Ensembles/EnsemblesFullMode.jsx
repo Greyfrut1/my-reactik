@@ -1,17 +1,16 @@
 import {useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import { useEnsemblesPageQuery} from "../../services/api.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 
-function EnsemblesFullMode(){
+export default function EnsemblesFullMode(){
     const { alias } = useParams();
-    const {data: ensemblesFullMode} = useDrupalData(`ensembles/${alias}?_format=json`)
+    const { data:  ensembles } =  useEnsemblesPageQuery({ page: `${alias}`});
     return(
         <>
-            <Metatags type={"content"} data={ensemblesFullMode} />
-            <ImageComponent alt={ensemblesFullMode?.field_image?.[0]?.alt} url={ensemblesFullMode?.field_image?.[0]?.target_id} imagestyle={"280x280"} />
-            <div dangerouslySetInnerHTML={{__html: ensemblesFullMode?.field_description?.[0]?.processed}} />
+            <MetaTags type={"content"} data={ensembles}/>
+            {/*280X280*/}
+            <img src={ensembles?.field_image?.[0]?.url} alt={ensembles?.field_image?.[0]?.alt}/>
+            <div dangerouslySetInnerHTML={{__html: ensembles?.field_description?.[0]?.processed}}/>
         </>
     );
 }
-export default EnsemblesFullMode
