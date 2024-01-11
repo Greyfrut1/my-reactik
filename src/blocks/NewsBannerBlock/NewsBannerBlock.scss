@@ -1,0 +1,14 @@
+@import '../../helpers';
+.main-news{
+  display: flex;
+  justify-content: space-between;
+  &__right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .top{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

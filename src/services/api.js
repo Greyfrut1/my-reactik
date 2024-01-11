@@ -181,7 +181,7 @@ export const vnuApi = createApi({
         NewsView: builder.query({
             query: (args) => {
                 const {endpoint} = args;
-                return `jsonapi/views/news/${endpoint}`;
+                return `jsonapi/views/news/${endpoint}?include=field_image&jsonapi_include=1`;
             },
         }),
         NewsViewFeed: builder.query({

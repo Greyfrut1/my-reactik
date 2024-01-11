@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PollsBlock from "../../blocks/Polls/PollsBlock.jsx";
-import ActualNewsBlock from "../../blocks/News/ActualNewsBlock.jsx";
+import ActualNewsBlock from "../../blocks/ActualNewsBlock/ActualNewsBlock.jsx";
 import MainSlider from "../../sliders/MainSlider/MainSlider.jsx";
 import EventsSlider from "../../sliders/EventsSlider/EventsSlider.jsx";
 import LastNewsSlider from "../../sliders/LastNewsSlider/LastNewsSlider.jsx";

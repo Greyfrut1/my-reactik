@@ -1,7 +1,79 @@
 @import '../../helpers';
 
-.header{
-  .search-input{
+.header-block {
+  background-color: #561111;
+}
+
+.header {
+  &.is-homepage {
+
+    .language-switcher {
+      & a:hover {
+        border-color: white;
+      }
+
+      .active {
+        border-bottom-color: white;
+      }
+    }
+
+    .header__burger-bar {
+      div {
+        background-color: white;
+      }
+
+      &:hover {
+        border-color: white;
+      }
+    }
+
+    .header__right-block {
+      form {
+        svg {
+          border: 2px solid transparent;
+          transition: all 0.2s;
+          color: white;
+        }
+
+        svg:hover {
+          border: 2px solid white;
+        }
+      }
+    }
+  }
+
+  .header__burger-bar {
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 10px;
+
+    div {
+      background-color: white;
+    }
+
+    &:hover {
+      border-color: white;
+    }
+  }
+
+  .main-menu__logo-img-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header__logo-text {
+    align-self: center;
+    text-transform: uppercase;
+    white-space: pre-wrap;
+    font-weight: 500;
+  }
+
+  .header__logo-second-text {
+    font-size: 10px;
+  }
+
+  .search-input {
     display: none;
   }
 
@@ -163,7 +235,6 @@
     position: absolute;
     right: 20px;
     top: 50%;
-    width:20px;
     transform: translateY(-50%);
   }
 
@@ -172,9 +243,6 @@
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
     max-width: 380px;
     position: relative;
-    a{
-      color:white;
-    }
   }
 
   .element-menu:last-child .level-one, .second-level-item:last-child li, .third-level-item:last-child {
@@ -267,6 +335,31 @@
       color: #FDBE34;
     }
   }
+}
+
+.header__burger-bar {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.header__burger-bar div {
+  background-color: black;
+  height: 3px;
+  width: 28px;
+  transition: all 0.3s;
+}
+
+.header__burger-bar.show div:first-child {
+  transform: translateY(8px);
+}
+
+.header__burger-bar.show div:last-child {
+  transform: translateY(-8px);
 }
 
 .menu-cross {
@@ -624,9 +717,6 @@
   }
 }
 
-@media (max-width: 500px) {
-  .menu-dialog{
-
 @media (max-width: 775px) {
   .header__logo-block {
     .header__logo-text {
@@ -725,5 +815,3 @@
     transform: translateX(0);
   }
 }
-
-

@@ -91,69 +91,6 @@ function DynamicDataBlocks({type, endpoint, render}) {
         <>
             <MetaTags type={"view"} data={data} viewUrl={currentPath}/>
             <div className={"container"}>
-                {type === 'news' && mainNews?.data?.length > 3 && (
-                    <div className={"main-news flex justify-between"}>
-                        <div className={"main-news__left"}>
-                            <div className={"main-news__first main-news__item"}>
-                                <div className={"cover-text"}>
-                                    {langPrefix === 'uk' && <div
-                                        className={"date_field"}>{format(new Date(mainNews?.data?.[0]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
-                                    {langPrefix === 'en' && <div
-                                        className={"date_field"}>{format(new Date(mainNews?.data?.[0]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
-                                    <div className={"teaser_title"}>{mainNews?.data?.[0]?.attributes?.title}</div>
-                                </div>
-                                <ImageComponent alt={mainNews?.data?.[0]?.relationships?.field_image?.data?.meta?.alt}
-                                                url={mainNews?.data?.[0]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                                imagestyle={"main_news_first_item"}/>
-                            </div>
-                        </div>
-                        <div className={"main-news__right flex flex-col justify-between"}>
-                            <div className={"top flex justify-between"}>
-                                <div className={"main-news__second main-news__item"}>
-                                    <div className={"cover-text"}>
-                                        {langPrefix === 'uk' && <div
-                                            className={"date_field"}>{format(new Date(mainNews?.data?.[1]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
-                                        {langPrefix === 'en' && <div
-                                            className={"date_field"}>{format(new Date(mainNews?.data?.[1]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
-                                        <div className={"teaser_title"}>{mainNews?.data?.[1]?.attributes?.title}</div>
-                                    </div>
-                                    <ImageComponent
-                                        alt={mainNews?.data?.[1]?.relationships?.field_image?.data?.meta?.alt}
-                                        url={mainNews?.data?.[1]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                        imagestyle={"main_news_second_third_items"}/>
-                                </div>
-                                <div className={"main-news__third main-news__item"}>
-                                    <div className={"cover-text"}>
-                                        {langPrefix === 'uk' && <div
-                                            className={"date_field"}>{format(new Date(mainNews?.data?.[2]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
-                                        {langPrefix === 'en' && <div
-                                            className={"date_field"}>{format(new Date(mainNews?.data?.[2]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
-                                        <div className={"teaser_title"}>{mainNews?.data?.[2]?.attributes?.title}</div>
-                                    </div>
-                                    <ImageComponent
-                                        alt={mainNews?.data?.[2]?.relationships?.field_image?.data?.meta?.alt}
-                                        url={mainNews?.data?.[2]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                        imagestyle={"main_news_second_third_items"}/>
-                                </div>
-                            </div>
-                            <div className={"bottom"}>
-                                <div className={"main-news__fourth main-news__item"}>
-                                    <div className={"cover-text"}>
-                                        {langPrefix === 'uk' && <div
-                                            className={"date_field"}>{format(new Date(mainNews?.data?.[3]?.attributes?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
-                                        {langPrefix === 'en' && <div
-                                            className={"date_field"}>{format(new Date(mainNews?.data?.[3]?.attributes?.created), 'dd MMMM HH:mm')}</div>}
-                                        <div className={"teaser_title"}>{mainNews?.data?.[3]?.attributes?.title}</div>
-                                    </div>
-                                    <ImageComponent
-                                        alt={mainNews?.data?.[3]?.relationships?.field_image?.data?.meta?.alt}
-                                        url={mainNews?.data?.[3]?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                        imagestyle={"main_news_fourth_item"}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
                 <div className={"menu-dynamic-data-blocks flex justify-between"}>
                     {type === 'news' ?
                         <h1 className={"subtitle"}>{(langPrefix === "en" && "All news") || ("Усі новини")}</h1> :

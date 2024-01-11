@@ -1,45 +1,54 @@
-import DynamicDataBlocks from "../../views/DynamicData/DynamicDataBlocks.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
-import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import {uk} from "date-fns/locale";
-import {format} from "date-fns";
+import NewsBannerBlock from "../../blocks/NewsBannerBlock/NewsBannerBlock.jsx";
+import TypeFilterButtons from "../../views/TypeFilterButtons/TypeFilterButtons.jsx";
+import CalendarFilter from "../../views/Calendar/CalendarFilter.jsx";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import queryString from "query-string";
 
-function News() {
-    const languagePrefix = useLanguagePrefix();
-    const langPrefix = useLanguagePrefix();
+export default function News() {
+    const navigate = useNavigate();
+
+    // Parse the query parameters from the URL.
+    const search = window.location.search;
+    const parsed = queryString.parse(search);
+
+    // Extract date and category parameters or set defaults.
+    const date = parsed.date;
+    const category = parsed.category || 'All';
+
+    const [typeInformation, setTypeInformation] = useState('All');
+    const [selectedDate, setSelectedDate] = useState(null);
+
+    // Function to format a date into a long format (YYYY-MM-DD).
+    const formatLongDate = (locale, date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleTypeInformation = (type) => {
+        setTypeInformation(type);
+        navigate({
+            // Update URL search parameters based on type and selected date.
+            search: `?category=${type}${selectedDate ? `&date=${formatLongDate(null, selectedDate)}` : ''}`,
+        });
+    };
+
     return (
-        <>
-            <DynamicDataBlocks
-                // Specify the type of data as 'news'.
-                type="news"
-                // Define the endpoint for fetching news data based on date, category, and current page.
-                endpoint={(date, category, currentPage) =>
-                    `jsonapi/views/news/block_1?page=${currentPage}&views-filter[created]=${date}&views-filter[type_news]=${category}`
-                }
-                render={
-                    <div className={"news-card"} key={index}>
-                        <div className={"news-card-top"}>
-                            {item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id && (
-                                <ImageComponent
-                                    url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                    imagestyle={'newsblockcard'}
-                                    alt={item?.relationships?.field_image?.data?.meta?.alt}
-                                />
-                            )}
-                        </div>
-                        <div className={"news-card-bottom"}>
-                            {langPrefix === 'uk' && <div
-                                className={"date_field"}>{format(new Date(item.attributes.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
-                            {langPrefix === 'en' && <div
-                                className={"date_field"}>{format(new Date(item.attributes.created), 'dd MMMM HH:mm')}</div>}
-                            <a className={"teaser_title"}
-                               href={`/${languagePrefix}${item?.attributes?.path?.alias}`}>{item.attributes.title}</a>
-                        </div>
-                    </div>
-                }
-            />
-        </>
+        <div className="news">
+            <NewsBannerBlock/>
+            <div className={"menu-dynamic-data-blocks"}>
+                <h1 className={"subtitle"}>{(langPrefix === "en" && "All news") || ("Усі новини")}</h1>
+
+                <div className={"menu-dynamic-data-blocks__left"}>
+                    <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
+                    <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
+                    <button className={"button-clear"} onClick={() => handleClear()}>
+                        <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
-
-export default News;
