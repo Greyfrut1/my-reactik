@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useEducationsQuery} from "../services/api.jsx";
+import {useEducationsQuery} from "../services/api.js";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 

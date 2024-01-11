@@ -265,6 +265,9 @@ export const vnuApi = createApi({
                 return `entity/simplenews_subscriber/${endpoint}`;
             },
         }),
+        SocialLinks: builder.query({
+            query: () => 'jsonapi/block_content/social_links/89007644-1c79-4023-9849-2a080761f6ba',
+        }),
         EntityData: builder.query({
             query: (args) => {
                 const {endpoint} = args;
@@ -350,19 +353,18 @@ export const {
     useDynamicPageQuery,
     useNewsViewBlockQuery,
     useEventViewBlockQuery,
-    useEducations,
+    useEducationsQuery,
     useEducationViewQuery,
-    useTaxonomyTypeInfo,
+    useTaxonomyTypeInfoQuery,
     useEntityDataQuery,
     useGeneralDataQuery,
     useProfessionalDataQuery,
     useCertificationDataQuery,
     useEducationCatalogPageQuery,
     useEducationCatalogViewQuery,
-    useNewsLetterSubscriber,
-    useNewsLetterUnSubscriber,
-    useEducationsQuery,
-    useTaxonomyTypeInfoQuery,
+    useNewsLetterSubscriberQuery,
+    useNewsLetterUnSubscriberQuery,
+    useSocialLinksQuery,
     useSearchQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,

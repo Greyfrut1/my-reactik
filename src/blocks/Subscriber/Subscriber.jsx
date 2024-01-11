@@ -2,7 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useNewsLetterSubscriber} from "../../services/api.js";
+import {useNewsLetterSubscriberQuery} from "../../services/api.js";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import SocialLinks from "../../components/SocialLinks.jsx";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
@@ -10,7 +10,8 @@ import './Subscriber.scss';
 
 export default function Subscriber() {
     const [email, setEmail] = useState('');
-    const {data: newsletterBlock} = useNewsLetterSubscriber();
+
+    const {data: newsletterBlock} = useNewsLetterSubscriberQuery();
     const handleSubmit = (event) => {
 
         event.preventDefault();

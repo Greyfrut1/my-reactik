@@ -37,6 +37,10 @@ const UniversityRating = lazy(() => import('./pages/UniversityRating/UniversityR
 const Search = lazy(() => import('./pages/Search.jsx'));
 
 const UnSubscribe = lazy(() => import('./blocks/Subscriber/UnSubscriber.jsx'));
+
+const EducationalProgramsView = lazy(() => import('./views/EducationalProgramsView.jsx'));
+const EducationalProgramsPage = lazy(() => import('./pages/EducationalPrograms/EducationalProgramsPage.jsx'));
+
 export default function App() {
     return (
         <BrowserRouter>
@@ -82,6 +86,8 @@ export default function App() {
                     <Route path="/:lang/faculties" element={<Faculties/>}/>
                     <Route path="/:lang/faculty/:alias" element={<FacultyPage/>}/>
 
+                    <Route path="/:lang/all-educations" element={<EducationalProgramsView/>}/>
+                    <Route path="/:lang/educational-programs/:alias" element={<EducationalProgramsPage/>}/>
 
                     <Route path="/:lang/*" element={<NotFoundPage/>}/>
                 </Routes>

@@ -1,6 +1,6 @@
 import {useGeneralDataQuery,
     useProfessionalDataQuery,
-    useCertificationDataQuery} from "../../services/api.jsx";
+    useCertificationDataQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
