@@ -1,26 +1,23 @@
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
+import {useNewsLetterUnSubscriber} from "../../services/api.js";
 import {toast} from "react-toastify";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
-function Unsubscriber() {
+export default function UnSubscriber() {
     const langPrefix = useLanguagePrefix();
 
     const navigate = useNavigate();
-    const {iduser, idnewsletter, timestamp, hash} = useParams();
-    const { data: subscriber, isLoading: subscriberLoading } = useDrupalData(`entity/simplenews_subscriber/${iduser}`);
-    const { data: newsletter, isLoading: newsletterLoading } = useDrupalData(`entity/simplenews_newsletter/${idnewsletter}`);
+    const {idUser, idNewsletter, timestamp, hash} = useParams();
+    const { data:  subscriber } =  useNewsLetterUnSubscriber({ endpoint:  `${idUser}`});
+    const { data:  newsletter } =  useNewsLetterUnSubscriber({ endpoint:  `${idNewsletter}`});
     const email = subscriber?.mail?.[0].value;
     const maskedEmail = email
         ? email.replace(/(?<=.{1}).(?=[^@]*?.@)/g, "*")
         : "";
 
-    if (subscriberLoading || newsletterLoading) {
-        return null;
-    }
     // Check if either subscriber or newsletter is undefined or null
     if (!subscriber || !newsletter) {
         // Redirect to home page
@@ -41,7 +38,7 @@ function Unsubscriber() {
 
         event.preventDefault();
 
-        axios.post(`${baseURL}simplenews/remove/${iduser}/${idnewsletter}/${timestamp}/${hash}/ok`)
+        axios.post(`${baseURL}simplenews/remove/${idUser}/${idNewsletter}/${timestamp}/${hash}/ok`)
             .then((response) => {
                 console.log(response.data, response);
                 toast.success("Success unsubscribe!");
@@ -74,5 +71,3 @@ function Unsubscriber() {
         </>
     );
 }
-
-export default Unsubscriber

@@ -29,7 +29,7 @@ export default function PhotoAlbumSlider() {
                              alt={slide?.field_image?.meta?.alt}/>
                         <h3 className="photoalbums-block__slider__title">
                             <Link
-                                to={`/${langPrefix}${slide?.attributes?.path?.alias}`}>{slide?.attributes?.title}</Link>
+                                to={`/${langPrefix}${slide?.path?.alias}`}>{slide?.title}</Link>
                         </h3>
                     </div>
                 ))}

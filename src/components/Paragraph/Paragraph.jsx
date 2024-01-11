@@ -1,4 +1,4 @@
-import {useInfrastructurePageQuery} from "../../services/api.js";
+import {useParagraphQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
 import {useState} from "react";
 import dropdownArrow from "/src/assets/dropdown-arrow.png"
@@ -18,14 +18,14 @@ function Paragraph({target_id}) {
     const handleClickDropdown = () => {
         setisActiveDropdown(!isActiveDropdown);
     };
-    const {data: paragraph} = useInfrastructurePageQuery({targetId: `${target_id}`});
+    const {data: paragraph} = useParagraphQuery({targetId: `${target_id}`});
     return (
         <>
             {paragraph?.type?.[0]?.target_id === 'section' && (
                 <div
                     className={`section-wrapper`}
                 >
-                    <div onClick={handleClick} className={`section flex ${isActive ? 'open' : ''}`}>
+                    <div onClick={handleClick} className={`section ${isActive ? 'open' : ''}`}>
                         <div className={`plus`}></div>
                         <div className={"section-title"}>{paragraph?.field_title?.[0]?.value}</div>
                     </div>
@@ -43,7 +43,7 @@ function Paragraph({target_id}) {
             )}
             {paragraph?.type?.[0]?.target_id == 'dropdown' && (
                 <>
-                    <div onClick={handleClickDropdown} className={"dropdown items-center flex"}>
+                    <div onClick={handleClickDropdown} className={"dropdown"}>
                         <div className={`dropdown-arrow ${isActiveDropdown ? 'dropdown-arrow-active' : ''}`}>
                             <img src={dropdownArrow} alt={"arrow"}/>
                         </div>
@@ -66,7 +66,7 @@ function Paragraph({target_id}) {
             {paragraph?.type?.[0]?.target_id == 'file' && (
                 <>
                     {paragraph?.field_file.map((file, index) => (
-                        <div className={"dropdown-item flex items-center"} key={index}>
+                        <div className={"dropdown-item"} key={index}>
                             <div className={`dropdown-arrow`}>
                                 <img src={dropdownArrow} alt={"arrow"}/>
                             </div>
@@ -81,7 +81,7 @@ function Paragraph({target_id}) {
             {paragraph?.type?.[0]?.target_id == 'link' && (
                 <>
                     {paragraph?.field_link.map((link, index) => (
-                        <div className={"dropdown-item flex items-center"} key={index}>
+                        <div className={"dropdown-item"} key={index}>
                             <div className={`dropdown-arrow`}>
                                 <img src={dropdownArrow} alt={"arrow"}/>
                             </div>

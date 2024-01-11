@@ -1,4 +1,4 @@
-import {useNodeQuery} from "../../services/api.jsx";
+import {useNodeQuery} from "../../services/api.js";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
 

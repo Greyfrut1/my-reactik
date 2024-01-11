@@ -1,18 +1,18 @@
 import {useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
+import {useEducationCatalogPageQuery} from "../../services/api.js";
 import EntityTitle from "../../components/EntityTitle.jsx";
 import ElectiveDisciplines from "../../blocks/Disciplines/ElectiveDisciplines.jsx";
 import MainDisciplines from "../../blocks/Disciplines/MainDisciplines.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 
-function EducationalProgramsFullMode() {
+function EducationalProgramsPage() {
     const {alias} = useParams();
-    const {data: educationalProgramData} = useDrupalData(`/educational-programs/${alias}?_format=json`);
+    const {data: educationalProgramData} = useEducationCatalogPageQuery({page: `${alias}`});
     const langPrefix = useLanguagePrefix();
 
     return <>
-        <Metatags type={"view"} data={educationalProgramData} />
+        <MetaTags type={"view"} data={educationalProgramData} />
         <div>
             <h2>{educationalProgramData?.title?.[0]?.value}</h2>
             <div>
@@ -29,11 +29,11 @@ function EducationalProgramsFullMode() {
             </div>
             <div>
                 <div>{(langPrefix === "en" && "List elective disciplines") || ("Перелік вибіркових дисциплін")}</div>
-                <ElectiveDisciplines endpoint={`/actual-disciplines/${educationalProgramData?.nid?.[0].value}`}/>
+                <ElectiveDisciplines endpoint={`actual-disciplines/${educationalProgramData?.nid?.[0].value}`}/>
             </div>
             <div>
                 <div>{(langPrefix === "en" && "Archive of elective courses") || ("Архів вибіркових дисциплін")}</div>
-                <ElectiveDisciplines endpoint={`/old-disciplines/${educationalProgramData?.nid?.[0].value}`}/>
+                <ElectiveDisciplines endpoint={`old-disciplines/${educationalProgramData?.nid?.[0].value}`}/>
             </div>
         </div>
         <div>
@@ -48,7 +48,7 @@ function EducationalProgramsFullMode() {
             <div>
                 <div>{(langPrefix === "en" && "Level") || ("Рівень")}</div>
                 {educationalProgramData?.field_educational_level?.[0]?.target_uuid && <div><EntityTitle
-                    endpoint={`/taxonomy_term/educational_level/${educationalProgramData?.field_educational_level?.[0]?.target_uuid}`}/>
+                    endpoint={`taxonomy_term/educational_level/${educationalProgramData?.field_educational_level?.[0]?.target_uuid}`}/>
                 </div>}
             </div>
             <div>
@@ -74,12 +74,12 @@ function EducationalProgramsFullMode() {
             <div>
                 <div>{(langPrefix === "en" && "Faculty") || ("Факультет")}</div>
                 {educationalProgramData?.field_faculty?.[0]?.target_uuid && <EntityTitle
-                    endpoint={`/node/faculty/${educationalProgramData?.field_faculty?.[0]?.target_uuid}`}/>}
+                    endpoint={`node/faculty/${educationalProgramData?.field_faculty?.[0]?.target_uuid}`}/>}
             </div>
             <div>
                 <div>{(langPrefix === "en" && "Guarantor of the educational programme, contact person") || ("Гарант освітньої програми, контактна особа")}</div>
                 {educationalProgramData?.field_guarantor?.[0]?.target_uuid && <EntityTitle
-                    endpoint={`/node/staff/${educationalProgramData?.field_guarantor?.[0]?.target_uuid}`}/>}
+                    endpoint={`node/staff/${educationalProgramData?.field_guarantor?.[0]?.target_uuid}`}/>}
 
             </div>
             <div>
@@ -92,10 +92,10 @@ function EducationalProgramsFullMode() {
             <div>
                 <div>{(langPrefix === "en" && "Specialty") || ("Спеціальність")}</div>
                 <div>{educationalProgramData?.field_specialty?.[0]?.target_uuid && <EntityTitle
-                    endpoint={`/taxonomy_term/specialty/${educationalProgramData?.field_specialty?.[0]?.target_uuid}`}/>}</div>
+                    endpoint={`taxonomy_term/specialty/${educationalProgramData?.field_specialty?.[0]?.target_uuid}`}/>}</div>
             </div>
         </div>
     </>
 }
 
-export default EducationalProgramsFullMode
+export default EducationalProgramsPage

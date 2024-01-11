@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes ,Navigate} from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import './App.scss';
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 
 const HomePage = lazy(() => import('./pages/Homepage/HomePage.jsx'));
 
@@ -24,11 +25,18 @@ const GeneralInfoPage = lazy(() => import('./pages/GeneralInformationPage.jsx'))
 const PublicInfoPage = lazy(() => import('./pages/PublicInformationPage.jsx'));
 
 const DepartmentPage = lazy(() => import('./pages/DepartmentPage/DepartmentPage.jsx'));
-const Faculties = lazy(() => import('./pages/Faculties/Faculties.jsx'));
-const FacultyPage = lazy(() => import('./pages/Faculties/FacultyFullMode.jsx'));
+
+const Faculties = lazy(() => import('./views/FacultyView/FacultyView.jsx'));
+const FacultyPage = lazy(() => import('./pages/FacultyPage/FacultyPage.jsx'));
 
 const UkraineAboveAllPage = lazy(() => import('./pages/UkraineAboveAll/UkraineAboveAll.jsx'));
+const EnsemblesView = lazy(() => import('./views/EnsemblesView.jsx'));
+const EnsemblesPage = lazy(() => import('./pages/Ensembles/EnsemblesPage.jsx'));
 
+const UniversityRating = lazy(() => import('./pages/UniversityRating/UniversityRating.jsx'));
+const Search = lazy(() => import('./pages/Search.jsx'));
+
+const UnSubscribe = lazy(() => import('./blocks/Subscriber/UnSubscriber.jsx'));
 export default function App() {
     return (
         <BrowserRouter>
@@ -62,7 +70,20 @@ export default function App() {
                     <Route path="/:lang/faculty/:alias" element={<FacultyPage/>}/>
 
                     <Route path="/:lang/ukraine_above_all" element={<UkraineAboveAllPage/>}/>
+                    <Route path="/:lang/ensembles/:alias" element={<EnsemblesPage/>}/>
+                    <Route path="/:lang/ensembles" element={<EnsemblesView/>}/>
 
+                    <Route path="/:lang/university-rating" element={<UniversityRating/>}/>
+                    <Route path="/:lang/search/:result" element={<Search/>}/>
+
+                    <Route path={"/:lang/simplenews/remove/:iduser/:idnewsletter/:timestamp/:hash"}
+                           element={<UnSubscribe/>}/>
+
+                    <Route path="/:lang/faculties" element={<Faculties/>}/>
+                    <Route path="/:lang/faculty/:alias" element={<FacultyPage/>}/>
+
+
+                    <Route path="/:lang/*" element={<NotFoundPage/>}/>
                 </Routes>
             </Suspense>
             </Layout>

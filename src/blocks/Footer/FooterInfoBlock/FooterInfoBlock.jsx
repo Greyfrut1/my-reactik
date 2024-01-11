@@ -1,16 +1,16 @@
 import { useFooterInfoBlockQuery } from '../../../services/api.js';
+import {Link} from "react-router-dom";
 
 export default function FooterInfoBlock() {
     const { data:  footerInfoBlockData } = useFooterInfoBlockQuery();
     return (
         <div>
-            {/*<ImageComponent url={footerInfoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id} alt={'actual_news'} />*/}
-            <div>{footerInfoBlockData?.data?.attributes?.field_main_text}</div>
-            <div><a
-                href={`https://www.google.com/maps/search/${footerInfoBlockData?.data?.attributes?.field_location}`}>{footerInfoBlockData?.data?.attributes?.field_location}</a>
-            </div>
-            <div><span>e-mail: </span><a
-                href={`mailto: ${footerInfoBlockData?.data?.attributes?.field_email}`}>{footerInfoBlockData?.data?.attributes?.field_email}</a>
+            <img src={footerInfoBlockData?.field_image?.image_style_uri?.['actual_news']}
+                 alt={footerInfoBlockData?.field_image?.meta?.alt}/>
+            <div>{footerInfoBlockData?.data?.field_main_text}</div>
+            <Link to={`https://www.google.com/maps/search/${footerInfoBlockData?.data?.field_location}`}>{footerInfoBlockData?.data?.field_location}</Link>
+            <div><span>e-mail: </span><Link
+                to={`mailto: ${footerInfoBlockData?.data?.field_email}`}>{footerInfoBlockData?.data?.field_email}</Link>
             </div>
         </div>
     );

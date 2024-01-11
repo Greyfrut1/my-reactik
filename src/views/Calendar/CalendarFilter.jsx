@@ -1,4 +1,3 @@
-// Import necessary dependencies for the CalendarFilter component.
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import PropTypes from "prop-types";
@@ -7,7 +6,7 @@ import {useState} from "react";
 import './CalendarFilter.scss';
 
 // Define the CalendarFilter component that takes selectedDate and onDateChange as props.
-function CalendarFilter({ selectedDate, onDateChange }) {
+export default function CalendarFilter({ selectedDate, onDateChange }) {
 
     // Define a state to track whether the calendar is open or closed.
     const [calendarOpen, setCalendarOpen] = useState(false);
@@ -43,11 +42,7 @@ function CalendarFilter({ selectedDate, onDateChange }) {
     );
 }
 
-// PropTypes block to define the expected types for props
 CalendarFilter.propTypes = {
     selectedDate: PropTypes.instanceOf(Date),
     onDateChange: PropTypes.func.isRequired,
 };
-
-// Export the CalendarFilter component for use in other parts of the application.
-export default CalendarFilter;

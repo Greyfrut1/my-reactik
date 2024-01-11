@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import useDrupalData from "../services/api.jsx";
+import {useState} from 'react';
+import {useEducationsQuery} from "../services/api.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 
-function ExposedFilterCatalog({ onFilterChange }) {
-    const {data: educationsViewData} = useDrupalData(`/all-educations`)
+export default function ExposedFilterCatalog({ onFilterChange }) {
+    const {data: educationsViewData} = useEducationsQuery();
     const [formValues, setFormValues] = useState({
         title: '',
         field_form_educations_value: 'All',
@@ -92,5 +92,3 @@ function ExposedFilterCatalog({ onFilterChange }) {
 ExposedFilterCatalog.propTypes = {
     onFilterChange: PropTypes.func,
 }
-
-export default ExposedFilterCatalog;

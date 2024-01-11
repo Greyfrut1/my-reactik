@@ -1,28 +1,29 @@
 import {useParams} from "react-router-dom";
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
+import {useFacultyPageQuery} from "../../services/api.js";
 import Paragraph from "../../components/Paragraph/Paragraph.jsx";
 import StaffTeaser from "../../blocks/Staff/StaffTeaser.jsx";
 import Departments from "../../components/Departments.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import React from "react";
 import MetaTags from "../../components/Common/MetaTags.jsx";
+import './FacultyPage.scss';
 
-function FacultyFullMode(){
+export default function FacultyPage(){
     const { alias } = useParams();
-    const {data: faculty} = useDrupalData(`faculty/${alias}?_format=json`)
+    const { data:  faculty } =  useFacultyPageQuery({ page: `${alias}`});
     return (
-        <>
+        <div className="faculty container">
             <MetaTags type={"content"} data={faculty} />
             {faculty?.nid?.[0]?.value &&(
-                <Departments id_deparments={faculty?.nid?.[0]?.value} />
+                <Departments id_departments={faculty?.nid?.[0]?.value}/>
             )}
             {faculty?.field_head_of_faculty?.length > 0 &&(
                 <StaffTeaser staff_id={faculty?.field_head_of_faculty?.[0].target_id}/>
             )}
             <div>{faculty?.title?.[0]?.value}</div>
             {faculty?.field_image?.[0]?.target_id &&(
-                <div><ImageComponent imagestyle={"thumbnail"} alt={""} url={faculty?.field_image?.[0]?.target_id} /></div>
+                // 100X100
+                <img src={faculty?.field_image?.[0]?.url} alt={faculty?.field_image?.[0]?.alt}/>
             )}
             <ContactInformation data={faculty} type={"node"}/>
             <div dangerouslySetInnerHTML={{__html: faculty?.field_description?.[0]?.value}}/>
@@ -50,7 +51,6 @@ function FacultyFullMode(){
                     </a>
                 )}
             </div>
-        </>
+        </div>
     );
 }
-export default FacultyFullMode

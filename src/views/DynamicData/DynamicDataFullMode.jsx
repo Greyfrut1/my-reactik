@@ -1,14 +1,12 @@
-// Import necessary dependencies and components for the FullModeComponent.
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useDrupalData from "../../services/api.js";
+import {useDynamicPageQuery} from "../../services/api.js";
 import TypeFilterButtons from "../TypeFilterButtons/TypeFilterButtons.jsx";
 import CalendarFilter from "../Calendar/CalendarFilter.jsx";
 import DynamicDataFeed from "./DynamicDataFeed.jsx";
 import PropTypes from "prop-types";
-import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 
 // Define the FullModeComponent that takes 'types', 'endpoint', and 'renderFields' as props.
 function FullModeComponent({ types, endpoint, renderFields }) {
@@ -44,17 +42,14 @@ function FullModeComponent({ types, endpoint, renderFields }) {
         return `${year}-${month}-${day}`;
     };
 
-    // Fetch data using useDrupalData hook with the specified endpoint and JSON format.
-    const { data } = useDrupalData(`${types}/${alias}?_format=json`);
-
-
+    const {data} =  useDynamicPageQuery({ types:`${types}`, alias:`${alias}`});
     const id = data?.nid?.[0]?.value;
 
     // Render the FullModeComponent with TypeFilterButtons, CalendarFilter, renderFields, and DynamicDataFeed.
     return (
         <>
             {data &&(
-                <Metatags type={"content"} data={data}  />
+                <MetaTags type={"content"} data={data}  />
             )}
             <div className={"container"}>
                 <div className={"flex dynamic-data-full-mode gap-[30px]"}>

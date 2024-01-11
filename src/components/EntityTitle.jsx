@@ -1,16 +1,16 @@
-import useDrupalData from "../services/api.jsx";
+import {useEntityDataQuery} from "../services/api.js";
 import PropTypes from "prop-types";
 
-function EntityTitle({endpoint}) {
-    const {data: entityData} = useDrupalData(`/jsonapi/${endpoint}`)
-    return (<>{entityData?.data?.type == 'node--faculty' && (
-        <>{entityData?.data?.attributes?.title}</>
+export default function EntityTitle({endpoint}) {
+    const {data} = useEntityDataQuery({endpoint: `${endpoint}`});
+    return (<>{data?.data?.type === 'node--faculty' && (
+        <>{data?.data?.attributes?.title}</>
     )}
-        {entityData?.data?.type == 'node--staff' && (
-            <>{entityData?.data?.attributes?.title}</>
+        {data?.data?.type === 'node--staff' && (
+            <>{data?.data?.attributes?.title}</>
         )}
-        {(entityData?.data?.type == 'taxonomy_term--educational_level' || entityData?.data?.type == 'taxonomy_term--specialty' || entityData?.data?.type == 'taxonomy_term--main_disciplines') && (
-            <>{entityData?.data?.attributes?.name}</>
+        {(data?.data?.type === 'taxonomy_term--educational_level' || data?.data?.type === 'taxonomy_term--specialty' || data?.data?.type === 'taxonomy_term--main_disciplines') && (
+            <>{data?.data?.attributes?.name}</>
         )}
     </>)
 
@@ -20,5 +20,3 @@ function EntityTitle({endpoint}) {
 EntityTitle.propTypes = {
     endpoint: PropTypes.string.isRequired
 };
-
-export default EntityTitle

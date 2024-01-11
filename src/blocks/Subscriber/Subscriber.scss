@@ -1,11 +1,12 @@
 @import '../../helpers';
 
-.subscriber-container{
+.subscriber{
   display: flex;
   justify-content: space-between;
   .social-links_block{
     display: flex;
     align-items: center;
+    padding:29px 0 34px;
     column-gap: 5px;
     a{
       transition: all 0.2s;
@@ -14,9 +15,22 @@
       }
     }
   }
+  &-from{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__text{
+      display: flex;
+      align-items: center;
+      color:white;
+    }
+  }
   form{
     max-width: 600px;
-    width: 100%;
+    display: flex;
+    width:50%;
+    align-items: center;
+    position:relative;
   }
   .subscriber-from-container{
     max-width: 900px;

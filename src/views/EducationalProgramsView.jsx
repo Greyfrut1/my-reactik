@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import useDrupalData from "../../services/api.jsx";
-import ExposedFilterCatalog from "../../views/ExposedFilterCatalog.jsx";
-import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import {useEducationCatalogViewQuery, useEducationViewQuery} from "../services/api.js";
+import ExposedFilterCatalog from "./ExposedFilterCatalog.jsx";
+import useLanguagePrefix from "../services/languagePrefix.jsx";
+import MetaTags from "../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
-import './CatalogEducationPrograms.scss';
+import '../pages/EducationalPrograms/EducationalProgramsPage.scss';
 
-function CatalogEducationalPrograms() {
+function EducationalProgramsView() {
 
     // State for storing filter values and language prefix
     const [filterValues, setFilterValues] = useState({
@@ -18,30 +18,31 @@ function CatalogEducationalPrograms() {
     });
     const languagePrefix = useLanguagePrefix();
     const [submitClicked, setSubmitClicked] = useState(false);
+    const title = filterValues.title;
+    const field_form_educations_value = filterValues.field_form_educations_value;
+    const field_educational_level_target_id = filterValues.field_educational_level_target_id;
+    const field_validity_value = filterValues.field_validity_value;
+    const field_faculty_target_id = filterValues.field_faculty_target_id;
 
-    const buildApiUrl = () => {
-        return `/all-educations?views-filter[title]=${filterValues.title}&views-filter[field_form_educations_value]=${filterValues.field_form_educations_value}&views-filter[field_educational_level_target_id]=${filterValues.field_educational_level_target_id}&views-filter[field_validity_value]=${filterValues.field_validity_value}&views-filter[field_faculty_target_id]=${filterValues.field_faculty_target_id}`;
-    };
-
-    const {data: educationalProgramsData, fetchData} = useDrupalData(buildApiUrl());
+    const {data: educationalProgramsData, fetchData} = useEducationViewQuery({title: `${title}`,field_form_educations_value: `${field_form_educations_value}`, field_educational_level_target_id: `${field_educational_level_target_id}`,field_validity_value: `${field_validity_value}`,field_faculty_target_id: `${field_faculty_target_id}`});
 
     useEffect(() => {
         if (submitClicked) {
             fetchData();
             setSubmitClicked(false);
         }
-    }, [buildApiUrl(), submitClicked, fetchData]);
+    }, [educationalProgramsData, submitClicked, fetchData]);
 
     const handleFilterChange = (filter) => {
         setFilterValues(filter);
     };
-    const {data: educationalProgramsTitle} = useDrupalData(`jsonapi/views/satalog_of_educational_programs/block_1`)
+    const {data: educationalProgramsTitle} =  useEducationCatalogViewQuery();
     const location = useLocation();
     const currentPath = location.pathname;
 
     return (
         <div className="education-catalog-page container">
-            <Metatags type={"view"} data={educationalProgramsTitle} viewUrl={currentPath}/>
+            <MetaTags type={"view"} data={educationalProgramsTitle} viewUrl={currentPath}/>
             <h2 className="education-catalog-page__title">
                 {(languagePrefix === "en" && "Educational Programs Catalog and Selective Educational Components Catalog") || ("Каталог освітніх програм та вибіркових освітніх компонентів")}
             </h2>
@@ -72,4 +73,4 @@ function CatalogEducationalPrograms() {
     );
 }
 
-export default CatalogEducationalPrograms;
+export default EducationalProgramsView;

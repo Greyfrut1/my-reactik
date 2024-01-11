@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/`;
 
@@ -28,7 +28,7 @@ export const vnuApi = createApi({
             query: () => 'jsonapi/block_content/block_link/162874d4-fb9b-4763-9d58-e8634414e40c',
         }),
         FooterInfoBlock: builder.query({
-            query: () => 'jsonapi/block_content/about_the_university/ab52a7ef-b55b-4fec-9dc8-c2038c2e8769',
+            query: () => 'jsonapi/block_content/about_the_university/ab52a7ef-b55b-4fec-9dc8-c2038c2e8769?include=field_image&jsonapi_include=1',
         }),
         MainSlider: builder.query({
             query: () => '/jsonapi/views/slider/block_1?include=field_image,field_link&jsonapi_include=1',
@@ -44,7 +44,7 @@ export const vnuApi = createApi({
         }),
         PollChoiceBlock: builder.query({
             query: (args) => {
-                const { id } = args;
+                const {id} = args;
                 return `/jsonapi/poll_choice/poll_choice/${id}`;
             },
         }),
@@ -63,7 +63,7 @@ export const vnuApi = createApi({
         }),
         NewsPage: builder.query({
             query: (args) => {
-                const { alias } = args;
+                const {alias} = args;
                 return `news/${alias}?_format=json`;
             },
         }),
@@ -72,13 +72,13 @@ export const vnuApi = createApi({
         }),
         InfrastructurePage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `infrastructure/${page}?_format=json`;
             },
         }),
         Infrastructure: builder.query({
             query: (args) => {
-                const { endpoint } = args;
+                const {endpoint} = args;
                 return `jsonapi/views/infrastructure/${endpoint}`;
             },
         }),
@@ -87,7 +87,7 @@ export const vnuApi = createApi({
         }),
         PhotoAlbumsPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `photoalbums/${page}?_format=json`;
             },
         }),
@@ -96,31 +96,31 @@ export const vnuApi = createApi({
         }),
         Staff: builder.query({
             query: (args) => {
-                const { endpoint } = args;
+                const {endpoint} = args;
                 return `jsonapi/views/administrative_units/${endpoint}?include=field_image&jsonapi_include=1`;
             },
         }),
         StaffPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `staff/${page}?_format=json`;
             },
         }),
         Branches: builder.query({
             query: (args) => {
-                const { endpoint } = args;
+                const {endpoint} = args;
                 return `/jsonapi/views/branches/${endpoint}?include=field_image&jsonapi_include=1`;
             },
         }),
         BranchesPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `branches-and-representative-offices/${page}?_format=json`;
             },
         }),
         GeneralInfoPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `general-information/${page}?_format=json`;
             },
         }),
@@ -132,13 +132,13 @@ export const vnuApi = createApi({
         }),
         PublicInfoView: builder.query({
             query: (args) => {
-                const { endpoint } = args;
+                const {endpoint} = args;
                 return `jsonapi/views/academic_publications/${endpoint}`;
             },
         }),
         Node: builder.query({
             query: (args) => {
-                const { nid } = args;
+                const {nid} = args;
                 return `node/${nid}?_format=json`;
             },
         }),
@@ -147,17 +147,26 @@ export const vnuApi = createApi({
         }),
         EnsemblesPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `ensembles/${page}?_format=json`;
             },
         }),
         EnsemblesView: builder.query({
             query: () => 'jsonapi/views/ensembles/block_1?include=field_image&jsonapi_include=1',
         }),
+        UniversityRatingView: builder.query({
+            query: () => 'jsonapi/views/university_rating/page_1?include=field_image&jsonapi_include=1',
+        }),
         DepartmentPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `department/${page}?_format=json`;
+            },
+        }),
+        DepartmentView: builder.query({
+            query: (args) => {
+                const {id_departments} = args;
+                return `jsonapi/views/departments/block_1?views-argument[0]=${id_departments}&include=field_image,field_head_of_department&jsonapi_include=1`;
             },
         }),
         FacultiesView: builder.query({
@@ -165,14 +174,113 @@ export const vnuApi = createApi({
         }),
         FacultyPage: builder.query({
             query: (args) => {
-                const { page } = args;
+                const {page} = args;
                 return `faculty/${page}?_format=json`;
+            },
+        }),
+        NewsView: builder.query({
+            query: (args) => {
+                const {endpoint} = args;
+                return `jsonapi/views/news/${endpoint}`;
+            },
+        }),
+        NewsViewFeed: builder.query({
+            query: (args) => {
+                const {type} = args;
+                const {id} = args;
+                return `jsonapi/views/news_in_block/${type}?views-argument[0]=${id}`;
+            },
+        }),
+        DynamicPage: builder.query({
+            query: (args) => {
+                const {types} = args;
+                const {alias} = args;
+                return `${types}/${alias}?_format=json`;
+            },
+        }),
+        NewsViewBlock: builder.query({
+            query: (args) => {
+                const {currentPage} = args;
+                const {date} = args;
+                const {category} = args;
+                return `jsonapi/views/news/block_1?page=${currentPage}&views-filter[created]=${date}&views-filter[type_news]=${category}`;
+            },
+        }),
+        EventViewBlock: builder.query({
+            query: (args) => {
+                const {date} = args;
+                const {category} = args;
+                return `jsonapi/views/events/block_1?views-filter[created]=${date}&views-filter[field_type_target_id]=${category}`;
+            },
+        }),
+        GeneralData: builder.query({
+            query: (args) => {
+                const {endpoint} = args;
+                return `general_training_cycle/${endpoint}`;
+            },
+        }),
+        CertificationData: builder.query({
+            query: (args) => {
+                const {endpoint} = args;
+                return `certification/${endpoint}`;
+            },
+        }),
+        ProfessionalData: builder.query({
+            query: (args) => {
+                const {endpoint} = args;
+                return `professional_training_cycle/${endpoint}`;
+            },
+        }),
+        EducationCatalogPage: builder.query({
+            query: (args) => {
+                const {page} = args;
+                return `educational-programs/${page}?_format=json}`;
+            },
+        }),
+        EducationCatalogView: builder.query({
+            query: () => 'jsonapi/views/satalog_of_educational_programs/block_1',
+        }),
+        EducationView: builder.query({
+            query: (args) => {
+                const {title} = args;
+                const {field_form_educations_value} = args;
+                const {field_educational_level_target_id} = args;
+                const {field_validity_value} = args;
+                const {field_faculty_target_id} = args;
+                return `all-educations?views-filter[title]=${title}&views-filter[field_form_educations_value]=${field_form_educations_value}&views-filter[field_educational_level_target_id]=${field_educational_level_target_id}&views-filter[field_validity_value]=${field_validity_value}&views-filter[field_faculty_target_id]=${field_faculty_target_id}`;
+            },
+        }),
+        Educations: builder.query({
+            query: () => 'all-educations',
+        }),
+        TaxonomyTypeInfo: builder.query({
+            query: () => 'jsonapi/taxonomy_term/type_information',
+        }),
+        NewsLetterSubscriber: builder.query({
+            query: () => 'admin/content/block/5?_format=json',
+        }),
+        NewsLetterUnSubscriber: builder.query({
+            query: (args) => {
+                const {endpoint} = args;
+                return `entity/simplenews_subscriber/${endpoint}`;
+            },
+        }),
+        EntityData: builder.query({
+            query: (args) => {
+                const {endpoint} = args;
+                return `jsonapi/${endpoint}`;
             },
         }),
         Paragraph: builder.query({
             query: (args) => {
-                const { targetId } = args;
+                const {targetId} = args;
                 return `entity/paragraph/${targetId}?include=field_image&jsonapi_include=1`;
+            },
+        }),
+        Search: builder.query({
+            query: (args) => {
+                const {result} = args;
+                return `search?search_api_fulltext=${result}`;
             },
         }),
         MetaTags: builder.query({
@@ -183,13 +291,13 @@ export const vnuApi = createApi({
         }),
         Image: builder.query({
             query: (args) => {
-                const { endpoint } = args;
+                const {endpoint} = args;
                 return `entity/file/${endpoint}`;
             },
         }),
         Media: builder.query({
             query: (args) => {
-                const { endpoint } = args;
+                const {endpoint} = args;
                 return `/media/${endpoint}/edit?_format=json`;
             },
         }),
@@ -231,9 +339,31 @@ export const {
     useNodeQuery,
     useUkraineAboveAllViewQuery,
     useEnsemblesViewQuery,
+    useUniversityRatingViewQuery,
     useEnsemblesPageQuery,
     useDepartmentPageQuery,
+    useDepartmentViewQuery,
     useParagraphQuery,
+    useFacultyPageQuery,
+    useNewsViewQuery,
+    useNewsViewFeedQuery,
+    useDynamicPageQuery,
+    useNewsViewBlockQuery,
+    useEventViewBlockQuery,
+    useEducations,
+    useEducationViewQuery,
+    useTaxonomyTypeInfo,
+    useEntityDataQuery,
+    useGeneralDataQuery,
+    useProfessionalDataQuery,
+    useCertificationDataQuery,
+    useEducationCatalogPageQuery,
+    useEducationCatalogViewQuery,
+    useNewsLetterSubscriber,
+    useNewsLetterUnSubscriber,
+    useEducationsQuery,
+    useTaxonomyTypeInfoQuery,
+    useSearchQuery,
     useMetaTagsQuery,
     useSiteInfoQuery,
     useMediaQuery,

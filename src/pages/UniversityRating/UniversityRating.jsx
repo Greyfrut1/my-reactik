@@ -1,35 +1,30 @@
-import useDrupalData from "../../services/api.jsx";
-import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import './UniversityRating.scss';
+import {Link} from "react-router-dom";
+import {useUniversityRatingViewQuery} from "../../services/api.js";
 
-function UniversityRating(){
-    const {data: ratingView} = useDrupalData(`/jsonapi/views/university_rating/page_1`);
+export default function UniversityRating(){
+    const {data: ratingView} = useUniversityRatingViewQuery();
     return (
         <div className={"rating container"}>
             <div className="rating-view">
                 {ratingView?.data?.map((item, index) => (
                     <div key={index}>
-                        <a href={item?.attributes?.field_link?.full_url} className={"rating-item flex flex-col items-center"}>
-                            <ImageComponent
-                                url={item?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                imagestyle={"thumbnail"}
-                                alt={item?.relationships?.field_image?.data?.meta?.alt}
-                            />
+                        <Link to={item?.field_link?.full_url} className="rating-item">
+                            <img src={item?.field_image?.image_style_uri?.['photoalbums_']}
+                                 alt={item?.field_image?.meta?.alt}/>
                             <h1 className={"rating-item__title"}>
-                                {item?.attributes?.title}
+                                {item?.title}
                             </h1>
-                            <p className={"rating-item__top-description text-center"}>
-                                {item?.attributes?.field_top_description}
+                            <p className="rating-item__top-description">
+                                {item?.field_top_description}
                             </p>
-                            <p className={"rating-item__bottom-description text-center"}>
-                                {item?.attributes?.field_bottom_description}
+                            <p className="rating-item__bottom-description">
+                                {item?.field_bottom_description}
                             </p>
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </div>
         </div>
     );
 }
-
-export default UniversityRating;

@@ -1,12 +1,10 @@
-// Import the useDrupalData hook to fetch data from the Drupal API.
-import useDrupalData from "../../services/api.jsx";
+import {useTaxonomyTypeInfoQuery} from "../../services/api.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
-// Define the TypeFilterButtons component that takes 'handleTypeInformation' as a prop.
-function TypeFilterButtons({handleTypeInformation}) {
-    // Fetch data using useDrupalData hook with the endpoint for taxonomy term type information.
-    const {data: typeData} = useDrupalData('jsonapi/taxonomy_term/type_information');
+
+export default function TypeFilterButtons({handleTypeInformation}) {
+    const {data: typeData} = useTaxonomyTypeInfoQuery();
     const langPrefix = useLanguagePrefix();
 
     // Render the TypeFilterButtons component with Clear button and taxonomy term buttons.
@@ -28,10 +26,6 @@ function TypeFilterButtons({handleTypeInformation}) {
     );
 }
 
-// PropTypes block to define the expected types for props
 TypeFilterButtons.propTypes = {
     handleTypeInformation: PropTypes.func.isRequired,
 };
-
-// Export the TypeFilterButtons component for use in other parts of the application.
-export default TypeFilterButtons;

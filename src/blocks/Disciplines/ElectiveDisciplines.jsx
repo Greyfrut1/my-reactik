@@ -1,11 +1,9 @@
-import useDrupalData from "../../services/api.jsx";
 import PropTypes from "prop-types";
-
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function ElectiveDisciplines({endpoint}) {
-    const {data: electiveData} = useDrupalData(endpoint);
-    return <>
+    const {data: electiveData} = {endpoint};
+    return (
         <table>
             <tbody>
             {electiveData?.rows?.map((item, index) => (
@@ -17,9 +15,7 @@ function ElectiveDisciplines({endpoint}) {
             ))}
             </tbody>
         </table>
-    </>
-
-
+    );
 }
 
 ElectiveDisciplines.propTypes = {

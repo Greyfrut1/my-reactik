@@ -1,22 +1,19 @@
-// Import necessary dependencies and components for the DynamicDataBlocks component.
 import {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import useDrupalData from "../../services/api.js";
+import {useNewsViewQuery} from "../../services/api.js";
 import CalendarFilter from "../Calendar/CalendarFilter.jsx";
 import TypeFilterButtons from "../TypeFilterButtons/TypeFilterButtons.jsx";
 import queryString from 'query-string';
-import Pager from "../Pager.jsx";
+// import Pager from "../Pager.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import Metatags from "../../components/Common/MetaTags.jsx";
+import MetaTags from "../../components/Common/MetaTags.jsx";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import {format} from "date-fns";
 import {uk} from "date-fns/locale";
 import './DynamicDataBlocks.scss';
 
-// Define the DynamicDataBlocks component that takes type, endpoint, and render as props.
 function DynamicDataBlocks({type, endpoint, render}) {
-    // Access the navigation function from react-router-dom.
     const navigate = useNavigate();
 
     // Parse the query parameters from the URL.
@@ -78,19 +75,21 @@ function DynamicDataBlocks({type, endpoint, render}) {
     const {data} = useDrupalData(endpoint(date, category, currentPage));
 
     // Calculate total count, items per page, and total pages.
-    const totalCount = data?.meta?.pager?.count || 0;
-    const itemsPerPage = data?.meta?.pager?.configurations?.items_per_page || 1;
-    const totalPages = Math.ceil(totalCount / itemsPerPage);
+    // const totalCount = data?.meta?.pager?.count || 0;
+    // const itemsPerPage = data?.meta?.pager?.configurations?.items_per_page || 1;
+    // const totalPages = Math.ceil(totalCount / itemsPerPage);
 
     const langPrefix = useLanguagePrefix();
 
     const location = useLocation();
     const currentPath = location.pathname;
-    const {data: mainNews} = useDrupalData(`jsonapi/views/news/block_2`)
+
+    const {data: mainNews} =  useNewsViewQuery({endpoint: `block_2`});
+
     // Render the DynamicDataBlocks component with TypeFilterButtons, CalendarFilter, data items, and Pager.
     return (
         <>
-            <Metatags type={"view"} data={data} viewUrl={currentPath}/>
+            <MetaTags type={"view"} data={data} viewUrl={currentPath}/>
             <div className={"container"}>
                 {type === 'news' && mainNews?.data?.length > 3 && (
                     <div className={"main-news flex justify-between"}>
@@ -173,23 +172,19 @@ function DynamicDataBlocks({type, endpoint, render}) {
                 </div>
                 <div className={"wrapper-dynamic-data-blocks"}>
                     <div className={"dynamic-data-blocks view-content"}>
-                        {/*
-                        Map over the data items using the render function.
-                        For each item in the data array, call the render function with the item and index.
-                    */}
                         {data?.data?.length ? (
-                            data?.data?.map((item, index) => render(item, index))
+                            {render}
                         ) : (
                             <div className={"empty-dynamic-container"}><h1>No {type} found with the selected
                                 filters.</h1></div>
                         )}
                     </div>
                 </div>
-                {totalPages > 1 && (
-                    <div className={"pager flex justify-center mt-[20px]"}>
-                        <Pager totalPages={totalPages} onPageChange={handlePageChange}/>
-                    </div>
-                )}
+                {/*{totalPages > 1 && (*/}
+                {/*    <div className={"pager flex justify-center mt-[20px]"}>*/}
+                {/*        <Pager totalPages={totalPages} onPageChange={handlePageChange}/>*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </div>
         </>
     );
@@ -201,6 +196,4 @@ DynamicDataBlocks.propTypes = {
     endpoint: PropTypes.func.isRequired,
     render: PropTypes.func.isRequired,
 };
-
-// Export the DynamicDataBlocks component for use in other parts of the application.
 export default DynamicDataBlocks;

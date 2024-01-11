@@ -28,17 +28,14 @@ const Footer = () => {
 
     const langPrefix = useLanguagePrefix();
 
-    // Effect hook to update the current date and time every second
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentDateTime(new Date());
         }, 1000);
 
-        // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
     }, []);
 
-    // Formatting the current date and time
     const formattedDate = currentDateTime.toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',

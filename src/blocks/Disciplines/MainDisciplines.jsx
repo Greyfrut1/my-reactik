@@ -1,12 +1,14 @@
-import useDrupalData from "../../services/api.jsx";
+import {useGeneralDataQuery,
+    useProfessionalDataQuery,
+    useCertificationDataQuery} from "../../services/api.jsx";
 import PropTypes from "prop-types";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function MainDisciplines({endpoint}) {
-    const {data: generalData} = useDrupalData(`/general_training_cycle/${endpoint}`);
-    const {data: certificationData} = useDrupalData(`/certification/${endpoint}`);
-    const {data: professionalData} = useDrupalData(`/professional_training_cycle/${endpoint}`);
+    const {data: generalData} = useGeneralDataQuery({endpoint: `${endpoint}`});
+    const {data: certificationData} =  useProfessionalDataQuery({endpoint: `${endpoint}`});
+    const {data: professionalData} =  useCertificationDataQuery({endpoint: `${endpoint}`});
     var row = 0;
 
     return <>

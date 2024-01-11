@@ -3,7 +3,6 @@ import Paragraph from "../components/Paragraph/Paragraph.jsx";
 import MetaTags from "../components/Common/MetaTags.jsx";
 import {useGeneralInfoPageQuery} from "../services/api.js";
 
-
 function GeneralInformationPage() {
     const {alias} = useParams();
     const { data:  general } = useGeneralInfoPageQuery({ page: `${alias}`});
