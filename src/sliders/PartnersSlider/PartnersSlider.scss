@@ -1,6 +1,7 @@
 @import '../../helpers';
 
 .partner-slider {
+  padding:50px 0;
   &__item {
     border-right:1px solid $borderGray;
     img {

@@ -1,0 +1,11 @@
+@import '../../../helpers';
+.footer-bottom{
+  background: $burgundy;
+  padding:20px 0;
+  &__time{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    @include fontz(16px,24px,0.02em,capitalize,500,white);
+  }
+}

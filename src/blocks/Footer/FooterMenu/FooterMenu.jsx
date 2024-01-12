@@ -5,7 +5,7 @@ import './FooterMenu.scss';
 export default function FooterMenu() {
     const { data: footerMenuData } = useFooterMenuQuery();
     return (
-        <ul>
+        <ul className="footer-menu">
             {footerMenuData?.data?.map((item, index) =>
                 <li key={index}><NavLink to={item?.attributes?.url}>{item?.attributes?.title}</NavLink></li>
             )}

@@ -6,18 +6,18 @@ import Subscriber from "../blocks/Subscriber/Subscriber.jsx";
 import {ToastContainer} from "react-toastify";
 
 function Layout({ children }) {
-    const location = useLocation();
-    const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
+    // const location = useLocation();
+    // const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
     return (
         <>
            <Header/>
             <main>{children}</main>
 
-            {!isUnsubscribePage && (
-                <div className={"footer-top bg-dark"}>
-                    <Subscriber/>
-                </div>
-            )}
+            {/*{!isUnsubscribePage && (*/}
+            {/*    <div className={"footer-top bg-dark"}>*/}
+            {/*        <Subscriber/>*/}
+            {/*    </div>*/}
+            {/*)}*/}
 
             <ToastContainer
                 position="top-center"

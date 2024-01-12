@@ -24,9 +24,6 @@ export const vnuApi = createApi({
         FooterPartnersBlock: builder.query({
             query: () => 'jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8?include=field_partner&jsonapi_include=field_image',
         }),
-        FooterDevelopmentByBlock: builder.query({
-            query: () => 'jsonapi/block_content/block_link/162874d4-fb9b-4763-9d58-e8634414e40c',
-        }),
         FooterInfoBlock: builder.query({
             query: () => 'jsonapi/block_content/about_the_university/ab52a7ef-b55b-4fec-9dc8-c2038c2e8769?include=field_image&jsonapi_include=1',
         }),
@@ -314,7 +311,6 @@ export const {
     useYoutubeBlockQuery,
     useFooterMenuQuery,
     useFooterPartnersBlockQuery,
-    useFooterDevelopmentByBlockQuery,
     useFooterInfoBlockQuery,
     useMainSliderQuery,
     usePollResultBlockQuery,
