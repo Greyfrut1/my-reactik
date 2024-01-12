@@ -6,6 +6,7 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import axios from "axios";
 import {useFooterDevelopmentByBlockQuery} from "../../services/api.js";
 import './Footer.scss';
+import PartnersSlider from "../../sliders/PartnersSlider/PartnersSlider.jsx";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -62,20 +63,12 @@ const Footer = () => {
     return (
         <div className="footer">
             <div>{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ")|| "Час: "}{formattedTime} {(activeUsersData?.active_users != "0" && <div>Online: {activeUsersData?.active_users}</div>)}</div>
-
             <FooterInfoBlock/>
             <FooterMenu/>
-
             <div>
                 <div>Development</div>
                 <div><a href={developmentByBlockData?.data?.attributes?.field_link_to?.uri}>{developmentByBlockData?.data?.attributes?.field_link_to?.title}</a></div>
             </div>
-
-            {/*<div>*/}
-            {/*    {partnersBlockData?.data?.relationships?.field_partner?.data?.map((item, key) =>*/}
-            {/*        <div key={key}><Paragraph target_id={item?.meta?.drupal_internal__target_id} /></div>*/}
-            {/*    )}*/}
-            {/*</div>*/}
         </div>
     );
 };

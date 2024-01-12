@@ -22,7 +22,7 @@ export const vnuApi = createApi({
             query: () => 'jsonapi/menu_items/footer',
         }),
         FooterPartnersBlock: builder.query({
-            query: () => 'jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8',
+            query: () => 'jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8?include=field_partner&jsonapi_include=field_image',
         }),
         FooterDevelopmentByBlock: builder.query({
             query: () => 'jsonapi/block_content/block_link/162874d4-fb9b-4763-9d58-e8634414e40c',

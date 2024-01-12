@@ -11,6 +11,7 @@ import PhotoAlbumSlider from "../../sliders/PhotoAlbumSlider/PhotoAlbumSlider.js
 import FacebookBlock from "../../blocks/FacebookBlock/FacebookBlock.jsx";
 import YoutubeBlock from "../../blocks/YoutubeBlock/YoutubeBlock.jsx";
 import './HomePage.scss';
+import PartnersSlider from "../../sliders/PartnersSlider/PartnersSlider.jsx";
 
 export default function HomePage() {
     return (
@@ -27,6 +28,7 @@ export default function HomePage() {
                 <FacebookBlock/>
                 <YoutubeBlock/>
             </div>
+            <PartnersSlider/>
         </>
     );
 }

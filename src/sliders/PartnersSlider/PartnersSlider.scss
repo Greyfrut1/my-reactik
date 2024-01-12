@@ -1,0 +1,29 @@
+@import '../../helpers';
+
+.partner-slider {
+  &__item {
+    border-right:1px solid $borderGray;
+    img {
+      border: 1px solid $borderGray;
+      max-width: 185px;
+      width:100%;
+      object-fit: cover;
+      border-radius: 5px;
+      margin:0 20px;
+    }
+  }
+
+  .slick-dots {
+    li {
+      margin: 0;
+    }
+
+    .slick-active {
+      button {
+        &:before {
+          background: $darkRed;
+        }
+      }
+    }
+  }
+}
