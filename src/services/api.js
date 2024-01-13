@@ -19,7 +19,7 @@ export const vnuApi = createApi({
             query: () => '/jsonapi/block_content/about_the_university/f97b1379-de32-4696-bd50-7aac5d5ba992?include=field_image',
         }),
         FooterMenu: builder.query({
-            query: () => 'jsonapi/menu_items/footer',
+            query: () => 'entity/menu/footer/tree',
         }),
         FooterPartnersBlock: builder.query({
             query: () => 'jsonapi/block_content/footer_bottom_partners/ae849b0d-8e67-409a-ad71-b63483a35fe8?include=field_partner&jsonapi_include=field_image',
