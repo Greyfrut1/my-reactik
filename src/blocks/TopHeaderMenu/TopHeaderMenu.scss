@@ -4,22 +4,17 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: #561111;
+  background-color:$burgundy;
   ul{
-    color: $lightGray;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
+    @include fontz(12px,normal,0.02em,none,400, $lightGray);
     justify-content: space-around;
     display: flex;
     height: 60px;
     align-items: center;
-    max-width: 1440px;
-    margin: 0 auto;
     a{
       color:white;
       &:hover, &:focus{
-        color: #FDBE34;
+        color: $yellow;
       }
     }
   }

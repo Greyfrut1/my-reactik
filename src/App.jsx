@@ -55,7 +55,7 @@ export default function App() {
             <Suspense>
                 <Routes>
                     <Route path="/:lang" element={<HomePage />} />
-                    <Route path="/" element={<Navigate to="/uk" />} />
+                    <Route path="/" element={<Navigate to="/en" />} />
 
                     <Route path="/:lang/photoalbums" element={<PhotoAlbumsViewPage />} />
                     <Route path="/:lang/photoalbums/:alias" element={<PhotoAlbumsPage />} />

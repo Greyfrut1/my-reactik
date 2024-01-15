@@ -1,7 +1,7 @@
-import React,{useState} from "react";
+import {useState} from "react";
 import {useHeaderMenuQuery, useHeaderLogoQuery} from "../../services/api.js";
 import './HeaderMenu.scss';
-import {NavLink} from "react-router-dom";
+
 function HeaderMenu() {
     const { data: items } = useHeaderMenuQuery();
     const [showLogoBlock, setShowLogoBlock] = useState(true);
@@ -114,7 +114,7 @@ function HeaderMenu() {
                 ))}
             </nav>
             {showLogoBlock && (
-                <div className={'main-menu__logo-block'}>
+                <div className={'main-menu__logo'}>
                     <img src={headerLogoBlockData?.included?.[0]?.attributes.image_style_uri?.['thumbnail']} alt="alt"/>
                     <div
                         className={'main-menu__logo-text'}>{headerLogoBlockData?.data?.attributes?.field_main_text}</div>

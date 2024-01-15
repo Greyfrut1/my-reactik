@@ -1,6 +1,6 @@
 import {useTopHeaderMenuQuery} from "../../services/api.js";
 import './TopHeaderMenu.scss';
-function TopHeaderMenu(){
+export default function TopHeaderMenu(){
     const { data } = useTopHeaderMenuQuery();
     return <div className="second-menu">
         <ul>
@@ -12,5 +12,3 @@ function TopHeaderMenu(){
         </ul>
     </div>
 }
-
-export default TopHeaderMenu;

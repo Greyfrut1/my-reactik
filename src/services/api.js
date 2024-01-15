@@ -1,6 +1,8 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
-const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/`;
+const langCode = window.location.pathname.split('/')[1];
+const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/${langCode}/`;
+
 
 export const vnuApi = createApi({
     reducerPath: 'vnuApi',
