@@ -3,8 +3,17 @@
 .footer{
   background: $darkRed;
   &-top{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns:30% 70%;
+    &.container{
+      padding:0;
+    }
+  }
+}
+@media(max-width: $xxl){
+  .footer{
+    &-top{
+      grid-template-columns:25% 75%;
+    }
   }
 }

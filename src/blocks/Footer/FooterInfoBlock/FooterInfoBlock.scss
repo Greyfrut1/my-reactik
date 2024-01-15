@@ -1,5 +1,32 @@
 @import '../../../helpers';
 
-.footer-info-block{
+.footer-info{
   color:white;
+  padding:20px 0 20px 35px;
+  &__logo{
+    display: flex;
+    flex-direction:row;
+    max-width:300px;
+    padding:25px 0;
+  }
+  &__contact{
+    display: flex;
+    flex-direction:column;
+    svg{
+      width:20px;
+      height:auto;
+    }
+    &-address{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap:10px;
+      a{
+        @include fontz(14px,normal,0.02em,none,500,white);
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }

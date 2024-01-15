@@ -3,10 +3,14 @@ import axios from "axios";
 import useLanguagePrefix from "../../../services/languagePrefix.jsx";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 import './FooterBottom.scss';
+import SocialLinks from "../../../components/SocialLinks.jsx";
+import {useLocation} from "react-router-dom";
+import Subscriber from "../../Subscriber/Subscriber.jsx";
+
 
 const FooterBottom = () => {
 
-    // State for storing the current date and time
+    // State for storing the current date and time.
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
     const [activeUsersData, setActiveUsersData] = useState(null);
 
@@ -51,12 +55,20 @@ const FooterBottom = () => {
         return () => clearInterval(intervalId);
     },[]);
 
+    const location = useLocation();
+    const isUnsubscribePage = location.pathname.startsWith("/simplenews/remove/");
 
     return (
         <div className="footer-bottom">
-            <div
-                className="footer-bottom__time">{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ") || "Час: "}{formattedTime} {(activeUsersData?.active_users != "0" &&
-                <>Online: {activeUsersData?.active_users}</>)}</div>
+            <div className="footer-bottom__block container">
+                {!isUnsubscribePage && (
+                    <Subscriber/>
+                )}
+                <SocialLinks/>
+                <div
+                    className="footer-bottom__block-time">{(langPrefix === 'en' && "Date: ") || "Дата: "}{formattedDate} {(langPrefix === 'en' && "Time: ") || "Час: "}{formattedTime} {(activeUsersData?.active_users != "0" &&
+                    <>Online: {activeUsersData?.active_users}</>)}</div>
+            </div>
         </div>
     );
 };

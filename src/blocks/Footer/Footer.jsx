@@ -7,7 +7,7 @@ export default function Footer () {
 
     return (
         <div className="footer">
-            <div className="footer-top">
+            <div className="footer-top container">
                 <FooterInfoBlock/>
                 <FooterMenu/>
             </div>

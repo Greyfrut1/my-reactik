@@ -1,11 +1,20 @@
 @import '../../../helpers';
 .footer-bottom{
   background: $burgundy;
-  padding:20px 0;
-  &__time{
-    display: flex;
-    flex-direction: row;
-    gap:10px;
-    @include fontz(16px,24px,0.02em,capitalize,500,white);
+  &__block{
+    display: grid;
+    grid-template-columns: 34% 40% 26%;
+    align-items: center;
+    .subscriber{
+      padding:20px 0 20px 35px;
+    }
+    &-time{
+      display: flex;
+      padding:20px 0 20px 0;
+      flex-direction: row;
+      justify-content: center;
+      gap:10px;
+      @include fontz(16px,24px,0.02em,capitalize,500,white);
+    }
   }
 }

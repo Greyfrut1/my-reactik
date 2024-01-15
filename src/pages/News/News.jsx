@@ -8,7 +8,7 @@ import queryString from "query-string";
 export default function News() {
     const navigate = useNavigate();
 
-    // Parse the query parameters from the URL.
+    // Parse the query parameters from the URL.np
     const search = window.location.search;
     const parsed = queryString.parse(search);
 
