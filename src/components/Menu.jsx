@@ -224,7 +224,6 @@ function Menu() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/>
                     </svg>
                 </div>}
-                {/*{showLogoBlock && (*/}
                 <div style={{display: (showLogoBlock) ? 'block' : 'none'}} className={'main-menu__logo-block'}>
 
                     <div>{headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id &&
@@ -237,9 +236,7 @@ function Menu() {
                         <br/><span
                         className={'main-menu__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span></>}
                     </div>
-
                 </div>
-                {/*)}*/}
             </div>
         </>
     );
