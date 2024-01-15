@@ -21,29 +21,36 @@ function Header() {
     };
     return (
         <>
-            <header className='header'>
-                <div className={`header__burger-bar ${showMenuDialog ? 'show' : ''}`} onClick={toggleMenuDialog}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div className={'header__logo-block'}>
-                    <a href={`/${langPrefix}`}>
-                        <img src={headerLogoBlockData?.included?.[0]?.attributes?.image_style_uri?.['thumbnail']}
-                             alt="alt"/>
-                        <div
-                            className={'header__logo-text'}>{headerLogoBlockData?.data?.attributes?.field_main_text}</div>
-                    </a>
-                </div>
-                <div className={'header__right-block'}>
-                    <LanguageSwitcher/>
-                    <SearchBlock/>
-                </div>
-            </header>
+            <div className={'header-block'}>
+                <header className={`header`}>
+                    <div className={`header__burger-bar ${showMenuDialog ? 'show' : ''}`} onClick={toggleMenuDialog}>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div className={'header__logo-block'}>
+                        <a href={`/${langPrefix}`}>
+                            <img src={headerLogoBlockData?.included?.[0]?.attributes?.image_style_uri?.['thumbnail']}
+                                 alt="alt"/>
+                            <div
+                                className={'header__logo-text'}>
+                                <span>{headerLogoBlockData?.data?.attributes?.field_main_text}</span><br/><span
+                                className={'header__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div className={'header__right-block'}>
+                        <LanguageSwitcher/>
+                        <SearchBlock/>
+                    </div>
+                </header>
+            </div>
             <div className={`menu-dialog ${showMenuDialog ? 'show' : ''}`}>
-                <div className={`menu-cross ${showMenuDialog ? 'show' : ''}`} onClick={toggleMenuDialog}>
-                    <div></div>
-                    <div></div>
+                <div className={'menu-dialog-header'}>
+                    <div className={`menu-cross ${showMenuDialog ? 'show' : ''}`} onClick={toggleMenuDialog}>
+                        <div></div>
+                        <div></div>
+                    </div>
                 </div>
                 <div className="menu container">
                     <Menu/>
