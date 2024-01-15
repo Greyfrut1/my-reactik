@@ -6,9 +6,7 @@ function Menu() {
     const {data: items} = useDrupalData(`/entity/menu/main-header-menu/tree`);
     const [showLogoBlock, setShowLogoBlock] = useState(true);
     const {
-        data: headerLogoBlockData,
-        isLoading: isHeaderLogoBlockLoading,
-        error: headerLogoBlockError
+        data: headerLogoBlockData
     } = useDrupalData('jsonapi/block_content/about_the_university/f97b1379-de32-4696-bd50-7aac5d5ba992');
     const [activeElements, setActiveElements] = useState([]);
     const [scroll, setScroll] = useState('Bottom')
@@ -226,22 +224,22 @@ function Menu() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/>
                     </svg>
                 </div>}
-                {showLogoBlock && (
-                    <div className={'main-menu__logo-block'}>
+                {/*{showLogoBlock && (*/}
+                <div style={{display: (showLogoBlock) ? 'block' : 'none'}} className={'main-menu__logo-block'}>
 
-                        <div>{headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id &&
-                            <ImageComponent
-                                url={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
-                                alt={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.alt}/>}</div>
-                        <div
-                            className={'main-menu__logo-text'}>
-                            <span>{headerLogoBlockData?.data?.attributes?.field_main_text}</span>{headerLogoBlockData?.data?.attributes?.field_second_text && <>
-                            <br/><span
-                            className={'main-menu__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span></>}
-                        </div>
-
+                    <div>{headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id &&
+                        <ImageComponent
+                            url={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.drupal_internal__target_id}
+                            alt={headerLogoBlockData?.data?.relationships?.field_image?.data?.meta?.alt}/>}</div>
+                    <div
+                        className={'main-menu__logo-text'}>
+                        <span>{headerLogoBlockData?.data?.attributes?.field_main_text}</span>{headerLogoBlockData?.data?.attributes?.field_second_text && <>
+                        <br/><span
+                        className={'main-menu__logo-second-text'}>{headerLogoBlockData?.data?.attributes?.field_second_text}</span></>}
                     </div>
-                )}
+
+                </div>
+                {/*)}*/}
             </div>
         </>
     );
