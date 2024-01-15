@@ -1,7 +1,14 @@
 @import "variables";
 
+#root{
+  padding-top: 80px;
+}
 .header-block {
   background-color: #561111;
+  position: fixed;
+  width: 100%;
+  z-index: 800;
+  top: 0;
 }
 
 .header {
@@ -10,6 +17,7 @@
   padding: 10px;
   position: relative;
   align-items: center;
+  top: 0;
   height: 80px;
   max-width: 1920px;
   margin: 0 auto;
@@ -17,41 +25,11 @@
   background-color: #561111;
   color: white;
 
-  &.is-homepage {
-    color: white;
-
-    .language-switcher {
-      & a:hover {
-        border-color: white;
-      }
-
-      .active {
-        border-bottom-color: white;
-      }
-    }
-
-    .header__burger-bar {
-      div {
-        background-color: white;
-      }
-
-      &:hover {
-        border-color: white;
-      }
-    }
-
-    .header__right-block {
-      form {
-        svg {
-          border: 2px solid transparent;
-          transition: all 0.2s;
-          color: white;
-        }
-
-        svg:hover {
-          border: 2px solid white;
-        }
-      }
+  .header__right-block {
+    svg {
+      transition: all 0.2s;
+      color: white;
+      margin: auto 0;
     }
   }
 
@@ -64,9 +42,6 @@
       background-color: white;
     }
 
-    &:hover {
-      border-color: white;
-    }
   }
 
   .main-menu__logo-img-block {
@@ -84,10 +59,6 @@
 
   .header__logo-second-text {
     font-size: 10px;
-  }
-
-  .search-input {
-    display: none;
   }
 
   &__logo-block a {
@@ -124,9 +95,7 @@
         transition: all 0.2s;
       }
 
-      svg:hover {
-        border: 2px solid white;
-      }
+
     }
   }
 }
@@ -134,7 +103,7 @@
 .menu-dialog {
   position: fixed;
   top: 0;
-  z-index: 5;
+  z-index: 1000;
   background: rgb(115, 19, 19);
   background: linear-gradient(297deg, rgba(115, 19, 19, 1) 0%, rgba(11, 2, 4, 1) 53%);
   width: 100%;
@@ -198,7 +167,6 @@
 
   &:hover {
     cursor: pointer;
-    border-color: white;
   }
 }
 
@@ -357,12 +325,12 @@
   justify-content: space-between;
   align-items: center;
   width: 50px;
-  height: 50px;
+  height: 44px;
 }
 
 .header__burger-bar div {
-  background-color: black;
-  height: 3px;
+  background-color: white;
+  height: 2px;
   width: 28px;
   transition: all 0.3s;
 }
@@ -431,6 +399,42 @@
 .scroll-block{
   display: none;
 }
+
+.search-form-block{
+  width: 100%;
+  position: absolute;
+  top: 80px;
+  background-color: $darkRed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 800;
+}
+.search-form{
+  padding: 0;
+  height: 50px;
+  display: flex;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  .search-input {
+    max-width: 1920px;
+    width: 100%;
+    color: black;
+    height: 100%;
+    padding: 0 10px;
+    border: none;
+    &:focus-visible{
+      border: none;
+      outline: none
+    }
+  }
+  button{
+    background-color: #fdbe34;
+    height: 100%;
+    max-width: 200px;
+    width: 100%;
+  }
+}
 @media(min-width: 901px){
   .scroll-block {
     display: block;
@@ -439,7 +443,7 @@
     left: 50%;
     transform: translateX(-50%);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 5px;
+    padding: 0;
     transition: all 0.5s;
     &:hover{
       background-color: rgba(255, 255, 255, 0.5);
@@ -492,16 +496,16 @@
     &.show {
       div:first-child {
         top: -6px;
-        transform: translateX(-4px) translateY(8px) rotateZ(45deg);
+        transform: translateX(-3px) translateY(6px) rotateZ(45deg);
       }
 
       div:last-child {
         top: 6px;
-        transform: translateY(-7px) translateX(4px) rotateZ(45deg);
+        transform: translateY(-6px) translateX(3px) rotateZ(45deg);
       }
 
       div:nth-child(2) {
-        width: 40px;
+        width: 35px;
         top: 0;
         right: 13px;
         transform: rotateZ(-45deg);
@@ -543,7 +547,7 @@
     }
 
     .main-menu__logo-block {
-      display: none;
+      display: none !important;
     }
 
     .menu-cross {
@@ -785,6 +789,7 @@
     div {
       height: 2px;
       width: 20px;
+      background-color: white;
     }
   }
   .header__logo-block {
@@ -793,23 +798,23 @@
     }
 
   }
-  .header .header__right-block form svg {
+  .header .header__right-block svg {
     width: 22px;
   }
   .header__burger-bar {
     &.show {
       div:first-child {
         top: -6px;
-        transform: translateX(-4px) translateY(4px) rotateZ(45deg);
+        transform: translateX(-3px) translateY(4px) rotateZ(45deg);
       }
 
       div:last-child {
         top: 6px;
-        transform: translateY(-3px) translateX(3px) rotateZ(45deg);
+        transform: translateY(-4px) translateX(3px) rotateZ(45deg);
       }
 
       div:nth-child(2) {
-        width: 30px;
+        width: 28px;
         top: 0;
         right: 13px;
         transform: rotateZ(-45deg);
