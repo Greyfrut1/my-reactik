@@ -6,7 +6,6 @@ import React from "react";
 
 export default function FooterInfoBlock() {
     const {data} = useFooterInfoBlockQuery();
-    console.log(data);
     return (<div className="footer-info">
         <div className="footer-info__logo">
             <img src={data?.data?.field_image?.image_style_uri?.['logo_imagestyle']}

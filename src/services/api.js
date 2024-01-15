@@ -16,7 +16,7 @@ export const vnuApi = createApi({
             query: () => 'entity/menu/main-header-menu/tree',
         }),
         HeaderLogo: builder.query({
-            query: () => '/jsonapi/block_content/about_the_university/f97b1379-de32-4696-bd50-7aac5d5ba992?include=field_image',
+            query: () => 'jsonapi/block_content/about_the_university/f97b1379-de32-4696-bd50-7aac5d5ba992?include=field_image',
         }),
         FooterMenu: builder.query({
             query: () => 'entity/menu/footer/tree',
@@ -28,7 +28,7 @@ export const vnuApi = createApi({
             query: () => 'jsonapi/block_content/about_the_university/ab52a7ef-b55b-4fec-9dc8-c2038c2e8769?include=field_image&jsonapi_include=1',
         }),
         MainSlider: builder.query({
-            query: () => '/jsonapi/views/slider/block_1?include=field_image,field_link&jsonapi_include=1',
+            query: () => 'jsonapi/views/slider/block_1?include=field_image,field_link&jsonapi_include=1',
         }),
         YoutubeBlock: builder.query({
             query: () => 'jsonapi/block_content/block_link/4e904849-61c6-45d4-93de-89539abdf33a',
@@ -42,7 +42,7 @@ export const vnuApi = createApi({
         PollChoiceBlock: builder.query({
             query: (args) => {
                 const {id} = args;
-                return `/jsonapi/poll_choice/poll_choice/${id}`;
+                return `jsonapi/poll_choice/poll_choice/${id}`;
             },
         }),
         PollFormSubmit: builder.mutation({
@@ -53,7 +53,7 @@ export const vnuApi = createApi({
             }),
         }),
         ActualNewsBlock: builder.query({
-            query: () => '/jsonapi/views/actual_news/block_1?include=field_image',
+            query: () => 'jsonapi/views/actual_news/block_1?include=field_image&jsonapi_include=1',
         }),
         LastNewsSlider: builder.query({
             query: () => 'jsonapi/views/last_news/block_1?include=field_image&jsonapi_include=1',
@@ -106,7 +106,7 @@ export const vnuApi = createApi({
         Branches: builder.query({
             query: (args) => {
                 const {endpoint} = args;
-                return `/jsonapi/views/branches/${endpoint}?include=field_image&jsonapi_include=1`;
+                return `jsonapi/views/branches/${endpoint}?include=field_image&jsonapi_include=1`;
             },
         }),
         BranchesPage: builder.query({
@@ -200,7 +200,7 @@ export const vnuApi = createApi({
                 const {currentPage} = args;
                 const {date} = args;
                 const {category} = args;
-                return `jsonapi/views/news/block_1?page=${currentPage}&views-filter[created]=${date}&views-filter[type_news]=${category}`;
+                return `jsonapi/views/news/block_1?page=${currentPage}&views-filter[created]=${date}&views-filter[type_news]=${category}&include=field_image&jsonapi_include=1`;
             },
         }),
         EventViewBlock: builder.query({

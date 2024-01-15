@@ -10,8 +10,8 @@ import InfrastructureBlock from "../../blocks/InfrastructureBlock/Infrastructure
 import PhotoAlbumSlider from "../../sliders/PhotoAlbumSlider/PhotoAlbumSlider.jsx";
 import FacebookBlock from "../../blocks/FacebookBlock/FacebookBlock.jsx";
 import YoutubeBlock from "../../blocks/YoutubeBlock/YoutubeBlock.jsx";
-import './HomePage.scss';
 import PartnersSlider from "../../sliders/PartnersSlider/PartnersSlider.jsx";
+import './HomePage.scss';
 
 export default function HomePage() {
     return (
@@ -21,7 +21,7 @@ export default function HomePage() {
             <ActualNewsBlock/>
             <LastNewsSlider/>
             <EventsSlider/>
-            <div className="homepage-bottom">
+            <div className="homepage-bottom container">
                 <PollsBlock/>
                 <InfrastructureBlock/>
                 <PhotoAlbumSlider/>

@@ -91,22 +91,6 @@ function DynamicDataBlocks({type, endpoint, render}) {
         <>
             <MetaTags type={"view"} data={data} viewUrl={currentPath}/>
             <div className={"container"}>
-                <div className={"menu-dynamic-data-blocks flex justify-between"}>
-                    {type === 'news' ?
-                        <h1 className={"subtitle"}>{(langPrefix === "en" && "All news") || ("Усі новини")}</h1> :
-                        <h1 className={"subtitle"}>{(langPrefix === "en" && "All events") || ("Усі події")}</h1>}
-
-                    <div className={"menu-dynamic-data-blocks__left"}>
-                        {/* Render TypeFilterButtons with a callback function for type information changes. */}
-                        <TypeFilterButtons handleTypeInformation={handleTypeInformation}/>
-                        {/* Render CalendarFilter with selectedDate and a callback function for date changes. */}
-                        <CalendarFilter selectedDate={selectedDate} onDateChange={handleDateChange}/>
-                        {/* Render a Clear button with an onClick event to reset the selected date to null. */}
-                        <button className={"button-clear"} onClick={() => handleClear()}>
-                            <span>{(langPrefix === 'en' && "Clear") || ("Очистити")}</span>
-                        </button>
-                    </div>
-                </div>
                 <div className={"wrapper-dynamic-data-blocks"}>
                     <div className={"dynamic-data-blocks view-content"}>
                         {data?.data?.length ? (

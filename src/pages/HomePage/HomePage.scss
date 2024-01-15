@@ -2,11 +2,9 @@
 .homepage-bottom{
   display: flex;
   justify-content: space-between;
-  max-width: 1170px;
-  margin: 0 auto;
   flex-wrap: wrap;
-  padding: 30px 0;
   row-gap: 30px;
+  gap:40px;
 }
 @media (max-width: $xl) {
   .homepage-bottom{

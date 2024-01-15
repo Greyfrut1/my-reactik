@@ -1,4 +1,4 @@
-import {useTaxonomyTypeInfoQuery} from "../../services/api.jsx";
+import {useTaxonomyTypeInfoQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 

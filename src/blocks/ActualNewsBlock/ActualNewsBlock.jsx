@@ -5,22 +5,22 @@ import './ActualNewsBlock.scss';
 
 export default function ActualNewsBlock() {
 
-    const { data } = useActualNewsBlockQuery();
+    const {data} = useActualNewsBlockQuery();
     const languagePrefix = useLanguagePrefix();
     return (
-        <div className="actual-news-block">
-            <div className="actual-news-block__container">
+        <div className="actual-news">
+            <div className="actual-news__block container">
                 {data?.data?.map((article, index) => (
-                    <a href={`${languagePrefix}${article?.attributes?.path?.alias}`} key={index}
-                       className="actual-news-block__item">
-                        <img src={data?.included?.[index]?.attributes.image_style_uri?.['actual_news']} alt="alt"/>
-                        <div className="actual-news-block__content">
-                            <Link className="actual-news-block__title"
-                                  to={article?.attributes?.path?.alias}>{article?.attributes?.title}</Link>
-                            <p className="actual-news-block__summary">
-                                {article?.attributes?.field_description?.summary}</p>
+                    <Link to={`/${languagePrefix}${article?.path?.alias}`} key={index}
+                       className="actual-news__item">
+                        <img src={article?.field_image?.image_style_uri?.['actual_news']} alt="alt"/>
+                        <div className="actual-news__item-content">
+                            <Link className="actual-news__item-title"
+                                  to={article?.path?.alias}>{article?.title}</Link>
+                            <p className="actual-news__item-summary">
+                                {article?.field_description?.summary}</p>
                         </div>
-                    </a>
+                    </Link>
                 ))}
             </div>
         </div>

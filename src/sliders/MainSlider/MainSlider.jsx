@@ -25,7 +25,7 @@ export default function MainSlider() {
                     <img src={slide?.field_image?.image_style_uri?.['wide']}
                          alt={slide?.field_image?.meta?.alt}/>
                     <div className="main-slider__overlay"/>
-                    <div className="main-slider__item-content">
+                    <div className="main-slider__item-content  container">
                         <h3 className="main-slider__title">{slide?.info}</h3>
                         <div className="main-slider__line"/>
                         <div
