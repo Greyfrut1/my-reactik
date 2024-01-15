@@ -10,7 +10,6 @@ import SearchBlock from "../SearchBlock/SearchBlock.jsx";
 function Header() {
     const { data: headerLogoBlockData } = useHeaderLogoQuery();
     const [showMenuDialog, setShowMenuDialog] = useState(false);
-    const [input, setInput] = useState("");
     const langPrefix = useLanguagePrefix();
     const toggleMenuDialog = () => {
         setShowMenuDialog(!showMenuDialog);

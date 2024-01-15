@@ -16,6 +16,13 @@
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
+  svg {
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    color: white;
+    margin: auto 0;
+    width:20px;
+  }
   .search-input {
     max-width: 1920px;
     width: 100%;
@@ -29,7 +36,7 @@
     }
   }
   button{
-    background-color: #fdbe34;
+    background-color: $yellow;
     height: 100%;
     max-width: 200px;
     width: 100%;
