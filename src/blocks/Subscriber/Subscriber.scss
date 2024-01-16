@@ -30,7 +30,7 @@
       border: none;
       background: white;
       padding:15px;
-      border-radius:  7px  0 0  7px;
+      border-radius:  7px  0 0 7px;
       &::placeholder {
         @include fontz(16px, normal, 0.02em, none, 600, $burgundy);
       }
