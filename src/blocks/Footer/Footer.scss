@@ -1,0 +1,24 @@
+@import '../../helpers';
+
+.footer{
+  background: $darkRed;
+  &-top{
+    display: grid;
+    grid-template-columns:30% 70%;
+    &.container{
+      padding:0;
+    }
+  }
+}
+@media(max-width: $xxl){
+  .footer{
+    &-top{
+      grid-template-columns:25% 75%;
+    }
+  }
+}
+@media(max-width: $md){
+  .footer{
+    display: none;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../helpers';
+
+.second-menu{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color:$burgundy;
+  ul{
+    @include fontz(12px,normal,0.02em,none,400, $lightGray);
+    justify-content: space-around;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    li {
+      margin: 0 5px;
+    }
+    a{
+      color:white;
+      &:hover, &:focus{
+        color: $yellow;
+      }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .second-menu{
+    display: none;
+  }
+}

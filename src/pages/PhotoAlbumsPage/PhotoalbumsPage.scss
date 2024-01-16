@@ -1,0 +1,17 @@
+@import '../../helpers';
+
+.albums {
+  padding: 50px 0;
+
+  &-title {
+    text-align: center;
+    @include fontz(2em, 65px, 0.02rem, capitalize, 800, black);
+  }
+}
+
+@media (max-width: $lg) {
+  .albums-title {
+    @include fontz(1.5em, 30px, 0.02rem, capitalize, 800, black);
+    margin: 10px 0;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../helpers';
+.staff-view{
+  padding:50px 0;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+  .staff-item{
+    img{
+      max-width:125px;
+      max-height:165px;
+    }
+    &__title{
+      @include fontz(18px,35px,0.02em,capitalize,500,black);
+    }
+    &__position{
+      @include fontz(15px,24px,0.02em,capitalize,400,black);
+    }
+  }
+}
+@media(max-width: $md){
+  .staff-view{
+    gap:10px;
+  }
+}
+@media(max-width: $sm){
+  .staff-view{
+    grid-template-columns: 1fr;
+  }
+}

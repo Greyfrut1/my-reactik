@@ -1,0 +1,40 @@
+@import '../../../helpers';
+
+.footer-menu{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  flex-wrap: wrap;
+  gap:30px;
+  max-height: 400px;
+  padding:20px 35px 20px 0;
+  a{
+    color:white;
+  }
+  ul{
+    padding:0;
+  }
+  .level-one{
+    @include fontz(20px,35px,0.02em,none,600,white);
+  }
+  .second-level{
+    max-width:300px;
+    width:100%;
+    &__link{
+      @include fontz(14px,25px,0.02em,none,500,white);
+      overflow-wrap: anywhere;
+    }
+  }
+}
+@media(max-width: $xxl){
+  .footer-menu{
+    .level-one{
+      @include fontz(18px,35px,0.02em,none,600,white);
+    }
+    .second-level{
+      &__link{
+        @include fontz(13px,25px,0.02em,none,500,white);
+      }
+    }
+  }
+}

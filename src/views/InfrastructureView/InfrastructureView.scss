@@ -1,0 +1,53 @@
+@import '../../helpers';
+.infrastructure-view{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+.infrastructure-item{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  max-width: 500px;
+  width:100%;
+  border: 3px solid transparent;
+  &:hover {
+    transition: .2s ease;
+    border-bottom: 3px solid $darkRed;
+    border-left: 3px solid $darkRed;
+  }
+
+  &__info{
+    margin-left:20px;
+    &-title{
+      @include fontz(18px,25px,0.02em,capitalize,800,black);
+      padding: 0 0 10px;
+    }
+  }
+  &__map{
+    width:350px;
+    height:200px;
+  }
+}
+
+@media (max-width: $xl) {
+  .infrastructure-item{
+    &__map{
+      width:100%;
+    }
+  }
+}
+@media (max-width: $lg) {
+  .infrastructure-item{
+    flex-direction: column;
+    &__info{
+      margin:10px 0 0;
+    }
+  }
+}
+@media (max-width: $md) {
+  .infrastructure-view{
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,24 @@
+@import '../../helpers';
+.news{
+  .menu-dynamic-data-blocks{
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .dynamic-data-blocks{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 73px;
+    grid-column-gap: 86px;
+    .news-card{
+      max-width: 392px;
+      margin-bottom: 73px;
+      &-bottom{
+        padding-left: 5px;
+        .date_field{
+          padding: 13px 0;
+        }
+      }
+    }
+  }
+}

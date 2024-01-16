@@ -1,0 +1,44 @@
+@import 'variables';
+
+@mixin cuttext{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+@mixin fontz($fs, $lh, $ls, $tt, $fw,$cl) {
+  font-size: $fs;
+  line-height: $lh;
+  letter-spacing: $ls;
+  text-transform: $tt;
+  font-weight:$fw;
+  color:$cl;
+}
+
+@mixin home-bottom-block{
+  width: 350px;
+  max-width:100%;
+  height:430px;
+  &__title{
+    text-align: center;
+    margin-bottom: 15px;
+    a{
+      @include fontz(20px, 23px, 0, capitalize, 600, $darkRed);
+    }
+  }
+  .button{
+    @include fontz(20px, 23px, 0, none, 600, white);
+    width: fit-content;
+    border-radius: 4px;
+    padding: 15px 25px;
+    background: $darkRed;
+    border: 1px solid $darkRed;
+    transition: .2s ease-in;
+    margin: 10px auto;
+    &:hover{
+      background-color: transparent;
+      color: black;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@import '../../helpers';
+//Contact information.
+.contacts{
+  &-item {
+    display: flex;
+    flex-direction:row;
+    svg{
+      color:$darkGray;
+      width:20px;
+      margin-right:10px;
+    }
+    &__location, &__mail, &__phone, &__wiki{
+      display: flex;
+      flex-direction:row;
+    }
+  }
+}

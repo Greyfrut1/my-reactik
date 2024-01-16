@@ -1,7 +1,7 @@
 import useDrupalData from "../services/api.jsx";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-import ReadMore from "./ReadMore.jsx";
+import ReadMore from "../views/ReadMore.jsx";
 
 // Functional component for rendering a link to a Drupal node based on its URL
 function NodeLink({url, className}){

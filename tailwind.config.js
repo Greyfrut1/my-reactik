@@ -12,8 +12,8 @@ export default {
             'dark': '#3f444e',
             'darkGray': '#e8e8e8',
             'borderGray': '#d8d8d8',
-            'white': '#fff',
-            'black': '#000',
+            'white': 'white',
+            'black': 'black',
         },
         fontSize:{
             'title':['40px'],
@@ -28,8 +28,8 @@ export default {
         },
 
         container: {
-            center: true,  // Center the container content.
-            padding: '47px', // Set horizontal padding.
+            center: true,
+            padding: '47px',
         },
     },
     plugins: [],

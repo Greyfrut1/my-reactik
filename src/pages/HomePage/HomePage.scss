@@ -1,0 +1,14 @@
+@import '../../helpers';
+.homepage-bottom{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  gap:40px;
+  padding: 20px 10px;
+}
+@media (max-width: $xl) {
+  .homepage-bottom{
+    justify-content: space-around;
+  }
+}

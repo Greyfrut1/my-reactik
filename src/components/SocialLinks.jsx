@@ -1,18 +1,20 @@
-import useDrupalData from "../services/api.jsx";
-import facebook from "/src/assets/facebook-icon.png"
-import twitter from "/src/assets/twitter.png"
-import instagram from "/src/assets/instagram.png"
+import {useSocialLinksQuery} from "../services/api.js";
+import Facebook from '../assets/components/SocialLinks/Facebook.svg';
+import Twitter from '../assets/components/SocialLinks/TwitterX.svg';
+import Instagram from '../assets/components/SocialLinks/Instagram.svg';
+import VideoYoutube from '../assets/components/SocialLinks/YouTube.svg';
+import {Link} from "react-router-dom";
 
-function SocialLinks(){
-    const {data: socialLinksBlock} = useDrupalData(`jsonapi/block_content/social_links/89007644-1c79-4023-9849-2a080761f6ba`)
+export default function SocialLinks(){
+    const {data: socialLinksBlock} = useSocialLinksQuery();
     return <div className={"social-links_block"}>
-        <a target={`_blank`} href={`https://www.facebook.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.facebook?.value}`}><img
-            src={facebook} alt="" width={"40"} height={"40"}/></a>
-        <a target={`_blank`} href={`https://www.twitter.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.twitter?.value}`}><img
-            src={twitter} alt="" width={"40"} height={"40"}/></a>
-        <a target={`_blank`} href={`https://www.instagram.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.instagram?.value}`}><img
-            src={instagram} alt="" width={"40"} height={"40"}/></a>
+        <Link to={`https://www.facebook.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.facebook?.value}`}><img
+            src={Facebook} alt="" width={"35"} height={"35"}/></Link>
+        <Link to={`https://www.twitter.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.twitter?.value}`}><img
+            src={Twitter} alt="" width={"35"} height={"35"}/></Link>
+        <Link to={`https://www.instagram.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.instagram?.value}`}><img
+            src={Instagram} alt="" width={"35"} height={"35"}/></Link>
+        <Link to={`https://www.youtube.com/${socialLinksBlock?.data?.attributes?.field_social_links?.platform_values?.youtube?.value}`}><img
+            src={VideoYoutube} alt="" width={"35"} height={"35"}/></Link>
     </div>
 }
-
-export default SocialLinks

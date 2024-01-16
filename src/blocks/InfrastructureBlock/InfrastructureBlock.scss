@@ -1,0 +1,9 @@
+@import '../../helpers';
+.infrastructure-block{
+  @include home-bottom-block;
+  &__map{
+    border: 1px solid $borderGray;
+    height:100%;
+    width:100%;
+  }
+}

@@ -1,0 +1,6 @@
+@import '../../helpers';
+
+.poll-block,.poll-block__block{
+  @include home-bottom-block;
+
+}

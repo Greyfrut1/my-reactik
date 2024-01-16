@@ -1,0 +1,43 @@
+@import '../../helpers';
+
+.search-form-block{
+  width: 100%;
+  position: absolute;
+  top: 80px;
+  background-color: $darkRed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 800;
+}
+.search-form{
+  padding: 0;
+  height: 50px;
+  display: flex;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  .search-input {
+    max-width: 1920px;
+    width: 100%;
+    color: black;
+    height: 100%;
+    padding: 0 10px;
+    border: none;
+    &:focus-visible{
+      border: none;
+      outline: none
+    }
+  }
+  button{
+    background-color: #fdbe34;
+    height: 100%;
+    max-width: 200px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 775px) {
+  .search-form-block{
+    top: 60px;
+  }
+}
