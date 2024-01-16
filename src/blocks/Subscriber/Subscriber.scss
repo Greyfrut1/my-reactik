@@ -30,8 +30,10 @@
       border: none;
       background: white;
       padding:15px;
-      @include fontz(16px, normal, 0.02em, none, 600, $burgundy);
       border-radius:  7px  0 0  7px;
+      &::placeholder {
+        @include fontz(16px, normal, 0.02em, none, 600, $burgundy);
+      }
       &:focus{
         border:none;
       }
@@ -40,7 +42,7 @@
       background: none;
       border:1px solid white;
       border-radius: 0 7px 7px 0;
-      padding:9px 7px;
+      padding: 8px 7px 7px;
       svg{
         width: 25px;
         height: 25px;
