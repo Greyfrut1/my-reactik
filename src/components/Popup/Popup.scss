@@ -1,0 +1,16 @@
+@import '../../helpers';
+.modal-window {
+  position: relative;
+  height:450px;
+  max-width:555px;
+
+  &__close {
+    float: right;
+    width: 64px;
+    height: 64px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}

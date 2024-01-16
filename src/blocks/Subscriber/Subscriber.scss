@@ -1,46 +1,60 @@
 @import '../../helpers';
 
-.subscriber{
+.subscriber {
+  position: relative;
+  top: 30%;
+  left:8%;
   display: flex;
   justify-content: space-between;
-  .social-links_block{
+  align-items: center;
+  flex-direction: column;
+
+  &-title {
+    @include fontz(32px, 60px, 0.02em, none, 700, white);
+  }
+
+  &-text {
+    @include fontz(16px, 25px, 0.02em, none, 500, white);
+    text-align: center;
+    margin-bottom: 30px;
+    padding:0 100px;
+  }
+
+  form {
+    max-width: 600px;
     display: flex;
+    width: 50%;
     align-items: center;
-    padding:29px 0 34px;
-    column-gap: 5px;
-    a{
-      transition: all 0.2s;
-      &:hover{
-        margin-top: -5px;
+    position: relative;
+    input[type="email"] {
+      border: none;
+      background: white;
+      padding:15px;
+      @include fontz(16px, normal, 0.02em, none, 600, $burgundy);
+      border-radius:  7px  0 0  7px;
+      &:focus{
+        border:none;
+      }
+    }
+    button{
+      background: none;
+      border:1px solid white;
+      border-radius: 0 7px 7px 0;
+      padding:9px 7px;
+      svg{
+        width: 25px;
+        height: 25px;
+        color:white;
+      }
+      &:hover,&:focus{
+        background: $burgundy;
+        transition: all 0.5s;
       }
     }
   }
-  form{
-    max-width: 600px;
-    display: flex;
-    width:50%;
-    align-items: center;
-    position:relative;
-  }
-  .subscriber-from-container{
+
+  .subscriber-from-container {
     max-width: 900px;
     width: 100%;
-  }
-  button{
-    border: 2px solid white;
-    border-radius:5px;
-    padding: 23px 100px;
-    outline: none;
-    background: transparent;
-    @include fontz(20px,0px,0.02em,none,500,white);
-    max-height:50px;
-    max-width:316px;
-    cursor: pointer;
-    &:hover, &:focus{
-      background-color: white;
-      color: $burgundy;
-      transition: all 0.5s;
-      border:2px solid $burgundy
-    }
   }
 }
