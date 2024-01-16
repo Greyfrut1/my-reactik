@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
-import {useNewsLetterUnSubscriber} from "../../services/api.js";
+import {useNewsLetterUnSubscriberQuery} from "../../services/api.js";
 import {toast} from "react-toastify";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 
@@ -11,8 +11,8 @@ export default function UnSubscriber() {
 
     const navigate = useNavigate();
     const {idUser, idNewsletter, timestamp, hash} = useParams();
-    const { data:  subscriber } =  useNewsLetterUnSubscriber({ endpoint:  `${idUser}`});
-    const { data:  newsletter } =  useNewsLetterUnSubscriber({ endpoint:  `${idNewsletter}`});
+    const { data:  subscriber } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idUser}`});
+    const { data:  newsletter } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idNewsletter}`});
     const email = subscriber?.mail?.[0].value;
     const maskedEmail = email
         ? email.replace(/(?<=.{1}).(?=[^@]*?.@)/g, "*")
