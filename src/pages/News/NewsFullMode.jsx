@@ -17,7 +17,7 @@ function NewsFullMode() {
                 // Render each field of the news using the specified JSX with data.
                 renderFields={(data) => (
                     <div className={"dynamic-data-full-mode-fields"}>
-                        {data.field_image?.map((item, index) => (
+                        {data?.field_image?.map((item, index) => (
                             <div key={index}>
                                 {item?.target_id && (
                                     <ImageComponent url={item?.target_id} imagestyle="width_862" alt={item?.alt}/>
@@ -25,7 +25,7 @@ function NewsFullMode() {
                             </div>
                         ))}
                         {/* Map over field_description data and render HTML content for each item. */}
-                        {data.field_description?.map((item, index) => (
+                        {data?.field_description?.map((item, index) => (
                             <div key={index}>
                                 <div className={"field-description"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
                             </div>

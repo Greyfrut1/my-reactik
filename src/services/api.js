@@ -209,7 +209,7 @@ export const vnuApi = createApi({
             query: (args) => {
                 const {date} = args;
                 const {category} = args;
-                return `jsonapi/views/events/block_1?views-filter[created]=${date}&views-filter[field_type_target_id]=${category}`;
+                return `jsonapi/views/events/block_1?views-filter[created]=${date}&views-filter[field_type_target_id]=${category}&include=field_image&jsonapi_include=1`;
             },
         }),
         GeneralData: builder.query({

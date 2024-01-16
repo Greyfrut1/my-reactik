@@ -52,7 +52,7 @@ function Header() {
                         <div></div>
                     </div>
                 </div>
-                <div className="menu container">
+                <div className="menu_container">
                     <Menu/>
                 </div>
                 <TopHeaderMenu/>

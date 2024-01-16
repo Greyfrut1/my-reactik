@@ -1,0 +1,19 @@
+@import '../../helpers';
+
+.dynamic-data-full-mode {
+  display: flex;
+  gap: 30px;
+
+  &__left {
+    padding: 8px 0;
+  }
+  &__right{
+    padding: 8px 0;
+    display:block;
+  }
+}
+@media(max-width: $lg){
+  .dynamic-data-full-mode__right {
+    display: none;
+  }
+}

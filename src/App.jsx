@@ -9,7 +9,7 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const PhotoAlbumsPage = lazy(() => import('./pages/PhotoAlbumsPage/PhotoAlbumsPage.jsx'));
 const PhotoAlbumsViewPage = lazy(() => import('./views/PhotoAlbums/PhotoAlbumsView.jsx'));
 
-const InfrastructurePage = lazy(() => import('./pages/Infrastructure/InfrastructurePage.jsx'));
+const InfrastructurePage = lazy(() => import('./pages/InfrastructurePage/InfrastructurePage.jsx'));
 const InfrastructureViewPage = lazy(() => import('./views/InfrastructureView/InfrastructureView.jsx'));
 
 const Rectorate = lazy(() => import('./views/RectorateView.jsx'));
@@ -31,7 +31,7 @@ const FacultyPage = lazy(() => import('./pages/FacultyPage/FacultyPage.jsx'));
 
 const UkraineAboveAllPage = lazy(() => import('./pages/UkraineAboveAll/UkraineAboveAll.jsx'));
 const EnsemblesView = lazy(() => import('./views/EnsemblesView.jsx'));
-const EnsemblesPage = lazy(() => import('./pages/Ensembles/EnsemblesPage.jsx'));
+const EnsemblesPage = lazy(() => import('./pages/EnsemblesPage/EnsemblesPage.jsx'));
 
 const UniversityRating = lazy(() => import('./pages/UniversityRating/UniversityRating.jsx'));
 const Search = lazy(() => import('./pages/Search.jsx'));
@@ -44,8 +44,8 @@ const EducationalProgramsPage = lazy(() => import('./pages/EducationalPrograms/E
 const News = lazy(() => import('./pages/News/News.jsx'));
 const NewsPage = lazy(() => import('./pages/News/NewsFullMode.jsx'));
 
-const Events = lazy(() => import('./pages/Event/Events.jsx'));
-const EventsPage = lazy(() => import('./pages/Event/EventsFullMode.jsx'));
+const Events = lazy(() => import('./views/EventsView/EventsView.jsx'));
+const EventsPage = lazy(() => import('./pages/EventPage/EventPage.jsx'));
 
 
 export default function App() {

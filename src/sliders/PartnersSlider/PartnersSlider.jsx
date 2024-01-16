@@ -14,7 +14,33 @@ export default function PartnersSlider() {
         slidesToShow: 6,
         slidesToScroll: 3,
         arrows: false,
-        useTransform: false
+        useTransform: false,
+        responsive: [
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 2,
+                    infinite: true,
+                },
+            },
+            {
+                breakpoint: 1170,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     };
 
     return (

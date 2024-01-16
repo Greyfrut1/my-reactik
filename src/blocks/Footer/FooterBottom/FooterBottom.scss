@@ -1,6 +1,9 @@
 @import '../../../helpers';
 .footer-bottom{
   background: $burgundy;
+  &.container{
+    padding:0;
+  }
   &__block{
     display: grid;
     grid-template-columns: 34% 40% 26%;

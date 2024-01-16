@@ -1,7 +1,8 @@
 @import '../../helpers';
-
-.photoalbums-block{
+.photoalbums-block__slider,.photoalbums-block{
   @include home-bottom-block;
+}
+.photoalbums-block{
   &__slider{
     border: 1px solid $borderGray;
 
