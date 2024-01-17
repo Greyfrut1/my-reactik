@@ -4,18 +4,14 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNewsLetterSubscriberQuery} from "../../services/api.js";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-import SocialLinks from "../../components/SocialLinks.jsx";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 import './Subscriber.scss';
-import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function Subscriber() {
     const [email, setEmail] = useState('');
-    const {data: newsletterBlock, isFetching} = useNewsLetterSubscriberQuery();
-    const {setLoadingValue} = useContext(LoadingContext)
-    // useEffect(() => {
-    //     if(!isFetching){setLoadingValue({ Subscriber: true });} else { setLoadingValue({ Subscriber: false } )}
-    // }, [isFetching]);
+    const {data} = useNewsLetterSubscriberQuery();
+    const img = data?.data?.field_image?.image_style_uri?.['news_440x232'];
+
     const handleSubmit = (event) => {
 
         event.preventDefault();
@@ -42,9 +38,26 @@ export default function Subscriber() {
 
     return (
         <div className="subscriber">
-            <form onSubmit={handleSubmit}>
+            <h1 className="subscriber-title">
+                {data?.data.info}
+            </h1>
+            <p
+                className="subscriber-text"
+                dangerouslySetInnerHTML={{
+                    __html: data?.data.body?.processed,
+                }}
+            />
+            <form onSubmit={handleSubmit} className={"flex w-1/2 relative items-center"}>
+                <input required={"required"} type={"email"} value={email}
+                       onChange={(e) => setEmail(e.target.value)}
+                       placeholder={(langPrefix === "en" && "Enter your e-mail") || (langPrefix === "uk" && "Введіть e-mail")}/>
                 <button
-                    type="submit">{(langPrefix === "en" && "Subscribe") || (langPrefix === "uk" && "Підписатися")}</button>
+                    type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                         stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+                    </svg>
+                </button>
             </form>
         </div>
     );

@@ -3,7 +3,14 @@
   .menu-dynamic-data-blocks{
     display: flex;
     justify-content: space-between;
-
+    padding: 35px 45px 25px 45px;
+    border-bottom: 1px solid $darkRed;
+    margin-bottom: 35px;
+    &__left{
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
   }
   .dynamic-data-blocks{
     display: grid;

@@ -47,7 +47,6 @@ const NewsPage = lazy(() => import('./pages/News/NewsFullMode.jsx'));
 const Events = lazy(() => import('./views/EventsView/EventsView.jsx'));
 const EventsPage = lazy(() => import('./pages/EventPage/EventPage.jsx'));
 
-import {CircleSharp} from "@mui/icons-material";
 import {LoadingContext} from "./context/loading-context.jsx";
 import loader_logo from "/src/assets/loader-logo.png";
 export default function App() {
@@ -121,14 +120,10 @@ export default function App() {
                     <Route path="/:lang/events" element={<Events/>}/>
                     <Route path="/:lang/events/:alias" element={<EventsPage/>}/>
 
-
                     <Route path="/:lang/*" element={<NotFoundPage/>}/>
                 </Routes>
             </Suspense>
             </Layout>
-            {/*{Object.entries(loadingState).map(([key, value]) => (*/}
-            {/*    <p key={key}>{`${key}: ${value}`}</p>*/}
-            {/*))}*/}
             {!loading && (<div className={'loader-block'}><img src={loader_logo} alt={`loader-logo`}/></div>)}
         </BrowserRouter>
     );

@@ -13,7 +13,7 @@ export default function UnSubscriber() {
 
     const navigate = useNavigate();
     const {idUser, idNewsletter, timestamp, hash} = useParams();
-    const { data:  subscriber,  isFetching: subscriberFetch} =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idUser}`});
+    const { data:  subscriber,  isFetching: subscriberFetch } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idUser}`});
     const { data:  newsletter, isFetching: newsletterFetch } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idNewsletter}`});
     const email = subscriber?.mail?.[0].value;
     const maskedEmail = email

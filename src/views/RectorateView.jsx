@@ -5,7 +5,7 @@ import { useStaffQuery} from "../services/api.js";
 import {useContext, useEffect} from "react";
 import {LoadingContext} from "../context/loading-context.jsx";
 
-function RectorateView() {
+export default function RectorateView() {
     const {  data: rectorateViewsData, isFetching} =  useStaffQuery({endpoint: `page_1`});
     const location = useLocation();
     const currentPath = location.pathname;
@@ -21,8 +21,6 @@ function RectorateView() {
 
     );
 }
-
-export default RectorateView;
 
 
 

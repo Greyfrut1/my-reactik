@@ -37,11 +37,8 @@
     row-gap: 15px;
 
     &-title {
-      font-weight: 700;
-      color: black;
+      @include fontz(14px,16px,0.02em,none,700, black);
       word-break: break-word;
-      font-size: 14px;
-      line-height: 16px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -50,10 +47,8 @@
     }
 
     &-summary {
-      font-weight: 400;
+      @include fontz(14px,16px,0.02em,none,400, black);
       word-break: break-word;
-      font-size: 14px;
-      line-height: 16px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -71,12 +66,9 @@
 
       p {
         display: block;
-        font-size: 12px;
-        line-height: 14px;
-        color: $darkRed;
+        @include fontz(12px,14px,0.02em,uppercase,400,$darkRed);
         margin:0;
-        text-transform: uppercase;
-        padding: 12px 12px 12px 12px;
+        padding: 12px;
         border-left: 1px solid $darkGray;
       }
 

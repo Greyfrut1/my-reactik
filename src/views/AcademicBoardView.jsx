@@ -5,7 +5,7 @@ import { useStaffQuery} from "../services/api.js";
 import {useContext, useEffect} from "react";
 import {LoadingContext} from "../context/loading-context.jsx";
 
-function Rectorate() {
+export default function AcademicBoardView() {
 
     const {  data: academicBoardViewsData, isFetching} =  useStaffQuery({endpoint: `page_2`});
     const location = useLocation();
@@ -21,8 +21,6 @@ function Rectorate() {
         </>
     );
 }
-
-export default Rectorate;
 
 
 

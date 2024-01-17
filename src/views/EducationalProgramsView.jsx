@@ -7,9 +7,8 @@ import {useLocation} from "react-router-dom";
 import '../pages/EducationalPrograms/EducationalProgramsPage.scss';
 import {LoadingContext} from "../context/loading-context.jsx";
 
-function EducationalProgramsView() {
+export default function EducationalProgramsView() {
 
-    // State for storing filter values and language prefix
     const [filterValues, setFilterValues] = useState({
         title: '',
         field_form_educations_value: 'All',
@@ -77,5 +76,3 @@ function EducationalProgramsView() {
         </div>
     );
 }
-
-export default EducationalProgramsView;

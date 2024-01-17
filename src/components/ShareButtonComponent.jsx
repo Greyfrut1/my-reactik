@@ -2,8 +2,8 @@ import React from 'react';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, TelegramIcon, TelegramShareButton } from 'react-share';
 
 const ShareButtonComponent = ({ data }) => {
-    const shareUrl = `${window.location.origin}${data.path?.[0]?.alias}`;
-    const title = data.title?.[0]?.value;
+    const shareUrl = `${window.location.origin}${data?.path?.[0]?.alias}`;
+    const title = data?.title?.[0]?.value;
 
     return (
         <div className={'share-link'}>

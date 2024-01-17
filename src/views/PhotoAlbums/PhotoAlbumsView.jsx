@@ -7,20 +7,13 @@ import './PhotoAlbumsView.scss';
 import {usePhotoAlbumsQuery} from "../../services/api.js";
 import {LoadingContext} from "../../context/loading-context.jsx";
 
-function PhotoAlbumsView() {
+export default function PhotoAlbumsView() {
     const {data: albumsData, isFetching} = usePhotoAlbumsQuery();
     const languagePrefix = useLanguagePrefix()
-    const size = useWindowSize();
-    const [imageStyle, setImageStyle] = useState('');
     const {setLoadingValue} = useContext(LoadingContext)
     useEffect(() => {
-        if (size.width < 480) {
-            setImageStyle('thumbnail');
-        } else {
-            setImageStyle('small_large_photoalbums_134_172_');
-        }
         if(!isFetching){setLoadingValue({ PhotoAlbumsView: true });} else { setLoadingValue({ PhotoAlbumsView: false } )}
-    }, [size.width, isFetching]);
+    }, [isFetching]);
     const location = useLocation();
     const currentPath = location.pathname;
     return (
@@ -42,5 +35,3 @@ function PhotoAlbumsView() {
         </>
     );
 }
-
-export default PhotoAlbumsView;

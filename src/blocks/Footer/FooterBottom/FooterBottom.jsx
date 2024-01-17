@@ -6,6 +6,7 @@ import './FooterBottom.scss';
 import SocialLinks from "../../../components/SocialLinks.jsx";
 import {useLocation} from "react-router-dom";
 import Subscriber from "../../Subscriber/Subscriber.jsx";
+import Popup from "../../../components/Popup/Popup.jsx";
 
 
 const FooterBottom = () => {
@@ -62,7 +63,8 @@ const FooterBottom = () => {
         <div className="footer-bottom">
             <div className="footer-bottom__block container">
                 {!isUnsubscribePage && (
-                    <Subscriber/>
+                    <Popup activationButton={<button
+                        type="submit">{(langPrefix === "en" && "Subscribe") || (langPrefix === "uk" && "Підписатися")}</button>} content={<Subscriber />}/>
                 )}
                 <SocialLinks/>
                 <div
