@@ -1,7 +1,8 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useSearchQuery} from "../services/api.js";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import {LoadingContext} from "../context/loading-context.jsx";
 
 function Search() {
     const {result} = useParams();
@@ -12,7 +13,7 @@ function Search() {
         setInputValue2(result);
     }, [result]);
 
-    const {data: search} = useSearchQuery({ result: `${result}`});
+    const {data: search, isFetching} = useSearchQuery({ result: `${result}`});
 
     const langPrefix = useLanguagePrefix();
     const handleSubmit = (event) => {
@@ -23,7 +24,10 @@ function Search() {
     const handleInputChange = (event) => {
         setInputValue2(event.target.value);
     };
-
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ Search: true });} else { setLoadingValue({ Search: false } )}
+    }, [isFetching]);
     return (
         <>
             <form onSubmit={handleSubmit}>

@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useEducationCatalogViewQuery, useEducationViewQuery} from "../services/api.js";
 import ExposedFilterCatalog from "./ExposedFilterCatalog.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 import MetaTags from "../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 import '../pages/EducationalPrograms/EducationalProgramsPage.scss';
+import {LoadingContext} from "../context/loading-context.jsx";
 
 function EducationalProgramsView() {
 
@@ -36,10 +37,14 @@ function EducationalProgramsView() {
     const handleFilterChange = (filter) => {
         setFilterValues(filter);
     };
-    const {data: educationalProgramsTitle} =  useEducationCatalogViewQuery();
+    const {data: educationalProgramsTitle, isFetching} =  useEducationCatalogViewQuery();
     const location = useLocation();
     const currentPath = location.pathname;
 
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ EducationalProgramsView: true });} else { setLoadingValue({ EducationalProgramsView: false } )}
+    }, [isFetching]);
     return (
         <div className="education-catalog-page container">
             <MetaTags type={"view"} data={educationalProgramsTitle} viewUrl={currentPath}/>

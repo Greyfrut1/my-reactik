@@ -18,8 +18,8 @@ export default function BranchesView({data}){
                         <div key={index} className={"branches-item"}>
                             <img src={item?.field_image?.image_style_uri?.['small_large_photoalbums_134_172_']}
                                  alt={item?.field_image?.meta?.alt}/>
-                            <h2 className={"branches-item__title"}><Link
-                                to={`/${languagePrefix}${item?.path?.alias}`}>{item.title}</Link>
+                            <h2 className={"branches-item__title"}><a
+                                href={`/${languagePrefix}${item?.path?.alias}`}>{item.title}</a>
                             </h2>
                             <ContactInformation data={item} type={"views"}/>
                         </div>

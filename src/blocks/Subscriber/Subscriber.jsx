@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNewsLetterSubscriberQuery} from "../../services/api.js";
@@ -7,11 +7,15 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import SocialLinks from "../../components/SocialLinks.jsx";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 import './Subscriber.scss';
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function Subscriber() {
     const [email, setEmail] = useState('');
-
-    const {data: newsletterBlock} = useNewsLetterSubscriberQuery();
+    const {data: newsletterBlock, isFetching} = useNewsLetterSubscriberQuery();
+    const {setLoadingValue} = useContext(LoadingContext)
+    // useEffect(() => {
+    //     if(!isFetching){setLoadingValue({ Subscriber: true });} else { setLoadingValue({ Subscriber: false } )}
+    // }, [isFetching]);
     const handleSubmit = (event) => {
 
         event.preventDefault();

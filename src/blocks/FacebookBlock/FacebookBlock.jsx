@@ -1,16 +1,19 @@
 import {useFacebookBlockQuery} from '../../services/api.js';
 import {FacebookProvider, Page} from "react-facebook";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import './FacebookBlock.scss';
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function FacebookBlock() {
 
-    const {data:facebookBlockData} = useFacebookBlockQuery();
+    const {data:facebookBlockData, isFetching} = useFacebookBlockQuery();
     const [pageWidth, setPageWidth] = useState("100%");
+    const {setLoadingValue} = useContext(LoadingContext)
     useEffect(() => {
         setPageWidth(window.innerWidth > 900 ? "350px" : "300px");
-    }, []);
+        if(!isFetching){setLoadingValue({ FacebookBlock: true });} else { setLoadingValue({ FacebookBlock: false } )}
+    }, [isFetching]);
     return (
         <>
             {facebookBlockData?.data?.attributes?.field_link_to?.uri && <div className="facebook-block">

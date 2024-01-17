@@ -2,10 +2,15 @@ import {useFooterInfoBlockQuery} from '../../../services/api.js';
 import {Link} from "react-router-dom";
 import './FooterInfoBlock.scss';
 import ContactInformation from "../../../components/Common/ContactInformation.jsx";
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import {LoadingContext} from "../../../context/loading-context.jsx";
 
 export default function FooterInfoBlock() {
-    const {data} = useFooterInfoBlockQuery();
+    const {data, isFetching} = useFooterInfoBlockQuery();
+    const {setLoadingValue} = useContext(LoadingContext)
+    // useEffect(() => {
+    //     if(!isFetching){setLoadingValue({ FooterInfoBlock: true });} else { setLoadingValue({ FooterInfoBlock: false } )}
+    // }, [isFetching]);
     return (<div className="footer-info">
         <div className="footer-info__logo">
             <img src={data?.data?.field_image?.image_style_uri?.['logo_imagestyle']}

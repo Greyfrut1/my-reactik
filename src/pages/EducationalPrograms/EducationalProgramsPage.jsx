@@ -5,12 +5,17 @@ import ElectiveDisciplines from "../../blocks/Disciplines/ElectiveDisciplines.js
 import MainDisciplines from "../../blocks/Disciplines/MainDisciplines.jsx";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import MetaTags from "../../components/Common/MetaTags.jsx";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function EducationalProgramsPage() {
     const {alias} = useParams();
-    const {data: educationalProgramData} = useEducationCatalogPageQuery({page: `${alias}`});
+    const {data: educationalProgramData, isFetching} = useEducationCatalogPageQuery({page: `${alias}`});
     const langPrefix = useLanguagePrefix();
-
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ EducationalProgramsPage: true });} else { setLoadingValue({ EducationalProgramsPage: false } )}
+    }, [isFetching]);
     return <>
         <MetaTags type={"view"} data={educationalProgramData} />
         <div>

@@ -1,14 +1,18 @@
 import MetaTags from "../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 import {usePublicInfoQuery, usePublicInfoViewQuery} from "../services/api.js";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../context/loading-context.jsx";
 
 export default function PublicInformationPage(){
-    const { data:  publicInformation } = usePublicInfoQuery();
-    const { data:  publicInformationTitle } = usePublicInfoViewQuery({ endpoint: 'block_1'});
-
+    const { data:  publicInformation, isFetching: publicInfoFetch } = usePublicInfoQuery();
+    const { data:  publicInformationTitle, isFetching: publicInfoViewFetch } = usePublicInfoViewQuery({ endpoint: 'block_1'});
     const location = useLocation();
     const currentPath = location.pathname;
-
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!publicInfoFetch || !publicInfoViewFetch){setLoadingValue({ InfrastructureBlock: true });} else { setLoadingValue({ InfrastructureBlock: false } )}
+    }, [publicInfoFetch, publicInfoViewFetch]);
     return(
         <div className="public-information information-view container">
             {publicInformationTitle && currentPath && (

@@ -12,7 +12,7 @@ export default function Departments({id_departments}){
         <div>
             {department?.data?.map((item, index) =>(
                 <div key={index}>
-                    <Link to={`/${languagePrefix}${item?.path?.alias}`}>{item?.title}</Link>
+                    <a href={`/${languagePrefix}${item?.path?.alias}`}>{item?.title}</a>
                     <img src={item?.field_image?.image_style_uri?.['thumbnail']}
                          alt={item?.field_image?.meta?.alt}/>
                     {item?.field_head_of_department &&(

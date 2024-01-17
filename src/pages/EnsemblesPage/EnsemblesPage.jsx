@@ -1,10 +1,16 @@
 import {useParams} from "react-router-dom";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 import {useEnsemblesPageQuery} from "../../services/api.js";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function EnsemblesPage(){
     const { alias } = useParams();
-    const { data:  ensembles } =  useEnsemblesPageQuery({ page: `${alias}`});
+    const { data:  ensembles, isFetching } =  useEnsemblesPageQuery({ page: `${alias}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ EnsemblesPage: true });} else { setLoadingValue({ EnsemblesPage: false } )}
+    }, [isFetching]);
     return(
         <>
             <MetaTags type={"content"} data={ensembles}/>

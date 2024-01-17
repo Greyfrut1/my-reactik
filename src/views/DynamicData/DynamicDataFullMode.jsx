@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {useDynamicPageQuery} from "../../services/api.js";
 import TypeFilterButtons from "../TypeFilterButtons/TypeFilterButtons.jsx";
@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 import './DynamicDataFullMode.scss';
+import {LoadingContext} from "../../context/loading-context.jsx";
 export default function DynamicDataFullMode({ types, endpoint, renderFields }) {
     const navigate = useNavigate();
 
@@ -35,9 +36,13 @@ export default function DynamicDataFullMode({ types, endpoint, renderFields }) {
         return `${year}-${month}-${day}`;
     };
 
-    const {data} =  useDynamicPageQuery({ types:`${types}`, alias:`${alias}`});
+    const {data, isFetching} =  useDynamicPageQuery({ types:`${types}`, alias:`${alias}`});
     const id = data?.nid?.[0]?.value;
 
+    const {loadingState, setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ DynamicDataFullMode: true });} else { setLoadingValue({ DynamicDataFullMode: false } )}
+    }, [isFetching]);
     return (
         <>
             {data &&(

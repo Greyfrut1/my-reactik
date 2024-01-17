@@ -1,25 +1,26 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useWindowSize} from "react-use";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 import './PhotoAlbumsView.scss';
 import {usePhotoAlbumsQuery} from "../../services/api.js";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function PhotoAlbumsView() {
-    const {data: albumsData} = usePhotoAlbumsQuery();
+    const {data: albumsData, isFetching} = usePhotoAlbumsQuery();
     const languagePrefix = useLanguagePrefix()
-
     const size = useWindowSize();
     const [imageStyle, setImageStyle] = useState('');
-
+    const {setLoadingValue} = useContext(LoadingContext)
     useEffect(() => {
         if (size.width < 480) {
             setImageStyle('thumbnail');
         } else {
             setImageStyle('small_large_photoalbums_134_172_');
         }
-    }, [size.width]);
+        if(!isFetching){setLoadingValue({ PhotoAlbumsView: true });} else { setLoadingValue({ PhotoAlbumsView: false } )}
+    }, [size.width, isFetching]);
     const location = useLocation();
     const currentPath = location.pathname;
     return (

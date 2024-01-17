@@ -1,10 +1,11 @@
-import {useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {useEducationsQuery} from "../services/api.js";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
+import {LoadingContext} from "../context/loading-context.jsx";
 
 export default function ExposedFilterCatalog({ onFilterChange }) {
-    const {data: educationsViewData} = useEducationsQuery();
+    const {data: educationsViewData, isFetching} = useEducationsQuery();
     const [formValues, setFormValues] = useState({
         title: '',
         field_form_educations_value: 'All',
@@ -18,10 +19,13 @@ export default function ExposedFilterCatalog({ onFilterChange }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('testsetet')
         onFilterChange(formValues);
     };
 
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ ExposedFilterCatalog: true });} else { setLoadingValue({ ExposedFilterCatalog: false } )}
+    }, [isFetching]);
     const langPrefix = useLanguagePrefix();
     return (
         <div>

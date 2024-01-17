@@ -6,6 +6,8 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import './EventsSlider.scss';
 import {Link} from "react-router-dom";
 import {useEventsSliderQuery} from "../../services/api.js";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function truncateText(text, maxLength) {
     if (text && text.length > maxLength) {
@@ -44,7 +46,7 @@ export default function EventsSlider() {
             },
         ]
     };
-    const {data} = useEventsSliderQuery();
+    const {data, isFetching} = useEventsSliderQuery();
     const langPrefix = useLanguagePrefix();
     if (data?.data && data.data.length > 3) {
         settings.slidesToShow = 3;
@@ -52,11 +54,15 @@ export default function EventsSlider() {
         settings.slidesToShow = data.data.length;
     }
 
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ EventsSlider: true });} else { setLoadingValue({ EventsSlider: false } )}
+    }, [isFetching]);
     return (
         <div className="events-slider">
             <div className="container">
-                <h2 className="events-slider__title"><Link
-                    to={`/${langPrefix}/events`}>{data?.meta?.title}</Link></h2>
+                <h2 className="events-slider__title"><a
+                    href={`/${langPrefix}/events`}>{data?.meta?.title}</a></h2>
                 <Slider {...settings}>
                     {data?.data?.map((event) => (
                         <div key={event.id} className="events-slider__item">
@@ -84,8 +90,8 @@ export default function EventsSlider() {
                                 <p
                                     dangerouslySetInnerHTML={{__html: truncateText(event?.field_description?.summary, 150)}}
                                     className="events-slider__bottom-summary"/>
-                                <div className="events-slider__bottom-link"><Link
-                                    to={`/${langPrefix}${event?.path?.alias}`}><img src={arrow} alt='link'/></Link>
+                                <div className="events-slider__bottom-link"><a
+                                    href={`/${langPrefix}${event?.path?.alias}`}><img src={arrow} alt='link'/></a>
                                 </div>
                             </div>
                         </div>

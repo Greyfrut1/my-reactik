@@ -3,10 +3,16 @@ import MapComponent from "../../components/Common/MapComponent.jsx";
 import './InfrastructureView.scss';
 import {useInfrastructureQuery} from "../../services/api.js";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function InfrastructureView() {
-    const { data } = useInfrastructureQuery({endpoint: `page_1`});
+    const { data, isFetching } = useInfrastructureQuery({endpoint: `page_1`});
     const languagePrefix = useLanguagePrefix();
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ InfrastructureView: true });} else { setLoadingValue({ InfrastructureView: false } )}
+    }, [isFetching]);
     return (
         <div className={"container"}>
             <div className={"infrastructure"}>
