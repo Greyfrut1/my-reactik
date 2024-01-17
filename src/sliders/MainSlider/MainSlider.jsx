@@ -5,6 +5,7 @@ import ReadMore from "../../views/ReadMore.jsx";
 import './MainSlider.scss';
 import {useContext, useEffect} from "react";
 import {LoadingContext} from "../../context/loading-context.jsx";
+import languagePrefix from "../../services/languagePrefix.jsx";
 
 
 export default function MainSlider() {
@@ -19,6 +20,7 @@ export default function MainSlider() {
         arrows: false,
         useTransform: false
     };
+    const langPrefix = languagePrefix()
     const {setLoadingValue} = useContext(LoadingContext)
     useEffect(() => {
         if(!isFetching){setLoadingValue({ MainSlider: true });} else { setLoadingValue({ MainSlider: false } )}
@@ -35,7 +37,7 @@ export default function MainSlider() {
                         <div className="main-slider__line"/>
                         <div
                             className="main-slider__description">{slide?.field_description?.value.replace(/(<([^>]+)>)/gi, '')}</div>
-                        <a className="main-slider__link" href={slide?.field_link?.path?.alias}>
+                        <a className="main-slider__link" href={`${langPrefix}${slide?.field_link?.path?.alias}`}>
                             <ReadMore />
                         </a>
                     </div>

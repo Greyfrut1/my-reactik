@@ -11,10 +11,10 @@ const ImageComponent = ({ url, imagestyle, alt }) => {
     const imageSource = imagestyle
         ? fileData?.image_style_uri?.[0]?.[imagestyle]
         : `${baseURL}${fileData?.uri?.[0]?.url}`;
-    // const {setLoadingValue} = useContext(LoadingContext)
-    // useEffect(() => {
-    //     if(!isFetching){setLoadingValue({ [`ImageComponent${url}`]: true });} else { setLoadingValue({ [`ImageComponent${url}`]: false } )}
-    // }, [isFetching]);
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ [`ImageComponent${url}`]: true });} else { setLoadingValue({ [`ImageComponent${url}`]: false } )}
+    }, [isFetching]);
 
     return (
         <>

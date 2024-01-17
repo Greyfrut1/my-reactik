@@ -53,8 +53,8 @@ export default function App() {
     const { loadingState } = useContext(LoadingContext);
     const [loading, setLoading] = useState(false);
     const loadingStateRef = useRef(loadingState);
-    loadingStateRef.current = loadingState
     useEffect(() => {
+        loadingStateRef.current = loadingState
         setTimeout(() => {
             const hasLoading = Object.values(loadingStateRef.current).length > 0 && Object.values(loadingStateRef.current).every(value => value === true);
             if (hasLoading) {
@@ -62,9 +62,11 @@ export default function App() {
             } else {
                 setLoading(false);
             }
-            if (loadingState.length === 0) {
-                setLoading(true);
-            }
+            setTimeout(() => {
+                if (Object.values(loadingStateRef.current).length === 0) {
+                    setLoading(true);
+                }
+            }, 100)
         }, 300);
     }, [loadingState]);
     return (
