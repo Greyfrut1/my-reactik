@@ -5,7 +5,6 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import {useState} from "react";
 import './CalendarFilter.scss';
 
-// Define the CalendarFilter component that takes selectedDate and onDateChange as props.
 export default function CalendarFilter({ selectedDate, onDateChange }) {
 
     // Define a state to track whether the calendar is open or closed.
@@ -24,7 +23,6 @@ export default function CalendarFilter({ selectedDate, onDateChange }) {
 
     const langPrefix = useLanguagePrefix();
 
-    // Render the CalendarFilter component with a Calendar component and a Clear button.
     return (
         <>
                 <button className="type-filter__select show-calendar" onClick={toggleCalendar}>

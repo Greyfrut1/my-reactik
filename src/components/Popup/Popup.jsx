@@ -21,9 +21,9 @@ export default function
         content: {
             top: '50%',
             left: '50%',
-
             right: 'auto',
             bottom: 'auto',
+            MaxWidth: '90%',
             padding: '0',
             marginRight: '-50%',
             background: `url(${background})`,

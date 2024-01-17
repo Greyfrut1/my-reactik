@@ -17,6 +17,7 @@ export default function ActualNewsBlock() {
                         <div className="actual-news__item-content">
                             <Link className="actual-news__item-title"
                                   to={article?.path?.alias}>{article?.title}</Link>
+                            <hr/>
                             <p className="actual-news__item-summary">
                                 {article?.field_description?.summary}</p>
                         </div>

@@ -4,41 +4,32 @@ import React from "react";
 import ShareButtonComponent from "../../components/ShareButtonComponent.jsx";
 import CounterComponent from "../../components/CounterComponent.jsx";
 
-// Define the NewsFullMode functional component.
-function NewsFullMode() {
-    // Render the NewsFullMode component using DynamicDataFullMode for fetching and displaying detailed news data.
+export default function NewsFullMode() {
     return (
-        <>
-            <DynamicDataFullMode
-                // Specify the type of data as 'news'.
-                types="news"
-                // Define the endpoint for fetching detailed news data based on the alias.
-                endpoint={(alias) => `news/${alias}?_format=json`}
-                // Render each field of the news using the specified JSX with data.
-                renderFields={(data) => (
-                    <div className={"dynamic-data-full-mode-fields"}>
-                        {data?.field_image?.map((item, index) => (
-                            <div key={index}>
-                                {item?.target_id && (
-                                    <ImageComponent url={item?.target_id} imagestyle="width_862" alt={item?.alt}/>
-                                )}
-                            </div>
-                        ))}
-                        {/* Map over field_description data and render HTML content for each item. */}
-                        {data?.field_description?.map((item, index) => (
-                            <div key={index}>
-                                <div className={"field-description"} dangerouslySetInnerHTML={{ __html: `${item.value}` }}></div>
-                            </div>
-                        ))}
-                        <ShareButtonComponent data={data} />
-                        <CounterComponent />
-                    </div>
 
-                )}
-            />
-        </>
+        <DynamicDataFullMode
+            types="news"
+            endpoint={(alias) => `news/${alias}?_format=json`}
+            renderFields={(data) => (
+                <div className={"dynamic-data-full-mode-fields"}>
+                    {data?.field_image?.map((item, index) => (
+                        <div key={index}>
+                            {item?.target_id && (
+                                <ImageComponent url={item?.target_id} imagestyle="width_862" alt={item?.alt}/>
+                            )}
+                        </div>
+                    ))}
+                    {data?.field_description?.map((item, index) => (
+                        <div key={index}>
+                            <div className={"field-description"}
+                                 dangerouslySetInnerHTML={{__html: `${item?.value}`}}></div>
+                        </div>
+                    ))}
+                    <ShareButtonComponent data={data}/>
+                    <CounterComponent/>
+                </div>
+
+            )}
+        />
     );
 }
-
-// Export the NewsFullMode component for use in other parts of the application.
-export default NewsFullMode;

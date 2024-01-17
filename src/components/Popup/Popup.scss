@@ -2,7 +2,8 @@
 .modal-window {
   position: relative;
   height:450px;
-  max-width:555px;
+  width:555px;
+  max-width: 100%;
 
   &__close {
     float: right;
@@ -12,5 +13,10 @@
     background: none;
     border: none;
     cursor: pointer;
+  }
+}
+@media(max-width:$md) {
+  .modal-window {
+
   }
 }
