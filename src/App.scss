@@ -184,7 +184,19 @@ th {
   align-items: center;
   z-index: 1000;
   img{
+    -webkit-animation: loader-bounce 3s infinite;
+    animation: loader-bounce 3s infinite;
     width: 200px;
     height: auto;
   }
+}
+@keyframes loader-bounce {
+  0%{
+    opacity: 0;
+    filter: blur(1);
+  }
+  50%{
+     opacity: 1;
+     filter: blur(0);
+   }
 }
