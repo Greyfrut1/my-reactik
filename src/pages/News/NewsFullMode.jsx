@@ -21,8 +21,8 @@ export default function NewsFullMode() {
                     ))}
                     {data?.field_description?.map((item, index) => (
                         <div key={index}>
-                            <div className={"field-description"}
-                                 dangerouslySetInnerHTML={{__html: `${item?.value}`}}></div>
+                            <p className={"field-description"}
+                                 dangerouslySetInnerHTML={{__html: `${item?.value}`}}></p>
                         </div>
                     ))}
                     <ShareButtonComponent data={data}/>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {useEducationCatalogViewQuery, useEducationViewQuery} from "../services/api.js";
 import ExposedFilterCatalog from "./ExposedFilterCatalog.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
@@ -6,9 +6,8 @@ import MetaTags from "../components/Common/MetaTags.jsx";
 import {useLocation} from "react-router-dom";
 import '../pages/EducationalPrograms/EducationalProgramsPage.scss';
 
-function EducationalProgramsView() {
+export default function EducationalProgramsView() {
 
-    // State for storing filter values and language prefix
     const [filterValues, setFilterValues] = useState({
         title: '',
         field_form_educations_value: 'All',
@@ -72,5 +71,3 @@ function EducationalProgramsView() {
         </div>
     );
 }
-
-export default EducationalProgramsView;

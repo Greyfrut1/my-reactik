@@ -1,10 +1,8 @@
 import useLanguagePrefix from "../services/languagePrefix.jsx";
-function ReadMore(){
+export default function ReadMore(){
     const langPrefix = useLanguagePrefix()
     return <>
         {langPrefix === 'en' && <>Read more</>}
         {langPrefix === 'uk' && <>Детальніше</>}
     </>
 }
-
-export default ReadMore
