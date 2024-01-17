@@ -3,15 +3,20 @@ import Orcid from "../../assets/orcid.png";
 import Scholar from "../../assets/scholar.png";
 import Scopus from "../../assets/scopus.png";
 import Wiki from "../../assets/wikisnu-new.png";
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 import './StaffPage.scss';
 import {useStaffPageQuery} from "../../services/api.js";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function StaffPage(){
     const { alias } = useParams();
-    const { data:  staff } = useStaffPageQuery({ page: `${alias}`});
+    const { data:  staff, isFetching } = useStaffPageQuery({ page: `${alias}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ StaffPage: true });} else { setLoadingValue({ StaffPage: false } )}
+    }, [isFetching]);
     return (
         <>
             <MetaTags  type={"content"} data={staff} />

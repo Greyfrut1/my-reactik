@@ -13,8 +13,8 @@ export default function StaffView({data}) {
                     <div key={index} className={"staff-item flex flex-col"}>
                         <img src={item?.field_image?.image_style_uri?.['small_large_photoalbums_134_172_']}
                              alt={item?.field_image?.meta?.alt}/>
-                        <h2 className={"staff-item__title"}><Link
-                            to={`/${languagePrefix}${item?.path?.alias}`}>{item?.title}</Link></h2>
+                        <h2 className={"staff-item__title"}><a
+                            href={`/${languagePrefix}${item?.path?.alias}`}>{item?.title}</a></h2>
 
                         <p className={"staff-item__position"}>{item?.field_position_and_rank}</p>
                         <ContactInformation data={item} type={"views"}/>

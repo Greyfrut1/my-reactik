@@ -4,13 +4,18 @@ import Paragraph from "../../components/Paragraph/Paragraph.jsx";
 import StaffTeaser from "../../blocks/Staff/StaffTeaser.jsx";
 import Departments from "../../components/Departments.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 import './FacultyPage.scss';
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function FacultyPage(){
     const { alias } = useParams();
-    const { data:  faculty } =  useFacultyPageQuery({ page: `${alias}`});
+    const { data:  faculty, isFetching } =  useFacultyPageQuery({ page: `${alias}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ FacultyPage: true });} else { setLoadingValue({ FacultyPage: false } )}
+    }, [isFetching]);
     return (
         <div className="faculty container">
             <MetaTags type={"content"} data={faculty} />

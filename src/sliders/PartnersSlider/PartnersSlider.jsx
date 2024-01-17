@@ -3,9 +3,11 @@ import {useFooterPartnersBlockQuery} from "../../services/api.js";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import {Link} from "react-router-dom";
 import './PartnersSlider.scss';
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function PartnersSlider() {
-    const { data } = useFooterPartnersBlockQuery();
+    const { data, isFetching } = useFooterPartnersBlockQuery();
 
     var settings = {
         dots: true,
@@ -42,13 +44,16 @@ export default function PartnersSlider() {
             },
         ],
     };
-
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ PartnersSlider: true });} else { setLoadingValue({ PartnersSlider: false } )}
+    }, [isFetching]);
     return (
         <Slider {...settings} className="partner-slider container">
             {data?.data?.field_partner?.map((slide,index) => (
-                <Link key={index} className="partner-slider__item" to={slide.field_link_to_partner.uri}>
+                <a key={index} className="partner-slider__item" href={slide.field_link_to_partner.uri}>
                     <ImageComponent alt={slide?.field_image?.alt} imagestyle={"thumbnail"} url={slide?.field_image?.meta?.drupal_internal__target_id}/>
-                </Link>
+                </a>
             ))}
         </Slider>
     );

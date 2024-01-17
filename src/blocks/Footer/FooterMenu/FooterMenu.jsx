@@ -1,10 +1,15 @@
 import { useFooterMenuQuery } from '../../../services/api.js';
 import { NavLink } from 'react-router-dom';
 import './FooterMenu.scss';
-import React, {useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {LoadingContext} from "../../../context/loading-context.jsx";
 
 export default function FooterMenu() {
-    const { data: footerMenuData } = useFooterMenuQuery();
+    const { data: footerMenuData, isFetching } = useFooterMenuQuery();
+    const {setLoadingValue} = useContext(LoadingContext)
+    // useEffect(() => {
+    //     if(!isFetching){setLoadingValue({ FooterMenu: true });} else { setLoadingValue({ FooterMenu: false } )}
+    // }, [isFetching]);
     return (
         <nav className={"footer-menu"}>
             {footerMenuData?.map((item) => (

@@ -3,10 +3,16 @@ import LightBox from "../../components/Image/LightBox.jsx";
 import MetaTags from "../../components/Common/MetaTags.jsx";
 import './PhotoalbumsPage.scss';
 import {usePhotoAlbumsPageQuery} from "../../services/api.js";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function PhotoAlbumsPage() {
     const { alias } = useParams();
-    const { data:  albumsNodeData } = usePhotoAlbumsPageQuery({ page: `${alias}`});
+    const { data:  albumsNodeData, isFetching } = usePhotoAlbumsPageQuery({ page: `${alias}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ PhotoAlbumsPage: true });} else { setLoadingValue({ PhotoAlbumsPage: false } )}
+    }, [isFetching]);
     return (
         <>
             <MetaTags type={"content"} data={albumsNodeData} />

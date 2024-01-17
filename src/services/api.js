@@ -2,14 +2,11 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 const langCode = window.location.pathname.split('/')[1];
 const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/${langCode}/`;
-
-
 export const vnuApi = createApi({
     reducerPath: 'vnuApi',
     baseQuery: fetchBaseQuery({
         baseUrl: apiUrl,
     }),
-
     endpoints: (builder) => ({
         TopHeaderMenu: builder.query({
             query: () => 'jsonapi/menu_items/top-header',

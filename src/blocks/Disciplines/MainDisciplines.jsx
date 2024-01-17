@@ -2,15 +2,22 @@ import {useGeneralDataQuery,
     useProfessionalDataQuery,
     useCertificationDataQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function MainDisciplines({endpoint}) {
-    const {data: generalData} = useGeneralDataQuery({endpoint: `${endpoint}`});
-    const {data: certificationData} =  useProfessionalDataQuery({endpoint: `${endpoint}`});
-    const {data: professionalData} =  useCertificationDataQuery({endpoint: `${endpoint}`});
+    const {data: generalData, isFetching: generalFetch} = useGeneralDataQuery({endpoint: `${endpoint}`});
+    const {data: certificationData, isFetching: professionalFetch} =  useProfessionalDataQuery({endpoint: `${endpoint}`});
+    const {data: professionalData, isFetching: certificationFetch} =  useCertificationDataQuery({endpoint: `${endpoint}`});
     var row = 0;
 
+
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!generalFetch || !certificationFetch || !professionalFetch){setLoadingValue({ MainDisciplines: true });} else { setLoadingValue({ MainDisciplines: false } )}
+    }, [generalFetch, certificationFetch, professionalFetch]);
     return <>
     {(Array.isArray(generalData?.rows) && generalData?.rows.length !== 0) && <tr>
         <td>General training cycle</td>

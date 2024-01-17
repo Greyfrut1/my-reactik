@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import {lazy, Suspense, useContext, useEffect, useRef, useState} from 'react';
 import { BrowserRouter, Route, Routes ,Navigate} from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import './App.scss';
@@ -47,8 +47,26 @@ const NewsPage = lazy(() => import('./pages/News/NewsFullMode.jsx'));
 const Events = lazy(() => import('./views/EventsView/EventsView.jsx'));
 const EventsPage = lazy(() => import('./pages/EventPage/EventPage.jsx'));
 
-
+import {LoadingContext} from "./context/loading-context.jsx";
+import loader_logo from "/src/assets/loader-logo.png";
 export default function App() {
+    const { loadingState } = useContext(LoadingContext);
+    const [loading, setLoading] = useState(false);
+    const loadingStateRef = useRef(loadingState);
+    loadingStateRef.current = loadingState
+    useEffect(() => {
+        setTimeout(() => {
+            const hasLoading = Object.values(loadingStateRef.current).length > 0 && Object.values(loadingStateRef.current).every(value => value === true);
+            if (hasLoading) {
+                setLoading(true);
+            } else {
+                setLoading(false);
+            }
+            if (loadingState.length === 0) {
+                setLoading(true);
+            }
+        }, 300);
+    }, [loadingState]);
     return (
         <BrowserRouter>
             <Layout>
@@ -106,6 +124,7 @@ export default function App() {
                 </Routes>
             </Suspense>
             </Layout>
+            {!loading && (<div className={'loader-block'}><img src={loader_logo} alt={`loader-logo`}/></div>)}
         </BrowserRouter>
     );
 }

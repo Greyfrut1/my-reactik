@@ -3,12 +3,17 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import './NewsBannerBlock.scss';
 import {format} from "date-fns";
 import {uk} from "date-fns/locale";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function NewsBannerBlock() {
 
-    const {data: mainNews} =  useNewsViewQuery({endpoint: `block_2`});
+    const {data: mainNews, isFetching} =  useNewsViewQuery({endpoint: `block_2`});
     const langPrefix = useLanguagePrefix();
-
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ NewsBannerBlock: true });} else { setLoadingValue({ NewsBannerBlock: false } )}
+    }, [isFetching]);
     return (
         <div className="main-news">
             <div className="main-news__left">

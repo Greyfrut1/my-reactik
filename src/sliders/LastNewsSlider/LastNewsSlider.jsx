@@ -5,10 +5,12 @@ import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import ReadMore from "../../views/ReadMore.jsx";
 import {Link} from "react-router-dom";
 import './LastNewsSlider.scss';
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 
 export default function LastNewsSlider() {
-    const {data} = useLastNewsSliderQuery();
+    const {data, isFetching} = useLastNewsSliderQuery();
     var settings = {
 
         dots: true,
@@ -46,11 +48,14 @@ export default function LastNewsSlider() {
         ]
     };
     const langPrefix = useLanguagePrefix();
-
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ LastNewsSlider: true });} else { setLoadingValue({ LastNewsSlider: false } )}
+    }, [isFetching]);
     return (
         <div className="last-news container">
-            <h2 className="last-news__title"><Link
-                to={`/${langPrefix}/news`}>{data?.meta?.title}</Link></h2>
+            <h2 className="last-news__title"><a
+                href={`/${langPrefix}/news`}>{data?.meta?.title}</a></h2>
 
             <Slider {...settings}>
                 {data?.data?.map((news) => (
@@ -59,9 +64,9 @@ export default function LastNewsSlider() {
                              alt={news?.field_image?.meta?.alt}/>
                         <h3 className="last-news__item-title">{news?.title}</h3>
                         <div className="last-news__item-summary">{news?.field_description?.summary}</div>
-                        <Link to={`/${langPrefix}${news?.path?.alias}`}
+                        <a href={`/${langPrefix}${news?.path?.alias}`}
                               className="last-news__item-link"><img src={tick} alt="tick"/><p><ReadMore/></p>
-                        </Link>
+                        </a>
                     </div>
                 ))}
             </Slider>

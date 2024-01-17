@@ -5,10 +5,16 @@ import MetaTags from "../../components/Common/MetaTags.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import {useDepartmentPageQuery} from "../../services/api.js";
 import './DepartmentPage.scss';
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function DepartmentPage(){
     const { alias } = useParams();
-    const { data:  department } =  useDepartmentPageQuery({ page: `${alias}`});
+    const { data:  department, isFetching } =  useDepartmentPageQuery({ page: `${alias}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ DepartmentPage: true });} else { setLoadingValue({ DepartmentPage: false } )}
+    }, [isFetching]);
     return(
         <>
             <MetaTags type={"content"} data={department} />

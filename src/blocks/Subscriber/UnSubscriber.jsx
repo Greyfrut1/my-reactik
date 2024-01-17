@@ -3,6 +3,8 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useNewsLetterUnSubscriberQuery} from "../../services/api.js";
 import {toast} from "react-toastify";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -11,12 +13,16 @@ export default function UnSubscriber() {
 
     const navigate = useNavigate();
     const {idUser, idNewsletter, timestamp, hash} = useParams();
-    const { data:  subscriber } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idUser}`});
-    const { data:  newsletter } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idNewsletter}`});
+    const { data:  subscriber,  isFetching: subscriberFetch } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idUser}`});
+    const { data:  newsletter, isFetching: newsletterFetch } =  useNewsLetterUnSubscriberQuery({ endpoint:  `${idNewsletter}`});
     const email = subscriber?.mail?.[0].value;
     const maskedEmail = email
         ? email.replace(/(?<=.{1}).(?=[^@]*?.@)/g, "*")
         : "";
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!newsletterFetch || !subscriberFetch){setLoadingValue({ UnSubscriber: true });} else { setLoadingValue({ UnSubscriber: false } )}
+    }, [newsletterFetch, subscriberFetch]);
 
     // Check if either subscriber or newsletter is undefined or null
     if (!subscriber || !newsletter) {

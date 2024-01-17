@@ -1,10 +1,15 @@
 import {useNodeQuery} from "../../services/api.js";
 import ImageComponent from "../../components/Image/ImageComponent.jsx";
 import PropTypes from "prop-types";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function StaffTeaser({staff_id}){
-
-    const { data:  staffCard } =  useNodeQuery({ nid: `${staff_id}`});
+    const { data:  staffCard, isFetching } =  useNodeQuery({ nid: `${staff_id}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ StaffTeaser: true });} else { setLoadingValue({ StaffTeaser: false } )}
+    }, [isFetching]);
     return(
         <>
             <div>{staffCard?.title?.[0]?.value}</div>

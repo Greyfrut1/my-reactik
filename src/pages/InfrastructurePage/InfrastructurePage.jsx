@@ -3,10 +3,16 @@ import Paragraph from "../../components/Paragraph/Paragraph.jsx";
 import MapComponent from "../../components/Common/MapComponent.jsx";
 import {useInfrastructurePageQuery} from "../../services/api.js";
 import MetaTags from "../../components/Common/MetaTags.jsx";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function InfrastructurePage() {
     const { alias } = useParams();
-    const { data: infrastructure } = useInfrastructurePageQuery({ page: `${alias}` });
+    const { data: infrastructure, isFetching } = useInfrastructurePageQuery({ page: `${alias}` });
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ InfrastructurePage: true });} else { setLoadingValue({ InfrastructurePage: false } )}
+    }, [isFetching]);
     return (
         <>
             <MetaTags type={"content"} data={infrastructure} />

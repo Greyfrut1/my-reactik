@@ -1,9 +1,15 @@
 import './UniversityRating.scss';
 import {Link} from "react-router-dom";
 import {useUniversityRatingViewQuery} from "../../services/api.js";
+import {useContext, useEffect} from "react";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function UniversityRating(){
-    const {data: ratingView} = useUniversityRatingViewQuery();
+    const {data: ratingView, isFetching} = useUniversityRatingViewQuery();
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ UniversityRating: true });} else { setLoadingValue({ UniversityRating: false } )}
+    }, [isFetching]);
     return (
         <div className={"rating container"}>
             <div className="rating-view">

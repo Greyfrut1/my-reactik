@@ -1,16 +1,19 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {useHeaderLogoQuery, useHeaderMenuQuery} from "../../services/api.js";
 import './HeaderMenu.scss';
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 export default function HeaderMenu() {
-    const {data: items} = useHeaderMenuQuery();
-    const {data: headerLogoBlockData} = useHeaderLogoQuery();
+    const {data: items, isFetching: menuFetch} = useHeaderMenuQuery();
+    const {data: headerLogoBlockData, isFetching: logoFetch} = useHeaderLogoQuery();
     const [showLogoBlock, setShowLogoBlock] = useState(true);
     const [activeElements, setActiveElements] = useState([]);
     const [scroll, setScroll] = useState('Bottom')
     const [isParentMenuHovered, setParentMenuHovered] = useState(null);
     const [isParentSecondHovered, setParentSecondHovered] = useState(null);
     const [isOverflowed, setIsOverflowed] = useState(false);
+    const {setLoadingValue} = useContext(LoadingContext)
+
     const checkOverflow = () => {
         const mainMenuElement = document.getElementById('main-menu');
         const secondLevelElement = document.querySelector('.second-level');
@@ -78,7 +81,7 @@ export default function HeaderMenu() {
     useEffect(() => {
         const mainMenuElement = document.getElementById('main-menu');
         const secondLevelElement = document.querySelector('.second-level');
-
+        // if(!menuFetch || !logoFetch ){setLoadingValue({ HeaderMenu: true });} else { setLoadingValue({ HeaderMenu: false } )}
         const isMainMenuOverflowed = mainMenuElement.scrollHeight > mainMenuElement.clientHeight;
         const isSecondLevelOverflowed = secondLevelElement ? secondLevelElement.scrollHeight > secondLevelElement.clientHeight : false;
         setIsOverflowed(isMainMenuOverflowed || isSecondLevelOverflowed);
@@ -101,7 +104,7 @@ export default function HeaderMenu() {
             window.removeEventListener('resize', handleScroll);
             mainMenuElement.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [menuFetch, logoFetch]);
 
     return (
         <>
@@ -219,7 +222,8 @@ export default function HeaderMenu() {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                          stroke="currentColor" className="w-6 h-6"
                          style={{transform: (scroll === 'Top') ? 'rotateZ(-180deg)' : 'none'}}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/>
+                        <path strokeLinecap="round" strokeLinejoin="round"
+                              d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"/>
                     </svg>
                 </div>}
                 <div style={{display: (showLogoBlock) ? 'block' : 'none'}} className={'main-menu__logo-block'}>

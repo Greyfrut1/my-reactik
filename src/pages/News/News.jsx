@@ -93,8 +93,8 @@ export default function News() {
                                             className={"date_field"}>{format(new Date(item?.created), 'dd MMMM HH:mm', {locale: uk})}</div>}
                                         {langPrefix === 'en' && <div
                                             className={"date_field"}>{format(new Date(item?.created), 'dd MMMM HH:mm')}</div>}
-                                        <Link className="teaser_title"
-                                              to={`/${langPrefix}${item?.path?.alias}`}>{item.title}</Link>
+                                        <a className="teaser_title"
+                                              href={`/${langPrefix}${item?.path?.alias}`}>{item.title}</a>
                                     </div>
                                 </div>
                             ))}

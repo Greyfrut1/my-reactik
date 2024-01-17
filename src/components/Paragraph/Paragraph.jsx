@@ -1,12 +1,18 @@
 import {useParagraphQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import dropdownArrow from "/src/assets/dropdown-arrow.png"
 import YoutubeEmbed from "../Common/YoutubeEmbed.jsx";
 import './Paragraph.scss';
 import {Link} from "react-router-dom";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function Paragraph({target_id}) {
+    const {data: paragraph, isFetching} = useParagraphQuery({targetId: `${target_id}`});
+    const {setLoadingValue} = useContext(LoadingContext)
+    useEffect(() => {
+        if(!isFetching){setLoadingValue({ Paragraph: true });} else { setLoadingValue({ Paragraph: false } )}
+    }, [isFetching]);
     const [isActive, setIsActive] = useState(false);
 
     const [isActiveDropdown, setisActiveDropdown] = useState(false);
@@ -18,7 +24,6 @@ function Paragraph({target_id}) {
     const handleClickDropdown = () => {
         setisActiveDropdown(!isActiveDropdown);
     };
-    const {data: paragraph} = useParagraphQuery({targetId: `${target_id}`});
     return (
         <>
             {paragraph?.type?.[0]?.target_id === 'section' && (
@@ -85,7 +90,7 @@ function Paragraph({target_id}) {
                             <div className={`dropdown-arrow`}>
                                 <img src={dropdownArrow} alt={"arrow"}/>
                             </div>
-                            <Link key={index} to={link.full_url}>{link.title}</Link>
+                            <a href={index} hidden={link.full_url}>{link.title}</a>
                         </div>
                     ))}
                 </>
@@ -100,10 +105,10 @@ function Paragraph({target_id}) {
             )
             }
             {paragraph?.type?.[0]?.target_id == 'image_link' && (
-                <Link to={paragraph?.field_link_to_partner?.[0]?.uri}>
+                <a href={paragraph?.field_link_to_partner?.[0]?.uri}>
                     <img src={paragraph?.field_image?.url}
                          alt={paragraph?.field_image?.alt}/>
-                </Link>
+                </a>
             )
             }
             {paragraph?.type?.[0]?.target_id == 'file_preview' && (

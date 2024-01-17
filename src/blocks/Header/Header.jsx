@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {useHeaderLogoQuery} from "../../services/api.js";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
@@ -6,9 +6,10 @@ import Menu from "../HeaderMenu/HeaderMenu.jsx";
 import TopHeaderMenu from "../TopHeaderMenu/TopHeaderMenu.jsx";
 import './Header.scss';
 import SearchBlock from "../SearchBlock/SearchBlock.jsx";
+import {LoadingContext} from "../../context/loading-context.jsx";
 
 function Header() {
-    const { data: headerLogoBlockData } = useHeaderLogoQuery();
+    const { data: headerLogoBlockData, isFetching } = useHeaderLogoQuery();
     const [showMenuDialog, setShowMenuDialog] = useState(false);
     const langPrefix = useLanguagePrefix();
     const toggleMenuDialog = () => {
@@ -19,6 +20,10 @@ function Header() {
             document.body.style.overflow = 'hidden';
         }
     };
+    const {setLoadingValue} = useContext(LoadingContext)
+    // useEffect(() => {
+    //     if(!isFetching){setLoadingValue({ Header: true });} else { setLoadingValue({ Header: false } )}
+    // }, [isFetching]);
     return (
         <>
             <div className={'header-block'}>
