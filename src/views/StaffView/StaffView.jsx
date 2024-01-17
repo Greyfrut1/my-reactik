@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
-import React from "react";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import ContactInformation from "../../components/Common/ContactInformation.jsx";
 import {Link} from "react-router-dom";
 import './StaffView.scss';
 
-function StaffView({data}) {
+export default function StaffView({data}) {
     const languagePrefix = useLanguagePrefix();
     return (
         <div className={"container"}>
@@ -32,5 +31,3 @@ StaffView.propTypes = {
         PropTypes.array.isRequired,
     ]),
 };
-
-export default StaffView;

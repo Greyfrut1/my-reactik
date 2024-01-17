@@ -256,7 +256,7 @@ export const vnuApi = createApi({
             query: () => 'jsonapi/taxonomy_term/type_information',
         }),
         NewsLetterSubscriber: builder.query({
-            query: () => 'admin/content/block/5?_format=json',
+            query: () => 'jsonapi/block_content/basic/0dd7d14c-5f26-4921-9b92-2180cf305c04?include=field_image&jsonapi_include=1',
         }),
         NewsLetterUnSubscriber: builder.query({
             query: (args) => {

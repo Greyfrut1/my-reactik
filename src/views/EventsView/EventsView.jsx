@@ -1,5 +1,3 @@
-import {useWindowSize} from "react-use";
-import {useEffect, useState} from "react";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
 import {Link} from "react-router-dom";
 import ReadMore from "../../views/ReadMore.jsx";

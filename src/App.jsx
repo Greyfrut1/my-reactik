@@ -102,7 +102,6 @@ export default function App() {
                     <Route path="/:lang/events" element={<Events/>}/>
                     <Route path="/:lang/events/:alias" element={<EventsPage/>}/>
 
-
                     <Route path="/:lang/*" element={<NotFoundPage/>}/>
                 </Routes>
             </Suspense>

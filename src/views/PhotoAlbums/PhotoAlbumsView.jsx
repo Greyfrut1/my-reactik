@@ -6,20 +6,9 @@ import {useLocation} from "react-router-dom";
 import './PhotoAlbumsView.scss';
 import {usePhotoAlbumsQuery} from "../../services/api.js";
 
-function PhotoAlbumsView() {
+export default function PhotoAlbumsView() {
     const {data: albumsData} = usePhotoAlbumsQuery();
     const languagePrefix = useLanguagePrefix()
-
-    const size = useWindowSize();
-    const [imageStyle, setImageStyle] = useState('');
-
-    useEffect(() => {
-        if (size.width < 480) {
-            setImageStyle('thumbnail');
-        } else {
-            setImageStyle('small_large_photoalbums_134_172_');
-        }
-    }, [size.width]);
     const location = useLocation();
     const currentPath = location.pathname;
     return (
@@ -41,5 +30,3 @@ function PhotoAlbumsView() {
         </>
     );
 }
-
-export default PhotoAlbumsView;

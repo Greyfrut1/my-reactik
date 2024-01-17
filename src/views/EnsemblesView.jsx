@@ -1,7 +1,6 @@
 import {useEnsemblesViewQuery} from "../services/api.js";
 import MetaTags from "../components/Common/MetaTags.jsx";
 import {Link, useLocation} from "react-router-dom";
-import React from "react";
 import ReadMore from "./ReadMore.jsx";
 import useLanguagePrefix from "../services/languagePrefix.jsx";
 

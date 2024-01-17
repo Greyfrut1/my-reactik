@@ -1,7 +1,7 @@
 import {useTaxonomyTypeInfoQuery} from "../../services/api.js";
 import PropTypes from "prop-types";
 import useLanguagePrefix from "../../services/languagePrefix.jsx";
-
+import './TypeFilterButtons.scss';
 
 export default function TypeFilterButtons({handleTypeInformation}) {
     const {data: typeData} = useTaxonomyTypeInfoQuery();

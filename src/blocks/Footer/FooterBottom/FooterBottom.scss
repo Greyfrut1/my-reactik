@@ -8,8 +8,25 @@
     display: grid;
     grid-template-columns: 34% 40% 26%;
     align-items: center;
-    .subscriber{
-      padding:20px 0 20px 35px;
+    .modal-button{
+      padding:20px 0 20px 15px;
+    }
+    button{
+      border: 2px solid white;
+      border-radius:5px;
+      padding: 23px 100px;
+      outline: none;
+      background: transparent;
+      @include fontz(20px,0px,0.02em,none,500,white);
+      max-height:50px;
+      max-width:316px;
+      cursor: pointer;
+      &:hover, &:focus{
+        background-color: white;
+        color: $burgundy;
+        transition: all 0.5s;
+        border:2px solid $burgundy
+      }
     }
     &-time{
       display: flex;

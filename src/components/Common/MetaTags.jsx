@@ -2,7 +2,7 @@ import {Helmet} from "react-helmet";
 import PropTypes from "prop-types";
 import {useMetaTagsQuery,useSiteInfoQuery} from "../../services/api.js";
 
-function MetaTags({type , data, viewUrl}){
+export default function MetaTags({type , data, viewUrl}){
     const frontUrl = import.meta.env.VITE_FRONTEND_URL;
     const {data: metaTagBlock} = useMetaTagsQuery();
     const {data: siteInfo} = useSiteInfoQuery();
@@ -91,4 +91,3 @@ MetaTags.propTypes = {
     ]),
     viewUrl: PropTypes.string,
 };
-export default MetaTags
