@@ -53,9 +53,22 @@ export default function App() {
     const { loadingState } = useContext(LoadingContext);
     const [loading, setLoading] = useState(false);
     const loadingStateRef = useRef(loadingState);
+    const getNetworkSpeed = () => {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        return connection ? connection.downlink : null;
+    };
+
+// Використання швидкості мережі для динамічного часу очікування
+    const calculateTimeout = () => {
+        const networkSpeed = getNetworkSpeed();
+        console.log(networkSpeed)
+        return networkSpeed ? Math.max(300, 5000 / networkSpeed) : 300;
+    };
+    loadingStateRef.current = loadingState
     useEffect(() => {
-        loadingStateRef.current = loadingState
+        console.log(calculateTimeout())
         setTimeout(() => {
+            console.log(loadingStateRef.current)
             const hasLoading = Object.values(loadingStateRef.current).length > 0 && Object.values(loadingStateRef.current).every(value => value === true);
             if (hasLoading) {
                 setLoading(true);
@@ -63,11 +76,13 @@ export default function App() {
                 setLoading(false);
             }
             setTimeout(() => {
+                console.log('time')
+                console.log(loadingStateRef.current)
                 if (Object.values(loadingStateRef.current).length === 0) {
                     setLoading(true);
                 }
             }, 100)
-        }, 300);
+        }, calculateTimeout());
     }, [loadingState]);
     return (
         <BrowserRouter>

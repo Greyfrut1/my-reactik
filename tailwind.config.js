@@ -12,8 +12,8 @@ export default {
             'dark': '#3f444e',
             'darkGray': '#e8e8e8',
             'borderGray': '#d8d8d8',
-            'white': 'white',
-            'black': 'black',
+            'white': '#fff',
+            'black': '#000',
         },
         fontSize:{
             'title':['40px'],
@@ -22,14 +22,14 @@ export default {
             'base': ['sans-serif', 'Roboto']
         },
         screens: {
-            lg: '1024px',
-            xl: '1280px',
-            xxl: '1440px',
+            md: '768px',
+            lg: '976px',
+            xl: '1200px'
         },
 
         container: {
-            center: true,
-            padding: '47px',
+            center: true,  // Center the container content.
+            padding: '15px', // Set horizontal padding.
         },
     },
     plugins: [],
